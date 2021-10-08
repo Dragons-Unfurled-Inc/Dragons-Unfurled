@@ -1,7 +1,8 @@
-from entite import Entite 
-from monstre import Monstre 
+from metier.entite import Entite 
+from metier.monstre import Monstre 
 import requests as req 
 from abc import abstractstaticmethod
+
 class CreationMonstre:
     @staticmethod
     def CreaMonstre(nom):
