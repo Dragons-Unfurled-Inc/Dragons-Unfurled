@@ -8,7 +8,7 @@ listraces = [dicraces['results'][i]['name'] for i in range(dicraces['count'])]
 c = req.get('https://www.dnd5eapi.co/api/classes')
 dicclasses = c.json()
 listclasses = [dicclasses['results'][i]['name'] for i in range(dicclasses['count'])]
-
+print(listraces,listclasses)
 class ClasseInexistante(Exception): 
     pass
 
@@ -30,13 +30,13 @@ class Personnage(Entite):
     def __del__(self):
         print('__del__', self.classe, self.race)
 
-try:
+'''try:
     o=Personnage('Moi','Bard','Dwarf')
 except ClasseInexistante:
     print('Cette classe est inexistante')
 except RaceInexistante:
     print('Cette race est inexistante')
-    
+   ''' 
     
 '''c=classe race niveau traits capac equipment lore 
 Experience Points	Level	Proficiency Bonus
