@@ -54,6 +54,62 @@ questions = [
     },
     {
         'type': 'input',
+        'name': 'Force',
+        'message': 'Quelle force a votre personnage ?',
+        'validate': NumberValidator,
+        'filter': lambda val: int(val),
+        'when' : lambda answers : answers['ChoixCarac']
+    },
+    {
+        'type': 'input',
+        'name': 'Force',
+        'message': 'Quelle force a votre personnage ?',
+        'validate': NumberValidator,
+        'filter': lambda val: int(val),
+        'when' : lambda answers : answers['ChoixCarac']
+    },
+    {
+        'type': 'input',
+        'name': 'Force',
+        'message': 'Quelle force a votre personnage ?',
+        'validate': NumberValidator,
+        'filter': lambda val: int(val),
+        'when' : lambda answers : answers['ChoixCarac']
+    },
+    {
+        'type': 'input',
+        'name': 'Force',
+        'message': 'Quelle force a votre personnage ?',
+        'validate': NumberValidator,
+        'filter': lambda val: int(val),
+        'when' : lambda answers : answers['ChoixCarac']
+    },
+    {
+        'type': 'input',
+        'name': 'Force',
+        'message': 'Quelle force a votre personnage ?',
+        'validate': NumberValidator,
+        'filter': lambda val: int(val),
+        'when' : lambda answers : answers['ChoixCarac']
+    },
+    {
+        'type': 'input',
+        'name': 'Force',
+        'message': 'Quelle force a votre personnage ?',
+        'validate': NumberValidator,
+        'filter': lambda val: int(val),
+        'when' : lambda answers : answers['ChoixCarac']
+    },
+    {
+        'type': 'input',
+        'name': 'Force',
+        'message': 'Quelle force a votre personnage ?',
+        'validate': NumberValidator,
+        'filter': lambda val: int(val),
+        'when' : lambda answers : answers['ChoixCarac']
+    },
+    {
+        'type': 'input',
         'name': 'Nom',
         'message': 'Comment s\'appelle votre personnage ?',
         'default': 'Ragnar'
@@ -62,5 +118,5 @@ questions = [
 ]
 
 answers = prompt(questions)
-print('Order receipt:')
+print('Fiche de personnage:')
 pprint(answers)
