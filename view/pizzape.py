@@ -1,15 +1,25 @@
 # -*- coding: utf-8 -*-
 """
-* Choix de perso
+* Pizza delivery prompt example
 * run example by writing `python example/pizza.py` in your console
 """
 from __future__ import print_function, unicode_literals
-from PyInquirer import Separator, prompt
-from PyInquirer import Validator, ValidationError
-from view.abstract_view import AbstractView
-from view.session import Session
+
 import regex
 from pprint import pprint
+
+from PyInquirer import style_from_dict, Token, prompt
+from PyInquirer import Validator, ValidationError
+
+
+class PhoneNumberValidator(Validator):
+    def validate(self, document):
+        ok = regex.match('^([01]{1})?[-.\s]?\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})\s?((?:#|ext\.?\s?|x\.?\s?){1}(?:\d+)?)?$', document.text)
+        if not ok:
+            raise ValidationError(
+                message='Please enter a valid phone number',
+                cursor_position=len(document.text))  # Move cursor to end
+
 
 class NumberValidator(Validator):
     def validate(self, document):
@@ -19,16 +29,14 @@ class NumberValidator(Validator):
             raise ValidationError(
                 message='Please enter a number',
                 cursor_position=len(document.text))  # Move cursor to end
-
-print('Bienvenue sur l\'écran de création de personnage')
-
+            
 listraces = ['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'Half-Elf', 'Half-Orc', 'Halfling', 'Human', 'Tiefling'] 
 listclasses = ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard']
 
-class MenuPersonnage(AbstractView):
-    
-    def __init__(self):
-        self.questions = [
+
+print('Hi, welcome to Python Pizza')
+
+questions = [
             {
                 'type': 'list',
                 'name': 'Classe',
@@ -117,14 +125,7 @@ class MenuPersonnage(AbstractView):
                 'message': 'Comment s\'appelle votre personnage ?',
                 'default': 'Ragnar'
             }]
-                
-    def display_info(self):
-        print(f"Hello {Session().user_name}, please choose some pokemon")
 
-    def make_choice(self):
-        reponse = prompt(self.questions)
-        if reponse['choix'] == 'Créer un personnage':
-            from view.test import MenuPersonnage
-            return MenuPersonnage()
-        else :
-            pass 
+answers = prompt(questions)
+print('Order receipt:')
+pprint(answers)

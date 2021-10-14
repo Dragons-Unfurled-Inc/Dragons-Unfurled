@@ -3,9 +3,6 @@ from PyInquirer import Separator, prompt
 from view.abstract_view import AbstractView
 from view.session import Session
 
-
-
-
 class StartView(AbstractView):
 
     def __init__(self):
