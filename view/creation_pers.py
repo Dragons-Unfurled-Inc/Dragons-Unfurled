@@ -50,7 +50,31 @@ class MenuPersonnage(AbstractView):
             {
                 'type': 'input',
                 'name': 'Force',
-                'message': 'Quelle force a votre personnage ?',
+                'message': 'Combien de points de force a votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
+                'name': 'Dextérité',
+                'message': 'Combien de points de dextérité a votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
+                'name': 'Constitution',
+                'message': 'Combien de points de constitution a votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
+                'name': 'Intelligence',
+                'message': 'Combien de points d\'intelligence a votre personnage ?',
                 'validate': NumberValidator,
                 'filter': lambda val: int(val),
                 'when' : lambda answers : answers['ChoixCarac']
@@ -58,55 +82,15 @@ class MenuPersonnage(AbstractView):
             {
                 'type': 'input',
                 'name': 'Sagesse',
-                'message': 'Quelle fce a votre personnage ?',
+                'message': 'Combien de points de sagesse a votre personnage ?',
                 'validate': NumberValidator,
                 'filter': lambda val: int(val),
                 'when' : lambda answers : answers['ChoixCarac']
             },
             {
                 'type': 'input',
-                'name': 'F2',
-                'message': 'Quelle fe a votre personnage ?',
-                'validate': NumberValidator,
-                'filter': lambda val: int(val),
-                'when' : lambda answers : answers['ChoixCarac']
-            },
-            {
-                'type': 'input',
-                'name': 'F3',
-                'message': 'Quelle f a votre personnage ?',
-                'validate': NumberValidator,
-                'filter': lambda val: int(val),
-                'when' : lambda answers : answers['ChoixCarac']
-            },
-            {
-                'type': 'input',
-                'name': 'F4',
-                'message': 'Quelle force a votre personnage ?',
-                'validate': NumberValidator,
-                'filter': lambda val: int(val),
-                'when' : lambda answers : answers['ChoixCarac']
-            },
-            {
-                'type': 'input',
-                'name': 'F5',
-                'message': 'Quelle forc a votre personnage ?',
-                'validate': NumberValidator,
-                'filter': lambda val: int(val),
-                'when' : lambda answers : answers['ChoixCarac']
-            },
-            {
-                'type': 'input',
-                'name': 'Fo6',
-                'message': 'Quelle for a votre personnage ?',
-                'validate': NumberValidator,
-                'filter': lambda val: int(val),
-                'when' : lambda answers : answers['ChoixCarac']
-            },
-            {
-                'type': 'input',
-                'name': 'F7',
-                'message': 'Quelle fo a votre personnage ?',
+                'name': 'Charisme',
+                'message': 'Combien de points de charisme a votre personnage ?',
                 'validate': NumberValidator,
                 'filter': lambda val: int(val),
                 'when' : lambda answers : answers['ChoixCarac']
@@ -123,8 +107,5 @@ class MenuPersonnage(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        if reponse['choix'] == 'Créer un personnage':
-            from view.test import MenuPersonnage
-            return MenuPersonnage()
-        else :
-            pass 
+        from view.start_view import StartView
+        return StartView()
