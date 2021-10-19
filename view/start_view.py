@@ -27,7 +27,7 @@ class StartView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Créer un personnage':
-            from view.test import MenuPersonnage
+            from view.creation_pers import MenuPersonnage
             return MenuPersonnage()
         else :
             pass 
