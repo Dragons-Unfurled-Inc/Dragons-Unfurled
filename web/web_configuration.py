@@ -1,7 +1,7 @@
 import os
 
-from psycopg2.extras
-from app.utils.singleton import Singleton
+import psycopg2.extras 
+from utils.singleton import Singleton
 
 
 class WebConfiguration(metaclass=Singleton):
