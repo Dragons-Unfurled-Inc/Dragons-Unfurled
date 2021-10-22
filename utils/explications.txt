@@ -1,7 +1,7 @@
 ça c'est un peu compliqué à expliquer faut regarder la doc de la classe singleton (une classe de python 
 de base que Pépin importe pcq elle est utile pour plusieurs codes ici)
 
-Si vous ouvrez singleton.txt vous trouverez cette explication : 
+Si vous ouvrez singleton.py vous trouverez cette explication : 
 
 -> https://refactoring.guru/fr/design-patterns/singleton
     The Singleton class can be implemented in different ways in Python. Some

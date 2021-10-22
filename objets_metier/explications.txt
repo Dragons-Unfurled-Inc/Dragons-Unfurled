@@ -1,1 +1,2 @@
-Ici vous avez les objets métiers, la classe personnage est à refaire, la classe de dés est un bon exemple je pense 
+Ici vous avez les objets métiers, la classe personnage est à refaire parce que j'avais défini des exceptions qui ont plus lieu 
+d'existern, la classe de dés est un bon exemple je pense 
