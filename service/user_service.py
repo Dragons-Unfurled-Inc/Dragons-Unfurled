@@ -1,7 +1,6 @@
-
-from app.business_object.user import User
-
-
+from dao.user_dao import UserDao
+from objets_metier.utilisateur.user import User
+from exceptions.user_not_authenticated_exception import UserNotAuthenticated
 
 class UserService:
 

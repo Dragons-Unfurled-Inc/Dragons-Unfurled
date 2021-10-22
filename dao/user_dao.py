@@ -1,6 +1,6 @@
-from objets_metiers.utilisateur.user import User
-from app.web_service.dao.configuration import DBConnection
-from app.web_service.exception.user_not_found_exception import UserNotFoundException
+from objets_metier.utilisateur.user import User
+from dao.configuration import DBConnection
+from exceptions.user_not_found_exception import UserNotFoundException
 
 
 class UserDao:
