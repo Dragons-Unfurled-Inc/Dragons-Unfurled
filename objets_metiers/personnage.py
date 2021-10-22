@@ -9,6 +9,7 @@ c = req.get('https://www.dnd5eapi.co/api/classes')
 dicclasses = c.json()
 listclasses = [dicclasses['results'][i]['name'] for i in range(dicclasses['count'])]
 print(listraces,listclasses)
+
 class ClasseInexistante(Exception): 
     pass
 
