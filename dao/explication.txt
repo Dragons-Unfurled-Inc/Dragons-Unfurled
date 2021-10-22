@@ -1,0 +1,3 @@
+Ici vous avez tout ce qu'il faut pour initialiser la connexion à une base de données (configuration.py) et vérifier si un user en 
+fait partie (user_dao), le fichier creationentite fait office de entite_dao pour l'instant mais faut le modifier.
+

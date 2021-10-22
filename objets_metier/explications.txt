@@ -1,0 +1,1 @@
+Ici vous avez les objets métiers, la classe personnage est à refaire, la classe de dés est un bon exemple je pense 

@@ -2,7 +2,7 @@ import dotenv
 from fastapi import FastAPI
 import uvicorn
 
-from app.web_service.controller import auth_router
+from web.controller import auth_router
 
 dotenv.load_dotenv(override=True)
 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from objets_metiers.utilisateur.user import User
-from app.web_service.service.user_service import UserService
+from objets_metier.user import User
+from service.user_service import UserService
 
 router = APIRouter()
 

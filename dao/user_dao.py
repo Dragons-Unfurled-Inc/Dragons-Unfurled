@@ -1,4 +1,4 @@
-from objets_metier.utilisateur.user import User
+from objets_metier.user import User
 from dao.configuration import DBConnection
 from exceptions.user_not_found_exception import UserNotFoundException
 
