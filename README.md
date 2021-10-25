@@ -1,5 +1,3 @@
-#Dragons Unfurled
-
 Dragons Unfurled est une application pour jeux de rôles (JDR) basée sur l’univers de Donjons et Dragons (D&D) 5e édition. 
 
 Grâce à Dragons Unfurled , seuls les monstres pourront encore barrer la route à votre troupe d’aventuriers. Vos rôlistes pourront rejoindre l’aventure à tout moment, que vous soyez réunis ou à distance. 
