@@ -1,0 +1,2 @@
+Ici les services, vous avez un fichier pour l'instant qui contient quelques fonctions utiles pour la classe User 
+que Brunetti a codé dans son dossier d'aide

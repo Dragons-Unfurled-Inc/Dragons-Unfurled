@@ -1,5 +1,5 @@
-from metier.entite import Entite 
-from metier.monstre import Monstre 
+from objets_metier.entite import Entite 
+from objets_metier.monstre import Monstre 
 import requests as req 
 from abc import abstractstaticmethod
 class CreationMonstre:
