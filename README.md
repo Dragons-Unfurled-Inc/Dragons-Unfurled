@@ -7,3 +7,41 @@ Grâce à Dragons Unfurled , seuls les monstres pourront encore barrer la route 
 La force de ce support est d’offrir la liberté au maître du jeu d’organiser la campagne comme il le souhaite, la personnalisation pouvant aller de la simple gestion des personnages à la création de donjons remplis de monstres et de trésors positionnés à la case près. Mieux encore, Dragons Unfurled permet de sauvegarder vos parties, mais aussi les personnages et donjons que vous créez pour que vous puissiez vous en servir à votre guise.
 
 En plus d’étoffer la base de l’application, tout utilisateur peut contribuer en envoyant un feedback à l’équipe d’administrateurs qui est là pour veiller à ce que votre expérience de jeu soit optimale. Employant les données fournies par l’API ouverte D&D 5th Edition API, Dragons Unfurled déploie l’arsenal du JDR D&D à portée de main.
+
+---
+title: Git config
+category: Git
+---
+
+## Rappel
+
+**Ne pas oublier : l'aide en ligne de commande.**
+
+```shell
+git help config
+git help push
+git help pull
+git help branch
+```
+
+## Configuration
+
+```shell
+# Identity Name
+git config --global user.name "aquelito"
+
+# Identity Email
+git config --global user.email "axel@aquelito.fr"
+
+# Editor Tool
+git config --global core.editor subl
+
+# Diff Tool
+git config --global merge.tool filemerge
+```
+
+Liste des globals
+
+```shell
+git config --list
+```
