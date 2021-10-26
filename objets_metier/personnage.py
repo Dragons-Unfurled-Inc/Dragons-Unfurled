@@ -6,7 +6,7 @@ class Personnage(Entite):
         super().__init__(self,id_joueur, id_entite, nom_entite, caracteristiques, objets)
         self.classe = classe
         self.race = race
-        self.lore = lore 
+        self.lore = lore
         print('Création de', nom_entite, 'de classe', classe, 'et de race', race)
         '''utiliser le module logging'''
     
