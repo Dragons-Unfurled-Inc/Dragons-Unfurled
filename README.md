@@ -8,18 +8,6 @@ La force de ce support est d’offrir la liberté au maître du jeu d’organise
 
 En plus d’étoffer la base de l’application, tout utilisateur peut contribuer en envoyant un feedback à l’équipe d’administrateurs qui est là pour veiller à ce que votre expérience de jeu soit optimale. Employant les données fournies par l’API ouverte D&D 5th Edition API, Dragons Unfurled déploie l’arsenal du JDR D&D à portée de main.
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
-<img src="man/figures/README-unnamed-chunk-2-1.png" width="90%" />
-
-
 <div id="top"></div>
 
 <!-- PROJECT SHIELDS -->
