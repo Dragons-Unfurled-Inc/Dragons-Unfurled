@@ -5,10 +5,8 @@
 *** Pour la lisibilité, nous utilisons le markdown "reference style".
 *** Nous allons par exemple mettre nos références entre crochets [ ] plutôt qu'entre parenthèses ( ).
 -->
-[![Contributeurs][contributeurs]][4]
-[![Étoiles][étoiles]][stars-url]
-[![Problèmes][pb]][issues-url]
-[![MIT Licence][licence]][license-url]
+[![Contributeurs][contributeurs]][contributeurs-url]
+[![MIT Licence][licence]][licence-url]
 
 
 
@@ -228,14 +226,10 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributeurs]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[étoiles]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[pb]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[licence]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[contributeurs]: https://img.shields.io/badge/Contributeurs-4-success
+[contributeurs-url]: https://github.com/Julien-Sklarik/Dragons-Unfurled.git
+[licence]: https://img.shields.io/badge/Licence-MIT-f39f37
+[licence-url]: https://github.com/Julien-Sklarik/Dragons-Unfurled/blob/dad41cc124244de403fe19cee0abdd8fb52f6beb/LICENSE
 
 ## Installation des librairies
 ```
