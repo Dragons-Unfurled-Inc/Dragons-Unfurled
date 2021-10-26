@@ -13,10 +13,7 @@ En plus d’étoffer la base de l’application, tout utilisateur peut contribue
 <!-- PROJECT SHIELDS -->
 <!--
 *** Pour la lisibilité, nous utilisons le markdown "reference style".
-*** Nous allons par exemple mettre nos références [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+*** Nous allons par exemple mettre nos références entre crochets [ ] plutôt qu'entre parenthèses ( ).
 -->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
