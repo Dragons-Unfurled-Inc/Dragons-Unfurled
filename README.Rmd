@@ -8,20 +8,13 @@ La force de ce support est d’offrir la liberté au maître du jeu d’organise
 
 En plus d’étoffer la base de l’application, tout utilisateur peut contribuer en envoyant un feedback à l’équipe d’administrateurs qui est là pour veiller à ce que votre expérience de jeu soit optimale. Employant les données fournies par l’API ouverte D&D 5th Edition API, Dragons Unfurled déploie l’arsenal du JDR D&D à portée de main.
 
-Voici un exemple, où nous utilisons `mfrow` pour mettre quatre
-graphiques côte à côte.
-
-``` r
-# Nous divisons l'espace d'affichage en un tableau à deux lignes et deux colonnes
-par(mfrow=c(2,2)) 
-# Histogramme des longueurs de sépales arrondies à un chiffre
-barplot(table(round(iris$Sepal.Length,0)), main="Graphique à barres") 
-# Diagramme circulaire à secteurs des longueurs de sépales arrondies à un chiffre
-pie(table(round(iris$Sepal.Length,0)), main="Graphique circulaire", radius=1) 
-# Boxplot des longueurs de sépales
-boxplot(main="Boxplot",iris$Sepal.Length, horizontal=TRUE)
-# Histogramme des longueurs de sépales
-hist(iris$Sepal.Length, main="Histogramme",xlab="Longueurs de sépales",ylab="Effectifs")
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="90%" />
