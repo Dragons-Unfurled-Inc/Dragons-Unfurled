@@ -234,7 +234,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [jdr-url]: https://www.dnd5eapi.co/docs/
 [d&d]: https://img.shields.io/badge/API-D&D5eAPI-9cf
 [d&d-url]: https://www.dnd5eapi.co/
-[licence]: https://img.shields.io/badge/Licence-MIT-f39f37
+[licence]: https://img.shields.io/badge/Licence-MIT-inactive
 [licence-url]: https://github.com/Julien-Sklarik/Dragons-Unfurled/blob/dad41cc124244de403fe19cee0abdd8fb52f6beb/LICENSE
 
 ## Installation des librairies
