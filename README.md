@@ -29,7 +29,7 @@ La force de ce support est d’offrir la liberté au maître du jeu d’organise
 
 En plus d’étoffer la base de l’application, tout utilisateur peut contribuer en envoyant un feedback à l’équipe d’administrateurs qui est là pour veiller à ce que votre expérience de jeu soit optimale. Employant les données fournies par l’API ouverte D&D 5th Edition API, Dragons Unfurled déploie l’arsenal du JDR D&D à portée de main.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Julien-Sklarik/Dragons-Unfurled.git"><strong>Explorer le code »</strong></a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
