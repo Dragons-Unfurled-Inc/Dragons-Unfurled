@@ -8,64 +8,7 @@ La force de ce support est d’offrir la liberté au maître du jeu d’organise
 
 En plus d’étoffer la base de l’application, tout utilisateur peut contribuer en envoyant un feedback à l’équipe d’administrateurs qui est là pour veiller à ce que votre expérience de jeu soit optimale. Employant les données fournies par l’API ouverte D&D 5th Edition API, Dragons Unfurled déploie l’arsenal du JDR D&D à portée de main.
 
----
-title: Installation projet
-category: Git
----
-
-## Rappel
-
-**Ne pas oublier : l'aide en ligne de commande.**
-
-```shell
-git help config
-git help push
-git help pull
-git help branch
-```
-
-## Configuration
-
-```shell
-# Identity Name
-git config --global user.name "aquelito"
-
-# Identity Email
-git config --global user.email "axel@aquelito.fr"
-
-# Editor Tool
-git config --global core.editor subl
-
-# Diff Tool
-git config --global merge.tool filemerge
-```
-
-Liste des globals
-
-```shell
-git config --list
-```
-Pour indiquer à quel commit on souhaite revenir, il existe plusieurs notations :
-
-* HEAD : dernier commit ;
-* HEAD^ : avant-dernier commit ;
-* HEAD^^ : avant-avant-dernier commit ;
-* HEAD~2 : avant-avant-dernier commit (notation équivalente) ;
-* d6d98923868578a7f38dea79833b56d0326fcba1 : indique un numéro de commit ;
-* d6d9892 : indique un numéro de commit version courte.
-
-votre `git add`.
-
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-
 
 <!-- PROJECT SHIELDS -->
 <!--
