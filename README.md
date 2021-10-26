@@ -5,6 +5,8 @@
 *** Pour la lisibilité, nous utilisons le markdown "reference style".
 *** Nous allons par exemple mettre nos références entre crochets [ ] plutôt qu'entre parenthèses ( ).
 -->
+[![JDR][jdr]][jdr-url]
+[![API][d&d]][d&d-url]
 [![Contributeurs][contributeurs]][contributeurs-url]
 [![MIT Licence][licence]][licence-url]
 
@@ -224,10 +226,14 @@ Use this space to list resources you find helpful and would like to give credit 
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
+<!-- MARKDOWN LIENS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributeurs]: https://img.shields.io/badge/Contributeurs-4-success
 [contributeurs-url]: https://github.com/Julien-Sklarik/Dragons-Unfurled.git
+[jdr]: https://img.shields.io/badge/JDR-D&D5e-red
+[jdr-url]: https://www.dnd5eapi.co/docs/
+[d&d]: https://img.shields.io/badge/API-D&D5eAPI-9cf
+[d&d-url]: https://www.dnd5eapi.co/
 [licence]: https://img.shields.io/badge/Licence-MIT-f39f37
 [licence-url]: https://github.com/Julien-Sklarik/Dragons-Unfurled/blob/dad41cc124244de403fe19cee0abdd8fb52f6beb/LICENSE
 
