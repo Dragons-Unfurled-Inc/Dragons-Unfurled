@@ -1,44 +1,19 @@
 from entite import Entite
 import requests as req
 
-r = req.get('https://www.dnd5eapi.co/api/races')
-dicraces = r.json()
-listraces = [dicraces['results'][i]['name'] for i in range(dicraces['count'])]
-
-c = req.get('https://www.dnd5eapi.co/api/classes')
-dicclasses = c.json()
-listclasses = [dicclasses['results'][i]['name'] for i in range(dicclasses['count'])]
-print(listraces,listclasses)
-
-class ClasseInexistante(Exception): 
-    pass
-
-class RaceInexistante(Exception):
-    pass
-
 class Personnage(Entite):
-    def __init__(self,nom,taille,classe,race,niveau,alignement, hit_points, hit_dice, armure,vitesse, force, dextérité, constitution, intelligence, sagesse, charisme,compétences,abilités,traits,langages,equipement,lore, experience):
-        super().__init__(self,nom, taille, alignement, hit_points, hit_dice, armure, vitesse, force, dextérité, constitution, intelligence, sagesse, charisme,compétences, langages, experience)
+    def __init__(self, classe, race, lore, id_joueur, id_entite, nom_entite, caracteristiques, objets):
+        super().__init__(self,id_joueur, id_entite, nom_entite, caracteristiques, objets)
         self.classe = classe
-        self.race = race 
-        print('Création de', nom, 'de classe', classe, 'et de race', race)
+        self.race = race
+        self.lore = lore 
+        print('Création de', nom_entite, 'de classe', classe, 'et de race', race)
         '''utiliser le module logging'''
-        
-        if classe not in listclasses:
-            raise ClasseInexistante
-        if race not in listraces :
-            raise RaceInexistante
+    
     def __del__(self):
         print('__del__', self.classe, self.race)
 
-'''try:
-    o=Personnage('Moi','Bard','Dwarf')
-except ClasseInexistante:
-    print('Cette classe est inexistante')
-except RaceInexistante:
-    print('Cette race est inexistante')
-   ''' 
-    
+
 '''c=classe race niveau traits capac equipment lore 
 Experience Points	Level	Proficiency Bonus
 0   1	+2

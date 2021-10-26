@@ -1,23 +1,15 @@
 from abc import ABC, abstractmethod
 
+from objets_metier.caracteristique import Caracteristique
+
 
 class Entite(ABC): 
-    def __init__(self,nom,taille, alignement, armure, hit_points, hit_dice, vitesse, force, dextérité, constitution, intelligence, sagesse, charisme,compétences, langages, experience):
-        self.nom = nom
-        self.taille = taille 
-        self.alignement = alignement 
-        self.armure = armure 
-        self.hit_points = hit_points
-        self.hit_dice = hit_dice
-        self.vitesse = vitesse 
-        self.force = force 
-        self.dextérité = dextérité 
-        self.constitution = constitution
-        self.intelligence = intelligence 
-        self.sagesse = sagesse 
-        self.charisme = charisme 
-        self.compétences = compétences
-        self.langages = langages
-        self.experience = experience 
+    def __init__(self, id_joueur, id_entite, nom_entite, objets, caracteristiques = Caracteristique()): #faut trouver un moyen d'initialiser des caracs à chaque fois
+        self.id_joueur = id_joueur
+        self.id_entite = id_entite  
+        self.nom_entite = nom_entite
+        self.caracteristiques = caracteristiques
+        self.objets = objets
+        
 
     

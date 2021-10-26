@@ -10,6 +10,8 @@ from view.abstract_view import AbstractView
 from view.session import Session
 import regex
 from pprint import pprint
+from objets_metier.entite import Entite
+import requests as req
 
 class NumberValidator(Validator):
     def validate(self, document):
@@ -22,8 +24,13 @@ class NumberValidator(Validator):
 
 print('Bienvenue sur l\'écran de création de personnage')
 
-listraces = ['Dragonborn', 'Dwarf', 'Elf', 'Gnome', 'Half-Elf', 'Half-Orc', 'Halfling', 'Human', 'Tiefling'] 
-listclasses = ['Barbarian', 'Bard', 'Cleric', 'Druid', 'Fighter', 'Monk', 'Paladin', 'Ranger', 'Rogue', 'Sorcerer', 'Warlock', 'Wizard']
+r = req.get('https://www.dnd5eapi.co/api/races') #cette liste doit être définie ailleurs (dans le package web) plus tard 
+dicraces = r.json()
+listraces = [dicraces['results'][i]['name'] for i in range(dicraces['count'])]
+
+c = req.get('https://www.dnd5eapi.co/api/classes') #cette liste doit être définie ailleurs (dans le package web) plus tard 
+dicclasses = c.json()
+listclasses = [dicclasses['results'][i]['name'] for i in range(dicclasses['count'])]
 
 class MenuPersonnage(AbstractView):
     
