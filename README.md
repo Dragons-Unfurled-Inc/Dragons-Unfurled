@@ -1,6 +1,6 @@
 <div id="top"></div>
 
-<!-- PROJECT SHIELDS -->
+<!-- Présentation -->
 <!--
 *** Pour la lisibilité, nous utilisons le markdown "reference style".
 *** Nous allons par exemple mettre nos références entre crochets [ ] plutôt qu'entre parenthèses ( ).
