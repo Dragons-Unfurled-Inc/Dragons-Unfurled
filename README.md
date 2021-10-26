@@ -5,7 +5,7 @@
 *** Pour la lisibilité, nous utilisons le markdown "reference style".
 *** Nous allons par exemple mettre nos références entre crochets [ ] plutôt qu'entre parenthèses ( ).
 -->
-[![Contributeurs][contributeurs]][contributors-url]
+[![Contributeurs][contributeurs]][4]
 [![Étoiles][étoiles]][stars-url]
 [![Problèmes][pb]][issues-url]
 [![MIT Licence][licence]][license-url]
