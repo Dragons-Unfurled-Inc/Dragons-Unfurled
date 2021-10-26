@@ -22,24 +22,22 @@
   <h3 align="center">Dragons Unfurled</h3>
 
   <p align="center">
-    
 Dragons Unfurled est une application pour jeux de rôles (JDR) basée sur l’univers de Donjons et Dragons (D&D) 5e édition. Grâce à Dragons Unfurled , seuls les monstres pourront encore barrer la route à votre troupe d’aventuriers. Vos rôlistes pourront rejoindre l’aventure à tout moment, que vous soyez réunis ou à distance. 
 
 La force de ce support est d’offrir la liberté au maître du jeu d’organiser la campagne comme il le souhaite, la personnalisation pouvant aller de la simple gestion des personnages à la création de donjons remplis de monstres et de trésors positionnés à la case près. Mieux encore, Dragons Unfurled permet de sauvegarder vos parties, mais aussi les personnages et donjons que vous créez pour que vous puissiez vous en servir à votre guise.
 
 En plus d’étoffer la base de l’application, tout utilisateur peut contribuer en envoyant un feedback à l’équipe d’administrateurs qui est là pour veiller à ce que votre expérience de jeu soit optimale. Employant les données fournies par l’API ouverte D&D 5th Edition API, Dragons Unfurled déploie l’arsenal du JDR D&D à portée de main.
     <br />
-    <a href="https://github.com/Julien-Sklarik/Dragons-Unfurled.git"><strong>Explorer le code »</strong></a>
+    <a href="https://github.com/Dragons-Unfurled-Inc"><strong>Dragons Unfurled Inc. »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="#instal">Installation</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="#utilis">Utilisation </a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="#ref">Références</a>
   </p>
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -113,6 +111,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
+
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
@@ -120,6 +119,7 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   npm install npm@latest -g
   ```
+<div id="instal"></div>
 
 ### Installation
 
@@ -140,7 +140,7 @@ This is an example of how to list things you need to use the software and how to
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
+<div id="utilis"></div>
 <!-- USAGE EXAMPLES -->
 ## Usage
 
@@ -168,7 +168,7 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
-
+<div id="ref"></div>
 <!-- CONTRIBUTING -->
 ## Contributing
 
