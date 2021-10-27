@@ -21,7 +21,7 @@ class StartView(AbstractView):
         ]
 
     def display_info(self):
-        with open('graphical_assets/dragon.txt', 'r', encoding="utf-8") as asset:
+        with open('dessins_ascii/dragons/dragon3.txt', 'r', encoding="utf-8") as asset:
             print(asset.read())
 
     def make_choice(self):

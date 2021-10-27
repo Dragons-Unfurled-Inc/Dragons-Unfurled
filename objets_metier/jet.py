@@ -14,7 +14,7 @@ class Jet:
     
         """
 
-        permet un affichage du lancer de dé
+        permet un affichage du lancer de dés
 
         """
         modele = '\n'.join([
