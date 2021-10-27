@@ -1,15 +1,16 @@
 from typing import List, Optional
 
-class Caracteristique :
+
+class Caracteristique : #Reste à compléter les @ en bas
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
-    def __init__( self,
+    def __init__(self,
+                        nom_entite: str,
                         attaques: List[str],
                         capacites: List[str], 
                         languages: List[str], 
                         description: Optional(str),
-                        id_entite: str, 
                         niveau: int = 0, 
                         experience: int = 0,
                         force: int = 0, 
@@ -19,7 +20,7 @@ class Caracteristique :
                         constitution: int = 0, 
                         sagesse: int = 0, 
                         vie: int = 0) -> None:
-        self.__id_entite = id_entite
+        self.__nom_entite = nom_entite
         self.__niveau = niveau 
         self.__experience = experience
         self.__force = force 
@@ -36,12 +37,12 @@ class Caracteristique :
         self.__experience = experience
 
     @property
-    def id_entite(self):
-        return self.__id_entite
+    def nom_entite(self):
+        return self.__nom_entite
 
-    @id_entite.setter
-    def id_entite(self, value):
-        self.__id_entite = value
+    @nom_entite.setter
+    def nom_entite(self, value):
+        self.__nom_entite = value
 
     @property
     def niveau(self):
@@ -66,3 +67,4 @@ class Caracteristique :
     @force.setter
     def force(self, value):
         self.__force = value
+        
