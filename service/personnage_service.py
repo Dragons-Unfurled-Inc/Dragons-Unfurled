@@ -29,8 +29,3 @@ class PersonnageService :
     
     @staticmethod #après avoir posté ces données sur l'API on peut vérifier si avec un tel pt d'expérience un perso peut monter de niveau (ici version test)
     def montee_niveau(personnage: Personnage) -> None: 
-        
-        
-
-  
-      

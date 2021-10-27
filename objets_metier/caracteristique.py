@@ -4,20 +4,21 @@ class Caracteristique :
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
-    def __init__( self, id_entite: str, 
+    def __init__( self,
+                        attaques: List[str],
+                        capacites: List[str], 
+                        languages: List[str], 
+                        description: Optional(str),
+                        id_entite: str, 
                         niveau: int = 0, 
-                        experience: int = 0
+                        experience: int = 0,
                         force: int = 0, 
                         intelligence: int = 0, 
                         charisme: int = 0, 
                         dexterite: int = 0, 
                         constitution: int = 0, 
                         sagesse: int = 0, 
-                        vie: int = 0, 
-                        attaques: List[str],
-                        capacites: List[str], 
-                        languages: List[str], 
-                        description: str) -> None:
+                        vie: int = 0) -> None:
         self.__id_entite = id_entite
         self.__niveau = niveau 
         self.__experience = experience
