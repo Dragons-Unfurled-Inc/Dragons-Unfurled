@@ -1,6 +1,6 @@
 import random as rd
 
-class LancerDe:
+class Jet:
     def __init__(self,lanceur,nombre,faces,cible) -> None:
         self.lanceur = lanceur
         self.nombre = nombre 
