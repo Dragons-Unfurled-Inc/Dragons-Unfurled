@@ -1,9 +1,8 @@
 from entite import Entite
-import requests as req
 
 class Personnage(Entite):
-    def __init__(self, classe, race, lore, id_joueur, id_entite, nom_entite, caracteristiques, objets):
-        super().__init__(self,id_joueur, id_entite, nom_entite, caracteristiques, objets)
+    def __init__(self, classe, race, lore, id_joueur, id_entite, nom_entite, caracteristiques_entite, objets):
+        super().__init__(self, id_joueur, id_entite, nom_entite, caracteristiques_entite, objets)
         self.classe = classe
         self.race = race
         self.lore = lore

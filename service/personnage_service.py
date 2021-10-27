@@ -22,10 +22,16 @@ Experience Points	Level	Proficiency Bonus
 265.000	18	+6
 305.000	19	+6
 355.000	20	+6 '''
-points = [0, 300,900,2.700	,6.500	,14.000	,23.000	,34.000	,48.000	,64.000	,85.000	,100.000,120.000,140.000,165.000,195.000,225.000, 265.000,	305.000, 355.000]	
+points = [0,300,900,2.700,6.500,14.000,23.000,34.000,48.000	,64.000	,85.000	,100.000,120.000,140.000,165.000,195.000,225.000, 265.000,305.000, 355.000]	
 #Ceci est à stocker dans notre API ! 
 
 class PersonnageService : 
     
     @staticmethod #après avoir posté ces données sur l'API on peut vérifier si avec un tel pt d'expérience un perso peut monter de niveau (ici version test)
-    def montee_niveau(personnage: Personnage) -> None: 
+    def montee_niveau(personnage: Personnage) -> None:
+        i = 0
+        while personnage.__caracteristiques_entite.experience > points[i] : 
+            i += 1 
+            personnage.__caracteristiques_entite.niveau = i+1 
+
+            
