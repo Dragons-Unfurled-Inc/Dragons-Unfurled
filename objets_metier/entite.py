@@ -6,7 +6,7 @@ from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 
 
-class Entite(ABC):
+class Entite(ABC): #Reste des @ à mettre
     """
     Une entité est un personnage ou un monstre.
     """ 

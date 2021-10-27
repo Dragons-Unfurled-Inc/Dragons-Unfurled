@@ -11,3 +11,11 @@ class Objet : #Reste à compléter les @ en bas
         self.__id_objet = id_objet
         self.__nom_objet = nom_objet
         self.__description = description
+
+    @property
+    def id_objet(self):
+        return self.__id_objet
+
+    @id_objet.setter
+    def id_objet(self, value):
+        self.__id_objet = value
