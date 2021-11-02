@@ -1,3 +1,6 @@
+##### il reste les cas d'utilisations à modifier/adapter et l'installation à modifier. + tout relire
+
+
 <div id="top"></div>
 
 <!-- Présentation -->
@@ -62,7 +65,7 @@ En plus d’étoffer la base de l’application, tout utilisateur peut contribue
     <li><a href="#contribution">Contribution</a></li>
     <li><a href="#licence">Licence</a></li>
     <li><a href="#contacts">Contacts</a></li>
-    <li><a href="#remerciements">Remerciements</a></li>
+    <li><a href="#ressources">Ressources</a></li>
   </ol>
 </details>
 
@@ -110,19 +113,53 @@ Voici les installations préalables nécessaires :
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Optenez une clef pour l'API [https://www.dnd5eapi.co/](https://www.dnd5eapi.co/)
+2. Cloner le repertoire
    ```sh
    git clone https://github.com/Julien-Sklarik/Dragons-Unfurled.git 
    ```
-3. Install NPM packages
+3. Installer les packages
    ```sh
-   npm install
+   pip install -r requirements.txt
    ```
-4. Enter your API in `config.js`
+   ou alors, faites:
+   ```
+   pip install requests
+   pip install psycopg2-binary
+   pip install PyInquirer
+   ```
+4. Enter l'API dans `config.js`
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   const API_KEY = 'D&D 5e API';
    ```
+
+### Accéder à l’application :
+
+Pour une première utilisation de notre application, il faut réaliser les étapes suivantes :
+- 1 : Ouvrir le terminal de VS Code
+- 2 : Exécuter le script SQL [init_base.sql] pour créer les tables de la base de données (bdd),
+
+NB : Vous pouvez aussi utiliser une autre base à condition de mettre à jour les propriétés de la bdd.
+Pour ce faire, allez dans [proprietes] du dossier [configuration] pour modifier les propriétés de la bdd.
+
+- 3 : Pensez à installer des librairies de l'installation générale.
+- 4 : Lancer le fichier `createCompte` placé à la racine du projet pour créer les comptes de base en écrivant dans le terminal :
+```
+python3 createCompte.py
+```
+Effectivement, nous avons choisit de créer un fichier pour créer des comptes de base plutôt que de le faire directement sur SQL 
+pour pouvoir hacher le mot de passe avec une fonction de hachage. 
+ 
+Vous pouvez désormais exécuter notre application !
+Soit en lançant le fichier main.py, soit en exécutant :
+```
+python main.py
+```
+NB : Pensez à exécuter nos tests unitaires pour vérifier le fonctionnement de l'application, en lançant
+le fichier du package test_Services du package test : [Services_test.py]
+
+Vous pouvez aussi regarder notre code brute que nous avons pris soin de commenter. 
+Nous avons commenté de façons plus détaillé la classe du fichier [PersonnageService.py]. Ceci permet de saisir la logique de construction de notre code.
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
@@ -133,9 +170,73 @@ Voici les installations préalables nécessaires :
 
 ## Utilisation
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Voici des exemple d'utilisations possibles de notre application :
 
-Pour plus d'exemples, veuillez vous réferer à [Documentation](https://example.com)_
+### Comptes de base de l'application :
+
+- Le premier utilisateur déjà implémenté dans la base de données 
+est un client qui a pour nom : client1, pour mot de passe : mdpclient1 
+
+- Le second utilisateur est un administrateur qui a pour nom : admin1,
+
+- Le troisième utilisateur est un client qui a pour nom : test,
+pour mot de passe : mdptest 
+(Cet utilisateur sert à lancer les tests unitaires)
+
+Vous pouvez retrouver toutes ces informations dans votre base SQL
+si vous avez bien suivies les démarches précédentes.
+
+### Repertoire des différents menus :
+
+Vous pouvez utiliser l’application sans disposer de compte, pour consulter le prix des différentes crypto par exemple.
+Toutefois, pour plus de fonctionnalités, les utilisateurs sont invités à s’identifier s’ils disposent déjà d’un compte ou d'en créer un dans le cas contraire.
+
+
+Ainsi, une fois connecté, voici les menus auxquels vous pouvez accéder depuis l’application :
+- Me connecter : l'utilisateur renseigne son pseudonyme et son mot de passe
+- Me créer un compte : Si c'est un nouvel utilisateur  
+- Consulter les cryptomonnaies,
+- Se déconnecter.
+
+### Authentification et Création de compte:
+
+Si vous souhaitez accéder à l’ensemble des fonctionnalités offertes par l’application, il vous faut vous identifier.
+Pour cela, rien de plus simple, vous êtes invités à vous connecter ou à vous créer un compte.
+
+### Se connecter :
+
+Pour vous connecter, sélectionnez la commande "Me connecter" puis renseignez votre email et votre mot
+de passe. En cas d’erreur, l'application renvoie un message "email incorrect" ou "mot de passe incorrect". 
+Vous pouvez saisir vos informations de nouveau.
+Le mot de passe est crypté donc ne vous inquiétez pas si vous ne le voyez pas lors de votre saisie.
+
+### Créer un compte :
+
+Pour créer un compte, sélectionnez la commande me créer un compte du menu principal
+- Etape 1 : Renseigner un identifiant
+- Etape 2 : Renseigner un mot de passe valide
+NB: le mot de passe doit avoir au moins 6 caractères, contenir au moins une Majuscule, une minuscule et pas de caractères spéciaux.
+- Etape 3 : Confirmer votre mot de passe
+
+Des erreurs peuvent survenir lors de la saisie des informations (deux mots de passe renseignés non identiques,
+information ne respectant pas le format requis...). Dans ce cas, il vous sera demandé de saisir l’information de nouveau.
+Mais vous n'avez que 3 tentatives, et en cas d'échec, nous serons contraint de vous faire quitter l'application.
+
+Une fois connecté, l'utilisateur peut effectuer plusieurs opérations que sont :
+
+- Se déconnecter.
+
+S'il décide d'accéder au compte par exemple, il peut décider de gérer son portefeuille, de revenir au menu principal ou tout simplement de connaitre son solde
+
+ 
+### Consulter l’historique :
+
+On distingue l'historique des prix de crypto et l'historique des transactions.
+
+Pour ce qui est de l’historique des prix des crytomonnaies. Pour y accéder, il faut :
+- Etape 1: Consulter le
+- Etape 4: Choisir la manière dont vous souhaitez afficher vos données.
+
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
@@ -183,7 +284,11 @@ Distribué sous la licence MIT. Regardez `LICENSE.txt` pour plus d'informations.
 <!-- CONTACT -->
 ## Contact
 
-Julien Sklarik - [@eleve.ensai.fr] - julien.sklarik@eleve.ensai.fr
+Email ENSAI -
+Julien Sklarik - julien.sklarik@eleve.ensai.fr
+Manon Evain - evain.manon@eleve.ensai.fr
+Loïc Bomo - loic.bomo@eleve.ensai.fr
+Jules D'Haussy - jules.dhaussy@eleve.ensai.fr
 
 Lien du projet: [https://github.com/Julien-Sklarik/Dragons-Unfurled.git](https://github.com/Julien-Sklarik/Dragons-Unfurled.git)
 
@@ -191,19 +296,15 @@ Lien du projet: [https://github.com/Julien-Sklarik/Dragons-Unfurled.git](https:/
 
 
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+<!-- RESSOURCES -->
+## Ressources
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+Voici une liste de ressources que nous avons utilisées pour le développement de notre projet.
 
-* [Choose an Open Source License](https://choosealicense.com)
+* [Choisir une licence Open Source](https://choosealicense.com)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [Images Shields](https://shields.io)
+* [Pages GitHub](https://pages.github.com)
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
@@ -219,133 +320,3 @@ Use this space to list resources you find helpful and would like to give credit 
 [d&d-url]: https://www.dnd5eapi.co/
 [licence]: https://img.shields.io/badge/Licence-MIT-inactive
 [licence-url]: https://github.com/Julien-Sklarik/Dragons-Unfurled/blob/dad41cc124244de403fe19cee0abdd8fb52f6beb/LICENSE
-
-## Installation des librairies
-```
-pip install -r requirements.txt
-```
-
-ou alors:
-```
-pip install arrow
-pip install requests
-pip install psycopg2-binary
-pip install PyInquirer
-pip install tabulate
-pip install matplotlib
-```
-
-## Documentation
-CoinGecko :
-https://www.coingecko.com/fr
-
-Documentation de l'API CoinGecko :
-https://www.coingecko.com/api/documentations/v3#/
-
-Documentation de la librairie Arrow :
-https://arrow.readthedocs.io/en/stable/
-
-## FONCTIONNEMENT DE L'APPLICATION :
-
-Bienvenu sur 
-
-## Accéder à l’application :
-
-Pour un premier usage de l'application, il vous faut exécuter tour à tour les étapes suivantes :
-- Etape 1 : Ouvrir le terminal de Pycharm
-- Etape 2 : Exécuter le script SQL [init_db.sql] pour créer les différentes tables de la base de données,
-
-NB : Pensez à mettre à jour les propriétés de la base de données, si vous utilisez une autre base.
-Pour celà, rendez vous dans [properties] du dossier de [configuration] 
-Et modifier l'ensemble des proprités de configuration de la base de données
-
-- Etape 3 : Pensez à bien faire l'installation des librairies présentée ci-dessus.
-- Etape 4 : Exécuter le fichier createCompte logé à la racine du projet afin de créer les comptes de base.
-Ceci se fait en écrivant dans le terminal la commande suivante : 
-```
-python3 createCompte.py
-```
-En effet, nous avons décidé de créer un fichier dédié à la création des comptes de base et non pas de le faire directement sur SQL 
-afin de pouvoir hacher le mot de passe à l'aide d'une fonction de hachage de python. 
- 
-
-Vous pouvez maintenant lancer l'application !
-Soit directement en faisant run le fichier main.py, soit en lançant dans le terminal la commande suivante :
-```
-python3 main.py
-```
-NB : Si un problème apparaît quand vous chechez à run le fichier main.py depuis Pycharm, cliquez sur la case test_main (en haut à droite)
-puis sur Edit Configurations et cochez la case Emulate terminal in output console
-
-Pensez également à faire les tests unitaires afin de vous assurer du fonctionnement de l'application en exécutant
-le fichier du package test_Services (situé dans le package test) : [TransactionServices_test.py]
-
-Vous pouvez aussi faire un tour sur l'ensemble des fichiers, que nous avons pris soin de commenter. 
-La classe du fichier [PortefeuilleServices.py] (situé dans le package Services) 
-a été commentée de façon plus détaillé si vous souhaitez comprendre, à travers elle, la logique de notre code. 
-
-## Comptes de base de l'application :
-
-- Le premier utilisateur déjà implémenté dans la base de données 
-est un client qui a pour nom : client1, pour mot de passe : mdpclient1 
-
-- Le second utilisateur est un administrateur qui a pour nom : admin1,
-
-- Le troisième utilisateur est un client qui a pour nom : test,
-pour mot de passe : mdptest 
-(Cet utilisateur sert à lancer les tests unitaires)
-
-Vous pouvez retrouver toutes ces informations dans votre base SQL
-si vous avez bien suivies les démarches précédentes.
-
-## Repertoire des différents menus :
-
-Vous pouvez utiliser l’application sans disposer de compte, pour consulter le prix des différentes crypto par exemple.
-Toutefois, pour plus de fonctionnalités, les utilisateurs sont invités à s’identifier s’ils disposent déjà d’un compte ou d'en créer un dans le cas contraire.
-
-
-Ainsi, une fois connecté, voici les menus auxquels vous pouvez accéder depuis l’application :
-- Me connecter : l'utilisateur renseigne son pseudonyme et son mot de passe
-- Me créer un compte : Si c'est un nouvel utilisateur  
-- Consulter les cryptomonnaies,
-- Se déconnecter.
-
-## Authentification et Création de compte:
-
-Si vous souhaitez accéder à l’ensemble des fonctionnalités offertes par l’application, il vous faut vous identifier.
-Pour cela, rien de plus simple, vous êtes invités à vous connecter ou à vous créer un compte.
-
-## Se connecter :
-
-Pour vous connecter, sélectionnez la commande "Me connecter" puis renseignez votre email et votre mot
-de passe. En cas d’erreur, l'application renvoie un message "email incorrect" ou "mot de passe incorrect". 
-Vous pouvez saisir vos informations de nouveau.
-Le mot de passe est crypté donc ne vous inquiétez pas si vous ne le voyez pas lors de votre saisie.
-
-## Créer un compte :
-
-Pour créer un compte, sélectionnez la commande me créer un compte du menu principal
-- Etape 1 : Renseigner un identifiant
-- Etape 2 : Renseigner un mot de passe valide
-NB: le mot de passe doit avoir au moins 6 caractères, contenir au moins une Majuscule, une minuscule et pas de caractères spéciaux.
-- Etape 3 : Confirmer votre mot de passe
-
-Des erreurs peuvent survenir lors de la saisie des informations (deux mots de passe renseignés non identiques,
-information ne respectant pas le format requis...). Dans ce cas, il vous sera demandé de saisir l’information de nouveau.
-Mais vous n'avez que 3 tentatives, et en cas d'échec, nous serons contraint de vous faire quitter l'application.
-
-Une fois connecté, l'utilisateur peut effectuer plusieurs opérations que sont :
-
-- Se déconnecter.
-
-S'il décide d'accéder au compte par exemple, il peut décider de gérer son portefeuille, de revenir au menu principal ou tout simplement de connaitre son solde
-
- 
-## Consulter l’historique :
-
-On distingue l'historique des prix de crypto et l'historique des transactions.
-
-Pour ce qui est de l’historique des prix des crytomonnaies. Pour y accéder, il faut :
-- Etape 1: Consulter le
-- Etape 4: Choisir la manière dont vous souhaitez afficher vos données.
-
