@@ -5,7 +5,8 @@ from client.view.session import Session
 
 class AbstractView(ABC):
     """
-    Cette classe est la classe mère de toutes nos vues."""
+    Cette classe est la classe mère de toutes nos vues.
+    """
 
     @abstractmethod
     def display_info(self): # détermine l'affichage en console
