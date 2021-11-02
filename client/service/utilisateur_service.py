@@ -4,7 +4,6 @@ from getpass import getpass
 #from datetime import datetime
 
 #from objets_metier import utilisateur
-#from dao.compte_dao import CompteDAO
 from web.dao.utilisateur_dao import UtilisateurDao
 from objets_metier.utilisateur import Utilisateur
 from exceptions.utilisateur_non_authentifie_exception import UtilisateurNonAuthentifie
@@ -26,7 +25,7 @@ class UtilisateurService:
             mot_de_passe = getpass("Veuillez entrer votre mot de passe \n (Il doit contenir au moins cinq caractères dont une majuscule et une minuscules. Les charactères spéciaux ne sont pas autorisés.) :")
             mot_de_passe2 = getpass("Veuillez confirmer votre mot de passe : ")
 
-            if nom_utilisateur in CompteDAO.liste_noms(): # Nous vérifions si ce nom d'utilisateur est déjà pris.
+            if nom_utilisateur in UtilisateurDao.liste_noms(): # Nous vérifions si ce nom d'utilisateur est déjà pris.
                 print("Votre nom d'utilisateur a déjà été pris par une autre personne ! \n Veuillez choisir un autre nom s'il vous plaît.")
                 continue
 
@@ -65,48 +64,48 @@ class UtilisateurService:
         if compte != None:
             if type_compte == "joueur":
                 nouvel_utilisateur = Utilisateur(connecte = False,
-                                                mot_de_passe = compte[1]
-                                                identifiant = compte[0]
+                                                mot_de_passe = compte[1],
+                                                identifiant = compte[0],
                                                 est_administrateur = False)  
             elif type_compte == "administrateur":
                 nouvel_utilisateur = Utilisateur(connecte = False,
-                                                mot_de_passe = compte[1]
-                                                identifiant = compte[0]
+                                                mot_de_passe = compte[1],
+                                                identifiant = compte[0],
                                                 est_administrateur = True) 
-            CompteDAO.CreationCompte(nouvel_utilisateur)
+            UtilisateurDao.CreationCompte(nouvel_utilisateur)
             print("Votre compte a été créé avec succès !")
         else:
             print("Votre compte n'a pas pu être créé !")
 
     @staticmethod
     def supprime_compte(nom_utilisateur):
-        CompteDAO.SupprimerCompte(nom_utilisateur)
+        UtilisateurDao.SupprimerCompte(nom_utilisateur)
 
     @staticmethod
     def connexion(nom_utilisateur, tentative_num):
         if nom_utilisateur == None:
             nom_utilisateur = input("Quel est votre nom d'utilisateur ? ")
-        if nom_utilisateur not in CompteDAO.liste_noms():
+        if nom_utilisateur not in UtilisateurDao.liste_noms():
             print("Ce nom d'utilisateur n'existe pas ! \n Veuillez réessayer s'il vous plaît.")
             return UtilisateurService.connexion(None, tentative_num)
         else:
-            compte_utilisateur = CompteDAO.lire_compte(nom_utilisateur)
+            compte_utilisateur = UtilisateurDao.getUtilisateur(nom_utilisateur)
             mot_de_passe_utilisateur = getpass("Veuillez entrer votre mot de passe s'il vous plaît : ")
             pass_hash = mot_de_passe_utilisateur.encode()
             mdp = hashlib.sha256()
             mdp.update(pass_hash)
-            if mdp.digest() == bytes(CompteDAO.readCompte(nom_utilisateur)[2][:]):
+            if mdp.digest() == bytes(UtilisateurDao.getUtilisateur(nom_utilisateur)[2][:]):
                 if compte_utilisateur[3] == "joueur":
-                    Utilisateur(connecte = False,
-                                                mot_de_passe = compte[1]
-                                                identifiant = compte[0]
+                    utilisateur = Utilisateur(connecte = False,
+                                                mot_de_passe = compte_utilisateur[1],
+                                                identifiant = compte_utilisateur[0],
                                                 est_administrateur = False)
                     return utilisateur
                 elif compte_utilisateur[3] == "administrateur":
-                    utilisateur = Administrateur(id_utilisateur=None,
-                                  nom=compte[0],
-                                  pass_hash=compte[1],
-                                  type_compte=type_compte)
+                    utilisateur = Utilisateur(connecte = False,
+                                                mot_de_passe = compte_utilisateur[1],
+                                                identifiant = compte_utilisateur[0],
+                                                est_administrateur = True)
                     return utilisateur
             else:
                 print("Votre mot de passe est incorrect.")
