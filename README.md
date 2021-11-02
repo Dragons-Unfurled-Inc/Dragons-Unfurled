@@ -47,7 +47,7 @@ En plus d’étoffer la base de l’application, tout utilisateur peut contribue
     <li>
       <a href="#Structure-du-projet">Structure du projet</a>
       <ul>
-        <li><a href="#utilisé-lors-de-la-créations-du-code">Utilisé lors de la créations du code</a></li>
+        <li><a href="#utilisé-lors-de-l'implémentation-du-code">Utilisé lors de l'implémentation du code</a></li>
       </ul>
     </li>
     <li>
@@ -84,7 +84,7 @@ Nous allons créer un fichier python par classe dans les packages correspondants
 
 
 
-### Built With
+### Utilisé lors de l'implémentation du code
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
