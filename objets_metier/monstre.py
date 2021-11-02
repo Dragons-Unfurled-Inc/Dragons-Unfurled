@@ -1,9 +1,30 @@
+import copy
+from typing import List, Optional
+
+from objets_metier.caracteristique import Caracteristique
+from objets_metier.objet import Objet
 from entite import Entite
 
 class Monstre(Entite):
-    def __init__(self,nom,taille,type, sous_type, alignement,armure, hit_points, hit_dice, vitesse, force, dextérité, constitution, intelligence, sagesse, charisme,compétences,vulnerabilites_degat, resistances_degat,immunites_degat,immunites_etats, perception, langages,niveau_difficulte, experience,capacites_speciales, actions,actions_legendaires):
-        super().__init__(self,nom, taille, alignement, hit_points, hit_dice, vitesse, armure, vitesse, force, dextérité, constitution, intelligence, sagesse, charisme,compétences, langages, experience)
-        
+    
+    def __init__(self, type: str,
+                       id_joueur: str, 
+                       id_entite: str,                  
+                       caracteristiques_entite: Caracteristique,
+                       objets: Optional[List[Objet]] = None ,
+                        ) -> None: 
+
+        Entite.__init__(self, id_joueur, id_entite, caracteristiques_entite, objets)
+        self.__type = type
+
+
+
+
+
+
+
+
+
 c=['index', 'name', 'size', 'type', 'subtype', 'alignment', 'armor_class', 'hit_points', 
           'hit_dice', 'speed', 'strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 
           'charisma', 'proficiencies', 'damage_vulnerabilities', 'damage_resistances', 'damage_immunities', 
