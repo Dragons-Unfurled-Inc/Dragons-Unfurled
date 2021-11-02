@@ -1,10 +1,10 @@
-#import hashlib
+import hashlib
 from getpass import getpass
+#import os
 #from datetime import datetime
 
-from objets_metier import utilisateur
+#from objets_metier import utilisateur
 from web.dao.utilisateur_dao import UtilisateurDao
-#from dao.compte_dao import CompteDAO
 from objets_metier.utilisateur import Utilisateur
 from exceptions.utilisateur_non_authentifie_exception import UtilisateurNonAuthentifie
 
@@ -25,7 +25,7 @@ class UtilisateurService:
             mot_de_passe = getpass("Veuillez entrer votre mot de passe \n (Il doit contenir au moins cinq caractères dont une majuscule et une minuscules. Les charactères spéciaux ne sont pas autorisés.) :")
             mot_de_passe2 = getpass("Veuillez confirmer votre mot de passe : ")
 
-            if nom_utilisateur in CompteDAO.liste_noms(): # Nous vérifions si ce nom d'utilisateur est déjà pris.
+            if nom_utilisateur in UtilisateurDao.liste_noms(): # Nous vérifions si ce nom d'utilisateur est déjà pris.
                 print("Votre nom d'utilisateur a déjà été pris par une autre personne ! \n Veuillez choisir un autre nom s'il vous plaît.")
                 continue
 
@@ -52,95 +52,74 @@ class UtilisateurService:
             else:
                 validation = True
 
-        # Hachage du mot de passe
-        mdp_hash = mot_de_passe.encode()
+        mdp_hash = mot_de_passe.encode() # Hachage du mot de passe
         mdp = hashlib.sha256()
         mdp.update(mdp_hash)
-        compte_user = [nom_utilisateur, mdp.digest()]
-        return compte_user
+        compte_utilisateur = [nom_utilisateur, mdp.digest()]
+        return compte_utilisateur
 
     @staticmethod
-    def CreateCompte(type_compte):
-        compte = utilisateur_service.validation_creation_compte()
-        if not compte == None:
-            if type_compte == "client":
-                new_user = Client(id_user=None,
-                                  name=compte[0],
-                                  pass_hash=compte[1],
-                                  type_compte=type_compte,
-                                  solde=0,
-                                  date_last_connexion=datetime.now()
-                                  )
+    def creation_compte(type_compte):
+        compte = UtilisateurService.validation_creation_compte()
+        if compte != None:
+            if type_compte == "joueur":
+                nouvel_utilisateur = Utilisateur(connecte = False,
+                                                mot_de_passe = compte[1],
+                                                identifiant = compte[0],
+                                                est_administrateur = False)  
             elif type_compte == "administrateur":
-                new_user = Administrateur(id_user=None,
-                                          name=compte[0],
-                                          pass_hash=compte[1],
-                                          type_compte=type_compte,
-                                          solde=0,
-                                          date_last_connexion=datetime.now()
-                                          )
-
-            CompteDAO.CreateCompte(new_user)
-
-            print("Votre compte a pu être créé avec succès")
+                nouvel_utilisateur = Utilisateur(connecte = False,
+                                                mot_de_passe = compte[1],
+                                                identifiant = compte[0],
+                                                est_administrateur = True) 
+            UtilisateurDao.CreationCompte(nouvel_utilisateur)
+            print("Votre compte a été créé avec succès !")
         else:
             print("Votre compte n'a pas pu être créé !")
 
     @staticmethod
-    def DelateCompte(nom_utilisateur):
-        CompteDAO.DeleteCompte(nom_utilisateur)
-
+    def supprime_compte(nom_utilisateur):
+        UtilisateurDao.SupprimerCompte(nom_utilisateur)
 
     @staticmethod
-    def connexion(nom_utilisateur, i):
+    def connexion(nom_utilisateur, tentative_num):
         if nom_utilisateur == None:
-            nom_utilisateur = input("Quel est votre pseudonyme ? ")
-        if nom_utilisateur not in CompteDAO.listeNoms():
-            print("Ce compte n'existe pas")
-            print("Veuillez réessayer \n")
-            return utilisateur_service.connexion(None, i)
+            nom_utilisateur = input("Quel est votre nom d'utilisateur ? ")
+        if nom_utilisateur not in UtilisateurDao.liste_noms():
+            print("Ce nom d'utilisateur n'existe pas ! \n Veuillez réessayer s'il vous plaît.")
+            return UtilisateurService.connexion(None, tentative_num)
         else:
-            compte_user = CompteDAO.readCompte(nom_utilisateur)
-            mot_de_passe_user = getpass("Veuillez entrez votre mot de passe : ")
-            pass_hash = mot_de_passe_user.encode()
-            m = hashlib.sha256()
-            m.update(pass_hash)
-            if m.digest() == bytes(CompteDAO.readCompte(nom_utilisateur)[2][:]):
-                if compte_user[3] == "client":
-                    user = Client(id_user=compte_user[0],
-                                  name=compte_user[1],
-                                  pass_hash=compte_user[2],
-                                  type_compte="client",
-                                  solde=compte_user[4],
-                                  date_last_connexion=compte_user[5])
-                    return user
-                elif compte_user[3] == "administrateur":
-                    user = Administrateur(id_user=compte_user[0],
-                                          name=compte_user[1],
-                                          pass_hash=compte_user[2],
-                                          type_compte="administrateur",
-                                          solde=compte_user[4],
-                                          date_last_connexion=compte_user[5])
-                    return user
+            compte_utilisateur = UtilisateurDao.getUtilisateur(nom_utilisateur)
+            mot_de_passe_utilisateur = getpass("Veuillez entrer votre mot de passe s'il vous plaît : ")
+            pass_hash = mot_de_passe_utilisateur.encode()
+            mdp = hashlib.sha256()
+            mdp.update(pass_hash)
+            if mdp.digest() == bytes(UtilisateurDao.getUtilisateur(nom_utilisateur)[2][:]):
+                if compte_utilisateur[3] == "joueur":
+                    utilisateur = Utilisateur(connecte = False,
+                                                mot_de_passe = compte_utilisateur[1],
+                                                identifiant = compte_utilisateur[0],
+                                                est_administrateur = False)
+                    return utilisateur
+                elif compte_utilisateur[3] == "administrateur":
+                    utilisateur = Utilisateur(connecte = False,
+                                                mot_de_passe = compte_utilisateur[1],
+                                                identifiant = compte_utilisateur[0],
+                                                est_administrateur = True)
+                    return utilisateur
             else:
-                print("Votre mot de passe est incorrect !")
-                if i < 2:
-                    print("Veuillez réessayer \n (il vous reste {} essais possibles)".format(2-i))
-                    return utilisateur_service.connexion(nom_utilisateur,i+1)
+                print("Votre mot de passe est incorrect.")
+                if tentative_num < 2:
+                    print("Veuillez réessayer \n (il vous reste {} essais possibles)".format(2-tentative_num))
+                    return UtilisateurService.connexion(nom_utilisateur,tentative_num+1)
                 else:
-                    print("Vous avez atteint le nombre maximum d'essais")
-                    print("Nous sommes contraint de vous faire quitter l'application")
+                    print("Vous avez fait le nombre d'essais maximal. \n Vous allez être déconnecté.")
                     import sys
                     sys.exit()
 
     @staticmethod
-    def deconnexion(nom):
-        date_derniere_connexion = str(datetime.now())
-        CompteDAO.UpdateCompte(nom, 'derniere_connexion', date_derniere_connexion)
-
-    @staticmethod
-    def createutilisateur(utilisateur: Utilisateur) -> Utilisateur:
-        return UtilisateurDao.createutilisateur(utilisateur)
+    def creation_utilisateur(utilisateur: Utilisateur) -> Utilisateur:
+        return UtilisateurDao.creation_utilisateur(utilisateur)
 
     @staticmethod
     def authenticate_and_get_utilisateur(utilisateur_nom: str, mot_de_passe: str) -> Utilisateur:
