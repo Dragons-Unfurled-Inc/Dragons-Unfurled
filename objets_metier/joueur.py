@@ -1,11 +1,14 @@
+from typing import List, Optional
+
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.personnage import Personnage
+
 
 class Joueur(Utilisateur):
     """
     Un joueur est un utilisateur qui est présent dans une campagne sans être maître du jeu.
     """
-    def __init__(self, personnage : list[Personnage],
+    def __init__(self, personnage : List[Personnage],
                        choix_revelation : bool) : 
         self.__personnage = personnage
         self.__choix_revelation = choix_revelation

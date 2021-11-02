@@ -1,5 +1,5 @@
 #import hashlib
-#from getpass import getpass
+from getpass import getpass
 #from datetime import datetime
 
 from objets_metier import utilisateur
