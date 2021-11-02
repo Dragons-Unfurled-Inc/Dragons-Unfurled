@@ -1,8 +1,7 @@
-from typing import List, Optional
+from typing import List
 
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.personnage import Personnage
-
 
 class Joueur(Utilisateur):
     """

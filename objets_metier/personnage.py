@@ -18,9 +18,8 @@ class Personnage(Entite):
         super().__init__(
             id_joueur= id_joueur,
             id_entite = id_entite,
-            nom_entite = nom_entite,
             caracteristiques_entite = caracteristiques_entite,
-            objets = objets,
+            objets = objets
             ) 
 
         self.__classe = classe
