@@ -276,7 +276,9 @@ Distribué sous la licence MIT. Regardez `LICENSE.txt` pour plus d'informations.
 
 Lien du projet : [https://github.com/Julien-Sklarik/Dragons-Unfurled.git](https://github.com/Julien-Sklarik/Dragons-Unfurled.git)
 
-Email ENSAI - Julien Sklarik - julien.sklarik@eleve.ensai.fr
+Email ENSAI - 
+
+Julien Sklarik - julien.sklarik@eleve.ensai.fr
 
 Manon Evain - evain.manon@eleve.ensai.fr
 
