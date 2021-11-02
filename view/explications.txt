@@ -5,3 +5,4 @@ et il faut relier l'écran à une création de personnage par exemple
 C'est assez compliqué à comprendre, en gros le startview est le menu de base, qui envoie ensuite sur d'autres écrans
 dont celuis de création de personnage. Il y a des méthodes en commun aux écrans pour pouvoir en changer simplement et avoir 
 un code clean (avec abstract_view)
+
