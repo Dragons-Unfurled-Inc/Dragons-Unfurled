@@ -1,6 +1,6 @@
 from objets_metier.utilisateur import Utilisateur
 from dao.configuration import DBConnection
-from exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
+from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
 
 
 class UtilisateurDao:
