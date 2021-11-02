@@ -1,10 +1,10 @@
+from typing import List
+
 from objets_metier.entite import Entite
 from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
 #from objets_metier.donjon import Donjon
 from objets_metier.entite import Entite
-
-from typing import List
 
 
 class MaitreDuJeu(Joueur):
