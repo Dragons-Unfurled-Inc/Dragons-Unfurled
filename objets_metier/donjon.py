@@ -1,9 +1,13 @@
-class Feedback():
+from typing import List, Optional
+from objets_metier.salle import Salle
+
+
+class Donjon():
 
     def __init__(self,
                     id_donjon: str,
                     nom_donjon: str,
-                    pieces: type ) -> None:
+                    pieces: Optional[List[Salle]] = None ) -> None:
         
         self.__id_donjon = id_donjon
         self.__nom_donjon = nom_donjon
