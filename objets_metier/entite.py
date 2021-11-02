@@ -6,7 +6,7 @@ from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 
 
-class Entite(ABC): #Reste des @ à mettre
+class Entite(ABC): 
     """
     Une entité est un personnage ou un monstre.
     """ 
@@ -35,3 +35,18 @@ class Entite(ABC): #Reste des @ à mettre
     def id_entite(self, value):
         self.__id_entite = value
     
+    @property
+    def caracteristiques_entite(self):
+        return self.__caracteristiques_entite
+
+    @caracteristiques_entite.setter
+    def caracteristiques_entite(self, value):
+        self.__caracteristiques_entite = value
+
+    @property
+    def objets(self):
+        return self.__objets
+
+    @objets.setter
+    def objets(self, value):
+        self.__objets = value    
