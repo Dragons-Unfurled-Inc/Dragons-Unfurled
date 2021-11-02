@@ -101,7 +101,7 @@ Pour lancer une copie locale, suivez les étapes suivantes.
 
 ### Prérequis
 
-This is an example of how to list things you need to use the software and how to install them.
+Voici ce dont vous avez besoin :
 * npm
   ```sh
   npm install npm@latest -g
