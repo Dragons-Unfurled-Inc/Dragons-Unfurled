@@ -64,19 +64,15 @@ class UtilisateurService:
         compte = UtilisateurService.validation_creation_compte()
         if compte != None:
             if type_compte == "joueur":
-                nouvel_utilisateur = Utilisateur(connecte = False                       
-# mot_de_passe: str               
-# identifiant: str
-# est_administrateur: bool 
-# feed_backs: list[FeedBack]    id_utilisateur=None,
-                                  nom=compte[0],
-                                  pass_hash=compte[1],
-                                  type_compte=type_compte)
+                nouvel_utilisateur = Utilisateur(connecte = False,
+                                                mot_de_passe = compte[1]
+                                                identifiant = compte[0]
+                                                est_administrateur = False)  
             elif type_compte == "administrateur":
-                nouvel_utilisateur = Administrateur(id_utilisateur=None,
-                                  nom=compte[0],
-                                  pass_hash=compte[1],
-                                  type_compte=type_compte)
+                nouvel_utilisateur = Utilisateur(connecte = False,
+                                                mot_de_passe = compte[1]
+                                                identifiant = compte[0]
+                                                est_administrateur = True) 
             CompteDAO.CreationCompte(nouvel_utilisateur)
             print("Votre compte a été créé avec succès !")
         else:
@@ -101,10 +97,10 @@ class UtilisateurService:
             mdp.update(pass_hash)
             if mdp.digest() == bytes(CompteDAO.readCompte(nom_utilisateur)[2][:]):
                 if compte_utilisateur[3] == "joueur":
-                    utilisateur = Joueur(id_utilisateur=None,
-                                  nom=compte[0],
-                                  pass_hash=compte[1],
-                                  type_compte=type_compte)
+                    Utilisateur(connecte = False,
+                                                mot_de_passe = compte[1]
+                                                identifiant = compte[0]
+                                                est_administrateur = False)
                     return utilisateur
                 elif compte_utilisateur[3] == "administrateur":
                     utilisateur = Administrateur(id_utilisateur=None,
