@@ -86,29 +86,20 @@ Nous allons créer un fichier python par classe dans les packages correspondants
 
 ### Utilisé lors de l'implémentation du code
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+Cette section va présenter nos outils de développements.
 
-* [Next.js](https://nextjs.org/)
-* [React.js](https://reactjs.org/)
-* [Vue.js](https://vuejs.org/)
-* [Angular](https://angular.io/)
-* [Svelte](https://svelte.dev/)
-* [Laravel](https://laravel.com)
-* [Bootstrap](https://getbootstrap.com)
-* [JQuery](https://jquery.com)
+* [Visual Studio Code](https://code.visualstudio.com/)
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
 
-
-<!-- GETTING STARTED -->
+<!-- MISE EN PLACE -->
 ## Mise en place
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Voici une manière d'installer notre application localement.
+Pour lancer une copie locale, suivez les étapes suivantes.
 
-
-### Prerequisites
+### Prérequis
 
 This is an example of how to list things you need to use the software and how to install them.
 * npm
