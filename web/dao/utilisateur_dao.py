@@ -6,7 +6,7 @@ from exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableE
 class UtilisateurDao:
 
     @staticmethod
-    def verifyPassword(utilisateur_nom: str, password: str) -> bool:
+    def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
