@@ -13,7 +13,7 @@ class Entite(ABC):
     def __init__(self, id_joueur: str, 
                        id_entite: str,                  
                        caracteristiques_entite: Caracteristique,
-                       objets: Optional(List[Objet]) = None) -> None: 
+                       objets: Optional[List[Objet]] = None) -> None: 
         self.__id_joueur = id_joueur
         self.__id_entite = id_entite 
         self.__caracteristiques_entite = caracteristiques_entite

@@ -10,7 +10,7 @@ class Caracteristique :
                         attaques: List[str],
                         capacites: List[str], 
                         languages: List[str], 
-                        description: Optional(str),
+                        description: Optional[str],
                         niveau: int = 0, 
                         experience: int = 0,
                         force: int = 0, 
