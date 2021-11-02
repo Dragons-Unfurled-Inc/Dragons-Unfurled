@@ -45,7 +45,7 @@ En plus d’étoffer la base de l’application, tout utilisateur peut contribue
   <summary>Sommaire</summary>
   <ol>
     <li>
-      <a href="#a-propos-du-projet">A propos du projet</a>
+      <a href="#Structure-du-projet">Structure du projet</a>
       <ul>
         <li><a href="#utilisé-lors-de-la-créations-du-code">Utilisé lors de la créations du code</a></li>
       </ul>
@@ -68,21 +68,17 @@ En plus d’étoffer la base de l’application, tout utilisateur peut contribue
 
 
 
-<!-- ABOUT THE PROJECT -->
-## About The Project
+<!-- A PROPOS DU PROJET -->
+## Structure du projet
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Nous allons créer un fichier python par classe dans les packages correspondants. Cette architecture permet un faible couplage entre les classes et une forte cohérence interne. Le code s’en trouvera plus solide. Aussi, cette structure permettra de limiter les conflits Git et d’offrir une meilleure lisibilité du code.
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+* Le package `objet_metier` contient nos 13 modules correspondants aux 13 classes d’objets métiers. 
+* Les modules du package `service` importent ceux du package DAO pour gérer la persistance des actions des utilisateurs. Nos classes du package service utilisent aussi celles du package web. 
+* Le package `web` contient au moins un module de recherche pour accéder à notre serveur back-end. 
+* Le package `vue` importe les services pour appeler les fonctionnalités métiers. Nous aurons un module par vue. Notamment, le module abstract_vue contenant la classe AbstractVue offrira un modèle aux classes de vue qui en héritent. Elle contiendra des méthodes abstraites pour gérer l’aﬀichage en console, les menus et les options. 
+* Le package `test` contiendra un module de tests pour chaque couche de notre application. :smile:
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
