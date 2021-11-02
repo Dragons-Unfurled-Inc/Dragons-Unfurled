@@ -14,39 +14,39 @@ class Entite(ABC):
                        id_entite: str,                  
                        caracteristiques_entite: Caracteristique,
                        objets: Optional[List[Objet]] = None) -> None: 
-        self.__id_joueur = id_joueur
-        self.__id_entite = id_entite 
-        self.__caracteristiques_entite = caracteristiques_entite
-        self.__objets = objets
+        self._id_joueur = id_joueur
+        self._id_entite = id_entite 
+        self._caracteristiques_entite = caracteristiques_entite
+        self._objets = objets
 
     @property
     def id_joueur(self):
-        return self.__id_joueur
+        return self._id_joueur
 
     @id_joueur.setter
     def id_joueur(self, value):
-        self.__id_joueur = value
+        self._id_joueur = value
         
     @property
     def id_entite(self):
-        return self.__id_entite
+        return self._id_entite
 
     @id_entite.setter
     def id_entite(self, value):
-        self.__id_entite = value
+        self._id_entite = value
     
     @property
     def caracteristiques_entite(self):
-        return self.__caracteristiques_entite
+        return self._caracteristiques_entite
 
     @caracteristiques_entite.setter
     def caracteristiques_entite(self, value):
-        self.__caracteristiques_entite = value
+        self._caracteristiques_entite = value
 
     @property
     def objets(self):
-        return self.__objets
+        return self._objets
 
     @objets.setter
     def objets(self, value):
-        self.__objets = value    
+        self._objets = value    
