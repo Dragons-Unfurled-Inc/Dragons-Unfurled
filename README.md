@@ -183,7 +183,7 @@ Distribué sous la licence MIT. Regardez `LICENSE.txt` pour plus d'informations.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Julien Sklarik - [@eleve.ensai.fr] - julien.sklarik@eleve.ensai.fr
 
 Lien du projet: [https://github.com/Julien-Sklarik/Dragons-Unfurled.git](https://github.com/Julien-Sklarik/Dragons-Unfurled.git)
 
