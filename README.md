@@ -57,8 +57,8 @@ En plus d’étoffer la base de l’application, tout utilisateur peut contribue
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#réalisation">Réalisation</a></li>
+    <li><a href="#utilisation">Utilisation</a></li>
+    <li><a href="#plan-de-réalisation">Plan de réalisation</a></li>
     <li><a href="#contribution">Contribution</a></li>
     <li><a href="#licence">Licence</a></li>
     <li><a href="#contacts">Contacts</a></li>
@@ -135,42 +135,37 @@ Voici les installations préalables nécessaires :
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+Pour plus d'exemples, veuillez vous réferer à [Documentation](https://example.com)_
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
 
 
-<!-- ROADMAP -->
-## Roadmap
+<!-- PLAN DE REALISATION -->
+## Plan de réalisation
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [] Add Additional Templates w/ Examples
-- [] Add "components" document to easily copy & paste sections of the readme
-- [] Multi-language Support
-    - [] Chinese
-    - [] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+- [x] Implémenter les fonctionnalités de base du cahier des charges 
+- [x] Implémenter les fonctionnalités avancées du cahier des charges 
+- [] Compléter les possibilités des administrateurs
+    - [] Banissement
+    - [] transfert des droits
+- [] Ajouter un système de gestion d'argent
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
-
 
 <div id="ref"></div>
-<!-- CONTRIBUTING -->
-## Contributing
+<!-- CONTRIBUTION -->
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+## Contribution
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Voici le système de contribution à **Dragons Unfurled**.
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Si vous voulez contribuer (une fois notre projet passé en mode publique), il suffit de faire une requête pull.
+
+2. Créer une branche Option (`git checkout -b option/NouvelleOption`)
+3. Faites un Commit (`git commit -m 'ajouter une NouvelleOption'`)
+4. Pousser sur la branche (`git push origin option/NouvelleOption`)
+5. Faites une requête Pull
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
@@ -179,7 +174,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distribué sous la licence MIT. Regardez `LICENSE.txt` pour plus d'informations.
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
@@ -190,7 +185,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Lien du projet: [https://github.com/Julien-Sklarik/Dragons-Unfurled.git](https://github.com/Julien-Sklarik/Dragons-Unfurled.git)
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
