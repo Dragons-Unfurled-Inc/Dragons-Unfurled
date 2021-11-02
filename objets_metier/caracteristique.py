@@ -1,8 +1,7 @@
-from typing import List
-from typing import Optional
+from typing import List, Optional
 
 
-class Caracteristique : #Reste à compléter les @ en bas
+class Caracteristique : 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
@@ -77,3 +76,42 @@ class Caracteristique : #Reste à compléter les @ en bas
     def intelligence(self, value):
         self.__intelligence = value    
         
+    @property
+    def charisme(self):
+        return self.__charisme
+
+    @charisme.setter
+    def charisme(self, value):
+        self.__charisme = value   
+
+    @property
+    def dexterite(self):
+        return self.__dexterite
+
+    @dexterite.setter
+    def dexterite(self, value):
+        self.__dexterite = value  
+
+    @property
+    def constitution(self):
+        return self.__constitution
+
+    @constitution.setter
+    def constitution(self, value):
+        self.__constitution = value   
+
+    @property
+    def sagesse(self):
+        return self.__sagesse
+
+    @sagesse.setter
+    def sagesse(self, value):
+        self.__sagesse = value     
+
+    @property
+    def vie(self):
+        return self.__vie
+
+    @vie.setter
+    def vie(self, value):
+        self.__vie = value            
