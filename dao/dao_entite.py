@@ -4,8 +4,6 @@ import requests as req
 from abc import abstractstaticmethod
 
 #le code est pas ouf mais vous avez une idée de comment faire, par contre c'est ptet plus à sa place dans le package web
-def rien(): 
-    print("rien")
     
 class CreationMonstre:
     @staticmethod
