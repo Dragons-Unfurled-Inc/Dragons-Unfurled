@@ -34,3 +34,4 @@ typing-extensions
 urllib3           
 uvicorn            
 wcwidth       
+prompt_toolkit.token
