@@ -4,14 +4,17 @@ from objets_metier.personnage import Personnage
 #from objets_metier.donjon import Donjon
 from objets_metier.entite import Entite
 
+from typing import List
+
+
 class MaitreDuJeu(Joueur):
     def __init__(self, id_campagne : int,
                        nom_campagne : str,
                        id_maitre_du_jeu : str, 
-                       personnages_joueurs : list[Personnage],
-                       personnages_non_joueurs : list[Personnage],
+                       personnages_joueurs : List[Personnage],
+                       personnages_non_joueurs : List[Personnage],
 #                       donjons : list[Donjons]
-                       entites : list[Entite]): 
+                       entites : List[Entite]): 
         self.__id_campagne = id_campagne
         self.__nom_campagne = nom_campagne
         self.__id_maitre_du_jeu = id_maitre_du_jeu
