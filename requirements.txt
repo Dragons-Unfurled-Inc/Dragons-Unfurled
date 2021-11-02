@@ -35,3 +35,4 @@ urllib3
 uvicorn            
 wcwidth       
 prompt_toolkit.token
+pydantic
