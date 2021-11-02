@@ -45,24 +45,24 @@ En plus d’étoffer la base de l’application, tout utilisateur peut contribue
   <summary>Sommaire</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#a-propos-du-projet">A propos du projet</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#utilisé-lors-de-la-créations-du-code">Utilisé lors de la créations du code</a></li>
       </ul>
     </li>
     <li>
-      <a href="#Mise-en-place">Mise en place</a>
+      <a href="#mise-en-place">Mise en place</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#prérequis">Prérequis</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#réalisation">Réalisation</a></li>
+    <li><a href="#contribution">Contribution</a></li>
+    <li><a href="#licence">Licence</a></li>
+    <li><a href="#contacts">Contacts</a></li>
+    <li><a href="#remerciements">Remerciements</a></li>
   </ol>
 </details>
 
