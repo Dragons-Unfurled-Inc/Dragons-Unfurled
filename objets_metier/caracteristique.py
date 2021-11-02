@@ -67,4 +67,12 @@ class Caracteristique : #Reste à compléter les @ en bas
     @force.setter
     def force(self, value):
         self.__force = value
+
+    @property
+    def intelligence(self):
+        return self.__intelligence
+
+    @intelligence.setter
+    def intelligence(self, value):
+        self.__intelligence = value    
         
