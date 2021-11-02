@@ -54,7 +54,7 @@ class Jet:
     
     @nombre.setter
     def nombre(self, value):
-        self.__lanceur = nombre
+        self.__nombre = value
 
     @property
     def faces(self):
