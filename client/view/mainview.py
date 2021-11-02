@@ -1,4 +1,4 @@
-from view.start_view import StartView
+from client.view.start_view import StartView
 
 # This script is the entry point of your application
 

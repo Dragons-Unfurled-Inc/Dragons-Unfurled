@@ -1,7 +1,7 @@
 from PyInquirer import Separator, prompt
 
-from view.abstract_view import AbstractView
-from view.session import Session
+from client.view.abstract_view import AbstractView
+from client.view.session import Session
 
 class StartView(AbstractView):
 

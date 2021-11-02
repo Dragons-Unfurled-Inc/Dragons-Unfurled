@@ -6,8 +6,8 @@
 from __future__ import print_function, unicode_literals
 from PyInquirer import Separator, prompt
 from PyInquirer import Validator, ValidationError
-from view.abstract_view import AbstractView
-from view.session import Session
+from client.view.abstract_view import AbstractView
+from client.view.session import Session
 import regex
 from pprint import pprint
 from objets_metier.entite import Entite
