@@ -263,9 +263,7 @@ https://arrow.readthedocs.io/en/stable/
 
 ## FONCTIONNEMENT DE L'APPLICATION :
 
-Bienvenu sur FEDERAL RESERVE NOTE, une application de trading sur différentes cryptomonnaies
-Ce mini guide vous aidera à exploiter au mieux notre application et vous en facilitera son utilisation.
-Sur l’application, vous trouverez l’ensemble des fonctionnalités qui vous permettront de trader sur la plateforme. 
+Bienvenu sur 
 
 ## Accéder à l’application :
 
@@ -306,13 +304,11 @@ a été commentée de façon plus détaillé si vous souhaitez comprendre, à tr
 
 - Le premier utilisateur déjà implémenté dans la base de données 
 est un client qui a pour nom : client1, pour mot de passe : mdpclient1 
-et pour solde de départ : 1000$
 
 - Le second utilisateur est un administrateur qui a pour nom : admin1,
-pour mot de passe : mdpadmin1 et pour solde de départ : 1000$
 
 - Le troisième utilisateur est un client qui a pour nom : test,
-pour mot de passe : mdptest et pour solde de départ : 1000$
+pour mot de passe : mdptest 
 (Cet utilisateur sert à lancer les tests unitaires)
 
 Vous pouvez retrouver toutes ces informations dans votre base SQL
@@ -355,51 +351,17 @@ information ne respectant pas le format requis...). Dans ce cas, il vous sera de
 Mais vous n'avez que 3 tentatives, et en cas d'échec, nous serons contraint de vous faire quitter l'application.
 
 Une fois connecté, l'utilisateur peut effectuer plusieurs opérations que sont :
-- Accéder à son solde,
-- Consulter le prix actuel des cryptomonnaies,
-- Effectuer une transaction,
+
 - Se déconnecter.
 
 S'il décide d'accéder au compte par exemple, il peut décider de gérer son portefeuille, de revenir au menu principal ou tout simplement de connaitre son solde
 
-## Effectuer une transaction :
-
-L'une des plus importante fonctionnalités de l'application est l'ensemble des transactions que l'utilisateur peut effectuer.
-Ainsi, pour se faire, il doit après connexion à l'application :
-- Etape 1 : Effectuer une transaction
-- Etape 2 : Vous pourrez effectuer les opérations suivantes sur une cryptomonnaie : Acheter, Vendre, Short et Programmer une transaction.
-- Etape 3 : choisir la crypto sur laquelle vous effectuerez une des opérations choisies plus haut
-- Etape 4 : Définir le nombre de crypto concerné par l'opération
  
 ## Consulter l’historique :
 
 On distingue l'historique des prix de crypto et l'historique des transactions.
 
 Pour ce qui est de l’historique des prix des crytomonnaies. Pour y accéder, il faut :
-- Etape 1: Consulter le prix actuel des cryptomonnaies,
-- Etape 2: Consulter l'historique des cryptomonnaies,
-- Etape 3: Choisir la crypto dont on veut connaitre l'historique,
+- Etape 1: Consulter le
 - Etape 4: Choisir la manière dont vous souhaitez afficher vos données.
 
-Vous pourrez afficher vos données soit sous forme de graphique (une courbe de tendance), soit sous forme de tableau.
-
-Concernant l'historique des transactions, il faut :
-- Etape 1 : Effectuer une transaction
-- Etape 2 : Accéder au solde
-- Etape 3 : Portefeuille
-- Etape 4 : Consulter l'historique des transactions
-Vous aurez donc afficher sous forme de tableau, l'historique de vos différentes opérations effectuées.
-
-
-## Afficher l'analyse du cours d'une cryptomonnaie par moyenne mobile :
-
-Vous avez la possibilité sur l'application d'afficher une analyse du cours d'une cryptomonaie, ce qui vous permettra de mieux effectuer vos choix.
-- Etape 1 : Consulter le prix actuel des cryptomonnaies
-- Etape 2 : Menu choix crypto pour choisir la crypto
-- Etape 3 : Choisir le nombre de période sur laquelle vous souhaitez calculer la moyenne mobile
-- Etape 4 : Choisir la manière avec laquelle vous souhaitez afficher les données
-- Etape 5 : Définir la forme avec laquelle vous souhaitez présenter vos données
-
-NB : Vous pourrez le faire sous forme de graphique ou sous forme de tableau
-
-Une fois les différentes opérations terminées, l'utilisateur devra quitter l'application.
