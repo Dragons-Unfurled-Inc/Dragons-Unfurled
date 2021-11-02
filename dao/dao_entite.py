@@ -12,9 +12,4 @@ class CreationMonstre:
     def CreaMonstre(nom): 
         r = req.get('https://www.dnd5eapi.co/api/monsters/aboleth') 
         d=r.json()
-<<<<<<< HEAD
-        return(Monstre(nom,d["size"],d["alignment"],d['armor_class'],d['hit_points'],d['hit_dice'],d['speed'],d['strength'],d['dexterity'],d['constitution'],d['intelligence'],d['wisdom'],d['charisma'],d['proficiencies'],d['languages'],d['xp']))
-
-=======
         return(Monstre(nom,d["size"],d["alignment"],d['armor_class'],d['hit_points'],d['hit_dice'],d['speed'],d['strength'],d['dexterity'],d['constitution'],d['intelligence'],d['wisdom'],d['charisma'],d['proficiencies'],d['languages'],d['xp'])) 
->>>>>>> 825fcc4e94532def01a6383834ccf4f690e88461

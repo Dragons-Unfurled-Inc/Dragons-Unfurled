@@ -101,7 +101,7 @@ Pour lancer une copie locale, suivez les étapes suivantes.
 
 ### Prérequis
 
-Voici ce dont vous avez besoin :
+Voici les installations préalables nécessaires :
 * npm
   ```sh
   npm install npm@latest -g
@@ -113,7 +113,7 @@ Voici ce dont vous avez besoin :
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Julien-Sklarik/Dragons-Unfurled.git 
    ```
 3. Install NPM packages
    ```sh
@@ -128,8 +128,10 @@ Voici ce dont vous avez besoin :
 
 
 <div id="utilis"></div>
-<!-- USAGE EXAMPLES -->
-## Usage
+
+<!-- UTILISATION EXAMPLES -->
+
+## Utilisation
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
