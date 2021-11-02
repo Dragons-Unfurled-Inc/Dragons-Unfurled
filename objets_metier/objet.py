@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 
-class Objet : #Reste à compléter les @ en bas
+class Objet : 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
@@ -19,3 +19,19 @@ class Objet : #Reste à compléter les @ en bas
     @id_objet.setter
     def id_objet(self, value):
         self.__id_objet = value
+
+    @property
+    def nom_objet(self):
+        return self.__nom_objet
+
+    @nom_objet.setter
+    def nom_objet(self, value):
+        self.__nom_objet = value   
+
+    @property
+    def description(self):
+        return self.__description
+
+    @description.setter
+    def description(self, value):
+        self.__description = value     
