@@ -1,6 +1,6 @@
-from pydantic import BaseModel
+#from pydantic import BaseModel
 
-class Utilisateur(BaseModel):
+class Utilisateur():
     id: int
     username: str
     password: str

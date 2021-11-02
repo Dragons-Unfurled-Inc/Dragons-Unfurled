@@ -56,7 +56,6 @@ En plus d’étoffer la base de l’application, tout utilisateur peut contribue
     <li>
       <a href="#mise-en-place">Mise en place</a>
       <ul>
-        <li><a href="#prérequis">Prérequis</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -101,15 +100,6 @@ Cette section va présenter nos outils de développements.
 
 Voici une manière d'installer notre application localement.
 Pour lancer une copie locale, suivez les étapes suivantes.
-
-### Prérequis
-
-Voici les installations préalables nécessaires :
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-<div id="instal"></div>
 
 ### Installation
 
