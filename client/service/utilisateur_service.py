@@ -1,6 +1,13 @@
-from dao.utilisateur_dao import UtilisateurDao
+#import hashlib
+#from getpass import getpass
+#from datetime import datetime
+
+from objets.client import Client
+from web.dao.utilisateur_dao import UtilisateurDao
+#from dao.compte_dao import CompteDAO
 from objets_metier.utilisateur import Utilisateur
 from exceptions.utilisateur_non_authentifie_exception import UtilisateurNonAuthentifie
+
 
 class UtilisateurService:
 
