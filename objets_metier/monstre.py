@@ -1,4 +1,3 @@
-import copy
 from typing import List, Optional
 
 from objets_metier.caracteristique import Caracteristique
@@ -11,14 +10,25 @@ class Monstre(Entite):
                        id_joueur: str, 
                        id_entite: str,                  
                        caracteristiques_entite: Caracteristique,
-                       objets: Optional[List[Objet]] = None ,
-                        ) -> None: 
+                       objets: Optional[List[Objet]] = None ) -> None: 
 
-        Entite.__init__(self, id_joueur, id_entite, caracteristiques_entite, objets)
+        super().__init__(
+            id_joueur= id_joueur,
+            id_entite = id_entite,
+            caracteristiques_entite = caracteristiques_entite,
+            objets = objets,
+            )
+
         self.__type = type
 
 
+    @property
+    def type(self):
+        return self.__type
 
+    @type.setter
+    def type(self, value):
+        self.__type = value
 
 
 
