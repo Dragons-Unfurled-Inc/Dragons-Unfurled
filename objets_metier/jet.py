@@ -8,13 +8,13 @@ class Jet:
                        nombre,
                        faces,
                        cible) -> None:
-        self.lanceur = lanceur
-        self.nombre = nombre 
-        self.faces = faces
-        self.cible = cible 
-        self.resultat = nombre*[0]
+        self.__lanceur = lanceur
+        self.__nombre = nombre 
+        self.__faces = faces
+        self.__cible = cible 
+        self.__resultat = nombre*[0]
         for i in range(nombre) :
-            self.resultat[i] = rd.randrange(1,faces)
+            self.__resultat[i] = rd.randrange(1,faces)
         
     def __str__(self):
     
@@ -26,11 +26,11 @@ class Jet:
         modele = '\n'.join([
             ' Le joueur  {} a lancé  {}  dé(s) à  {} faces et obtenu  {}'])
         return modele.format(
-            self.lanceur,
-            self.nombre,
-            self.faces,
-            self.resultat)
-        
+            self.__lanceur,
+            self.__nombre,
+            self.__faces,
+            self.__resultat)
+
     def attaquer(self):
         None
     
@@ -39,3 +39,35 @@ class Jet:
         for i in range(0, len(liste_des)):
             resultat += Des.lancer_un_des(liste_des[i])
         return resultat
+
+    @property
+    def lanceur(self):
+        return self.__lanceur
+    
+    @lanceur.setter
+    def lanceur(self, value):
+        self.__lanceur = value
+
+    @property
+    def nombre(self):
+        return self.__nombre
+    
+    @nombre.setter
+    def nombre(self, value):
+        self.__lanceur = nombre
+
+    @property
+    def faces(self):
+        return self.__faces
+    
+    @faces.setter
+    def faces(self, value):
+        self.__faces = value
+
+    @property
+    def resultat(self):
+        return self.__resultat
+    
+    @resultat.setter
+    def resultat(self, value):
+        self.__resultat = value

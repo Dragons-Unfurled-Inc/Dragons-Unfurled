@@ -9,6 +9,9 @@ class Des():
     def __init__(self, nb_face : int):
         self.__nb_face = nb_face
 
+    def lancer_un_des(self):
+        return randint(1, self.__nb_face)
+
     @property
     def nb_face(self):
         return self.__nb_face
@@ -16,7 +19,3 @@ class Des():
     @nb_face.setter
     def nb_face(self, value):
         self.__nb_face = value
-
-    def lancer_un_des(self):
-        return randint(1, self.__nb_face)
-
