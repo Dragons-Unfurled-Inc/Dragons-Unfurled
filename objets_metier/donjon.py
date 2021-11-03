@@ -11,7 +11,41 @@ class Donjon():
         
         self.__id_donjon = id_donjon
         self.__nom_donjon = nom_donjon
-        self.__pieces = pieces
+        self.__pieces = pieces      
+    
+    def afficher_donjon(self):
+        None 
+
+    def deplacer_element_salles(self, element:type):
+        """
+        
+        """
+        None  
+
+    def ajouter_salle(self, salle : Salle):
+        """Cette fonction ajoute une salle au donjon
+        """
+        if self.__pieces == None : 
+            self.__pieces = [salle]
+        else :
+            self.__pieces.append(salle)
+
+    def editer_salle(self, salle : Salle):
+        """
+        """
+        None    
+
+    def inventaire_donjon(self):
+        """
+        Renvoies une liste de tous les éléments présents dans le donjon
+        """
+        inventaire = []
+        for salle in self.__pieces:
+            for objet in salle.objets:
+                inventaire.append(objet)
+            for entite in salle.entites:
+                inventaire.append(entite)
+        return inventaire
     
     @property
     def id_donjon(self):
@@ -35,19 +69,4 @@ class Donjon():
 
     @pieces.setter
     def pieces(self, value):
-        self.__pieces = value        
-
-    def afficher_donjon(self):
-        None 
-
-    def deplacer_element_salles(self, element:type):
-        None  
-
-    def ajouter_salle(self, salle:type):
-        None
-
-    def editer_salle(self, salle:type):
-        None    
-
-    def inventaire_donjon(self):
-        None    
+        self.__pieces = value  
