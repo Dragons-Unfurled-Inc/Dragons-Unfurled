@@ -3,7 +3,7 @@ from web.dao.configuration import DBConnection
 from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
 
 
-class UtilisateurDao:
+class UtilisateurDAO:
 
     @staticmethod
     def liste_noms():
