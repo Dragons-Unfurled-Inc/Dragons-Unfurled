@@ -1,7 +1,8 @@
 import random as rd
 
-from objets_metier.entite import Entite
 from utils.singleton import Singleton
+from objets_metier.entite import Entite
+
 
 
 class Dommage(metaclass=Singleton): 
