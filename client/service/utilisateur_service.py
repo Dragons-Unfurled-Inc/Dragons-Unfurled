@@ -72,7 +72,7 @@ class UtilisateurService:
                                                 mot_de_passe = compte[1],
                                                 identifiant = compte[0],
                                                 est_administrateur = True) 
-            UtilisateurDao.CreationCompte(nouvel_utilisateur)
+            UtilisateurDao.creation_compte(nouvel_utilisateur)
             print("Votre compte a été créé avec succès !")
         else:
             print("Votre compte n'a pas pu être créé !")
@@ -85,7 +85,6 @@ class UtilisateurService:
     def connexion(nom_utilisateur = None, tentative_num: int = 1):
         if nom_utilisateur == None:
             nom_utilisateur = input("Quel est votre nom d'utilisateur ? ")
-        return [UtilisateurDao.liste_noms(), nom_utilisateur]
         if nom_utilisateur not in UtilisateurDao.liste_noms():
             print("Ce nom d'utilisateur n'existe pas ! \n Veuillez réessayer, s'il vous plaît.")
             return UtilisateurService.connexion(None, tentative_num)

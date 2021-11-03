@@ -10,6 +10,10 @@ class UtilisateurDao:
         return []
 
     @staticmethod
+    def creation_compte(nouvel_utilisateur: Utilisateur):
+        return []
+
+    @staticmethod
     def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:

@@ -32,13 +32,13 @@ class StartView(AbstractView):
             utilisateur = UtilisateurService.connexion()
             if utilisateur.est_administrateur:
                 from client.view.accueil_administrateur_view import AccueilAdministrateurView
-                return AccueilAdministrateurView()
+                return AccueilAdministrateurView(utilisateur)
             else:
                 from client.view.accueil_jeu_view import AccueilJeuView
-                return AccueilJeuView()
+                return AccueilJeuView(utilisateur)
 
         if reponse['choix'] == 'Créer un compte':
             from client.service.utilisateur_service import UtilisateurService
             utilisateur = UtilisateurService.creation_compte("joueur")
             from client.view.accueil_jeu_view import AccueilJeuView
-            return AccueilJeuView()   
+            return AccueilJeuView(utilisateur)   
