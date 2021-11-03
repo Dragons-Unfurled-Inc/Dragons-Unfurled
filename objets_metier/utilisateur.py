@@ -3,17 +3,15 @@ from pydantic import BaseModel
 
 from objets_metier.feedback import Feedback
 
-class Utilisateur():
-    def __init__(self, connecte : bool,
-                       mot_de_passe : str,
-                       identifiant : str,
-                       est_administrateur : bool, 
-                       feed_backs : List[Feedback] = []):
-        self._connecte = connecte
-        self._mot_de_passe = mot_de_passe
-        self._identifiant = identifiant
-        self._est_administrateur = est_administrateur
-        self._feed_back = feed_backs
+class Utilisateur(BaseModel):
+    _connecte : bool
+    _mot_de_passe : str
+    _identifiant : str
+    _est_administrateur : bool
+    _feed_backs : List[Feedback] = []
+
+    class Config:
+        underscore_attrs_are_private = True
 
     def se_connecter(self, id : str, mdp : str):
         None

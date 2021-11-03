@@ -3,10 +3,11 @@ from pydantic import BaseModel
 from objets_metier.des import Des
 
     
-class Jet:
-    def __init__(self, liste_des: List[Des]):
-        self.__liste_des = liste_des
-        self.__valeur_jet = None
+class Jet(BaseModel):
+    _liste_des: List[Des]
+    
+    class Config:
+        underscore_attrs_are_private = True
 
     def lancer_des(self):
         self.__valeur_jet = 0
@@ -16,16 +17,16 @@ class Jet:
 
     @property
     def liste_des(self):
-        return self.__liste_des 
+        return self._liste_des 
 
     @liste_des.setter
     def liste_des(self, value):
-        self.__liste_des = value
+        self._liste_des = value
 
     @property
     def valeur_jet(self):
-        return self.__valeur_jet
+        return self._valeur_jet
 
     @valeur_jet.setter
     def valeur_jet(self, value):
-        self.__valeur_jet = value
+        self._valeur_jet = value
