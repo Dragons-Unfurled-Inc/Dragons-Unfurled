@@ -27,16 +27,16 @@ class Joueur(Utilisateur,BaseModel):
 
     @property
     def personnage(self):
-        return self.__personnage
+        return self._personnage
 
     @personnage.setter
     def personnage(self, value):
-        self.__personnage = value
+        self._personnage = value
 
     @property
     def choix_revelation(self):
-        return self.__choix_revelation
+        return self._choix_revelation
 
     @choix_revelation.setter
     def choix_revelation(self, value):
-        self.__choix_revelation = value
+        self._choix_revelation = value
