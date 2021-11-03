@@ -11,10 +11,17 @@ class Donjon():
         
         self.__id_donjon = id_donjon
         self.__nom_donjon = nom_donjon
-        self.__pieces = pieces      
+        self.__pieces = pieces
+
+    def __str__(self):
+        """
+        Gère l'affichage des données du donjon
+        """  
+        modele = '\n'.join(['id_donjon : {} \nNom : {} \n Salle : '])
+        return modele.format(self.__id_donjon, self.__nom_donjon)
     
     def afficher_donjon(self):
-        None 
+        None
 
     def deplacer_element_salles(self, element:type):
         """

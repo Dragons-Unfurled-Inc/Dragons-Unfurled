@@ -11,6 +11,15 @@ class Objet :
         self.__id_objet = id_objet
         self.__nom_objet = nom_objet
         self.__description = description
+    
+    def __str__(self): 
+        """
+        Affichage des objets
+        """
+        modele = '\n'.join(['Identifiant : {} \nNom : {} \nDescription : {}'])
+        return modele.format(self.__id_objet,
+                             self.__nom_objet,
+                             self.__description)
 
     @property
     def id_objet(self):

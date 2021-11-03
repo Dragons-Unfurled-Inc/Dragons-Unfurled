@@ -16,6 +16,34 @@ class Salle:
         self.__coordonnees_salle = coordonnees_salle
         self.__objets = objets
         self.__entites = entites
+    
+    def __str__(self):
+        """
+        Gère les données d'affichages des salles 
+        """
+        modele = '\n'.join(['Identifiant : {} \nNom : {} \nCoordonnées : {} \nObjets :  \nEntités :'])
+        return modele.format(self.__id_salle,
+                             self.__nom_salle,
+                             self.__coordonnees_salle)
+
+
+    def inventaire_salle(self):
+        None
+
+    def ajouter_entite_salle(self, entite:Entite):
+        None 
+
+    def modifier_entite_salle(self, entite:Entite):
+        None
+
+    def ajouter_objet(self, objet:Objet):
+        None
+
+    def modifier_ojet(self, objet:Objet):
+        None
+
+    def editer_salle(self):
+        None          
 
     @property
     def id_salle(self):
@@ -56,21 +84,3 @@ class Salle:
     @entites.setter
     def entites(self, value):
         self.__entites = value           
-
-    def inventaire_salle(self):
-        None
-
-    def ajouter_entite_salle(self, entite:Entite):
-        None 
-
-    def modifier_entite_salle(self, entite:Entite):
-        None
-
-    def ajouter_objet(self, objet:Objet):
-        None
-
-    def modifier_ojet(self, objet:Objet):
-        None
-
-    def editer_salle(self):
-        None          

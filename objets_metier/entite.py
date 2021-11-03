@@ -19,6 +19,17 @@ class Entite(ABC):
         self._caracteristiques_entite = caracteristiques_entite
         self._objets = objets
 
+    def __str__(self) : 
+        modele = '\n'.join(['Identifiant Joueur : {} \nIdentifiant entité : {} \nCaracteristiques : {} \nObjets : {}'])
+        aff_obj = ''
+        for obj in self._objets: 
+            aff_obj += '\n'
+            aff_obj += print(obj)
+        return modele.format(self._id_joueur,
+                             self._id_entite,
+                             print(self._caracteristiques_entite),
+                             aff_obj)
+
     @property
     def id_joueur(self):
         return self._id_joueur

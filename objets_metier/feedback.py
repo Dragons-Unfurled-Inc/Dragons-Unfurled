@@ -10,6 +10,15 @@ class Feedback():
         self.__message = message
         self.__date_ecriture = date_ecriture
 
+    def __str__(self):
+        """
+        Affichage des feedbacks
+        """
+        modele = '\n'.join(['Identifiant : {} \nLe message est : {} \nDate du message : {}'])
+        return modele.format(self.__id_feedback,
+                             self.__message,
+                             self.__date_ecriture)
+
     @property
     def id_feedback(self):
         return self.__id_feedback

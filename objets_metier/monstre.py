@@ -20,6 +20,21 @@ class Monstre(Entite):
             )
 
         self.__type = type
+    
+    def __str__(self):
+        """
+        Affichage des monstres 
+        """
+        modele = '\n'.join(['Type : {} \nIdentifiant joueur : {} \nIdentifiant monstres : {} \nCaractéristiques : {} \nObjets : {}'])
+        aff_obj = ''
+        for obj in self._objets: 
+            aff_obj += print(obj)
+            aff_obj += '\n'
+        return modele.format(self.__type,
+                             self._id_joueur,
+                             self._id_entite,
+                             print(self._caracteristiques_entite),
+                             aff_obj)
 
 
     @property

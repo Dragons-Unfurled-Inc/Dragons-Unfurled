@@ -9,6 +9,13 @@ class Des():
     def __init__(self, nb_face : int):
         self.__nb_face = nb_face
 
+    def __str__(self):
+        """
+        Gère l'affichage d'un dé
+        """
+        modele = '\n'.join(['Le dé à {} faces.'])
+        return modele.format(self.__nb_face)
+
     def lancer_un_des(self):
         return randint(1, self.__nb_face)
 

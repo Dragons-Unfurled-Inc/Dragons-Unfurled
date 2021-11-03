@@ -21,10 +21,41 @@ class Personnage(Entite):
             caracteristiques_entite = caracteristiques_entite,
             objets = objets
             ) 
-
         self.__classe = classe
         self.__race = race
         self.__lore = lore
+        self.__nom_entite = nom_entite
+
+    def __str__(self): 
+        """
+        Affichage d'un personnage
+        """
+        if self.objets != None :
+            carac = Caracteristique.__str__(self._caracteristiques_entite)
+            modele = '\n'.join(['Classe : {} \nRace : {} \nLore : {}\nIdentifiant joueur : {} \nIdentifiant personnage : {} \nNom personnage : {} \nCaractéristiques : {} \nObjets : {}\n'])
+            aff_obj = ''
+            for obj in self._objets: 
+                aff_obj += print(obj)
+                aff_obj += '\n'
+            return modele.format(self.__classe,
+                                self.__race,
+                                self.__lore,
+                                self._id_joueur,
+                                self._id_entite,
+                                self.__nom_entite,
+                                Caracteristique.__str__(self._caracteristiques_entite),
+                                aff_obj) 
+        else : 
+            carac = Caracteristique.__str__(self._caracteristiques_entite)
+            modele = '\n'.join(['Classe : {} \nRace : {} \nLore : {}\nIdentifiant joueur : {} \nIdentifiant personnage : {} \nNom personnage : {} \nCaractéristiques : \n{} \nObjets : {}\n'])
+            return modele.format(self.__classe,
+                                self.__race,
+                                self.__lore,
+                                self._id_joueur,
+                                self._id_entite,
+                                self.__nom_entite,
+                                Caracteristique.__str__(self._caracteristiques_entite),
+                                'Vide') 
 
 
     @property

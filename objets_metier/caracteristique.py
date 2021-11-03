@@ -35,6 +35,28 @@ class Caracteristique :
         self.__languages = languages
         self.__description = description
 
+    def __str__(self):
+        """
+        permet un affichage des caractéristiques
+        """
+        modele = '\n'.join([
+            '    Nom : {} \n    Niveau : {} \n    Expérience: {} \n    Force : {} \n    Dextérité : {} \n    Constitution : {} \n    Intelligence : {} \n    Sagesse : {} \n    Charisme {} \n    Capacités : \n    Vie : {} \n    Attaques : {} \n    Langages : {} \n    Description {}'])
+        return modele.format(
+            self.__nom_entite,
+            self.__niveau,
+            self.__experience,
+            self.__force,
+            self.__dexterite, 
+            self.__constitution,
+            self.__intelligence,
+            self.__sagesse,
+            self.__charisme,
+            self.__capacites,
+            self.__vie,
+            self.__attaques,
+            self.__languages,
+            self.__description)
+    
     @property
     def nom_entite(self):
         return self.__nom_entite
