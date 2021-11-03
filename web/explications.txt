@@ -1,2 +1,0 @@
-ça c'est le code qui gère la création de l'API, c'est un peu galère et jpense pas que c'est la priorité donc on verra plus tard
-ou si vous voulez vraiment, jpense que c'est mieux de focus le reste au début mais ça risque d'embrouiller

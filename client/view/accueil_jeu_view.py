@@ -42,4 +42,5 @@ class AccueilJeuView(AbstractView):
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ()    
         if reponse['choix'] == 'Se déconnecter':
-            pass
+            from client.view.deconnexion_view import MenuDeconnexion
+            return MenuDeconnexion()
