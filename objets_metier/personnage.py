@@ -4,27 +4,19 @@ from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 from objets_metier.entite import Entite
 
-class Personnage(Entite):
+class Personnage(Entite,BaseModel):
 
-    def __init__(self, classe: str,
-                       race: str,
-                       lore: str,
-                       id_joueur: str, 
-                       id_entite: str,
-                       nom_entite: str,                  
-                       caracteristiques_entite: Caracteristique,
-                       objets: Optional[List[Objet]] = None ) -> None: 
+    _classe: str
+    _race: str
+    _lore: str
+    _id_joueur: str 
+    _id_entite: str
+    _nom_entite: str             
+    _caracteristiques_entite: Caracteristique
+    _objets: Optional[List[Objet]] = None
 
-        super().__init__(
-            id_joueur= id_joueur,
-            id_entite = id_entite,
-            caracteristiques_entite = caracteristiques_entite,
-            objets = objets
-            ) 
-        self.__classe = classe
-        self.__race = race
-        self.__lore = lore
-        self.__nom_entite = nom_entite
+    class Config:
+        underscore_attrs_are_private = True
 
     def __str__(self): 
         """

@@ -4,23 +4,13 @@ from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 from objets_metier.entite import Entite
 
-class Monstre(Entite):
+class Monstre(Entite,BaseModel):
     
-    def __init__(self, type: str,
-                       id_joueur: str, 
-                       id_entite: str,                  
-                       caracteristiques_entite: Caracteristique,
-                       objets: Optional[List[Objet]] = None ) -> None: 
-
-        super().__init__(
-            id_joueur= id_joueur,
-            id_entite = id_entite,
-            caracteristiques_entite = caracteristiques_entite,
-            objets = objets,
-            )
-
-        self.__type = type
+    type: str              
     
+    class Config:
+        underscore_attrs_are_private = True
+
     def __str__(self):
         """
         Affichage des monstres 

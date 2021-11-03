@@ -3,20 +3,16 @@ from pydantic import BaseModel
 from objets_metier.objet import Objet
 from objets_metier.entite import Entite
 
-class Salle:
+class Salle(BaseModel):
+    id_salle: str
+    nom_salle: str
+    coordonnees_salle: Optional[List[int]] = None
+    objets: Optional[List[Objet]] = None
+    entites: Optional[List[Entite]] = None 
 
-    def __init__(self, id_salle: str,
-                       nom_salle: str,
-                       coordonnees_salle: Optional[List[int]] = None,
-                       objets: Optional[List[Objet]] = None, 
-                       entites: Optional[List[Entite]] = None ) -> None:
+    class Config:
+        underscore_attrs_are_private = True
 
-        self.__id_salle = id_salle
-        self.__nom_salle = nom_salle
-        self.__coordonnees_salle = coordonnees_salle
-        self.__objets = objets
-        self.__entites = entites
-    
     def __str__(self):
         """
         Gère les données d'affichages des salles 

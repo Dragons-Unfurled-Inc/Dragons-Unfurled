@@ -3,14 +3,15 @@ from pydantic import BaseModel
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.personnage import Personnage
 
-class Joueur(Utilisateur):
+class Joueur(Utilisateur,BaseModel):
     """
     Un joueur est un utilisateur qui est présent dans une campagne sans être maître du jeu.
     """
-    def __init__(self, personnage : List[Personnage],
-                       choix_revelation : bool) : 
-        self.__personnage = personnage
-        self.__choix_revelation = choix_revelation
+    personnage : List[Personnage]
+    choix_revelation : bool
+    
+    class Config:
+        underscore_attrs_are_private = True
 
     def creer_personnage(self):
         None
@@ -26,16 +27,16 @@ class Joueur(Utilisateur):
 
     @property
     def personnage(self):
-        return self.__personnage
+        return self._personnage
 
     @personnage.setter
     def personnage(self, value):
-        self.__personnage = value
+        self._personnage = value
 
     @property
     def choix_revelation(self):
-        return self.__choix_revelation
+        return self._choix_revelation
 
     @choix_revelation.setter
     def choix_revelation(self, value):
-        self.__choix_revelation = value
+        self._choix_revelation = value

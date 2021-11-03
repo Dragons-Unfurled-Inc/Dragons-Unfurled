@@ -16,7 +16,7 @@ donj = Donjon("id_donjon", "nom_donjon", [sall])
 monstr = Monstre("type","id_joueur","id_entite",caract, [obj])
 
 #print(caract)
-#print(perso)
+print(perso.__dict__)
 #print(enti)
 #print(sall)
 #print(obj)
