@@ -114,5 +114,5 @@ class MenuPersonnage(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        from view.accueil_view import AccueilView
-        return AccueilView()
+        from client.view.accueil_jeu_view import AccueilJeuView
+        return AccueilJeuView()

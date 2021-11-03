@@ -1,5 +1,5 @@
 from PyInquirer import Separator, prompt, Validator, ValidationError
-from client.view.accueil_view import AccueilView
+from client.view.accueil_jeu_view import AccueilJeuView
 
 from client.view.abstract_view import AbstractView
 from client.view.session import Session
@@ -37,10 +37,10 @@ class Authentification(AbstractView):
 
     
     def make_choice(self):
-        from client.view.accueil_view import AccueilView
+        from client.view.accueil_jeu_view import AccueilJeuView
 
         answers = prompt(questions)
 
         Session.identifiant = answers['pseudonyme']
-        Session.mot_de_passe = answers['password']
-        return AccueilView()
+        Session.mot_de_passe = answers['mot de passe']
+        return AccueilJeuView()

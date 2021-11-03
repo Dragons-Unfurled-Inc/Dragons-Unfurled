@@ -4,10 +4,11 @@ from client.view.abstract_view import AbstractView
 from client.view.session import Session
 from client.view.mj_view import MenuMJ
 from client.view.joueur_view import MenuJoueur
+from objets_metier.utilisateur import Utilisateur
 
 class AccueilJeuView(AbstractView):
 
-    def __init__(self):
+    def __init__(self, utilisateur:Utilisateur):
         self.__questions = [
             {
                 'type': 'list',
@@ -25,7 +26,7 @@ class AccueilJeuView(AbstractView):
                 ]
             }
         ]
-
+        self.utilisateur = utilisateur
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
             print(asset.read())
