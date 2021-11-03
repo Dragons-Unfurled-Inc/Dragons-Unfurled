@@ -7,7 +7,7 @@ class UtilisateurDao:
 
     @staticmethod
     def liste_noms():
-        pass
+        return []
 
     @staticmethod
     def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
