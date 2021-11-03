@@ -35,4 +35,5 @@ class AccueilAdministrateurView(AbstractView):
         if reponse['choix'] == 'Bannir un joueur':
             AdministrateurService.bannir(input("Quel identifiant-utilisateur souhaitez-vous bannir ?"))
         if reponse['choix'] == 'Se déconnecter':
-            pass
+            import sys
+            sys.exit()
