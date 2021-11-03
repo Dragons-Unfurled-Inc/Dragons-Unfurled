@@ -11,20 +11,21 @@ class JetService:
         self.__faces = faces
         self.__cible = cible 
         self.__resultat = nombre*[0]
-        for i in range(nombre) :
-            self.__resultat[i] = rd.randrange(1,faces)
         
     def __str__(self):
         """
         permet un affichage du lancer de dés
         """
         modele = '\n'.join([
-            'Le joueur {} a lancé {} dé(s) à {} faces et obtenu {}.'])
-        return modele.format(
+            'Le joueur {} a lancé {} dé(s) et obtenu {}.'.format(
             self.__lanceur,
             self.__nombre,
             self.__faces,
-            self.__resultat)
+            self.__resultat),
+            "Le dés à {} faces à fait {}"]).format(
+            self.__faces,
+            self.__resultat_des)
+        return modele
 
     def attaquer(self):
         None
