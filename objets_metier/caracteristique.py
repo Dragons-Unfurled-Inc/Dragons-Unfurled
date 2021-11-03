@@ -35,6 +35,7 @@ class Caracteristique :
         self.__attaques = attaques
         self.__languages = languages
         self.__description = description
+        self.__classe_armure = classe_armure
 
     @property
     def nom_entite(self):
@@ -114,4 +115,44 @@ class Caracteristique :
 
     @vie.setter
     def vie(self, value):
-        self.__vie = value            
+        self.__vie = value      
+
+    @property
+    def capacites(self):
+        return self.__capacites
+
+    @capacites.setter
+    def capacites(self, value):
+        self.__capacites = value     
+
+    @property
+    def attaques(self):
+        return self.__attaques
+
+    @attaques.setter
+    def attaques(self, value):
+        self.__attaques = value    
+
+    @property
+    def languages(self):
+        return self.__languages
+
+    @languages.setter
+    def languages(self, value):
+        self.__languages = value    
+
+    @property
+    def description(self):
+        return self.__description
+
+    @description.setter
+    def description(self, value):
+        self.__description = value    
+
+    @property
+    def classe_armure(self):
+        return self.__classe_armure
+
+    @classe_armure.setter
+    def classe_armure(self, value):
+        self.__classe_armure = value     

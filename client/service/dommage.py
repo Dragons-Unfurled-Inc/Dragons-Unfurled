@@ -9,4 +9,5 @@ class Dommage :
     """
     @staticmethod
     def frappe(type_attaque: str, attaquant: Entite, cible: Entite) -> str: # Le type d'attaque est "force", "charisme", "intelligence" ou "dexterite".
-        if rd.randint(1,20) > cible.caracteristiques_entite
+        if rd.randint(1,20) > cible.caracteristiques_entite.classe_armure:
+
