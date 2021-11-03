@@ -4,7 +4,7 @@ from getpass import getpass
 #from datetime import datetime
 
 #from objets_metier import utilisateur
-from web.dao.utilisateur_dao import UtilisateurDao
+from web.dao.utilisateur_dao import UtilisateurDAO
 from objets_metier.utilisateur import Utilisateur
 
 
@@ -24,7 +24,7 @@ class UtilisateurService:
             mot_de_passe = getpass("Veuillez entrer votre mot de passe \n (Il doit contenir au moins cinq caractères dont une majuscule et une minuscules. Les charactères spéciaux ne sont pas autorisés.) :")
             mot_de_passe2 = getpass("Veuillez confirmer votre mot de passe : ")
 
-            if nom_utilisateur in UtilisateurDao.liste_noms(): # Nous vérifions si ce nom d'utilisateur est déjà pris.
+            if nom_utilisateur in UtilisateurDAO.liste_noms(): # Nous vérifions si ce nom d'utilisateur est déjà pris.
                 print("Votre nom d'utilisateur a déjà été pris par une autre personne ! \n Veuillez choisir un autre nom, s'il vous plaît.")
                 continue
 
@@ -71,7 +71,7 @@ class UtilisateurService:
                                                 mot_de_passe = compte[1],
                                                 identifiant = compte[0],
                                                 est_administrateur = True) 
-            UtilisateurDao.creation_compte(nouvel_utilisateur)
+            UtilisateurDAO.creation_compte(nouvel_utilisateur)
             print("Votre compte a été créé avec succès !")
         else:
             print("Votre compte n'a pas pu être créé !")
@@ -80,16 +80,16 @@ class UtilisateurService:
     def connexion(nom_utilisateur = None, tentative_num: int = 1):
         if nom_utilisateur == None:
             nom_utilisateur = input("Quel est votre nom d'utilisateur ? ")
-        if nom_utilisateur not in UtilisateurDao.liste_noms():
+        if nom_utilisateur not in UtilisateurDAO.liste_noms():
             print("Ce nom d'utilisateur n'existe pas ! \n Veuillez réessayer, s'il vous plaît.")
             return UtilisateurService.connexion(None, tentative_num)
         else:
-            compte_utilisateur = UtilisateurDao.getUtilisateur(nom_utilisateur)
+            compte_utilisateur = UtilisateurDAO.getUtilisateur(nom_utilisateur)
             mot_de_passe_utilisateur = getpass("Veuillez entrer votre mot de passe, s'il vous plaît : ")
             pass_hash = mot_de_passe_utilisateur.encode()
             mdp = hashlib.sha256()
             mdp.update(pass_hash)
-            if mdp.digest() == bytes(UtilisateurDao.getUtilisateur(nom_utilisateur)[2][:]):
+            if mdp.digest() == bytes(UtilisateurDAO.getUtilisateur(nom_utilisateur)[2][:]):
                 if compte_utilisateur[3] == "joueur":
                     utilisateur = Utilisateur(connecte = False,
                                                 mot_de_passe = compte_utilisateur[1],
