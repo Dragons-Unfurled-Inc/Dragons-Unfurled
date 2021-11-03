@@ -2,7 +2,7 @@ from client.view.start_view import StartView
 
 
 if __name__ == '__main__':
-    # run the StartView
+    # Lance notre première vue : StartView
     current_view = StartView()
 
     # while current_view is not none, the application is still running
