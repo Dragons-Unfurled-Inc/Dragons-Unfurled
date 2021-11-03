@@ -8,26 +8,6 @@ class UtilisateurDao:
     @staticmethod
     def liste_noms():
         pass
-        """Donne la liste des noms de comptes de l'application"""
-        connexion = ReservoirConnexion.obtenirConnexion()
-        curseur = connexion.cursor()
-        liste=[]
-        try:
-            # On envoie au serveur la requête SQL
-            curseur.execute(
-                "select nom_utilisateur from utilisateur;")
-            connexion.commit()
-            resultat = curseur.fetchall()
-            for row in resultat:
-                liste.append(row[0])
-        except psycopg2.Error as error:
-            # la suppression est annulée
-            connexion.rollback()
-            raise error
-        finally:
-            curseur.close()
-            ReservoirConnexion.putBackConnexion(connexion)
-        return liste
 
     @staticmethod
     def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
