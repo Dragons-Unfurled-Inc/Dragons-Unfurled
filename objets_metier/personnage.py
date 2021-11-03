@@ -30,32 +30,21 @@ class Personnage(Entite):
         """
         Affichage d'un personnage
         """
+        aff_obj = '    Vide'
         if self.objets != None :
-            carac = Caracteristique.__str__(self._caracteristiques_entite)
-            modele = '\n'.join(['Classe : {} \nRace : {} \nLore : {}\nIdentifiant joueur : {} \nIdentifiant personnage : {} \nNom personnage : {} \nCaractéristiques : {} \nObjets : {}\n'])
             aff_obj = ''
             for obj in self._objets: 
-                aff_obj += print(obj)
+                aff_obj += Objet.__str__(obj)
                 aff_obj += '\n'
-            return modele.format(self.__classe,
-                                self.__race,
-                                self.__lore,
-                                self._id_joueur,
-                                self._id_entite,
-                                self.__nom_entite,
-                                Caracteristique.__str__(self._caracteristiques_entite),
-                                aff_obj) 
-        else : 
-            carac = Caracteristique.__str__(self._caracteristiques_entite)
-            modele = '\n'.join(['Classe : {} \nRace : {} \nLore : {}\nIdentifiant joueur : {} \nIdentifiant personnage : {} \nNom personnage : {} \nCaractéristiques : \n{} \nObjets : {}\n'])
-            return modele.format(self.__classe,
-                                self.__race,
-                                self.__lore,
-                                self._id_joueur,
-                                self._id_entite,
-                                self.__nom_entite,
-                                Caracteristique.__str__(self._caracteristiques_entite),
-                                'Vide') 
+        modele = '\n'.join(['Classe : {} \nRace : {} \nLore : {}\nIdentifiant joueur : {} \nIdentifiant personnage : {} \nNom personnage : {} \nCaractéristiques : \n{} \nObjets : \n{}\n'])
+        return modele.format(self.__classe,
+                             self.__race,
+                             self.__lore,
+                             self._id_joueur,
+                             self._id_entite,
+                             self.__nom_entite,
+                             Caracteristique.__str__(self._caracteristiques_entite),
+                             'Vide') 
 
 
     @property
