@@ -16,7 +16,7 @@ class Objet :
         """
         Affichage des objets
         """
-        modele = '\n'.join(['    Identifiant : {} \n    Nom : {} \n    Description : {}'])
+        modele = '\n'.join(['            Identifiant : {} \n            Nom : {} \n            Description : {}'])
         return modele.format(self.__id_objet,
                              self.__nom_objet,
                              self.__description)

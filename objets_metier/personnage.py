@@ -30,13 +30,17 @@ class Personnage(Entite):
         """
         Affichage d'un personnage
         """
-        aff_obj = '    Vide'
+        aff_obj = '            Vide'
         if self.objets != None :
             aff_obj = ''
+            curs = len(self._objets)
             for obj in self._objets: 
-                aff_obj += Objet.__str__(obj)
-                aff_obj += '\n'
-        modele = '\n'.join(['Classe : {} \nRace : {} \nLore : {}\nIdentifiant joueur : {} \nIdentifiant personnage : {} \nNom personnage : {} \nCaractéristiques : \n{} \nObjets : \n{}\n'])
+                if curs == 1:
+                    aff_obj += Objet.__str__(obj)
+                else : 
+                    aff_obj += Objet.__str__(obj) + '\n \n'
+                    curs -= 1 
+        modele = '\n'.join(['        Classe : {} \n        Race : {} \n        Lore : {}\n        Identifiant joueur : {} \n        Identifiant personnage : {} \n        Nom personnage : {} \n        Caractéristiques : \n{} \n        Objets : \n{}\n'])
         return modele.format(self.__classe,
                              self.__race,
                              self.__lore,

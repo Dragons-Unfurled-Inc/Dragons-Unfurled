@@ -23,13 +23,17 @@ class Entite(ABC):
         """
         Affichage d'une entité
         """
-        aff_obj = '    Vide'
+        aff_obj = '        Vide'
         if self._objets != None :
             aff_obj = ''
+            curs = len(self._objets)
             for obj in self._objets: 
-                aff_obj += Objet.__str__(obj)
-                aff_obj += '\n'
-        modele = '\n'.join(['    Identifiant Joueur : {} \n    Identifiant entité : {} \n    Caractéristiques : \n{} \n    Objets : \n    {}'])
+                if curs == 1 : 
+                    aff_obj += Objet.__str__(obj)
+                else :
+                    aff_obj += Objet.__str__(obj) + '\n\n'
+                    curs -= 1
+        modele = '\n'.join(['        Identifiant Joueur : {} \n        Identifiant entité : {} \n        Caractéristiques : \n{} \n        Objets : \n{}'])
         return modele.format(self._id_joueur,
                              self._id_entite,
                              Caracteristique.__str__(self._caracteristiques_entite),
