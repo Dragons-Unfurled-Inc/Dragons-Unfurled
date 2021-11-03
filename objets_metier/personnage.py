@@ -6,24 +6,44 @@ from objets_metier.entite import Entite
 
 class Personnage(Entite,BaseModel):
 
-    _classe: str
-    _race: str
-    _lore: str
+    __classe: str
+    __race: str
+    __lore: str
     _id_joueur: str 
     _id_entite: str
-    _nom_entite: str             
+    __nom_entite: str             
     _caracteristiques_entite: Caracteristique
     _objets: Optional[List[Objet]] = None
 
     class Config:
         underscore_attrs_are_private = True
 
+    def __init__(self, classe: str,
+                       race: str,
+                       lore: str,
+                       id_joueur: str, 
+                       id_entite: str,
+                       nom_entite: str,                  
+                       caracteristiques_entite: Caracteristique,
+                       objets: Optional[List[Objet]] = None ) -> None: 
+
+        super().__init__(
+            id_joueur= id_joueur,
+            id_entite = id_entite,
+            caracteristiques_entite = caracteristiques_entite,
+            objets = objets
+            ) 
+        self.__classe = classe
+        self.__race = race
+        self.__lore = lore
+        self.__nom_entite = nom_entite
+
     def __str__(self): 
         """
         Affichage d'un personnage
         """
         aff_obj = '            Vide'
-        if self.objets != None :
+        if self._objets != None :
             aff_obj = ''
             curs = len(self._objets)
             for obj in self._objets: 
@@ -66,6 +86,14 @@ class Personnage(Entite,BaseModel):
     @lore.setter
     def lore(self, value):
         self.__lore = value         
+
+    @property
+    def nom_entite(self):
+        return self.__nom_entite
+
+    @lore.setter
+    def nom_entite(self, value):
+        self.__nom_entite = value         
 
 '''c=classe race niveau traits capac equipment lore 
 Experience Points	Level	Proficiency Bonus

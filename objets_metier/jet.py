@@ -4,10 +4,15 @@ from objets_metier.des import Des
 
     
 class Jet(BaseModel):
-    _liste_des: List[Des]
+    __liste_des: List[Des]
+    __valeur_jet = None
     
     class Config:
         underscore_attrs_are_private = True
+
+    def __init__(self, liste_des: List[Des]):
+        self.__liste_des = liste_des
+        self.__valeur_jet = None
 
     def lancer_des(self):
         self.__valeur_jet = 0
@@ -17,16 +22,16 @@ class Jet(BaseModel):
 
     @property
     def liste_des(self):
-        return self._liste_des 
+        return self.__liste_des 
 
     @liste_des.setter
     def liste_des(self, value):
-        self._liste_des = value
+        self.__liste_des = value
 
     @property
     def valeur_jet(self):
-        return self._valeur_jet
+        return self.__valeur_jet
 
     @valeur_jet.setter
     def valeur_jet(self, value):
-        self._valeur_jet = value
+        self.__valeur_jet = value

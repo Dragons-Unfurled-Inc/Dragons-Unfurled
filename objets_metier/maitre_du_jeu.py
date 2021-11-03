@@ -8,16 +8,31 @@ from objets_metier.entite import Entite
 
 
 class MaitreDuJeu(Joueur,BaseModel):
-    id_campagne : int
-    nom_campagne : str
-    id_maitre_du_jeu : str
-    personnages_joueurs : List[Personnage]
-    personnages_non_joueurs : List[Personnage]
-    donjons : List[Donjon]
-    entites : List[Entite]
+    __id_campagne : int
+    __nom_campagne : str
+    __id_maitre_du_jeu : str
+    __personnages_joueurs : List[Personnage]
+    __personnages_non_joueurs : List[Personnage]
+    __donjons : List[Donjon]
+    __entites : List[Entite]
     
     class Config:
         underscore_attrs_are_private = True
+
+    def __init__(self, id_campagne : int,
+                       nom_campagne : str,
+                       id_maitre_du_jeu : str, 
+                       personnages_joueurs : List[Personnage],
+                       personnages_non_joueurs : List[Personnage],
+                       donjons : List[Donjon],
+                       entites : List[Entite]): 
+        self.__id_campagne = id_campagne
+        self.__nom_campagne = nom_campagne
+        self.__id_maitre_du_jeu = id_maitre_du_jeu
+        self.__personnages_joueurs = personnages_joueurs
+        self.__personnages_non_joueurs = personnages_non_joueurs
+        self.__donjons = donjons
+        self.__entites = entites
 
     def creer_entite(self, entite : Entite):
         None

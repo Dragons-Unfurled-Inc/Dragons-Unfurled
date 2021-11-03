@@ -1,16 +1,20 @@
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, PrivateAttr
 
 class Objet(BaseModel) : 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
-    id_objet: str
-    nom_objet: str
-    description: str
-    
-    class Config:
-        underscore_attrs_are_private = True
+    __id_objet: str = PrivateAttr()
+    __nom_objet: str = PrivateAttr()
+    __description: str = PrivateAttr()
+
+    def __init__(self,  id_objet: str,
+                        nom_objet: str,
+                        description: str):
+        self.__id_objet = id_objet
+        self.__nom_objet = nom_objet
+        self.__description = description
 
     def __str__(self): 
         """
