@@ -13,7 +13,7 @@ class AdministrateurDAO:
                     "Delete from utilisateur where id_utilisateur=%(utilisateur_nom)s;", {"utilisateur_nom": utilisateur_a_supprimer.id})
 
     @staticmethod
-    def ajouter_droits_administrateur():
+    def ajouter_droits_administrateur(utilisateur: Utilisateur):
         return []
 
     @staticmethod
