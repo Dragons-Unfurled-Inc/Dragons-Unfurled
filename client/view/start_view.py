@@ -13,7 +13,11 @@ class StartView(AbstractView):
                 'message': f'Bonjour {Session().user_name}',
                 'choices': [
                     'Rejoindre une campagne',
+                    Separator(),
                     'Créer un personnage',
+                    Separator(),
+                    'Créer une campagne',
+                    Separator(),
                     'Se déconnecter',
                     
                 ]
