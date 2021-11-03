@@ -6,7 +6,6 @@ from getpass import getpass
 #from objets_metier import utilisateur
 from web.dao.utilisateur_dao import UtilisateurDao
 from objets_metier.utilisateur import Utilisateur
-from client.exceptions.utilisateur_non_authentifie_exception import UtilisateurNonAuthentifie
 
 
 class UtilisateurService:
@@ -76,10 +75,6 @@ class UtilisateurService:
             print("Votre compte a été créé avec succès !")
         else:
             print("Votre compte n'a pas pu être créé !")
-
-    @staticmethod
-    def supprime_compte(nom_utilisateur):
-        UtilisateurDao.SupprimerCompte(nom_utilisateur)
 
     @staticmethod
     def connexion(nom_utilisateur = None, tentative_num: int = 1):
