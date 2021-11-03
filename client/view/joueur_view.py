@@ -12,7 +12,7 @@ class MenuJoueur(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f' {Session().user_name} que souhaitez-vous faire ?',
+                'message': f' {Session().identifiant} que souhaitez-vous faire ?',
                 'choices': [
                     'Modifier la fiche d\'un personnage',
                     Separator(),
@@ -31,7 +31,7 @@ class MenuJoueur(AbstractView):
         ]
     
     def display_info(self):
-        with open('dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
+        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
             print(asset.read())
 
     def make_choice(self):
@@ -41,7 +41,7 @@ class MenuJoueur(AbstractView):
         if reponse['choix'] == 'Consulter la fiche d\'un personnage':
             pass
         if reponse['choix'] == 'Lancer des dés':
-            from client.view.des import MenuDes
+            from client.view.des_view import MenuDes
             return MenuDes()    
         if reponse['choix'] == 'Consulter les résultats des jets':
             pass

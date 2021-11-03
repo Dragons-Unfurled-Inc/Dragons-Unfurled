@@ -110,9 +110,9 @@ class MenuPersonnage(AbstractView):
             }]
                 
     def display_info(self):
-        print(f"Hello {Session().user_name}, please choose some pokemon")
+        print(f"Bonjour {Session().identifiant}, choisissez les caractéristiques de votre personnage ")
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        from view.start_view import StartView
-        return StartView()
+        from view.accueil_view import AccueilView
+        return AccueilView()

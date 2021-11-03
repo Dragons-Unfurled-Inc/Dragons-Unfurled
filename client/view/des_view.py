@@ -10,7 +10,7 @@ class MenuDes(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f' {Session().user_name} que souhaitez-vous faire ?',
+                'message': f' {Session().identifiant} que souhaitez-vous faire ?',
                 'choices': [
                     'Attaquer une entité',
                     Separator(),
@@ -24,7 +24,7 @@ class MenuDes(AbstractView):
         ]
     
     def display_info(self):
-        with open('dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
+        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
             print(asset.read())
 
     def make_choice(self):
