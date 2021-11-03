@@ -1,17 +1,17 @@
 from typing import List, Optional
 from pydantic import BaseModel
 
-class Objet : 
+class Objet(BaseModel) : 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
-    def __init__(self,  id_objet: str,
-                        nom_objet: str,
-                        description: str):
-        self.__id_objet = id_objet
-        self.__nom_objet = nom_objet
-        self.__description = description
+    id_objet: str
+    nom_objet: str
+    description: str
     
+    class Config:
+        underscore_attrs_are_private = True
+
     def __str__(self): 
         """
         Affichage des objets
