@@ -21,10 +21,24 @@ class Salle:
         """
         Gère les données d'affichages des salles 
         """
-        modele = '\n'.join(['Identifiant : {} \nNom : {} \nCoordonnées : {} \nObjets :  \nEntités :'])
+        aff_obj ='    Vide'
+        if self.__objets != None:
+            aff_obj = ''
+            for obj in self.__objets: 
+                aff_obj += Objet.__str__(obj)
+                aff_obj += '  \n'
+        aff_ent ='    Vide'
+        if self.__entites != None :
+            aff_ent =''
+            for enti in self.__entites: 
+                aff_ent += Entite.__str__(enti)
+                aff_ent += '\n'
+        modele = '\n'.join(['Identifiant : {} \nNom : {} \nCoordonnées : {} \nObjets : \n{} \nEntités :\n{}'])
         return modele.format(self.__id_salle,
                              self.__nom_salle,
-                             self.__coordonnees_salle)
+                             self.__coordonnees_salle,
+                             aff_obj,
+                             aff_ent)
 
 
     def inventaire_salle(self):
