@@ -6,11 +6,7 @@ from objets_metier.entite import Entite
 
 class Monstre(Entite,BaseModel):
     
-    type: str
-    id_joueur: str
-    id_entite: str              
-    caracteristiques_entite: Caracteristique
-    objets: Optional[List[Objet]] = None ) -> None
+    type: str              
     
     class Config:
         underscore_attrs_are_private = True

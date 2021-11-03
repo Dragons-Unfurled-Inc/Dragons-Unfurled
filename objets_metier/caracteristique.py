@@ -1,6 +1,7 @@
 from typing import List, Optional
 from pydantic import BaseModel
-class Caracteristique(BaseModel) : 
+
+class Caracteristique(BaseModel): 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
