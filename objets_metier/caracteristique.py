@@ -41,7 +41,7 @@ class Caracteristique :
         permet un affichage des caractéristiques
         """
         modele = '\n'.join([
-            '        Nom : {} \n        Niveau : {} \n        Expérience: {} \n        Force : {} \n        Dextérité : {} \n        Constitution : {} \n        Intelligence : {} \n        Sagesse : {} \n        Charisme : {} \n        Capacités : {} \n        Vie : {} \n        Attaques : {} \n        Langages : {} \n        Description : {} \n        Classe Armure : {}'])
+            '            Nom : {} \n            Niveau : {} \n            Expérience: {} \n            Force : {} \n            Dextérité : {} \n            Constitution : {} \n            Intelligence : {} \n            Sagesse : {} \n            Charisme : {} \n            Capacités : {} \n            Vie : {} \n            Attaques : {} \n            Langages : {} \n            Description : {} \n            Classe Armure : {}'])
         return modele.format(
             self.__nom_entite,
             self.__niveau,

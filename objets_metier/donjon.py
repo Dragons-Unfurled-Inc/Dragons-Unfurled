@@ -17,12 +17,16 @@ class Donjon():
         """
         Gère l'affichage des données du donjon
         """  
-        mod_salle = '    Vide'
+        mod_salle = '        Vide'
         if self.__pieces != None: 
             mod_salle = ''
+            curs = len(self.__pieces)
             for piece in self.__pieces:
-                mod_salle += Salle.__str__(piece)
-                mod_salle += '\n'
+                if curs == 1 : 
+                    mod_salle += Salle.__str__(piece)
+                else :
+                    mod_salle += Salle.__str__(piece) + '\n\n'
+                    curs -= 1 
         modele = '\n'.join(['id_donjon : {} \nNom : {} \nSalle : \n{} '])
         return modele.format(self.__id_donjon, 
                              self.__nom_donjon,

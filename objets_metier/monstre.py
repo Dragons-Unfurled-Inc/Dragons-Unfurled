@@ -25,12 +25,17 @@ class Monstre(Entite):
         """
         Affichage des monstres 
         """
-        aff_obj = 'Vide'
+        aff_obj = '        Vide'
         if self._objets != None :
+            curs = len(self._objets)
+            aff_obj = ''
             for obj in self._objets: 
-                aff_obj += Objet.__str__(obj)
-                aff_obj += '\n'
-        modele = '\n'.join(['Type : {} \nIdentifiant joueur : {} \nIdentifiant monstres : {} \nCaractéristiques : \n{} \nObjets : \n{}'])
+                if curs == 1 :
+                    aff_obj += Objet.__str__(obj)
+                else :
+                    aff_obj += Objet.__str__(obj) + '\n \n'
+                    curs -= 1
+        modele = '\n'.join(['        Type : {} \n        Identifiant joueur : {} \n        Identifiant monstres : {} \n        Caractéristiques : \n{} \n        Objets : \n{}'])
         return modele.format(self.__type,
                              self._id_joueur,
                              self._id_entite,

@@ -21,19 +21,27 @@ class Salle:
         """
         Gère les données d'affichages des salles 
         """
-        aff_obj ='    Vide'
+        aff_obj ='        Vide'
         if self.__objets != None:
             aff_obj = ''
+            curs = len(self.__objets)
             for obj in self.__objets: 
-                aff_obj += Objet.__str__(obj)
-                aff_obj += '  \n'
-        aff_ent ='    Vide'
+                if curs == 1 :
+                    aff_obj += Objet.__str__(obj) 
+                else: 
+                    aff_obj += Objet.__str__(obj) + '\n \n'
+                    curs -= 1
+        aff_ent ='        Vide'
         if self.__entites != None :
             aff_ent =''
+            curs = len(self.__entites)
             for enti in self.__entites: 
-                aff_ent += Entite.__str__(enti)
-                aff_ent += '\n'
-        modele = '\n'.join(['Identifiant : {} \nNom : {} \nCoordonnées : {} \nObjets : \n{} \nEntités :\n{}'])
+                if curs == 1 :
+                    aff_ent += Entite.__str__(enti) 
+                else : 
+                    aff_ent += Entite.__str__(enti) + '\n \n'
+                    curs -= 1
+        modele = '\n'.join(['    Identifiant : {} \n    Nom : {} \n    Coordonnées : {} \n    Objets : \n{} \n    Entités :\n{}'])
         return modele.format(self.__id_salle,
                              self.__nom_salle,
                              self.__coordonnees_salle,

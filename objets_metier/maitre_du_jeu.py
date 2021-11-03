@@ -32,8 +32,14 @@ class MaitreDuJeu(Joueur):
     def modifier_entite(self, entite : Entite):
         None
 
-    def ajouter_entite(self, entite : Entite, donjon : Donjon): 
-       None
+    def ajouter_entite(self, entite : Entite, donjon : Donjon = None): 
+       """
+       Cette fonction ajoute une entite dans la campagne. 
+       Par défaut l'entité ajoutée ne se trouve pas dans un donjon.
+       """
+       self.__entites.append(entite)
+       if donjon != None: 
+           donjon.pieces[0].entites.append(entite)
 
     def construire_donjon(self, donjon : Donjon):
        None
