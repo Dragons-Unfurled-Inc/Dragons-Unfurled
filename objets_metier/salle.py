@@ -1,7 +1,7 @@
 from typing import List, Optional
-
+from pydantic import BaseModel
 from objets_metier.objet import Objet
-from entite import Entite
+from objets_metier.entite import Entite
 
 class Salle:
 

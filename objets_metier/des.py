@@ -1,5 +1,5 @@
 from random import randint
-
+from pydantic import BaseModel
 class Des():
     """
     Implémentation de la classe Des, un dés est définit par son nombre de face.

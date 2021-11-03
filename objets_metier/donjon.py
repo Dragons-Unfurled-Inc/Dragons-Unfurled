@@ -1,6 +1,6 @@
 from typing import List, Optional
 from objets_metier.salle import Salle
-
+from pydantic import BaseModel
 
 class Donjon():
 

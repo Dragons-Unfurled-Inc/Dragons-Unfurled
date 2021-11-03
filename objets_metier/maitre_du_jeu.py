@@ -1,5 +1,5 @@
 from typing import List
-
+from pydantic import BaseModel
 from objets_metier.entite import Entite
 from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
