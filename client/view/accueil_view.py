@@ -3,7 +3,7 @@ from PyInquirer import Separator, prompt
 from client.view.abstract_view import AbstractView
 from client.view.session import Session
 from client.view.mj_view import MenuMJ
-from client.view.joueur import MenuJoueur
+from client.view.joueur_view import MenuJoueur
 
 class AccueilView(AbstractView):
 
@@ -36,7 +36,7 @@ class AccueilView(AbstractView):
             from client.view.creation_pers import MenuPersonnage
             return MenuPersonnage()
         if reponse['choix'] == 'Rejoindre une campagne':
-            from client.view.joueur import MenuJoueur
+            from client.view.joueur_view import MenuJoueur
             return MenuJoueur()
         if reponse['choix'] == 'Créer une campagne':
             from client.view.mj_view import MenuMJ
