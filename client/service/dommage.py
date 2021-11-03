@@ -18,6 +18,6 @@ class Dommage(metaclass=Singleton):
             jet_critique = int(frappe_armure == 20) # Le dés de dégats est 2 fois plus gros dans le cas d'un jet critique
             diminution_pv = rd.randint(1,20*(1+jet_critique)) + degats + bonus # Bonus permet de prendre en compte l'arme ou le sort utilisé.
             Recherche.modifie_pv(cible, diminution_pv)
-            
+            print("".join("L'ennemi : ", cible.caracteristiques_entite.nom_entite, " est passé de ", cible.caracteristiques_entite.vie, " à ", cible.caracteristiques_entite.vie - diminution_pv, " points de vie."))
         else:
             print("L'attaque a été contrée par l'armure de l'ennemi.")
