@@ -1,28 +1,61 @@
 from typing import List, Optional
 from pydantic import BaseModel
 
-class Caracteristique(BaseModel): 
+class Caracteristique(BaseModel) : 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
-    _nom_entite: str
-    _attaques: List[str]
-    _capacites: List[str]
-    _languages: List[str]
-    _description: Optional[str]
-    _niveau: int = 1
-    _experience: int = 20
-    _force: int = 20
-    _intelligence: int = 20
-    _charisme: int = 20
-    _dexterite: int = 20 
-    _constitution: int = 5
-    _sagesse: int = 20 
-    _vie: int = 10
-    _classe_armure: int = 10
+    __nom_entite: str
+    __attaques: List[str]
+    __capacites: List[str]
+    __languages: List[str]
+    __description: Optional[str]
+    __niveau: int = 1
+    __experience: int = 20
+    __force: int = 20
+    __intelligence: int = 20
+    __charisme: int = 20
+    __dexterite: int = 20 
+    __constitution: int = 5
+    __sagesse: int = 20 
+    __vie: int = 10
+    __classe_armure: int = 10
+
+    def __init__(self,  nom_entite: str,
+                        attaques: List[str],
+                        capacites: List[str], 
+                        languages: List[str], 
+                        description: Optional[str],
+                        niveau: int = 1, 
+                        experience: int = 20,
+                        force: int = 20, 
+                        intelligence: int = 20, 
+                        charisme: int = 20, 
+                        dexterite: int = 20, 
+                        constitution: int = 5, 
+                        sagesse: int = 20, 
+                        vie: int = 10,
+                        classe_armure: int = 10) -> None:
+        self.__nom_entite = nom_entite
+        self.__niveau = niveau 
+        self.__experience = experience
+        self.__force = force 
+        self.__dexterite = dexterite 
+        self.__constitution = constitution
+        self.__intelligence = intelligence 
+        self.__sagesse = sagesse 
+        self.__charisme = charisme 
+        self.__capacites = capacites
+        self.__vie = vie
+        self.__attaques = attaques
+        self.__languages = languages
+        self.__description = description
+        self.__classe_armure = classe_armure
 
     class Config:
         underscore_attrs_are_private = True
+
+    
 
     def __str__(self):
         """
@@ -31,138 +64,138 @@ class Caracteristique(BaseModel):
         modele = '\n'.join([
             '            Nom : {} \n            Niveau : {} \n            Expérience: {} \n            Force : {} \n            Dextérité : {} \n            Constitution : {} \n            Intelligence : {} \n            Sagesse : {} \n            Charisme : {} \n            Capacités : {} \n            Vie : {} \n            Attaques : {} \n            Langages : {} \n            Description : {} \n            Classe Armure : {}'])
         return modele.format(
-            self._nom_entite,
-            self._niveau,
-            self._experience,
-            self._force,
-            self._dexterite, 
-            self._constitution,
-            self._intelligence,
-            self._sagesse,
-            self._charisme,
-            self._capacites,
-            self._vie,
-            self._attaques,
-            self._languages,
-            self._description,
-            self._classe_armure)
+            self.__nom_entite,
+            self.__niveau,
+            self.__experience,
+            self.__force,
+            self.__dexterite, 
+            self.__constitution,
+            self.__intelligence,
+            self.__sagesse,
+            self.__charisme,
+            self.__capacites,
+            self.__vie,
+            self.__attaques,
+            self.__languages,
+            self.__description,
+            self.__classe_armure)
     
     @property
     def nom_entite(self):
-        return self._nom_entite
+        return self.__nom_entite
 
     @nom_entite.setter
     def nom_entite(self, value):
-        self._nom_entite = value
+        self.__nom_entite = value
 
     @property
     def niveau(self):
-        return self._niveau
+        return self.__niveau
 
     @niveau.setter
     def niveau(self, value):
-        self._niveau = value
+        self.__niveau = value
 
     @property
     def experience(self):
-        return self._experience
+        return self.__experience
 
     @experience.setter
     def experience(self, value):
-        self._experience = value
+        self.__experience = value
 
     @property
     def force(self):
-        return self._force
+        return self.__force
 
     @force.setter
     def force(self, value):
-        self._force = value
+        self.__force = value
 
     @property
     def intelligence(self):
-        return self._intelligence
+        return self.__intelligence
 
     @intelligence.setter
     def intelligence(self, value):
-        self._intelligence = value    
+        self.__intelligence = value    
         
     @property
     def charisme(self):
-        return self._charisme
+        return self.__charisme
 
     @charisme.setter
     def charisme(self, value):
-        self._charisme = value   
+        self.__charisme = value   
 
     @property
     def dexterite(self):
-        return self._dexterite
+        return self.__dexterite
 
     @dexterite.setter
     def dexterite(self, value):
-        self._dexterite = value  
+        self.__dexterite = value  
 
     @property
     def constitution(self):
-        return self._constitution
+        return self.__constitution
 
     @constitution.setter
     def constitution(self, value):
-        self._constitution = value   
+        self.__constitution = value   
 
     @property
     def sagesse(self):
-        return self._sagesse
+        return self.__sagesse
 
     @sagesse.setter
     def sagesse(self, value):
-        self._sagesse = value     
+        self.__sagesse = value     
 
     @property
     def vie(self):
-        return self._vie
+        return self.__vie
 
     @vie.setter
     def vie(self, value):
-        self._vie = value      
+        self.__vie = value      
 
     @property
     def capacites(self):
-        return self._capacites
+        return self.__capacites
 
     @capacites.setter
     def capacites(self, value):
-        self._capacites = value     
+        self.__capacites = value     
 
     @property
     def attaques(self):
-        return self._attaques
+        return self.__attaques
 
     @attaques.setter
     def attaques(self, value):
-        self._attaques = value    
+        self.__attaques = value    
 
     @property
     def languages(self):
-        return self._languages
+        return self.__languages
 
     @languages.setter
     def languages(self, value):
-        self._languages = value    
+        self.__languages = value    
 
     @property
     def description(self):
-        return self._description
+        return self.__description
 
     @description.setter
     def description(self, value):
-        self._description = value    
+        self.__description = value    
 
     @property
     def classe_armure(self):
-        return self._classe_armure
+        return self.__classe_armure
 
     @classe_armure.setter
     def classe_armure(self, value):
-        self._classe_armure = value     
+        self.__classe_armure = value     

@@ -14,6 +14,15 @@ class Entite(ABC, BaseModel):
     _caracteristiques_entite: Caracteristique
     _objets: Optional[List[Objet]] = None
 
+    def __init__(self, id_joueur: str, 
+                       id_entite: str,                  
+                       caracteristiques_entite: Caracteristique,
+                       objets: Optional[List[Objet]] = None) -> None: 
+        self._id_joueur = id_joueur
+        self._id_entite = id_entite 
+        self._caracteristiques_entite = caracteristiques_entite
+        self._objets = objets
+
     class Config:
         underscore_attrs_are_private = True
         

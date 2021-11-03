@@ -4,14 +4,26 @@ from objets_metier.objet import Objet
 from objets_metier.entite import Entite
 
 class Salle(BaseModel):
-    id_salle: str
-    nom_salle: str
-    coordonnees_salle: Optional[List[int]] = None
-    objets: Optional[List[Objet]] = None
-    entites: Optional[List[Entite]] = None 
+    __id_salle: str
+    __nom_salle: str
+    __coordonnees_salle: Optional[List[int]] = None
+    __objets: Optional[List[Objet]] = None
+    __entites: Optional[List[Entite]] = None 
 
     class Config:
         underscore_attrs_are_private = True
+
+    def __init__(self, id_salle: str,
+                       nom_salle: str,
+                       coordonnees_salle: Optional[List[int]] = None,
+                       objets: Optional[List[Objet]] = None, 
+                       entites: Optional[List[Entite]] = None ) -> None:
+
+        self.__id_salle = id_salle
+        self.__nom_salle = nom_salle
+        self.__coordonnees_salle = coordonnees_salle
+        self.__objets = objets
+        self.__entites = entites
 
     def __str__(self):
         """
