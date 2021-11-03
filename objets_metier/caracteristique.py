@@ -5,8 +5,7 @@ class Caracteristique :
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
-    def __init__(self,
-                        nom_entite: str,
+    def __init__(self,  nom_entite: str,
                         attaques: List[str],
                         capacites: List[str], 
                         languages: List[str], 
@@ -42,7 +41,7 @@ class Caracteristique :
         permet un affichage des caractéristiques
         """
         modele = '\n'.join([
-            '    Nom : {} \n    Niveau : {} \n    Expérience: {} \n    Force : {} \n    Dextérité : {} \n    Constitution : {} \n    Intelligence : {} \n    Sagesse : {} \n    Charisme {} \n    Capacités : \n    Vie : {} \n    Attaques : {} \n    Langages : {} \n    Description {}'])
+            '        Nom : {} \n        Niveau : {} \n        Expérience: {} \n        Force : {} \n        Dextérité : {} \n        Constitution : {} \n        Intelligence : {} \n        Sagesse : {} \n        Charisme : {} \n        Capacités : {} \n        Vie : {} \n        Attaques : {} \n        Langages : {} \n        Description : {} \n        Classe Armure : {}'])
         return modele.format(
             self.__nom_entite,
             self.__niveau,
@@ -57,7 +56,8 @@ class Caracteristique :
             self.__vie,
             self.__attaques,
             self.__languages,
-            self.__description)
+            self.__description,
+            self.__classe_armure)
     
     @property
     def nom_entite(self):
