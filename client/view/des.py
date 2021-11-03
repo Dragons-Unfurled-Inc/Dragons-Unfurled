@@ -3,7 +3,7 @@ from PyInquirer import Separator, prompt
 from client.view.abstract_view import AbstractView
 from client.view.session import Session
 
-class MenuDonjon(AbstractView):
+class MenuDes(AbstractView):
 
     def __init__(self):
         self.__questions = [
