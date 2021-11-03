@@ -1,47 +1,19 @@
-#Test2
-import psycopg2
-import uvicorn
-from flask import Flask , render_template, jsonify
-from flask_restful import Resource, Api
+from client.view.start_view import StartView
 
-
-"""
-# Connect to your postgres DB
-conn = psycopg2.connect("dbname=test user=postgres")
-
-# Open a cursor to perform database operations
-cur = conn.cursor()
-
-# Execute a query
-cur.execute("SELECT * FROM my_data")
-
-# Retrieve query results
-records = cur.fetchall()
-"""
-
-app = Flask(__name__)
-api = Api(app)
-
-class HelloWorld(Resource):
-    def get(self):
-        return {'hello': 'world'}
-    
-@app.route("/hello")
-def hello():
-    return "Hello World!"
-
-@app.route('/meteo')
-def meteo():
-    dictionnaire = {
-        'type': 'Prévision de température',
-        'valeurs': [24, 24, 25, 26, 27, 28],
-        'unite': "degrés Celcius"
-    }
-    return jsonify(dictionnaire)
-
-api.add_resource(HelloWorld, '/')
 
 if __name__ == '__main__':
-    uvicorn.run("__main__:app", host="0.0.0.0", port="5000", log_level="info")
+    # run the StartView
+    current_view = StartView()
 
-#test
+    # while current_view is not none, the application is still running
+    while current_view:
+        # a border between view
+        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
+            print(asset.read())
+        # Display the info of the view
+        current_view.display_info()
+        # ask user for a choice
+        current_view = current_view.make_choice()
+
+    with open('client/dessins_ascii/logo.txt', 'r', encoding="utf-8") as asset:
+        print(asset.read())

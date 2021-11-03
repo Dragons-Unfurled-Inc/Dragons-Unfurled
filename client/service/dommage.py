@@ -4,7 +4,7 @@ from objets_metier.entite import Entite
 from utils.singleton import Singleton
 
 
-class Dommage(metaclass=Singleton) : 
+class Dommage(metaclass=Singleton): 
     """
     Cette classe permet de gérer automatiquement les dégats, suite à l'attaque d'une entité par une autre.
     """
