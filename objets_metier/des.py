@@ -27,4 +27,4 @@ class Des():
  
     @valeur_des.setter
     def valeur_des(self, value):
-        self.__valeur_des = value
+        self.__valeur_des = value 
