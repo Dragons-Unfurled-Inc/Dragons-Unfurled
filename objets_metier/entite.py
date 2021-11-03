@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
-
+from pydantic import BaseModel
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 

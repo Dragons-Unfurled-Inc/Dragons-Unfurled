@@ -1,5 +1,5 @@
 from typing import List
-
+from pydantic import BaseModel
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.personnage import Personnage
 
