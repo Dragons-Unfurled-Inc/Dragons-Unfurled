@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
-from entite import Entite
+from objets_metier.entite import Entite
 
 class Monstre(Entite):
     

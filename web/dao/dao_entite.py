@@ -1,6 +1,6 @@
 from objets_metier.entite import Entite 
 from objets_metier.monstre import Monstre 
-import requests as req 
+import requests as req
 from abc import abstractstaticmethod
 
 #le code est pas ouf mais vous avez une idée de comment faire, par contre c'est ptet plus à sa place dans le package web

@@ -1,4 +1,5 @@
 from typing import List
+#from pydantic import BaseModel
 
 from objets_metier.feedback import Feedback
 

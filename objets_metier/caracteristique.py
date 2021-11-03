@@ -34,7 +34,6 @@ class Caracteristique :
         self.__attaques = attaques
         self.__languages = languages
         self.__description = description
-        self.__experience = experience
 
     @property
     def nom_entite(self):
