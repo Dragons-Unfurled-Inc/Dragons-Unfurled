@@ -11,15 +11,16 @@ class Caracteristique :
                         capacites: List[str], 
                         languages: List[str], 
                         description: Optional[str],
-                        niveau: int = 0, 
-                        experience: int = 0,
-                        force: int = 0, 
-                        intelligence: int = 0, 
-                        charisme: int = 0, 
-                        dexterite: int = 0, 
-                        constitution: int = 0, 
-                        sagesse: int = 0, 
-                        vie: int = 0) -> None:
+                        niveau: int = 1, 
+                        experience: int = 20,
+                        force: int = 20, 
+                        intelligence: int = 20, 
+                        charisme: int = 20, 
+                        dexterite: int = 20, 
+                        constitution: int = 5, 
+                        sagesse: int = 20, 
+                        vie: int = 10,
+                        classe_armure: int = 10) -> None:
         self.__nom_entite = nom_entite
         self.__niveau = niveau 
         self.__experience = experience
@@ -34,6 +35,7 @@ class Caracteristique :
         self.__attaques = attaques
         self.__languages = languages
         self.__description = description
+        self.__classe_armure = classe_armure
 
     def __str__(self):
         """
@@ -135,4 +137,44 @@ class Caracteristique :
 
     @vie.setter
     def vie(self, value):
-        self.__vie = value            
+        self.__vie = value      
+
+    @property
+    def capacites(self):
+        return self.__capacites
+
+    @capacites.setter
+    def capacites(self, value):
+        self.__capacites = value     
+
+    @property
+    def attaques(self):
+        return self.__attaques
+
+    @attaques.setter
+    def attaques(self, value):
+        self.__attaques = value    
+
+    @property
+    def languages(self):
+        return self.__languages
+
+    @languages.setter
+    def languages(self, value):
+        self.__languages = value    
+
+    @property
+    def description(self):
+        return self.__description
+
+    @description.setter
+    def description(self, value):
+        self.__description = value    
+
+    @property
+    def classe_armure(self):
+        return self.__classe_armure
+
+    @classe_armure.setter
+    def classe_armure(self, value):
+        self.__classe_armure = value     
