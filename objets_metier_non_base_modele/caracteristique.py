@@ -1,7 +1,6 @@
 from typing import List, Optional
 
-
-class Caracteristique : 
+class Caracteristique(ABC) : 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """

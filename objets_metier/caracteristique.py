@@ -1,39 +1,27 @@
 from typing import List, Optional
-
-class Caracteristique : 
+from pydantic import BaseModel
+class Caracteristique(BaseModel) : 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
-    def __init__(self,  nom_entite: str,
-                        attaques: List[str],
-                        capacites: List[str], 
-                        languages: List[str], 
-                        description: Optional[str],
-                        niveau: int = 1, 
-                        experience: int = 20,
-                        force: int = 20, 
-                        intelligence: int = 20, 
-                        charisme: int = 20, 
-                        dexterite: int = 20, 
-                        constitution: int = 5, 
-                        sagesse: int = 20, 
-                        vie: int = 10,
-                        classe_armure: int = 10) -> None:
-        self.__nom_entite = nom_entite
-        self.__niveau = niveau 
-        self.__experience = experience
-        self.__force = force 
-        self.__dexterite = dexterite 
-        self.__constitution = constitution
-        self.__intelligence = intelligence 
-        self.__sagesse = sagesse 
-        self.__charisme = charisme 
-        self.__capacites = capacites
-        self.__vie = vie
-        self.__attaques = attaques
-        self.__languages = languages
-        self.__description = description
-        self.__classe_armure = classe_armure
+    _nom_entite: str
+    _attaques: List[str]
+    _capacites: List[str]
+    _languages: List[str]
+    _description: Optional[str]
+    _niveau: int = 1
+    _experience: int = 20
+    _force: int = 20
+    _intelligence: int = 20
+    _charisme: int = 20
+    _dexterite: int = 20 
+    _constitution: int = 5
+    _sagesse: int = 20 
+    _vie: int = 10
+    _classe_armure: int = 10
+
+    class Config:
+        underscore_attrs_are_private = True
 
     def __str__(self):
         """
@@ -42,138 +30,138 @@ class Caracteristique :
         modele = '\n'.join([
             '            Nom : {} \n            Niveau : {} \n            Expérience: {} \n            Force : {} \n            Dextérité : {} \n            Constitution : {} \n            Intelligence : {} \n            Sagesse : {} \n            Charisme : {} \n            Capacités : {} \n            Vie : {} \n            Attaques : {} \n            Langages : {} \n            Description : {} \n            Classe Armure : {}'])
         return modele.format(
-            self.__nom_entite,
-            self.__niveau,
-            self.__experience,
-            self.__force,
-            self.__dexterite, 
-            self.__constitution,
-            self.__intelligence,
-            self.__sagesse,
-            self.__charisme,
-            self.__capacites,
-            self.__vie,
-            self.__attaques,
-            self.__languages,
-            self.__description,
-            self.__classe_armure)
+            self._nom_entite,
+            self._niveau,
+            self._experience,
+            self._force,
+            self._dexterite, 
+            self._constitution,
+            self._intelligence,
+            self._sagesse,
+            self._charisme,
+            self._capacites,
+            self._vie,
+            self._attaques,
+            self._languages,
+            self._description,
+            self._classe_armure)
     
     @property
     def nom_entite(self):
-        return self.__nom_entite
+        return self._nom_entite
 
     @nom_entite.setter
     def nom_entite(self, value):
-        self.__nom_entite = value
+        self._nom_entite = value
 
     @property
     def niveau(self):
-        return self.__niveau
+        return self._niveau
 
     @niveau.setter
     def niveau(self, value):
-        self.__niveau = value
+        self._niveau = value
 
     @property
     def experience(self):
-        return self.__experience
+        return self._experience
 
     @experience.setter
     def experience(self, value):
-        self.__experience = value
+        self._experience = value
 
     @property
     def force(self):
-        return self.__force
+        return self._force
 
     @force.setter
     def force(self, value):
-        self.__force = value
+        self._force = value
 
     @property
     def intelligence(self):
-        return self.__intelligence
+        return self._intelligence
 
     @intelligence.setter
     def intelligence(self, value):
-        self.__intelligence = value    
+        self._intelligence = value    
         
     @property
     def charisme(self):
-        return self.__charisme
+        return self._charisme
 
     @charisme.setter
     def charisme(self, value):
-        self.__charisme = value   
+        self._charisme = value   
 
     @property
     def dexterite(self):
-        return self.__dexterite
+        return self._dexterite
 
     @dexterite.setter
     def dexterite(self, value):
-        self.__dexterite = value  
+        self._dexterite = value  
 
     @property
     def constitution(self):
-        return self.__constitution
+        return self._constitution
 
     @constitution.setter
     def constitution(self, value):
-        self.__constitution = value   
+        self._constitution = value   
 
     @property
     def sagesse(self):
-        return self.__sagesse
+        return self._sagesse
 
     @sagesse.setter
     def sagesse(self, value):
-        self.__sagesse = value     
+        self._sagesse = value     
 
     @property
     def vie(self):
-        return self.__vie
+        return self._vie
 
     @vie.setter
     def vie(self, value):
-        self.__vie = value      
+        self._vie = value      
 
     @property
     def capacites(self):
-        return self.__capacites
+        return self._capacites
 
     @capacites.setter
     def capacites(self, value):
-        self.__capacites = value     
+        self._capacites = value     
 
     @property
     def attaques(self):
-        return self.__attaques
+        return self._attaques
 
     @attaques.setter
     def attaques(self, value):
-        self.__attaques = value    
+        self._attaques = value    
 
     @property
     def languages(self):
-        return self.__languages
+        return self._languages
 
     @languages.setter
     def languages(self, value):
-        self.__languages = value    
+        self._languages = value    
 
     @property
     def description(self):
-        return self.__description
+        return self._description
 
     @description.setter
     def description(self, value):
-        self.__description = value    
+        self._description = value    
 
     @property
     def classe_armure(self):
-        return self.__classe_armure
+        return self._classe_armure
 
     @classe_armure.setter
     def classe_armure(self, value):
-        self.__classe_armure = value     
+        self._classe_armure = value     
