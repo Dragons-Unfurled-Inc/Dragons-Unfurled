@@ -1,7 +1,8 @@
 from PyInquirer import Separator, prompt, Validator, ValidationError
+from client.view.accueil_view import AccueilView
 
-from view.abstract_view import AbstractView
-
+from client.view.abstract_view import AbstractView
+from client.view.session import Session
 
 class PasswordValidator(Validator):
     def validate(self, document):
@@ -29,13 +30,17 @@ questions = [
 
 
 
-class SignInView(AbstractView):
+class Authentification(AbstractView):
 
+    def display_info(self):
+        print(f"Hello {Session().identifiant}, remplissez ces informations")
+
+    
     def make_choice(self):
-        from view.welcome_view import WelcomeView
+        from client.view.accueil_view import AccueilView
 
         answers = prompt(questions)
 
-        AbstractView.session.user_name = answers['pseudonyme']
-        AbstractView.session.user_mdp = answers['password']
-        return WelcomeView()
+        Session.identifiant = answers['pseudonyme']
+        Session.mot_de_passe = answers['password']
+        return AccueilView()

@@ -12,7 +12,8 @@ class StartView(AbstractView):
                 'name': 'choix',
                 'message': f' Bonjour {Session().identifiant} ',
                 'choices': [
-                    'Next'
+                    'S\'authentifier' ,
+                    'Créer un compte'
 
                 ]
             }
@@ -24,6 +25,6 @@ class StartView(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        if reponse['choix'] == 'Next':
-            from client.view.accueil_view import AccueilView
-            return AccueilView()
+        if reponse['choix'] == 'S\'authentifier':
+            from client.view.authentification_view import Authentification
+            return Authentification()
