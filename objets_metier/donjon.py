@@ -17,8 +17,17 @@ class Donjon():
         """
         Gère l'affichage des données du donjon
         """  
-        modele = '\n'.join(['id_donjon : {} \nNom : {} \n Salle : '])
-        return modele.format(self.__id_donjon, self.__nom_donjon)
+        mod_salle = '    Vide'
+        if self.__pieces != None: 
+            mod_salle = ''
+            for piece in self.__pieces:
+                mod_salle += Salle.__str__(piece)
+                mod_salle += '\n'
+        modele = '\n'.join(['id_donjon : {} \nNom : {} \nSalle : \n{} '])
+        return modele.format(self.__id_donjon, 
+                             self.__nom_donjon,
+                             mod_salle)
+
     
     def afficher_donjon(self):
         None

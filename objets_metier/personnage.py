@@ -44,7 +44,7 @@ class Personnage(Entite):
                              self._id_entite,
                              self.__nom_entite,
                              Caracteristique.__str__(self._caracteristiques_entite),
-                             'Vide') 
+                             aff_obj) 
 
 
     @property

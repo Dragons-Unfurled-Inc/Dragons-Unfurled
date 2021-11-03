@@ -23,7 +23,7 @@ class Entite(ABC):
         """
         Affichage d'une entité
         """
-        aff_obj = 'Vide'
+        aff_obj = '    Vide'
         if self._objets != None :
             aff_obj = ''
             for obj in self._objets: 
