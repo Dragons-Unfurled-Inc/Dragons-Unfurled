@@ -17,6 +17,23 @@ class MenuDes(AbstractView):
                     'Lancer librement des dés',
                     Separator(),
                     'Changer le mode de révélation des dés',
+                    Separator(),
+                    'Quitter le menu de lancer de dés',
                 ]
             }
         ]
+    
+    def display_info(self):
+        with open('dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
+            print(asset.read())
+
+    def make_choice(self):
+        reponse = prompt(self.__questions)
+        if reponse['choix'] == 'Attaquer une entité':
+            pass
+        if reponse['choix'] == 'Lancer librement des dés':
+            pass
+        if reponse['choix'] == 'Changer le mode de révélation des dés':
+            pass 
+        if reponse['choix'] == 'Quitter le menu de lancer de dés':
+            pass 
