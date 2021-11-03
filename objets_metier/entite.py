@@ -20,14 +20,19 @@ class Entite(ABC):
         self._objets = objets
 
     def __str__(self) : 
-        modele = '\n'.join(['Identifiant Joueur : {} \nIdentifiant entité : {} \nCaracteristiques : {} \nObjets : {}'])
-        aff_obj = ''
-        for obj in self._objets: 
-            aff_obj += '\n'
-            aff_obj += print(obj)
+        """
+        Affichage d'une entité
+        """
+        aff_obj = 'Vide'
+        if self._objets != None :
+            aff_obj = ''
+            for obj in self._objets: 
+                aff_obj += Objet.__str__(obj)
+                aff_obj += '\n'
+        modele = '\n'.join(['    Identifiant Joueur : {} \n    Identifiant entité : {} \n    Caractéristiques : \n{} \n    Objets : \n    {}'])
         return modele.format(self._id_joueur,
                              self._id_entite,
-                             print(self._caracteristiques_entite),
+                             Caracteristique.__str__(self._caracteristiques_entite),
                              aff_obj)
 
     @property
