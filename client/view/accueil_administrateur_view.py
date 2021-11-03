@@ -5,7 +5,7 @@ from client.view.session import Session
 from client.view.mj_view import MenuMJ
 from client.view.joueur_view import MenuJoueur
 
-class AccueilView(AbstractView):
+class AccueilAdministrateurView(AbstractView):
 
     def __init__(self):
         self.__questions = [
