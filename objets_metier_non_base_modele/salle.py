@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 from objets_metier.objet import Objet
-from objets_metier.entite import Entite
+from entite import Entite
 
 class Salle:
 

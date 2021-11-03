@@ -1,5 +1,7 @@
+from os import access
 from PyInquirer import Separator, prompt
 from client.view.abstract_view import AbstractView
+from client.view.accueil_jeu_view import AccueilJeuView
 from client.view.session import Session
 
 
@@ -12,7 +14,8 @@ class StartView(AbstractView):
                 'name': 'choix',
                 'message': f' Bonjour {Session().identifiant} ',
                 'choices': [
-                    'Next'
+                    'S\'authentifier' ,
+                    'Créer un compte'
 
                 ]
             }
@@ -24,6 +27,18 @@ class StartView(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        if reponse['choix'] == 'Next':
-            from client.view.accueil_view import AccueilView
-            return AccueilView()
+        if reponse['choix'] == 'S\'authentifier':
+            from client.service.utilisateur_service import UtilisateurService
+            utilisateur = UtilisateurService.connexion()
+            if utilisateur.est_administrateur:
+                from client.view.accueil_administrateur_view import AccueilAdministrateurView
+                return AccueilAdministrateurView(utilisateur)
+            else:
+                from client.view.accueil_jeu_view import AccueilJeuView
+                return AccueilJeuView(utilisateur)
+
+        if reponse['choix'] == 'Créer un compte':
+            from client.service.utilisateur_service import UtilisateurService
+            utilisateur = UtilisateurService.creation_compte("joueur")
+            from client.view.accueil_jeu_view import AccueilJeuView
+            return AccueilJeuView(utilisateur)   

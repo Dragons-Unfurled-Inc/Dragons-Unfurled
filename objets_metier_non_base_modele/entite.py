@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import copy
 from typing import List, Optional
 
 from objets_metier.caracteristique import Caracteristique
