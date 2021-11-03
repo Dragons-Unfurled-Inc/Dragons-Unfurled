@@ -82,7 +82,7 @@ class UtilisateurService:
         UtilisateurDao.SupprimerCompte(nom_utilisateur)
 
     @staticmethod
-    def connexion(nom_utilisateur, tentative_num):
+    def connexion(nom_utilisateur, tentative_num: int = 1):
         if nom_utilisateur == None:
             nom_utilisateur = input("Quel est votre nom d'utilisateur ? ")
         if nom_utilisateur not in UtilisateurDao.liste_noms():
