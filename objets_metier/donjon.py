@@ -41,11 +41,10 @@ class Donjon(BaseModel):
 
     
     def afficher_donjon(self):
-        None
+        print(self)
 
     def deplacer_element_salles(self, element:type):
         """
-        
         """
         None  
 

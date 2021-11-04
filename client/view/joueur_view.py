@@ -14,9 +14,9 @@ class MenuJoueur(AbstractView):
                 'name': 'choix',
                 'message': f' {Session().identifiant} que souhaitez-vous faire ?',
                 'choices': [
-                    'Modifier la fiche d\'un personnage',
+                    'Modifier la fiche de votre personnage',
                     Separator(),
-                    'Consulter la fiche d\'un personnage',
+                    'Consulter la fiche de votre personnage',
                     Separator(),
                     'Lancer des dés',
                     Separator(),
@@ -38,13 +38,16 @@ class MenuJoueur(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.__questions)
-        if reponse['choix'] == 'Modifier la fiche d\'un personnage':
-            Joueur.modifier_personnage()
+        if reponse['choix'] == 'Modifier la fiche de votre personnage':
+            Joueur.modifier_personnage(self.joueur)
             from client.view.joueur_view import MenuJoueur
             return MenuJoueur(self.joueur,self.campagne)
-        if reponse['choix'] == 'Consulter la fiche d\'un personnage':
-            pass
+        if reponse['choix'] == 'Consulter la fiche de votre personnage':
+            Joueur.consulter_personnage(self.joueur)
+            from client.view.joueur_view import MenuJoueur
+            return MenuJoueur(self.joueur,self.campagne)
         if reponse['choix'] == 'Lancer des dés':
+            
             from client.view.des_view import MenuDes
             return MenuDes()    
         if reponse['choix'] == 'Consulter les résultats des jets':

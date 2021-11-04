@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
 from web.dao.personnage_dao import PersonnageDAO
+from web.service.personnage_service import PersonnageService
 
 # On instancie le webservice
 app = FastAPI()
@@ -14,7 +15,7 @@ perso = Personnage("classe","race","lore","id_joueur", "id_entite", "nomentite",
 # Défintion du endpoint get /todo
 @app.put("/personnage/{id}")
 async def add_personnage(id:int,perso:Personnage):
-    PersonnageDAO.add_personnage(perso)
+    PersonnageService.add_personnage(perso)
     resultat = {"id": id, **perso.dict()}
     return resultat
 
