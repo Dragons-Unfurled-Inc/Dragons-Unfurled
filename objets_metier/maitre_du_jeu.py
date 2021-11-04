@@ -39,7 +39,7 @@ class MaitreDuJeu(Joueur,BaseModel):
         self.__personnages_non_joueurs = personnages_non_joueurs
         self.__donjons = donjons
         self.__entites = entites
-        Utilisateur.__init__()
+        Utilisateur.__init__(personnage)
 
     def creer_entite(self, entite : Entite):
         None

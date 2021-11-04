@@ -48,9 +48,9 @@ class MenuMJ(AbstractView):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Ajouter ou supprimer une entité':
-            message = input("Voulez-vous ajouter une entité à votre campagne ? \n Faîtes entrée pour dire oui et écrivez n'importe quoi pour non.")
+            message = input("Voulez-vous ajouter une entité à votre campagne ? \n Faîtes entrer si oui et écrivez quelque-chose sinon.")
             if message:
-                pass
+                print("Voici la liste des entités:")
                 
 
         if reponse['choix'] == 'Créer un donjon':
