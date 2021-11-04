@@ -32,8 +32,10 @@ class AccueilAdministrateurView(AbstractView):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Consulter les feedbacks':
             AdministrateurService.consulter_feed_back_admin()
+            return AccueilAdministrateurView(self.utilisateur)
         if reponse['choix'] == 'Bannir un joueur':
             AdministrateurService.bannir(input("Quel identifiant-utilisateur souhaitez-vous bannir ?"))
+            return AccueilAdministrateurView(self.utilisateur)
         if reponse['choix'] == 'Se déconnecter':
             from client.view.deconnexion_view import MenuDeconnexion
             return MenuDeconnexion()

@@ -40,6 +40,9 @@ class MaitreDuJeu(Joueur,BaseModel):
     def consulter_entite(self, entite : Entite):
         None
 
+    def liste_joueurs(self):
+        None
+
     def modifier_entite(self, entite : Entite):
         None
 
