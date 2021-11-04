@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-* Choix de perso
-* run example by writing `python example/pizza.py` in your console
-"""
 from __future__ import print_function, unicode_literals
 from PyInquirer import Separator, prompt
 from PyInquirer import Validator, ValidationError
