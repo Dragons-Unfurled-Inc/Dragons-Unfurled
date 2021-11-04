@@ -39,7 +39,7 @@ class AccueilJeuView(AbstractView):
             from client.view.creation_personnage_view import MenuPersonnage
             return MenuPersonnage()
         if reponse['choix'] == 'Rejoindre une campagne':
-            identifiant_campagne = input('Quel est l\identifiant de votre campagne ?')
+            identifiant_campagne = input('Quel est l\'identifiant de votre campagne ?')
             if identifiant_campagne in CampagneDAO.liste_noms():
                 campagne = CampagneDAO.get_campagne(identifiant_campagne)
                 mj = CampagneDAO.trouve_mj(identifiant_campagne)
@@ -49,8 +49,9 @@ class AccueilJeuView(AbstractView):
                         from client.view.maitre_du_jeu_view import MenuMJ
                         return MenuMJ(campagne)
                     else:
+                        joueur = mj.trouver_personnage(self.utilisateur) 
                         from client.view.joueur_view import MenuJoueur
-                        return MenuJoueur(campagne)
+                        return MenuJoueur(joueur,campagne)
                 else:
                     print("Vous n'êtes pas membre de cette campagne.")
                     return AccueilJeuView(self.utilisateur)

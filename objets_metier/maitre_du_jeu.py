@@ -47,6 +47,9 @@ class MaitreDuJeu(Joueur,BaseModel):
             liste_joueurs.append(personnage.id_joueur)
         return liste_joueurs
 
+    def trouver_personnage(self,utilisateur_joueur):
+        pass    
+
     def modifier_entite(self, entite : Entite):
         None
 
