@@ -6,6 +6,7 @@ from objets_metier.personnage import Personnage
 from objets_metier.donjon import Donjon
 from objets_metier.entite import Entite
 from objets_metier.utilisateur import Utilisateur
+from objets_metier.feedback import Feedback
 
 
 class MaitreDuJeu(Joueur,BaseModel):
@@ -23,10 +24,17 @@ class MaitreDuJeu(Joueur,BaseModel):
     def __init__(self, id_campagne : int,
                        nom_campagne : str,
                        id_maitre_du_jeu : str, 
-                       personnages_joueurs : List[Personnage],
-                       personnages_non_joueurs : List[Personnage],
-                       donjons : List[Donjon],
-                       entites : List[Entite]): 
+                       personnage : List[Personnage], 
+                       connecte : bool,
+                       mot_de_passe : str,
+                       identifiant : str,
+                       est_administrateur : bool, 
+                       feed_backs : List[Feedback] = [],
+                       personnages_joueurs : List[Personnage] = [],
+                       personnages_non_joueurs : List[Personnage] = [],
+                       donjons : List[Donjon] = [],
+                       entites : List[Entite] = [],
+                       choix_revelation : bool = True): 
         self.__id_campagne = id_campagne
         self.__nom_campagne = nom_campagne
         self.__id_maitre_du_jeu = id_maitre_du_jeu
@@ -34,6 +42,7 @@ class MaitreDuJeu(Joueur,BaseModel):
         self.__personnages_non_joueurs = personnages_non_joueurs
         self.__donjons = donjons
         self.__entites = entites
+        Utilisateur.__init__()
 
     def creer_entite(self, entite : Entite):
         None
