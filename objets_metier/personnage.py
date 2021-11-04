@@ -17,7 +17,24 @@ class Personnage(Entite,BaseModel):
 
     class Config:
         underscore_attrs_are_private = True
-
+        schema_extra = {
+            "example": {
+                "classe": "Barbare",
+                "race": "Nain",
+                "lore": "Un nain très barbu qui vient d/'une mine",
+                "id_joueur": 5,
+                "id_entite":4,
+                "nom_entite": "Martin",
+                "caracteristiques_entite": {
+                        "nom_entite":"Nom", 
+                        "attaques":"Attaques", 
+                        "capacites":"Capacité", 
+                        "languages":"langages",
+                        "description":"des"
+                }
+            }
+        }
+        
     def __init__(self, classe: str,
                        race: str,
                        lore: str,
