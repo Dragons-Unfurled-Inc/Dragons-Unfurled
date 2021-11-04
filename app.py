@@ -2,7 +2,7 @@
 import uvicorn
 from fastapi import FastAPI
 from objets_metier.personnage import Personnage
-from web.dao.personnage_dao import PersonnageDao
+from web.dao.personnage_dao import PersonnageDAO
 
 # On instancie le webservice
 app = FastAPI()
