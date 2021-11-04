@@ -8,16 +8,17 @@ class Joueur(Utilisateur, BaseModel):
     """
     Un joueur est un utilisateur qui est présent dans une campagne sans être maître du jeu.
     """
-    _personnage : List[Personnage]
-    _choix_revelation : bool = True
+    _personnages : List[Personnage]
+    _choix_revelation : bool 
 
     class Config:
         underscore_attrs_are_private = True
 
     def __init__(self, personnage : List[Personnage],
-                       choix_revelation : bool) : 
+                       choix_revelation : bool = True) : 
         self._personnage = personnage
         self._choix_revelation = choix_revelation
+        Utilisateur.__init__()
 
 
     def creer_personnage(self):

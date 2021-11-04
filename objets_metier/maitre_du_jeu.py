@@ -5,6 +5,7 @@ from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
 from objets_metier.donjon import Donjon
 from objets_metier.entite import Entite
+from objets_metier.utilisateur import Utilisateur
 
 
 class MaitreDuJeu(Joueur,BaseModel):
@@ -47,8 +48,13 @@ class MaitreDuJeu(Joueur,BaseModel):
             liste_joueurs.append(personnage.id_joueur)
         return liste_joueurs
 
-    def trouver_personnage(self,utilisateur_joueur):
-        pass    
+    def trouver_personnage(self,utilisateur_joueur: Joueur): # Cette fonction cherche le personnage d'un utilisateur.
+        personnage_joueur = None # C'est le personnage du joueur.
+        liste_personnages = utilisateur_joueur.personnages # Les personnages du joueur
+        for personnage in liste_personnages:
+            if personnage in self.personnages_joueurs
+        personnage_joueur = personnage
+        return personnage_joueur
 
     def modifier_entite(self, entite : Entite):
         None
