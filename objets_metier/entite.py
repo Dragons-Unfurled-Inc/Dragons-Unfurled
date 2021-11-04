@@ -10,12 +10,12 @@ class Entite(ABC, BaseModel):
     Une entité est un personnage ou un monstre.
     """ 
     _id_joueur: str
-    _id_entite: str                 
+    _id_entite: int                 
     _caracteristiques_entite: Caracteristique
     _objets: Optional[List[Objet]] = None
 
     def __init__(self, id_joueur: str, 
-                       id_entite: str,                  
+                       id_entite: int,                  
                        caracteristiques_entite: Caracteristique,
                        objets: Optional[List[Objet]] = None) -> None: 
         self._id_joueur = id_joueur

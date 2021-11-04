@@ -1,5 +1,5 @@
 from objets_metier.utilisateur import Utilisateur
-from web.dao.configuration import DBConnection
+from web.dao.db_connection import DBConnection
 from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
 
 

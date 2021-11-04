@@ -2,7 +2,7 @@ import datetime
 from pydantic import BaseModel
 class Feedback(BaseModel):
 
-    __id_feedback: str
+    __id_feedback: int
     __message: str
     __date_ecriture: datetime.date
     
@@ -10,7 +10,7 @@ class Feedback(BaseModel):
         underscore_attrs_are_private = True
 
     def __init__(self,
-                    id_feedback: str,
+                    id_feedback: int,
                     message: str,
                     date_ecriture: datetime.date ) -> None:
         self.__id_feedback = id_feedback

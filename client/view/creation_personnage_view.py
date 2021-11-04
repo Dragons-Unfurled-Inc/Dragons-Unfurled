@@ -8,13 +8,15 @@ from pprint import pprint
 from objets_metier.entite import Entite
 import requests as req
 
+from objets_metier.utilisateur import Utilisateur
+
 class NumberValidator(Validator):
     def validate(self, document):
         try:
             int(document.text)
         except ValueError:
             raise ValidationError(
-                message='Please enter a number',
+                message='Entrez un nombre, s\'il vous plaît.',
                 cursor_position=len(document.text))  # Move cursor to end
 
 print('Bienvenue sur l\'écran de création de personnage')
@@ -29,7 +31,7 @@ listclasses = [dicclasses['results'][i]['name'] for i in range(dicclasses['count
 
 class MenuPersonnage(AbstractView):
     
-    def __init__(self):
+    def __init__(self, utilisateur = Utilisateur):
         self.questions = [
             {
                 'type': 'list',
@@ -103,11 +105,11 @@ class MenuPersonnage(AbstractView):
                 'message': 'Comment s\'appelle votre personnage ?',
                 'default': 'Ragnar'
             }]
-                
+        self.utilisateur = utilisateur
     def display_info(self):
         print(f"Bonjour {Session().identifiant}, choisissez les caractéristiques de votre personnage ")
 
     def make_choice(self):
         reponse = prompt(self.questions)
         from client.view.accueil_jeu_view import AccueilJeuView
-        return AccueilJeuView()
+        return AccueilJeuView(self.utilisateur)

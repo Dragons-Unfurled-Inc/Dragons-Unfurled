@@ -1,19 +1,23 @@
 from PyInquirer import Separator, prompt
+from pydantic import main
 
+from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.view.abstract_view import AbstractView
 from objets_metier.joueur import Joueur
 from client.view.session import Session
 from web.dao.jet_dao import JetDAO
+from web.dao.maitre_du_jeu_dao import MjDAO
 class MenuMJ(AbstractView):
 
-    def __init__(self, joueur, campagne):
+
+    def __init__(self, joueur:MaitreDuJeu, campagne):
         self.__questions = [
             {
                 'type': 'list',
                 'name': 'choix',
                 'message': f' {Session().identifiant} que souhaitez-vous faire ?',
                 'choices': [
-                    'Ajouter ou supprimer un personnage',
+                    'Ajouter ou supprimer une entité',
                     Separator(),
                     'Créer un donjon',
                     Separator(),
@@ -47,8 +51,32 @@ class MenuMJ(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.__questions)
-        if reponse['choix'] == 'Ajouter ou supprimer un personnage':
-            pass
+        if reponse['choix'] == 'Ajouter ou supprimer une entité':
+            message = input("Voulez-vous ajouter une entité à votre campagne ? \n Faîtes entrer si oui et écrivez quelque-chose sinon.")
+            if message:
+                if not input("Voulez-vous supprimer un personnage joueur ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
+                    liste_personnages = self.joueur.personnages_joueurs
+                    print("Voici les personnages disponibles:")
+                    for personnage in liste_personnages:
+                        print(personnage)
+                    identifiant_entite = input("Saisissez l'identifiant du personnage à supprimer.")
+                    MjDAO.supprimer_entite(identifiant_entite)
+                    from client.view.maitre_du_jeu_view import MenuMJ
+                    return MenuMJ(self.joueur,self.campagne)
+
+                elif not input("Voulez-vous supprimer un personnage non-joueur ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
+                    print(self.joueur.personnages_non_joueurs)
+                    input("Saisissez l'identifiant du personnage non-joueur à supprimer.")
+                elif not input("Voulez-vous supprimer un monstre ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
+                    print(self.joueur.monstres)
+                    input("Saisissez l'identifiant du monstre à supprimer.")
+                else:
+                    from client.view.maitre_du_jeu_view import MenuMJ
+                    return MenuMJ(self.joueur, self.campagne)
+               
+                
+                
+
         if reponse['choix'] == 'Créer un donjon':
             pass
         if reponse['choix'] == 'Lancer des dés':
