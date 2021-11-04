@@ -52,8 +52,8 @@ class MaitreDuJeu(Joueur,BaseModel):
         personnage_joueur = None # C'est le personnage du joueur.
         liste_personnages = utilisateur_joueur.personnages # Les personnages du joueur
         for personnage in liste_personnages:
-            if personnage in self.personnages_joueurs
-        personnage_joueur = personnage
+            if personnage in self.personnages_joueurs:
+                personnage_joueur = personnage
         return personnage_joueur
 
     def modifier_entite(self, entite : Entite):

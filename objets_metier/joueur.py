@@ -34,12 +34,12 @@ class Joueur(Utilisateur, BaseModel):
         self._choix_revelation = not(self._choix_revelation)
 
     @property
-    def personnage(self):
-        return self._personnage
+    def personnages(self):
+        return self._personnages
 
-    @personnage.setter
-    def personnage(self, value):
-        self._personnage = value
+    @personnages.setter
+    def personnages(self, value):
+        self._personnages = value
 
     @property
     def choix_revelation(self):
