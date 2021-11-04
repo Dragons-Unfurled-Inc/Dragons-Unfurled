@@ -21,11 +21,11 @@ des = Des(4)
 feed = Feedback("1", "coucou", datetime.now)
 
 #print(caract)
-#print(perso)
+print(perso)
 #print(enti)
 #print(sall)
 #print(obj)
 #print(donj)
 #print(monstr)
-print(feed)
+#print(feed)
 
