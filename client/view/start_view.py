@@ -15,7 +15,8 @@ class StartView(AbstractView):
                 'message': f' Bonjour {Session().identifiant} ',
                 'choices': [
                     'S\'authentifier' ,
-                    'Créer un compte'
+                    'Créer un compte' , 
+                    'Quitter l\'application'
 
                 ]
             }
@@ -42,3 +43,7 @@ class StartView(AbstractView):
             utilisateur = UtilisateurService.creation_compte("joueur")
             from client.view.accueil_jeu_view import AccueilJeuView
             return AccueilJeuView(utilisateur)   
+        
+        if reponse['choix'] == 'Quitter l\'application':
+            import sys
+            sys.exit()

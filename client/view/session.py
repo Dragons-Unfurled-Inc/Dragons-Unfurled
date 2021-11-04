@@ -8,4 +8,4 @@ class Session(metaclass=Singleton):
         self.connecte = False
         self.mot_de_passe: str = None
         self.identifiant: str = None
-        self.est_administrateur = False
+        self.est_administrateur = True

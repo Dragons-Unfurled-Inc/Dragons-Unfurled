@@ -9,7 +9,7 @@ class Joueur(Utilisateur, BaseModel):
     Un joueur est un utilisateur qui est présent dans une campagne sans être maître du jeu.
     """
     _personnage : List[Personnage]
-    _choix_revelation : bool
+    _choix_revelation : bool = True
 
     class Config:
         underscore_attrs_are_private = True

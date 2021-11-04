@@ -40,6 +40,16 @@ class MaitreDuJeu(Joueur,BaseModel):
     def consulter_entite(self, entite : Entite):
         None
 
+    def liste_joueurs(self):
+        liste_joueurs = [] # C'est la liste des identifiants des joueurs.
+        liste_personnages = self.personnages_joueurs
+        for personnage in liste_personnages:
+            liste_joueurs.append(personnage.id_joueur)
+        return liste_joueurs
+
+    def trouver_personnage(self,utilisateur_joueur):
+        pass    
+
     def modifier_entite(self, entite : Entite):
         None
 
