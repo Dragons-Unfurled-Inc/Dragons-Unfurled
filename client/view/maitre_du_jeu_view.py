@@ -6,6 +6,7 @@ from client.view.abstract_view import AbstractView
 from objets_metier.joueur import Joueur
 from client.view.session import Session
 from web.dao.jet_dao import JetDAO
+from web.dao.maitre_du_jeu_dao import MjDAO
 class MenuMJ(AbstractView):
 
 
@@ -54,11 +55,18 @@ class MenuMJ(AbstractView):
             message = input("Voulez-vous ajouter une entité à votre campagne ? \n Faîtes entrer si oui et écrivez quelque-chose sinon.")
             if message:
                 if not input("Voulez-vous supprimer un personnage joueur ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
-                    print(self.joueur.personnages_joueurs)
+                    liste_personnages = self.joueur.personnages_joueurs
+                    print("Voici les personnages disponibles:")
+                    for personnage in liste_personnages:
+                        print(personnage)
+                    input("Saisissez l'identifiant du personnage à supprimer.")
+
                 elif not input("Voulez-vous supprimer un personnage non-joueur ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
                     print(self.joueur.personnages_non_joueurs)
+                    input("Saisissez l'identifiant du personnage non-joueur à supprimer.")
                 elif not input("Voulez-vous supprimer un monstre ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
-                    print(self.joueur.entites)
+                    print(self.joueur.monstres)
+                    input("Saisissez l'identifiant du monstre à supprimer.")
                 else:
                     from client.view.maitre_du_jeu_view import MenuMJ
                     return MenuMJ(self.joueur, self.campagne)
