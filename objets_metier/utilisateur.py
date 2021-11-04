@@ -22,7 +22,7 @@ class Utilisateur(BaseModel):
         self._mot_de_passe = mot_de_passe
         self._identifiant = identifiant
         self._est_administrateur = est_administrateur
-        self._feed_back = feed_backs
+        self._feed_backs = feed_backs
         
     def se_connecter(self, id : str, mdp : str):
         None
@@ -73,8 +73,8 @@ class Utilisateur(BaseModel):
 
     @property
     def feed_backs(self):
-        return self._feed_back
+        return self._feed_backs
     
     @feed_backs.setter
-    def feed_back(self, value):
-        self._feed_back = value
+    def feed_backs(self, value):
+        self._feed_backs = value

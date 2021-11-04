@@ -1,12 +1,15 @@
 from PyInquirer import Separator, prompt
+from pydantic import main
 
+from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.view.abstract_view import AbstractView
 from objets_metier.joueur import Joueur
 from client.view.session import Session
 from web.dao.jet_dao import JetDAO
 class MenuMJ(AbstractView):
 
-    def __init__(self, joueur, campagne):
+
+    def __init__(self, joueur:MaitreDuJeu, campagne):
         self.__questions = [
             {
                 'type': 'list',
@@ -50,7 +53,17 @@ class MenuMJ(AbstractView):
         if reponse['choix'] == 'Ajouter ou supprimer une entité':
             message = input("Voulez-vous ajouter une entité à votre campagne ? \n Faîtes entrer si oui et écrivez quelque-chose sinon.")
             if message:
-                print("Voici la liste des entités:")
+                if not input("Voulez-vous supprimer un personnage joueur ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
+                    print(self.joueur.personnages_joueurs)
+                elif not input("Voulez-vous supprimer un personnage non-joueur ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
+                    print(self.joueur.personnages_non_joueurs)
+                elif not input("Voulez-vous supprimer un monstre ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
+                    print(self.joueur.entites)
+                else:
+                    from client.view.maitre_du_jeu_view import MenuMJ
+                    return MenuMJ(self.joueur, self.campagne)
+               
+                
                 
 
         if reponse['choix'] == 'Créer un donjon':

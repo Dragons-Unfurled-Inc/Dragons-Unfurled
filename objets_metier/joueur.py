@@ -24,7 +24,8 @@ class Joueur(Utilisateur, BaseModel):
                        choix_revelation : bool = True): 
         self._personnage = personnage
         self._choix_revelation = choix_revelation
-        Utilisateur.__init__()
+
+        Utilisateur.__init__(connecte,mot_de_passe,identifiant,est_administrateur,feed_backs)
 
 
     def creer_personnage(self):
