@@ -6,7 +6,7 @@ from client.view.abstract_view import AbstractView
 from web.dao.jet_dao import JetDAO
 from client.view.session import Session
 from objets_metier.joueur import Joueur
-from objets_metier.utilisateur import Utilisateur
+
 
 class MenuJoueur(AbstractView):
 
@@ -51,7 +51,7 @@ class MenuJoueur(AbstractView):
             
         if reponse['choix'] == 'Lancer des dés':
             from client.view.des_view import MenuDes
-            return MenuDes()    
+            return MenuDes(self.joueur, self.campagne)    
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
             from client.view.joueur_view import MenuJoueur

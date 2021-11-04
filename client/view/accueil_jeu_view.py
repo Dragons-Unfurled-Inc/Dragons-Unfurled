@@ -46,8 +46,9 @@ class AccueilJeuView(AbstractView):
                 liste_id_joueurs = mj.liste_joueurs()
                 if self.utilisateur.identifiant in liste_id_joueurs:
                     if self.utilisateur.identifiant == mj.id_maitre_du_jeu:
+                        joueur = mj.trouver_personnage(self.utilisateur) 
                         from client.view.maitre_du_jeu_view import MenuMJ
-                        return MenuMJ(campagne)
+                        return MenuMJ(joueur, campagne)
                     else:
                         joueur = mj.trouver_personnage(self.utilisateur) 
                         from client.view.joueur_view import MenuJoueur
