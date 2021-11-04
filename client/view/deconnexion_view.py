@@ -11,14 +11,13 @@ class Deconnexion():
 questions = [
     {
         'type': 'input',
-        'name': 'pseudonyme',
-        'message': 'Quel est votre pseudonyme ?',
+        'name': 'confirmer_deco',
+        'message': 'Confirmer la déconnexion.',
 
     },
     {
         'type': 'password',
-        'name': 'mot de passe',
-        'message': 'Quel est votre mot de passe ?',
-        'validate': PasswordValidator
+        'name': 'Annuler',
+        'message': 'Annuler.'
     }
 ]
