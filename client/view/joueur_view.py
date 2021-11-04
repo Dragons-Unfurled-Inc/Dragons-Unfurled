@@ -42,11 +42,11 @@ class MenuJoueur(AbstractView):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Modifier la fiche de votre personnage':
-            Joueur.modifier_personnage(self.joueur)
+            Joueur.modifier_personnage(self.joueur,self.campagne)
             from client.view.joueur_view import MenuJoueur
             return MenuJoueur(self.joueur,self.campagne)
         if reponse['choix'] == 'Consulter la fiche de votre personnage':
-            Joueur.consulter_personnage(self.joueur)
+            Joueur.consulter_personnage(self.joueur,self.campagne)
             from client.view.joueur_view import MenuJoueur
             
         if reponse['choix'] == 'Lancer des dés':

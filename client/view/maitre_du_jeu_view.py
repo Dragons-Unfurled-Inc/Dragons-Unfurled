@@ -13,7 +13,7 @@ class MenuMJ(AbstractView):
                 'name': 'choix',
                 'message': f' {Session().identifiant} que souhaitez-vous faire ?',
                 'choices': [
-                    'Ajouter ou supprimer un personnage',
+                    'Ajouter ou supprimer une entité',
                     Separator(),
                     'Créer un donjon',
                     Separator(),
@@ -47,8 +47,12 @@ class MenuMJ(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.__questions)
-        if reponse['choix'] == 'Ajouter ou supprimer un personnage':
-            pass
+        if reponse['choix'] == 'Ajouter ou supprimer une entité':
+            message = input("Voulez-vous ajouter une entité à votre campagne ? \n Faîtes entrée pour dire oui et écrivez n'importe quoi pour non.")
+            if message:
+                pass
+                
+
         if reponse['choix'] == 'Créer un donjon':
             pass
         if reponse['choix'] == 'Lancer des dés':

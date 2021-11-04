@@ -10,7 +10,7 @@ class CampagneDAO:
         return []
         
     @staticmethod
-    def get_campagne(id_campagne):
+    def get_campagne(id_campagne):   # liste avec l'id et le nom
         pass
     @staticmethod
     def trouve_mj(id_campagne) -> MaitreDuJeu:

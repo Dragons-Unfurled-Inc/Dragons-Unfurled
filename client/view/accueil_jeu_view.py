@@ -4,6 +4,7 @@ from client.view.abstract_view import AbstractView
 from client.view.session import Session
 from client.view.maitre_du_jeu_view import MenuMJ
 from client.view.joueur_view import MenuJoueur
+from objets_metier.joueur import Joueur
 from objets_metier.utilisateur import Utilisateur
 from web.dao.campagne_dao import CampagneDAO
 from objets_metier.maitre_du_jeu import MaitreDuJeu
@@ -41,16 +42,18 @@ class AccueilJeuView(AbstractView):
         if reponse['choix'] == 'Rejoindre une campagne':
             identifiant_campagne = input('Quel est l\'identifiant de votre campagne ?')
             if identifiant_campagne in CampagneDAO.liste_noms():
-                campagne = CampagneDAO.get_campagne(identifiant_campagne)
+                campagne = CampagneDAO.get_campagne(identifiant_campagne) # liste avec l'id et le nom
                 mj = CampagneDAO.trouve_mj(identifiant_campagne)
                 liste_id_joueurs = mj.liste_joueurs()
                 if self.utilisateur.identifiant in liste_id_joueurs:
                     if self.utilisateur.identifiant == mj.id_maitre_du_jeu:
-                        joueur = mj.trouver_personnage(self.utilisateur) 
+                        personnage_joueur = mj.trouver_personnage(self.utilisateur) 
+                        joueur = Joueur(personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_back)
                         from client.view.maitre_du_jeu_view import MenuMJ
                         return MenuMJ(joueur, campagne)
                     else:
-                        joueur = mj.trouver_personnage(self.utilisateur) 
+                        personnage_joueur = mj.trouver_personnage(self.utilisateur) 
+                        joueur = MaitreDuJeu(campagne[0],campagne[1],personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_back)
                         from client.view.joueur_view import MenuJoueur
                         return MenuJoueur(joueur,campagne)
                 else:
