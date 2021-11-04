@@ -37,5 +37,5 @@ class AccueilAdministrateurView(AbstractView):
             AdministrateurService.bannir(input("Quel identifiant-utilisateur souhaitez-vous bannir ?"))
             return AccueilAdministrateurView(self.utilisateur)
         if reponse['choix'] == 'Se déconnecter':
-            from client.view.deconnexion_view import MenuDeconnexion
-            return MenuDeconnexion()
+            from client.view.deconnexion_view import Deconnexion
+            return Deconnexion()

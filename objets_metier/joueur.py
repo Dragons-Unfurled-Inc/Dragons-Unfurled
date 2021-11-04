@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.personnage import Personnage
+from objets_metier.feedback import Feedback
 
 class Joueur(Utilisateur, BaseModel):
     """
@@ -14,8 +15,13 @@ class Joueur(Utilisateur, BaseModel):
     class Config:
         underscore_attrs_are_private = True
 
-    def __init__(self, personnage : List[Personnage],
-                       choix_revelation : bool = True) : 
+    def __init__(self, personnage : List[Personnage], 
+                       connecte : bool,
+                       mot_de_passe : str,
+                       identifiant : str,
+                       est_administrateur : bool, 
+                       feed_backs : List[Feedback] = [],
+                       choix_revelation : bool = True): 
         self._personnage = personnage
         self._choix_revelation = choix_revelation
         Utilisateur.__init__()
@@ -24,10 +30,10 @@ class Joueur(Utilisateur, BaseModel):
     def creer_personnage(self):
         None
 
-    def consulter_personnage(self):
+    def consulter_personnage(self, id_campagne):
         None
 
-    def modifier_personnage(self):
+    def modifier_personnage(self, id_campagne):
         None 
 
     def changer_revelation_jet(self):
