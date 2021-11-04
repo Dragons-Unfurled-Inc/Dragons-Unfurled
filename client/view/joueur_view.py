@@ -1,10 +1,13 @@
 from PyInquirer import Separator, prompt
+from client.view import accueil_jeu_view
 
 
 from client.view.abstract_view import AbstractView
-
+from web.dao.jet_dao import JetDAO
 from client.view.session import Session
 from objets_metier.joueur import Joueur
+from objets_metier.utilisateur import Utilisateur
+
 class MenuJoueur(AbstractView):
 
     def __init__(self, joueur, campagne):
@@ -45,16 +48,19 @@ class MenuJoueur(AbstractView):
         if reponse['choix'] == 'Consulter la fiche de votre personnage':
             Joueur.consulter_personnage(self.joueur)
             from client.view.joueur_view import MenuJoueur
-            return MenuJoueur(self.joueur,self.campagne)
-        if reponse['choix'] == 'Lancer des dés':
             
+        if reponse['choix'] == 'Lancer des dés':
             from client.view.des_view import MenuDes
             return MenuDes()    
         if reponse['choix'] == 'Consulter les résultats des jets':
-            pass
+            JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
+            from client.view.joueur_view import MenuJoueur
+            return MenuJoueur(self.joueur,self.campagne)
         if reponse['choix'] == 'Donner un feedback':
-            pass
+            message = input("Quel est le feedback que vous souhaitez poster ?")
+            Joueur.donner_feed_back(self.joueur,message)
+            return MenuJoueur(self.joueur,self.campagne)
         if reponse['choix'] == 'Quitter la campagne':
-            from client.view import start_view
-            return start_view()
+            from client.view.accueil_jeu_view import AccueilJeuView
+            return AccueilJeuView(self.joueur)
         
