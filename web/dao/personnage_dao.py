@@ -12,7 +12,6 @@ class PersonnageDAO(metaclass=Singleton):
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     personnage = Personnage(perso.classe,perso.race,perso.lore,perso.id_joueur,perso.id_entite,perso.nom_entite,Caracteristique.parse_obj(perso.caracteristiques_entite))
-                    print(personnage)
                     cursor.execute(
                         "INSERT INTO personnages (classe, race,"\
                         "lore ,id_joueur ,id_entite,nom_entite ,niveau,experience,force,dexterite,constitution,intelligence,sagesse,charisme ,capacites ,vie ,attaques ,languages ,description) VALUES "\

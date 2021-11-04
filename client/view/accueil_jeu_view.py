@@ -78,4 +78,4 @@ class AccueilJeuView(AbstractView):
         
         if reponse['choix'] == 'Se déconnecter':
             from client.view.deconnexion_view import Deconnexion
-            return Deconnexion()
+            return Deconnexion(self.utilisateur)
