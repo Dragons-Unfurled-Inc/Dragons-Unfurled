@@ -14,7 +14,7 @@ class NumberValidator(Validator):
             int(document.text)
         except ValueError:
             raise ValidationError(
-                message='Please enter a number',
+                message='Entrez un nombre, s\'il vous plaît.',
                 cursor_position=len(document.text))  # Move cursor to end
 
 print('Bienvenue sur l\'écran de création de personnage')
