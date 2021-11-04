@@ -16,16 +16,14 @@ class EntiteDAO:
     #     return(Monstre(nom,d["size"],d["alignment"],d['armor_class'],d['hit_points'],d['hit_dice'],d['speed'],d['strength'],d['dexterity'],d['constitution'],d['intelligence'],d['wisdom'],d['charisma'],d['proficiencies'],d['languages'],d['xp'])) 
 
     @staticmethod    
-    def add_entite(entite : Entite) -> Entite:
-            created = False
+    def add_entite(enti : Entite) -> Entite:
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     caract = Caracteristique(nom_entite="Nom", attaques="Attaques", capacites="Capacité", languages="langages",description="des")
                     obj = Objet("id_objet", "nom_objet","des")
                     enti = Entite("id joueur","id entite",caract, [obj])
                     cursor.execute(
-                        "INSERT INTO Entité (id_entite, "\
-                                            "nom_entite, "\
+                        "INSERT INTO Entite (nom_entite, "\
                                             "niveau,"\
                                             "experience,"\
                                             "force,"\
@@ -38,14 +36,23 @@ class EntiteDAO:
                                             "description,"\
                                             "classe_armure) "\
                         "VALUES "\
-                        "(%(id_entite)s,%(nom_entite)s,%(niveau)s,%(experience)s, %(force)s, %(intelligence)s, %(charisme)s, %(dexterite)s, %(constitution)s, %(sagesse)s,%(vie)s, %(description)s, %(classe_armure)s)"
+                        "(%(nom_entite)s,%(niveau)s,%(experience)s, %(force)s, %(intelligence)s, %(charisme)s, %(dexterite)s, %(constitution)s, %(sagesse)s,%(vie)s, %(description)s, %(classe_armure)s)"
    
-                    , { "id_entite" : enti.id_entite
-                    , "nom_entite" : enti.caracteristiques_entite.nom_entite
-                    , "race": personnage.race
-                    , "lore": personnage.lore
+                    , { "nom_entite" : enti.caracteristiques_entite.nom_entite
+                    , "niveau": enti.caracteristiques_entite.niveau
+                    , "experience": enti.caracteristiques_entite.experience
+                    , "force": enti.caracteristiques_entite.force
+                    , "intelligence": enti.caracteristiques_entite.intelligence
+                    , "charisme": enti.caracteristiques_entite.charisme
+                    , "dexterite": enti.caracteristiques_entite.dexterite
+                    , "constitution": enti.caracteristiques_entite.constitution
+                    , "sagesse": enti.caracteristiques_entite.sagesse
+                    , "vie": enti.caracteristiques_entite.vie
+                    , "description": enti.caracteristiques_entite.description
+                    , "classe_armure": enti.caracteristiques_entite.classe_armure
                     }) 
             return enti
+            
     @staticmethod
     def diminution_pv(nom_entite: str): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
         return 

@@ -13,10 +13,10 @@ caract = Caracteristique("Nom","Attaques", "Capacité", "langages","des")
 perso = Personnage("classe","race","lore","id_joueur", "id_entite", "nomentite", caract)
 
 # Défintion du endpoint get /todo
-@app.put("/personnage/{id}")
-async def add_personnage(id:int,perso:Personnage):
+@app.put("/personnage/id")
+async def add_personnage(perso:Personnage):
     PersonnageService.add_personnage(perso)
-    resultat = {"id": id, **perso.dict()}
+    resultat = perso.dict()
     return resultat
 
 if __name__ == "__main__":
