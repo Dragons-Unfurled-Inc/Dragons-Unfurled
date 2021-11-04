@@ -1,10 +1,9 @@
 from typing import List
 from pydantic import BaseModel
-from objets_metier.entite import Entite
 from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
 from objets_metier.donjon import Donjon
-from objets_metier.entite import Entite
+from objets_metier.monstre import Monstre
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.feedback import Feedback
 
@@ -15,7 +14,7 @@ class MaitreDuJeu(Joueur,BaseModel):
     __personnages_joueurs : List[Personnage]
     __personnages_non_joueurs : List[Personnage]
     __donjons : List[Donjon]
-    __entites : List[Entite]
+    __monstre : List[Monstre]
     
     class Config:
         underscore_attrs_are_private = True
@@ -31,20 +30,26 @@ class MaitreDuJeu(Joueur,BaseModel):
                        personnages_joueurs : List[Personnage] = [],
                        personnages_non_joueurs : List[Personnage] = [],
                        donjons : List[Donjon] = [],
-                       entites : List[Entite] = [],
+                       monstres : List[Monstre] = [],
                        choix_revelation : bool = True): 
         self.__id_campagne = id_campagne
         self.__nom_campagne = nom_campagne
         self.__personnages_joueurs = personnages_joueurs
         self.__personnages_non_joueurs = personnages_non_joueurs
         self.__donjons = donjons
-        self.__entites = entites
-        Utilisateur.__init__(personnage)
+        self.__monstres = monstres
+        Joueur.__init__(personnage, 
+                       connecte,
+                       mot_de_passe,
+                       identifiant,
+                       est_administrateur, 
+                       feed_backs,
+                       choix_revelation)
 
-    def creer_entite(self, entite : Entite):
+    def creer_monstre(self, monstre : Monstre):
         None
 
-    def consulter_entite(self, entite : Entite):
+    def consulter_monstre(self, monstre : Monstre):
         None
 
     def liste_joueurs(self):
@@ -62,17 +67,17 @@ class MaitreDuJeu(Joueur,BaseModel):
                 personnage_joueur = personnage
         return personnage_joueur
 
-    def modifier_entite(self, entite : Entite):
+    def modifier_monstre(self, monstre : Monstre):
         None
 
-    def ajouter_entite(self, entite : Entite, donjon : Donjon = None): 
+    def ajouter_monstre(self, monstre : Monstre, donjon : Donjon = None): 
        """
-       Cette fonction ajoute une entite dans la campagne. 
+       Cette fonction ajoute un monstre dans la campagne. 
        Par défaut l'entité ajoutée ne se trouve pas dans un donjon.
        """
-       self.__entites.append(entite)
+       self.__monstres.append(monstre)
        if donjon != None: 
-           donjon.pieces[0].entites.append(entite)
+           donjon.pieces[0].monstres.append(monstre)
 
     def construire_donjon(self, donjon : Donjon):
        None
@@ -129,9 +134,9 @@ class MaitreDuJeu(Joueur,BaseModel):
         self.__donjons = value
 
     @property
-    def entites(self):
-        return self.__entites
+    def monstres(self):
+        return self.__monstres
 
-    @entites.setter
-    def entites(self, value):
-        self.__entites = value
+    @monstres.setter
+    def monstres(self, value):
+        self.__monstres = value
