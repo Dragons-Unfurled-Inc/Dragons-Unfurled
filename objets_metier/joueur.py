@@ -30,7 +30,7 @@ class Joueur(Utilisateur, BaseModel):
     def creer_personnage(self):
         None
 
-    def consulter_personnage(self):
+    def consulter_personnage(self, id_campagne):
         None
 
     def modifier_personnage(self, id_campagne):
