@@ -33,7 +33,7 @@ class Joueur(Utilisateur, BaseModel):
     def consulter_personnage(self):
         None
 
-    def modifier_personnage(self):
+    def modifier_personnage(self, id_campagne):
         None 
 
     def changer_revelation_jet(self):
