@@ -12,7 +12,6 @@ from objets_metier.feedback import Feedback
 class MaitreDuJeu(Joueur,BaseModel):
     __id_campagne : int
     __nom_campagne : str
-    __id_maitre_du_jeu : str
     __personnages_joueurs : List[Personnage]
     __personnages_non_joueurs : List[Personnage]
     __donjons : List[Donjon]
@@ -23,7 +22,6 @@ class MaitreDuJeu(Joueur,BaseModel):
 
     def __init__(self, id_campagne : int,
                        nom_campagne : str,
-                       id_maitre_du_jeu : str, 
                        personnage : List[Personnage], 
                        connecte : bool,
                        mot_de_passe : str,
@@ -37,7 +35,6 @@ class MaitreDuJeu(Joueur,BaseModel):
                        choix_revelation : bool = True): 
         self.__id_campagne = id_campagne
         self.__nom_campagne = nom_campagne
-        self.__id_maitre_du_jeu = id_maitre_du_jeu
         self.__personnages_joueurs = personnages_joueurs
         self.__personnages_non_joueurs = personnages_non_joueurs
         self.__donjons = donjons
