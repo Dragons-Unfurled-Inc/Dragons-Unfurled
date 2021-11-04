@@ -1,7 +1,11 @@
-from objets_metier.entite import Entite 
-from objets_metier.monstre import Monstre 
+from web.dao.db_connection import DBConnection
+from utils.singleton import Singleton
 import requests as req
 from abc import abstractstaticmethod
+
+from objets_metier.entite import Entite  
+from objets_metier.caracteristique import Caracteristique
+from objets_metier.objet import Objet
 
 #le code est pas ouf mais vous avez une idée de comment faire, par contre c'est ptet plus à sa place dans le package web
 class EntiteDAO:
@@ -11,6 +15,37 @@ class EntiteDAO:
     #     d=r.json()
     #     return(Monstre(nom,d["size"],d["alignment"],d['armor_class'],d['hit_points'],d['hit_dice'],d['speed'],d['strength'],d['dexterity'],d['constitution'],d['intelligence'],d['wisdom'],d['charisma'],d['proficiencies'],d['languages'],d['xp'])) 
 
+    @staticmethod    
+    def add_entite(entite : Entite) -> Entite:
+            created = False
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    caract = Caracteristique(nom_entite="Nom", attaques="Attaques", capacites="Capacité", languages="langages",description="des")
+                    obj = Objet("id_objet", "nom_objet","des")
+                    enti = Entite("id joueur","id entite",caract, [obj])
+                    cursor.execute(
+                        "INSERT INTO Entité (id_entite, "\
+                                            "nom_entite, "\
+                                            "niveau,"\
+                                            "experience,"\
+                                            "force,"\
+                                            "intelligence, "\
+                                            "charisme, "\
+                                            "dexterite, "\
+                                            "constitution,"\
+                                            "sagesse, "\
+                                            "vie, "\
+                                            "description,"\
+                                            "classe_armure) "\
+                        "VALUES "\
+                        "(%(id_entite)s,%(nom_entite)s,%(niveau)s,%(experience)s, %(force)s, %(intelligence)s, %(charisme)s, %(dexterite)s, %(constitution)s, %(sagesse)s,%(vie)s, %(description)s, %(classe_armure)s)"
+   
+                    , { "id_entite" : enti.id_entite
+                    , "nom_entite" : enti.caracteristiques_entite.nom_entite
+                    , "race": personnage.race
+                    , "lore": personnage.lore
+                    }) 
+            return enti
     @staticmethod
     def diminution_pv(nom_entite: str): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
         return 
