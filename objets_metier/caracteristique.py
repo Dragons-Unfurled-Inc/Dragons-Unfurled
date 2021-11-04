@@ -27,7 +27,7 @@ class Caracteristique(BaseModel) :
                         languages: List[str], 
                         description: Optional[str],
                         niveau: int = 1, 
-                        experience: int = 20,
+                        experience: int = 10,
                         force: int = 20, 
                         intelligence: int = 20, 
                         charisme: int = 20, 
@@ -54,9 +54,16 @@ class Caracteristique(BaseModel) :
 
     class Config:
         underscore_attrs_are_private = True
-
-    
-
+        schema_extra = { 
+            "example": {
+                "nom_entite":"Nom", 
+                "attaques":"Attaques", 
+                "capacites":"Capacité", 
+                "languages":"langages",
+                "description":"des", 
+                } 
+            } 
+        
     def __str__(self):
         """
         permet un affichage des caractéristiques
