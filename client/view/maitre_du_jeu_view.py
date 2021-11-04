@@ -59,7 +59,10 @@ class MenuMJ(AbstractView):
                     print("Voici les personnages disponibles:")
                     for personnage in liste_personnages:
                         print(personnage)
-                    input("Saisissez l'identifiant du personnage à supprimer.")
+                    identifiant_entite = input("Saisissez l'identifiant du personnage à supprimer.")
+                    MjDAO.supprimer_entite(identifiant_entite)
+                    from client.view.maitre_du_jeu_view import MenuMJ
+                    return MenuMJ(self.joueur,self.campagne)
 
                 elif not input("Voulez-vous supprimer un personnage non-joueur ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
                     print(self.joueur.personnages_non_joueurs)
