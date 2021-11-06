@@ -19,9 +19,6 @@ class EntiteDAO:
     def add_entite(enti : Entite) -> Entite:
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
-                    caract = Caracteristique(nom_entite="Nom", attaques="Attaques", capacites="Capacité", languages="langages",description="des")
-                    obj = Objet("id_objet", "nom_objet","des")
-                    enti = Entite("id joueur","id entite",caract, [obj])
                     cursor.execute(
                         "INSERT INTO Entite (nom_entite, "\
                                             "niveau,"\

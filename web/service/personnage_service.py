@@ -13,7 +13,7 @@ class PersonnageService():
     def add_personnage(perso:Personnage):
         entite = Entite(perso.id_joueur, perso.id_entite, perso.caracteristiques_entite,perso.objets)
         EntiteDAO.add_entite(entite)
-        AttaqueDAO.add_attaque(entite)
+#        AttaqueDAO.add_attaque(entite)
 #        CapaciteDAO.add_capacite(entite)
 #        LangageDAO.add_langage(entite)
 #        perso.id_entite=entite_persistee.id_entite
