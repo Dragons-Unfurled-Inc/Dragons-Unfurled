@@ -1,5 +1,4 @@
 from objets_metier.caracteristique import Caracteristique
-from objets_metier.entite import Entite
 from objets_metier.objet import Objet
 from objets_metier.personnage import Personnage
 from web.dao.db_connection import DBConnection
@@ -20,7 +19,7 @@ class PersonnageDAO(metaclass=Singleton):
                                                  "race,"\
                                                  "lore) "\
                         "VALUES "\
-                        "(%(classe)s, %(race)s, %(lore)s)"\
+                        "( %(classe)s, %(race)s, %(lore)s)"\
    
                     , {"classe" : personnage.classe
                     , "race": personnage.race

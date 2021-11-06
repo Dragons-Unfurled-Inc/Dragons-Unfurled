@@ -1,5 +1,3 @@
-from objets_metier import personnage
-from objets_metier.caracteristique import Caracteristique
 from objets_metier.entite import Entite
 from objets_metier.personnage import Personnage
 from web.dao.entite_dao import EntiteDAO
