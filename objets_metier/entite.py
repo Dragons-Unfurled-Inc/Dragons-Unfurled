@@ -11,16 +11,14 @@ class Entite(ABC, BaseModel):
     """ 
     _id_joueur: str
     _id_entite: int                 
-    _caracteristiques_entite: Caracteristique
+    caracteristiques_entite: Caracteristique
     _objets: Optional[List[Objet]] = None
 
     def __init__(self, id_joueur: str, 
                        id_entite: int,                  
-                       caracteristiques_entite: Caracteristique,
                        objets: Optional[List[Objet]] = None) -> None: 
         self._id_joueur = id_joueur
         self._id_entite = id_entite 
-        self._caracteristiques_entite = caracteristiques_entite
         self._objets = objets
 
     class Config:
@@ -62,13 +60,13 @@ class Entite(ABC, BaseModel):
     def id_entite(self, value):
         self._id_entite = value
     
-    @property
-    def caracteristiques_entite(self):
-        return self._caracteristiques_entite
+    # @property
+    # def caracteristiques_entite(self):
+    #     return self._caracteristiques_entite
 
-    @caracteristiques_entite.setter
-    def caracteristiques_entite(self, value):
-        self._caracteristiques_entite = value
+    # @caracteristiques_entite.setter
+    # def caracteristiques_entite(self, value):
+    #     self._caracteristiques_entite = value
 
     @property
     def objets(self):
