@@ -17,11 +17,12 @@ class EntiteDAO:
 
     @staticmethod    
     def add_entite(enti : Entite) -> Entite:
+            if enti.objets == None : 
+                entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite))
+            else:
+                entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
-                    caract = Caracteristique(nom_entite="Nom", attaques="Attaques", capacites="Capacité", languages="langages",description="des")
-                    obj = Objet("id_objet", "nom_objet","des")
-                    enti = Entite("id joueur","id entite",caract, [obj])
                     cursor.execute(
                         "INSERT INTO Entite (nom_entite, "\
                                             "niveau,"\
@@ -38,20 +39,30 @@ class EntiteDAO:
                         "VALUES "\
                         "(%(nom_entite)s,%(niveau)s,%(experience)s, %(force)s, %(intelligence)s, %(charisme)s, %(dexterite)s, %(constitution)s, %(sagesse)s,%(vie)s, %(description)s, %(classe_armure)s)"
    
-                    , { "nom_entite" : enti.caracteristiques_entite.nom_entite
-                    , "niveau": enti.caracteristiques_entite.niveau
-                    , "experience": enti.caracteristiques_entite.experience
-                    , "force": enti.caracteristiques_entite.force
-                    , "intelligence": enti.caracteristiques_entite.intelligence
-                    , "charisme": enti.caracteristiques_entite.charisme
-                    , "dexterite": enti.caracteristiques_entite.dexterite
-                    , "constitution": enti.caracteristiques_entite.constitution
-                    , "sagesse": enti.caracteristiques_entite.sagesse
-                    , "vie": enti.caracteristiques_entite.vie
-                    , "description": enti.caracteristiques_entite.description
-                    , "classe_armure": enti.caracteristiques_entite.classe_armure
+                    , { "nom_entite" : entite.caracteristiques_entite.nom_entite
+                    , "niveau": entite.caracteristiques_entite.niveau
+                    , "experience": entite.caracteristiques_entite.experience
+                    , "force": entite.caracteristiques_entite.force
+                    , "intelligence": entite.caracteristiques_entite.intelligence
+                    , "charisme": entite.caracteristiques_entite.charisme
+                    , "dexterite": entite.caracteristiques_entite.dexterite
+                    , "constitution": entite.caracteristiques_entite.constitution
+                    , "sagesse": entite.caracteristiques_entite.sagesse
+                    , "vie": entite.caracteristiques_entite.vie
+                    , "description": entite.caracteristiques_entite.description
+                    , "classe_armure": entite.caracteristiques_entite.classe_armure
                     }) 
-            return enti
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT MAX(id_entite) as max FROM Entite")
+                    id_ent = cursor.fetchone()
+                    id_ent = id_ent['max']
+            if enti.objets == None : 
+                entite_retournee = Entite(enti.id_joueur, id_ent, Caracteristique.parse_obj(enti.caracteristiques_entite))
+            else:
+                entite_retournee = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
+            return entite_retournee
             
     @staticmethod
     def diminution_pv(nom_entite: str): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.

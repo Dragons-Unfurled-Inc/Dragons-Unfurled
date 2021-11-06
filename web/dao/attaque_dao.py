@@ -11,13 +11,19 @@ class AttaqueDAO(metaclass=Singleton):
     
     @staticmethod    
     def add_attaque(enti : Entite) :
-        for i in range(0, len((enti.caracteristiques_entite['attaques']))) :
+        if enti.objets == None : 
+            entite = Entite(enti.id_joueur, enti.id_entite, enti.caracteristiques_entite)
+        else:
+            entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
+        for i in range(0, len((entite.caracteristiques_entite.attaques))) :
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "INSERT INTO Capacité (nom_attaque, "\
+                        "INSERT INTO Attaque (id_entite, "\
+                                              "nom_attaque) "\
                         "VALUES "\
-                        "(%(nom_attaque)s)"\
+                        "(%(id_entite)s, %(nom_attaque)s)"\
    
-                    , { "nom_attaque" : (enti.caracteristiques_entite)['attaques'][i]
+                    , { "id_entite" : entite.id_entite
+                    , "nom_attaque" : entite.caracteristiques_entite.attaques[i]
                     })
