@@ -11,15 +11,17 @@ class LangageDAO(metaclass=Singleton):
     
     @staticmethod    
     def add_langage(enti : Entite) :
-        for i in range(0, len(enti.caracteristiques_entite.__languages)) :
+        if enti.objets == None : 
+            entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite))
+        else:
+            entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
+        for i in range(0, len(entite.caracteristiques_entite.languages)) :
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "INSERT INTO Capacité (id_entite, "\
-                                               "nom_langage, "\
+                        "INSERT INTO Langage (nom_langage) "\
                         "VALUES "\
-                        "(%(id_entite)s,%(nom_langage)s)"\
+                        "(%(nom_langage)s)"\
    
-                    , { "id_entite" : enti.id_entite
-                    , "nom_langage" : enti.caracteristiques_entite.__languages[i]
+                    , {"nom_langage" : entite.caracteristiques_entite.languages[i]
                     })

@@ -11,13 +11,17 @@ class CapaciteDAO(metaclass=Singleton):
     
     @staticmethod    
     def add_capacite(enti : Entite) :
-        for i in range(0, len(enti.caracteristiques_entite.capacites)) :
+        if enti.objets == None : 
+            entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite))
+        else:
+            entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
+        for i in range(0, len(entite.caracteristiques_entite.capacites)) :
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "INSERT INTO Capacité (nom_capacite, "\
+                        "INSERT INTO Capacite (nom_capacite)"\
                         "VALUES "\
                         "(%(nom_capacite)s)"\
    
-                    , { "nom_capacite" : enti.caracteristiques_entite.capacites[i]
+                    , { "nom_capacite" : entite.caracteristiques_entite.capacites[i]
                     })
