@@ -14,7 +14,7 @@ class LangageDAO(metaclass=Singleton):
         if enti.objets == None : 
             entite = Entite(enti.id_joueur, enti.id_entite, enti.caracteristiques_entite)
         else:
-            entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
+            entite = Entite(enti.id_joueur, enti.id_entite, enti.caracteristiques_entite, enti.objets)
         for i in range(0, len(entite.caracteristiques_entite.languages)) :
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :

@@ -20,7 +20,7 @@ class EntiteDAO:
             if enti.objets == None : 
                 entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite))
             else:
-                entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
+                entite = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), enti.objets)
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
@@ -61,7 +61,7 @@ class EntiteDAO:
             if enti.objets == None : 
                 entite_retournee = Entite(enti.id_joueur, id_ent, Caracteristique.parse_obj(enti.caracteristiques_entite))
             else:
-                entite_retournee = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
+                entite_retournee = Entite(enti.id_joueur, id_ent, Caracteristique.parse_obj(enti.caracteristiques_entite), [Objet.parse_obj(enti.objets[i]) for i in range(0, len(enti.objets))])
             return entite_retournee
             
     @staticmethod

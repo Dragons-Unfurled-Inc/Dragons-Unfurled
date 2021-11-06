@@ -31,7 +31,12 @@ class Personnage(Entite,BaseModel):
                         "capacites":["Capacité"], 
                         "languages":["langages"],
                         "description":"des"
-                }
+                },
+                "objet" : [{
+                        "id_objet" : "4", 
+                        "nom_objet" : "objet test",
+                        "description" : "pioche"
+                } ]
             }
         }
         
