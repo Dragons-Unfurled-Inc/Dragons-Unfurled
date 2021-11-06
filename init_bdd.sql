@@ -23,34 +23,37 @@ CREATE TABLE Campagne(
 CREATE TABLE Donjon(
     id_donjon serial PRIMARY KEY NOT NULL,
     nom_donjon text NOT NULL, 
-    id_campagne serial NOT NULL,
-	FOREIGN KEY (id_donjon) REFERENCES Donjon(id_donjon)
+    id_campagne int NOT NULL,
+	FOREIGN KEY (id_campagne) REFERENCES Campagne(id_campagne)
 );
 
 CREATE TABLE Capacite(
-    id_entite serial PRIMARY KEY NOT NULL, 
-    nom_capacite text NOT NULL
+    id_entite int NOT NULL, 
+    nom_capacite text NOT NULL, 
+    FOREIGN KEY (id_entite) REFERENCES Entite(id_entite)
 ); 
 
 CREATE TABLE Langage(
-    id_entite serial PRIMARY KEY NOT NULL, 
-    nom_langage text NOT NULL
+    id_entite int NOT NULL, 
+    nom_langage text NOT NULL, 
+    FOREIGN KEY (id_entite) REFERENCES Entite(id_entite)
 );
 
 CREATE TABLE Attaque(
-    id_entite serial PRIMARY KEY NOT NULL, 
-    nom_attaque text NOT NULL   
+    id_entite int NOT NULL, 
+    nom_attaque text NOT NULL, 
+    FOREIGN KEY (id_entite) REFERENCES Entite(id_entite)  
 );
 
 CREATE TABLE Personnage(
-    id_entite serial PRIMARY KEY NOT NULL,
+    id_entite int PRIMARY KEY NOT NULL,
     classe text NOT NULL,
     race text NOT NULL, 
     lore text NOT NULL
 );
 
 CREATE TABLE Monstre(
-    id_entite serial PRIMARY KEY NOT NULL,
+    id_entite int PRIMARY KEY NOT NULL,
     type text NOT NULL
 );
 
@@ -65,7 +68,7 @@ CREATE TABLE Salle(
     nom_salle text NOT NULL,
     coordonnee_salle_x int NOT NULL, 
     coordonnee_salle_y int NOT NULL,
-    id_donjon serial NOT NULL,
+    id_donjon int NOT NULL,
 	FOREIGN KEY (id_donjon) REFERENCES Donjon(id_donjon)
 );
 
@@ -74,13 +77,13 @@ CREATE TABLE Cellule
     id_cellule serial NOT NULL PRIMARY KEY , 
     coordonnee_cellule_x int NOT NULL,
     coordonnee_cellule_y int NOT NULL, 
-    id_salle serial NOT NULL,
+    id_salle int NOT NULL,
 	FOREIGN KEY (id_salle) REFERENCES Salle(id_salle)
 );
 
 
 CREATE TABLE Combat(
-    id_jet serial PRIMARY KEY NOT NULL,
+    id_jet int PRIMARY KEY NOT NULL,
     id_entite1 int NOT NULL,
     id_entite2 int NOT NULL,
 	FOREIGN KEY (id_entite1) REFERENCES Entite(id_entite),
@@ -111,7 +114,7 @@ CREATE TABLE FeedBack(
 
 CREATE TABLE Utilisateur_Entite(
     username text NOT NULL,
-    id_entite serial NOT NULL,
+    id_entite int NOT NULL,
 	PRIMARY KEY (username,id_entite),
 	FOREIGN KEY (username) REFERENCES Utilisateur(username),
 	FOREIGN KEY (id_entite) REFERENCES Entite(id_entite)
@@ -119,7 +122,7 @@ CREATE TABLE Utilisateur_Entite(
 
 CREATE TABLE Utilisateur_Campagne(
     username text NOT NULL,
-    id_entite serial NOT NULL,
+    id_entite int NOT NULL,
     est_joueur boolean NOT NULL,
 	PRIMARY KEY (username, id_entite),
 	FOREIGN KEY (username) REFERENCES Utilisateur(username),
@@ -127,17 +130,17 @@ CREATE TABLE Utilisateur_Campagne(
 );
 
 CREATE TABLE Salle_Objet(
-    id_salle serial NOT NULL,
-    id_objet serial NOT NULL,
+    id_salle int NOT NULL,
+    id_objet int NOT NULL,
 	PRIMARY KEY (id_salle, id_objet),
 	FOREIGN KEY (id_salle) REFERENCES Salle(id_salle),
 	FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
 );
 
 CREATE TABLE Entite_Objet(
-    id_entite serial NOT NULL,
-    id_objet serial NOT NULL,
-	PRIMARY KEY (id_entite, id_objet),
+    id_entite int NOT NULL,
+    id_objet int NOT NULL,
+	PRIMARY KEY (id_objet),
 	FOREIGN KEY (id_entite) REFERENCES Entite(id_entite),
 	FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
 );

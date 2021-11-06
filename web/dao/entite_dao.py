@@ -52,7 +52,17 @@ class EntiteDAO:
                     , "description": entite.caracteristiques_entite.description
                     , "classe_armure": entite.caracteristiques_entite.classe_armure
                     }) 
-            return enti
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT MAX(id_entite) as max FROM Entite")
+                    id_ent = cursor.fetchone()
+                    id_ent = id_ent['max']
+            if enti.objets == None : 
+                entite_retournee = Entite(enti.id_joueur, id_ent, Caracteristique.parse_obj(enti.caracteristiques_entite))
+            else:
+                entite_retournee = Entite(enti.id_joueur, enti.id_entite, Caracteristique.parse_obj(enti.caracteristiques_entite), Objet.parse_obj(enti.objets))
+            return entite_retournee
             
     @staticmethod
     def diminution_pv(nom_entite: str): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
