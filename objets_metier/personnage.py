@@ -11,13 +11,8 @@ class Personnage(Entite,BaseModel):
     __lore: str
     _id_joueur: str 
     _id_entite: str
-<<<<<<< HEAD
     __nom_entite: str
     __caracteristiques_entite: Caracteristique        
-=======
-    __nom_entite: str             
-    _caracteristiques_entite: Caracteristique
->>>>>>> 56d045504e14176108583740abd53941c861f02b
     _objets: Optional[List[Objet]] = None
 
     class Config:
@@ -55,10 +50,7 @@ class Personnage(Entite,BaseModel):
             caracteristiques_entite = caracteristiques_entite,
             objets = objets
             ) 
-<<<<<<< HEAD
         self.__caracteristiques_entite=caracteristiques_entite
-=======
->>>>>>> 56d045504e14176108583740abd53941c861f02b
         self.__classe = classe
         self.__race = race
         self.__lore = lore
