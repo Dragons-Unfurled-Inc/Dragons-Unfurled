@@ -11,8 +11,8 @@ class Personnage(Entite,BaseModel):
     __lore: str
     _id_joueur: str 
     _id_entite: str
-    __nom_entite: str
-    caracteristiques_entite: Caracteristique        
+    __nom_entite: str             
+    _caracteristiques_entite: Caracteristique
     _objets: Optional[List[Objet]] = None
 
     class Config:
@@ -40,16 +40,16 @@ class Personnage(Entite,BaseModel):
                        lore: str,
                        id_joueur: str, 
                        id_entite: str,
-                       nom_entite: str,    
-                       caracteristiques_entite:Caracteristique,              
+                       nom_entite: str,                  
+                       caracteristiques_entite: Caracteristique,
                        objets: Optional[List[Objet]] = None ) -> None: 
 
         super().__init__(
             id_joueur= id_joueur,
             id_entite = id_entite,
+            caracteristiques_entite = caracteristiques_entite,
             objets = objets
             ) 
-        self.caracteristiques_entite=caracteristiques_entite
         self.__classe = classe
         self.__race = race
         self.__lore = lore
