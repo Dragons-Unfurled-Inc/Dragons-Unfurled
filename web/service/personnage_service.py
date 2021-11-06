@@ -6,7 +6,7 @@ from web.dao.personnage_ok_dao import PersonnageDAO
 from web.dao.attaque_dao import AttaqueDAO
 from web.dao.capacite_dao import CapaciteDAO
 from web.dao.langage_dao import LangageDAO
-
+from web.dao.entite_objet_dao import ObjetEntiteDAO
 
 class PersonnageService():
     @staticmethod
@@ -16,5 +16,8 @@ class PersonnageService():
         AttaqueDAO.add_attaque(entite_persistee)
         CapaciteDAO.add_capacite(entite_persistee)
         LangageDAO.add_langage(entite_persistee)
+#        ObjetEntiteDAO.add_entite_objet(entite_persistee)
         personnage = Personnage(perso.classe, perso.race, perso.lore, perso.id_joueur, entite_persistee.id_entite, perso.nom_entite, Caracteristique(perso.caracteristiques_entite['nom_entite'],perso.caracteristiques_entite['attaques'], perso.caracteristiques_entite['capacites'], perso.caracteristiques_entite['languages'], perso.caracteristiques_entite['description']), perso.objets)
         PersonnageDAO.add_personnage(personnage)
+
+

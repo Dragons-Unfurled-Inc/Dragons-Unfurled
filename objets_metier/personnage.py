@@ -12,7 +12,7 @@ class Personnage(Entite,BaseModel):
     _id_joueur: str 
     _id_entite: str
     __nom_entite: str
-    caracteristiques_entite: Caracteristique        
+    __caracteristiques_entite: Caracteristique        
     _objets: Optional[List[Objet]] = None
 
     class Config:
@@ -27,9 +27,9 @@ class Personnage(Entite,BaseModel):
                 "nom_entite": "Martin",
                 "caracteristiques_entite": {
                         "nom_entite":"Nom", 
-                        "attaques":"Attaques", 
-                        "capacites":"Capacité", 
-                        "languages":"langages",
+                        "attaques":["Attaques"], 
+                        "capacites":["Capacité"], 
+                        "languages":["langages"],
                         "description":"des"
                 }
             }
@@ -49,7 +49,7 @@ class Personnage(Entite,BaseModel):
             id_entite = id_entite,
             objets = objets
             ) 
-        self.caracteristiques_entite=caracteristiques_entite
+        self.__caracteristiques_entite=caracteristiques_entite
         self.__classe = classe
         self.__race = race
         self.__lore = lore
@@ -76,7 +76,7 @@ class Personnage(Entite,BaseModel):
                              self._id_joueur,
                              self._id_entite,
                              self.__nom_entite,
-                             Caracteristique.__str__(self._caracteristiques_entite),
+                             Caracteristique.__str__(self.__caracteristiques_entite),
                              aff_obj) 
 
 
