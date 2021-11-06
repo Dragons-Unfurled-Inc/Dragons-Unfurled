@@ -65,11 +65,23 @@ class MenuMJ(AbstractView):
                     return MenuMJ(self.joueur,self.campagne)
 
                 elif not input("Voulez-vous supprimer un personnage non-joueur ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
-                    print(self.joueur.personnages_non_joueurs)
-                    input("Saisissez l'identifiant du personnage non-joueur à supprimer.")
+                    liste_pnj = self.joueur.personnages_non_joueurs
+                    print("Voici les pnj disponibles:")
+                    for pnj in liste_pnj:
+                        print(pnj)
+                    identifiant_entite = input("Saisissez l'identifiant du pnj à supprimer.")
+                    MjDAO.supprimer_entite(identifiant_entite)
+                    from client.view.maitre_du_jeu_view import MenuMJ
+                    return MenuMJ(self.joueur,self.campagne)
                 elif not input("Voulez-vous supprimer un monstre ? \n Faîtes entrer si oui et écrivez quelque-chose sinon."):
-                    print(self.joueur.monstres)
-                    input("Saisissez l'identifiant du monstre à supprimer.")
+                    liste_monstres = self.joueur.monstres
+                    print("Voici les monstres disponibles:")
+                    for monstres in liste_monstres:
+                        print(monstres)
+                    identifiant_entite = input("Saisissez l'identifiant du monstre à supprimer.")
+                    MjDAO.supprimer_entite(identifiant_entite)
+                    from client.view.maitre_du_jeu_view import MenuMJ
+                    return MenuMJ(self.joueur,self.campagne)
                 else:
                     from client.view.maitre_du_jeu_view import MenuMJ
                     return MenuMJ(self.joueur, self.campagne)
@@ -95,8 +107,14 @@ class MenuMJ(AbstractView):
             from client.view.accueil_jeu_view import AccueilJeuView
             return AccueilJeuView(self.joueur)
         if reponse['choix'] == 'Réaliser une action sur un donjon':
+            liste_donjon = self.joueur.donjons
+            print("Voici les donjons disponibles:")
+            for donjons in liste_donjon:
+                print(donjons)
+            id_donj = input("Saisissez l'identifiant du donjon souhaité.")   
+            donjon = self.joueur.donjons[id_donj]         
             from client.view.donjon_view import MenuDonjon
-            return MenuDonjon()
+            return MenuDonjon(self.joueur, self.campagne, donjon)
         if reponse['choix'] == 'Créer une entité':
             pass
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
