@@ -58,7 +58,7 @@ class MenuDonjon(AbstractView):
 
         if reponse['choix'] == 'Ajouter une salle':
             id_salle = input("Saisissez l'identifiant de la salle à créer.") 
-            nom_salle =  input("Saisissez l'identifiant de la salle à créer.")  
+            nom_salle =  input("Saisissez le nom de la salle à créer.")  
             salle = Salle(id_salle, nom_salle)
             Donjon.ajouter_salle(self.donjon, salle)
             from client.view.donjon_view import MenuDonjon
@@ -70,11 +70,13 @@ class MenuDonjon(AbstractView):
             from client.view.donjon_view import MenuDonjon
             return MenuDonjon(self.joueur,self.campagne,self.donjon)
         if reponse['choix'] == 'Ajouter un élément dans le donjon':
-            pass
+            message = input("Voulez-vous ajouter un objet ? Saisissez Oui ou Non")
+            if message == "Oui":
+                
         if reponse['choix'] == 'Modifier un élément dans le donjon':
             pass
-        if reponse['choix'] == 'Déplacer un élément dans le donjon':
-            pass
+        if reponse['choix'] == 'Déplacer un élément dans le donjon': # Il faut une fonction pour déplacer tous les joueurs d'un coup
+            pass 
         if reponse['choix'] == 'Quitter le donjon':
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur, self.campagne)
