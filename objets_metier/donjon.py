@@ -6,7 +6,7 @@ class Donjon(BaseModel):
 
     __id_donjon: str
     __nom_donjon: str
-    __pieces: Optional[List[Salle]] = None 
+    __pieces: Optional[List[Salle]] 
 
     class Config:
         underscore_attrs_are_private = True

@@ -6,7 +6,7 @@ from objets_metier.entite import Entite
 class Salle(BaseModel):
     __id_salle: str
     __nom_salle: str
-    __coordonnees_salle: Optional[List[int]] = None
+    __coordonnees_salle: Optional[List[int]] = [0,0]
     __objets: Optional[List[Objet]] = None
     __entites: Optional[List[Entite]] = None 
 

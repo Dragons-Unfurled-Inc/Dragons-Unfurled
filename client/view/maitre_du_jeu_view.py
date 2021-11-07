@@ -101,9 +101,10 @@ class MenuMJ(AbstractView):
                 return MenuMJ(self.joueur,self.campagne)   
         
         if reponse['choix'] == 'Créer un donjon':
-            id_donjon = input("Saisissez l'identifiant du donjon à créer.")
+            
             nom_donjon = input("Saisissez le nom du donjon à créer.")
-            donjon = Donjon(id_donjon,nom_donjon)
+            import client.service.donjon_service import DonjonService
+            donjon = DonjonService.creation_donjon(nom_donjon) #doit créer au moins une salle
             MaitreDuJeu.construire_donjon(self.joueur,donjon)
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur, self.campagne)
@@ -137,6 +138,8 @@ class MenuMJ(AbstractView):
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
             from client.service.campagne_service import CampagneService
             CampagneService.sauvegarder(self.campagne) 
+            from client.view.maitre_du_jeu_view import MenuMJ
+            return MenuMJ(self.joueur,self.campagne)
         if reponse['choix'] == 'Consulter la fiche d\'une entité':
             message = input("Voulez-vous consulter la fiche d'un personnage ? Saisissez Oui ou Non")
             if message == "Non":
