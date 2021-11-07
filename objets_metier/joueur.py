@@ -34,7 +34,7 @@ class Joueur(Utilisateur, BaseModel):
     def consulter_personnage(self, id_campagne):
         None
 
-    def modifier_personnage(self, id_campagne):
+    def modifier_personnage(self, id_campagne): # Attention, il faut proposer au joueur d'ajouter des objets de l'API dans son inventaire/sa liste d'obj.
         None 
 
     def changer_revelation_jet(self):
