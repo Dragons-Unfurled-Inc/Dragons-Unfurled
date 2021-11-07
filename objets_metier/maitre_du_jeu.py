@@ -70,6 +70,9 @@ class MaitreDuJeu(Joueur,BaseModel):
     def modifier_monstre(self, monstre : Monstre):
         None
 
+    def modifier_personnage(self, personnage : Personnage):
+        None    
+
     def ajouter_monstre(self, monstre : Monstre, donjon : Donjon = None): 
        """
        Cette fonction ajoute un monstre dans la campagne. 

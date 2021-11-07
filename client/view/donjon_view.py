@@ -51,15 +51,24 @@ class MenuDonjon(AbstractView):
             return MenuDonjon(self.joueur,self.campagne,self.donjon)
         if reponse['choix'] == 'Consulter une salle':
             id_salle = input("Saisissez l'identifiant de la salle à consulter.")
-            salle = SalleDAO.trouve_salle(identifiant_salle)
+            salle = Salle_service.trouve_salle(id_salle)
             print(salle)
             from client.view.donjon_view import MenuDonjon
             return MenuDonjon(self.joueur,self.campagne,self.donjon)
 
         if reponse['choix'] == 'Ajouter une salle':
-            pass    
+            id_salle = input("Saisissez l'identifiant de la salle à créer.") 
+            nom_salle =  input("Saisissez l'identifiant de la salle à créer.")  
+            salle = Salle(id_salle, nom_salle)
+            Donjon.ajouter_salle(self.donjon, salle)
+            from client.view.donjon_view import MenuDonjon
+            return MenuDonjon(self.joueur,self.campagne,self.donjon)
         if reponse['choix'] == 'Modifier une salle':
-            pass
+            id_salle = input("Saisissez l'identifiant de la salle à consulter.")
+            salle = Salle_service.trouve_salle(id_salle)
+            Donjon.editer_salle(self.donjon, salle)
+            from client.view.donjon_view import MenuDonjon
+            return MenuDonjon(self.joueur,self.campagne,self.donjon)
         if reponse['choix'] == 'Ajouter un élément dans le donjon':
             pass
         if reponse['choix'] == 'Modifier un élément dans le donjon':
