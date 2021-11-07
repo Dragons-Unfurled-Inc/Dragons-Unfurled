@@ -10,17 +10,18 @@ class MonstreDAO(metaclass = Singleton):
     @staticmethod    
     def add_personnage(monstre : Monstre) -> Monstre:
             if monstre.objets == None :
-                monstre = Monstre(monstre.type, monstre.id_joueur, monstre.id_entite, Caracteristique.parse_obj(monstre.caracteristiques_entite))
+                mons = Monstre(monstre.type, monstre.id_joueur, monstre.id_entite, monstre.caracteristiques_entite)
             else:
-                monstre = Monstre(monstre.type, monstre.id_joueur, monstre.id_entite, Caracteristique.parse_obj(monstre.caracteristiques_entite), Objet.parse_obj(monstre.objets))
+                mons = Monstre(monstre.type, monstre.id_joueur, monstre.id_entite, monstre.caracteristiques_entite, monstre.objets)
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "INSERT INTO Monstre (type) "\
-                        "VALUES "\
-                        "(%(type)s)"\
+                        "INSERT INTO Monstre (id_entite, "\
+                                             "type) "\
+                        "VALUES" \
+                        "(%(id_entite)s, %(type)s)"\
    
-                    , {"type" : monstre.type
+                    , { "id_entite" : mons.id_entite
+                    , "type" : mons.type
                     })
-            
             return monstre
