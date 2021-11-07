@@ -8,6 +8,8 @@ from objets_metier.donjon import Donjon
 from client.view.session import Session
 from web.dao.jet_dao import JetDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
+from suppr_enti_view import SupprEntiView
+
 class MenuMJ(AbstractView):
 
 
@@ -21,7 +23,8 @@ class MenuMJ(AbstractView):
                     'Créer un donjon',
                     'Réaliser une action sur un donjon',
                     'Créer une entité',
-                    'Ajouter ou supprimer une entité',
+                    'Ajouter une entité',
+                    'Supprimer une entité',
                     'Consulter la fiche d\'une entité',
                     'Modifier la fiche d\'une entité',
                     Separator(),
@@ -47,36 +50,8 @@ class MenuMJ(AbstractView):
         if reponse['choix'] == 'Ajouter ou supprimer une entité':
             message = input("Voulez-vous ajouter une entité à votre campagne ? \n Saisissez Oui ou Non")
             if message == "Non":
-                mes = input("Voulez-vous supprimer un personnage joueur ? \n Saisissez Oui ou Non")
-                if mes == "Oui":
-                    liste_personnages = self.joueur.personnages_joueurs
-                    print("Voici les personnages disponibles:")
-                    for personnage in liste_personnages:
-                        print(personnage)
-                    identifiant_entite = input("Saisissez l'identifiant du personnage à supprimer.")
-                    Mj_services.supprimer_entite(identifiant_entite)
-                    from client.view.maitre_du_jeu_view import MenuMJ
-                    return MenuMJ(self.joueur,self.campagne)
-                if mes == "Non":
-                    mess = input("Voulez-vous supprimer un personnage non-joueur ? \n \n Saisissez Oui ou Non")
-                    if mess == "Oui":
-                        liste_pnj = self.joueur.personnages_non_joueurs
-                        print("Voici les pnj disponibles:")
-                        for pnj in liste_pnj:
-                            print(pnj)
-                        identifiant_entite = input("Saisissez l'identifiant du pnj à supprimer.")
-                        Mj_services.supprimer_entite(identifiant_entite)
-                        from client.view.maitre_du_jeu_view import MenuMJ
-                        return MenuMJ(self.joueur,self.campagne)
-                    else:
-                        liste_monstres = self.joueur.monstres
-                        print("Voici les monstres disponibles:")
-                        for monstres in liste_monstres:
-                            print(monstres)
-                        identifiant_entite = input("Saisissez l'identifiant du monstre à supprimer.")
-                        Mj_services.supprimer_entite(identifiant_entite)
-                        from client.view.maitre_du_jeu_view import MenuMJ
-                        return MenuMJ(self.joueur,self.campagne)
+                return(SupprEntiView(self.joueur))
+            
             if message == "Oui":
                 mes = input("Voulez-vous ajouter un personnage joueur ? \n Saisissez Oui ou Non")
                 if mes == "Oui":

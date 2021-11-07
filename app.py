@@ -37,11 +37,11 @@ async def add_personnage(username:str,utili:Utilisateur):
     resultat = {"username": username, **utilisateur.dict()}
     return resultat
 
-#@app.put("/Feedback/{username}")
-#async def add_feedback(username : str, feed : Feedback):
-#    FeedbackService.add_feedback(feed, username)
-#    resultat = {"username": username, **feed.dict()}
-#    return resultat
+# @app.put("/Feedback/{username}")
+# async def add_feedback(username : str, feed : Feedback):
+#     FeedbackService.add_feedback(feed, username)
+#     resultat = {"username": username, **feed.dict()}
+#     return resultat
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)
