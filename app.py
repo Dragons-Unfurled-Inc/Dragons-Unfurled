@@ -4,9 +4,11 @@ from fastapi import FastAPI
 from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.monstre import Monstre
+from objets_metier.utilisateur import Utilisateur
 from web.dao.personnage_dao import PersonnageDAO
 from web.service.personnage_service import PersonnageService
 from web.service.monstre_service import MonstreService
+from web.service.utilisateur_service import UtilisateurService
 
 # On instancie le webservice
 app = FastAPI()
@@ -26,6 +28,13 @@ async def add_personnage(monstre:Monstre):
     MonstreService.add_monstre(monstre)
     resultat = monstre.dict()
     return resultat
+
+@app.put("/Utilisateur/{username}")
+async def add_personnage(username:str,utili:Utilisateur):
+    UtilisateurService.add_utilisateur(utili)
+    resultat = {"username": username, **utili.dict()}
+    return resultat
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)

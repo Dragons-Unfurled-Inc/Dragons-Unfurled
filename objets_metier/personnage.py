@@ -32,7 +32,7 @@ class Personnage(Entite,BaseModel):
                         "languages":["langages"],
                         "description":"des"
                 },
-                "objet" : [{
+                "objets" : [{
                         "id_objet" : "4", 
                         "nom_objet" : "objet test",
                         "description" : "pioche"

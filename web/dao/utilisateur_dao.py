@@ -43,14 +43,19 @@ class UtilisateurDAO:
     @staticmethod
     def createUtilisateur(utilisateur: Utilisateur) -> Utilisateur:
         try:
-            UtilisateurDAO.getUtilisateur(utilisateur.utilisateur_nom)
+            UtilisateurDAO.getUtilisateur(utilisateur.identifiant)
         except UtilisateurIntrouvableException:
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
-                        "INSERT INTO utilisateur (id,utilisateur_nom, password), VALUES "
-                        "(%(id_type)s, %(name)s);", {"utilisateur_nom": utilisateur.utilisateur_nom, "password": utilisateur.password})
-            return UtilisateurDAO.getUtilisateur(utilisateur.utilisateur_nom)
+                        "INSERT INTO Utilisateur (est_administrateur, "\
+                                                 "password), "\
+                        "VALUES "\
+                        "(%(est_administrateur)s, %(password)s);", 
+                        {"est_administrateur": utilisateur.est_administrateur
+                        , "password": utilisateur.mot_de_passe}
+                    )
+            return utilisateur
 
     @staticmethod
     def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:
