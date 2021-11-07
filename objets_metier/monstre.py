@@ -13,6 +13,25 @@ class Monstre(Entite,BaseModel):
     
     class Config:
         underscore_attrs_are_private = True
+        schema_extra = {
+            "example": {
+                "type": "Gobelin",
+                "id_joueur": 5,
+                "id_entite":4,
+                "caracteristiques_entite": {
+                        "nom_entite":"Nom", 
+                        "attaques":["Attaques"], 
+                        "capacites":["Capacité"], 
+                        "languages":["langages"],
+                        "description":"des"
+                },
+                "objets" : [{
+                        "id_objet" : "4", 
+                        "nom_objet" : "objet test",
+                        "description" : "pioche"
+                } ]
+            }
+        }
 
     def __init__(self, type: str,
                        id_joueur: str, 
