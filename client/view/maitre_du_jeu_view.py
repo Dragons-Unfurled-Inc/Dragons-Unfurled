@@ -18,26 +18,18 @@ class MenuMJ(AbstractView):
                 'name': 'choix',
                 'message': f' {Session().identifiant} que souhaitez-vous faire ?',
                 'choices': [
-                    'Ajouter ou supprimer une entité',
-                    Separator(),
                     'Créer un donjon',
-                    Separator(),
                     'Réaliser une action sur un donjon',
-                    Separator(),
                     'Créer une entité',
-                    Separator(),
+                    'Ajouter ou supprimer une entité',
                     'Consulter la fiche d\'une entité',
-                    Separator(),
                     'Modifier la fiche d\'une entité',
                     Separator(),
                     'Lancer des dés',
-                    Separator(),
                     'Consulter les jets',
-                    Separator(),
                     'Donner un feedback',
                     Separator(),
                     'Sauvegarder l\état de la campagne',
-                    Separator(),
                     'Quitter la campagne',
                     
                 ]
@@ -89,7 +81,7 @@ class MenuMJ(AbstractView):
                 mes = input("Voulez-vous ajouter un personnage joueur ? \n Saisissez Oui ou Non")
                 if mes == "Oui":
                     identifiant_entite = input("Saisissez l'identifiant du personnage à ajouter.")
-                    Mj_services.ajouter_entite(identifiant_entite)
+                    Mj_services.ajouter_entite(identifiant_entite) # Peut-être demander le nom pour un joueur
                     from client.view.maitre_du_jeu_view import MenuMJ
                     return MenuMJ(self.joueur,self.campagne)
                 if mes == "Non":
@@ -135,14 +127,16 @@ class MenuMJ(AbstractView):
             print("Voici les donjons disponibles:")
             for donjons in liste_donjon:
                 print(donjons)
-            id_donj = input("Saisissez l'identifiant du donjon souhaité.")   
+            id_donj = input("Saisissez l'identifiant du donjon souhaité.")   # A changer
             donjon = self.joueur.donjons[id_donj]         
             from client.view.donjon_view import MenuDonjon
             return MenuDonjon(self.joueur, self.campagne, donjon)
-        if reponse['choix'] == 'Créer une entité':
-            pass
+        if reponse['choix'] == 'Créer un monstre':
+                from client.view.creation_monstre_view import MenuMonstre
+                return MenuMonstre(self.joueur,self.campagne)
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
-            pass  
+            from client.service.campagne_service import CampagneService
+            CampagneService.sauvegarder(self.campagne) 
         if reponse['choix'] == 'Consulter la fiche d\'une entité':
             message = input("Voulez-vous consulter la fiche d'un personnage ? Saisissez Oui ou Non")
             if message == "Non":

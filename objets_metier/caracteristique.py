@@ -5,11 +5,11 @@ class Caracteristique(BaseModel) :
     """
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
-    __nom_entite: str
-    __attaques: List[str]
-    __capacites: List[str]
-    __languages: List[str]
-    __description: Optional[str]
+    __nom_entite: str 
+    __attaques: List[str] = []
+    __capacites: List[str] = []
+    __languages: List[str] = []
+    __description: Optional[str] = []
     __niveau: int = 1
     __experience: int = 20
     __force: int = 20
