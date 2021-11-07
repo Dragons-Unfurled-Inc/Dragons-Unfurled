@@ -1,14 +1,15 @@
 # Import classique
 import uvicorn
 from fastapi import FastAPI
+from objets_metier.feedback import Feedback
 from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.monstre import Monstre
 from objets_metier.utilisateur import Utilisateur
-from web.dao.personnage_dao import PersonnageDAO
 from web.service.personnage_service import PersonnageService
 from web.service.monstre_service import MonstreService
 from web.service.utilisateur_service import UtilisateurService
+from web.service.feedback_service import FeedbackService
 
 # On instancie le webservice
 app = FastAPI()
@@ -32,8 +33,14 @@ async def add_personnage(monstre:Monstre):
 @app.put("/Utilisateur/{username}")
 async def add_personnage(username:str,utili:Utilisateur):
     utilisateur = Utilisateur(utili.connecte, utili.mot_de_passe, username, utili.est_administrateur, utili.feed_backs)
-    UtilisateurService.add_utilisateur(utili)
-    resultat = {"username": username, **utili.dict()}
+    UtilisateurService.add_utilisateur(utilisateur)
+    resultat = {"username": username, **utilisateur.dict()}
+    return resultat
+
+@app.put("/Feedback/{username}")
+async def add_feedback(feed : Feedback, user : str):
+    FeedbackService.add_feedback(feed, user)
+    resultat = {"username": user, **feed.dict()}
     return resultat
 
 

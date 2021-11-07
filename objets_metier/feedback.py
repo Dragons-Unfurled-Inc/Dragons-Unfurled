@@ -8,6 +8,13 @@ class Feedback(BaseModel):
     
     class Config:
         underscore_attrs_are_private = True
+        schema_extra = {
+            "example": {
+                "id_feedback" : 4,
+                "message" : "jessaye la bdd",
+                "date_ecriture" : datetime.date.today    
+            }
+        }
 
     def __init__(self,
                     id_feedback: int,
