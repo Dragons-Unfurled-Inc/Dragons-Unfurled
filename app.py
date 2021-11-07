@@ -31,6 +31,7 @@ async def add_personnage(monstre:Monstre):
 
 @app.put("/Utilisateur/{username}")
 async def add_personnage(username:str,utili:Utilisateur):
+    utilisateur = Utilisateur(utili.connecte, utili.mot_de_passe, username, utili.est_administrateur, utili.feed_backs)
     UtilisateurService.add_utilisateur(utili)
     resultat = {"username": username, **utili.dict()}
     return resultat

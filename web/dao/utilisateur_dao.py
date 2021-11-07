@@ -5,62 +5,64 @@ from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntro
 
 class UtilisateurDAO:
 
-    @staticmethod
-    def liste_noms():
-        return []
+#    @staticmethod
+#    def liste_noms():
+#        return []
 
-    @staticmethod
-    def creation_compte(nouvel_utilisateur: Utilisateur):
-        return []
+#    @staticmethod
+#    def creation_compte(nouvel_utilisateur: Utilisateur):
+#        return []
 
-    @staticmethod
-    def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
-        with DBConnection().connection as connection:
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    "SELECT * "
-                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom)s and utilisateur.password=%(password)s"
-                )
-                res = cursor.fetchone()
-            if res["utilisateur_nom"] != None:
-                return True
-            return False
+#    @staticmethod
+#    def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
+#        with DBConnection().connection as connection:
+#            with connection.cursor() as cursor:
+#                cursor.execute(
+#                    "SELECT * "
+#                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom)s and utilisateur.password=%(password)s"
+#                )
+#                res = cursor.fetchone()
+#            if res["utilisateur_nom"] != None:
+#                return True
+#            return False
 
-    @staticmethod
-    def getUtilisateur(utilisateur_nom: str) -> Utilisateur:
-        with DBConnection().connection as connection:
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    "SELECT * "
-                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom)s"
-                )
-                res = cursor.fetchone()
-        if res:
-            return Utilisateur(id=res["id_utilisateur"], utilisateur_nom=res["utilisateur_nom"], password=res["password"])
-        else:
-            raise UtilisateurIntrouvableException(utilisateur_nom)
+#    @staticmethod
+#    def getUtilisateur(utilisateur_nom: str) -> Utilisateur:
+#        with DBConnection().connection as connection:
+#            with connection.cursor() as cursor:
+#                cursor.execute(
+#                    "SELECT * "
+#                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom)s"
+#                )
+#                res = cursor.fetchone()
+#        if res:
+#            return Utilisateur(id=res["id_utilisateur"], utilisateur_nom=res["utilisateur_nom"], password=res["password"])
+#        else:
+#            raise UtilisateurIntrouvableException(utilisateur_nom)
 
     @staticmethod
     def createUtilisateur(utilisateur: Utilisateur) -> Utilisateur:
-        try:
-            UtilisateurDAO.getUtilisateur(utilisateur.identifiant)
-        except UtilisateurIntrouvableException:
+#        try:
+#            UtilisateurDAO.getUtilisateur(utilisateur.identifiant)
+#        except UtilisateurIntrouvableException:
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
-                        "INSERT INTO Utilisateur (est_administrateur, "\
-                                                 "password), "\
+                        "INSERT INTO Utilisateur (username, "\
+                                                 "est_administrateur, "\
+                                                 "password) "\
                         "VALUES "\
-                        "(%(est_administrateur)s, %(password)s);", 
-                        {"est_administrateur": utilisateur.est_administrateur
+                        "(%(username)s,%(est_administrateur)s, %(password)s);", 
+                        { "username" : utilisateur.identifiant
+                        , "est_administrateur": utilisateur.est_administrateur
                         , "password": utilisateur.mot_de_passe}
                     )
             return utilisateur
 
-    @staticmethod
-    def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:
-        utilisateur_to_update: Utilisateur = UtilisateurDAO.getUtilisateur(utilisateur_nom)
-        with DBConnection().connection as connection:
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    "UPDATE utilisateur SET utilisateur_nom=%(utilisateur_nom)s, password=%(password)s where id_utilisateur=%(id_utilisateur)s;", {"id_utilisateur": utilisateur_to_update.id, "utilisateur_nom": utilisateur.utilisateur_nom, "password": utilisateur.password})
+#    @staticmethod
+#    def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:
+#        utilisateur_to_update: Utilisateur = UtilisateurDAO.getUtilisateur(utilisateur_nom)
+#        with DBConnection().connection as connection:
+#            with connection.cursor() as cursor:
+#                cursor.execute(
+#                    "UPDATE utilisateur SET utilisateur_nom=%(identifiant)s, password=%(password)s where id_utilisateur=%(id_utilisateur)s;", {"id_utilisateur": utilisateur_to_update.id, "utilisateur_nom": utilisateur.utilisateur_nom, "password": utilisateur.password})

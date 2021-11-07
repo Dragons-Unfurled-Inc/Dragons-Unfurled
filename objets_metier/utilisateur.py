@@ -12,6 +12,15 @@ class Utilisateur(BaseModel):
 
     class Config:
         underscore_attrs_are_private = True
+        schema_extra = {
+            "example": {
+                "connecte": False,
+                "mot_de_passe": "coucou",
+                "identifiant": "essai_manon",
+                "est_administrateur": False,
+                "feed_backs" : []
+            }
+        }
 
     def __init__(self, connecte : bool,
                        mot_de_passe : str,
