@@ -9,16 +9,8 @@ from web.dao.feed_back_dao import FeedBackDAO
 from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
 
 
-class MJService(metaclass = Singleton):
+class DonjonService(metaclass = Singleton):
 
     @staticmethod    
-    def ajouter_entite(identifiant_entite): 
-        pass
-
-    @staticmethod    
-    def supprimer_entite(identifiant_entite): 
-        pass
-
-    @staticmethod    
-    def trouve_entite(identifiant_entite): 
+    def creation_donjon(nom_donjon): 
         pass
