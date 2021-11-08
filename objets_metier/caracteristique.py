@@ -9,7 +9,7 @@ class Caracteristique(BaseModel) :
     __attaques: List[str] = []
     __capacites: List[str] = []
     __languages: List[str] = []
-    __description: Optional[str] = []
+    __description: Optional[str] = ''
     __niveau: int = 1
     __experience: int = 20
     __force: int = 20
@@ -22,18 +22,18 @@ class Caracteristique(BaseModel) :
     __classe_armure: int = 10
 
     def __init__(self,  nom_entite: str,
-                        attaques: List[str],
-                        capacites: List[str], 
-                        languages: List[str], 
-                        description: Optional[str],
-                        niveau: int = 1, 
-                        experience: int = 10,
                         force: int = 20, 
                         intelligence: int = 20, 
                         charisme: int = 20, 
                         dexterite: int = 20, 
                         constitution: int = 5, 
-                        sagesse: int = 20, 
+                        sagesse: int = 20,
+                        attaques: List[str] = [],
+                        capacites: List[str] = [], 
+                        languages: List[str] = [], 
+                        description: Optional[str] = '',
+                        niveau: int = 1, 
+                        experience: int = 10, 
                         vie: int = 10,
                         classe_armure: int = 10) -> None:
         self.__nom_entite = nom_entite

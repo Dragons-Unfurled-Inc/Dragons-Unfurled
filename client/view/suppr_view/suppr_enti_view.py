@@ -1,8 +1,5 @@
 from client.view.abstract_view import AbstractView
 from PyInquirer import prompt
-from client.view.suppr_view.suppr_pers_view import SupprPersView
-from client.view.suppr_view.suppr_mons_view import SupprMonsView
-from client.view.suppr_view.suppr_pnj_view import SupprPNJView
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 
 
@@ -14,7 +11,7 @@ class SupprEntiView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Voulez vous supprimer :',
+                'message': 'Voulez vous supprimer :',
                 'choices': [
                     'Le personnage d\'un joueur' ,
                     'Un monstre' , 
@@ -32,8 +29,11 @@ class SupprEntiView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'Le personnage d\'un joueur':
+            from client.view.suppr_view.suppr_pers_view import SupprPersView
             return SupprPersView(self.joueur)
         if reponse['choix'] == 'Un monstre' :
+            from client.view.suppr_view.suppr_mons_view import SupprMonsView
             return SupprMonsView(self.joueur)
         if reponse['choix'] == 'Un personnage non joueur (PNJ)' :
+            from client.view.suppr_view.suppr_pnj_view import SupprPNJView
             return SupprPNJView(self.joueur)

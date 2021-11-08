@@ -54,35 +54,12 @@ class MenuMJ(AbstractView):
         reponse = prompt(self.__questions)
         
         if reponse['choix'] == 'Ajouter une entité':
-            from ajout_view.ajout_mons_view import AjoutMonsView
-            return AjoutMonsView(self.joueur)
+            from ajout_view.ajout_enti_view import AjoutEntiView
+            return AjoutEntiView(self.joueur)
             
         if reponse['choix'] == 'Supprimer une entité':
             from suppr_view.suppr_enti_view import SupprEntiView
             return SupprEntiView(self.joueur)
-    
-        # if message == "Oui":
-        #     mes = input("Voulez-vous ajouter un personnage joueur ? \n Saisissez Oui ou Non")
-        #     if mes == "Oui":
-        #             identifiant_entite = input("Saisissez l'identifiant du personnage à ajouter.")
-        #             MJService.ajouter_entite(identifiant_entite) # Peut-être demander le nom pour un joueur
-        #             from client.view.maitre_du_jeu_view import MenuMJ
-        #             return MenuMJ(self.joueur,self.campagne)
-        #     if mes == "Non":
-        #         mess = input("Voulez-vous ajouter un personnage non-joueur ? \n \n Saisissez Oui ou Non")
-        #         if mess == "Oui":
-        #                 identifiant_entite = input("Saisissez l'identifiant du pnj à ajouter.")
-        #                 MJService.ajouter_entite(identifiant_entite)
-        #                 from client.view.maitre_du_jeu_view import MenuMJ
-        #                 return MenuMJ(self.joueur,self.campagne)
-        #             else:
-        #                 identifiant_entite = input("Saisissez l'identifiant du monstre à ajouter.")
-        #                 MJService.supprimer_entite(identifiant_entite)
-        #                 from client.view.maitre_du_jeu_view import MenuMJ
-        #                 return MenuMJ(self.joueur,self.campagne)    
-        #     else:
-        #         from client.view.maitre_du_jeu_view import MenuMJ
-        #         return MenuMJ(self.joueur,self.campagne)   
         
         if reponse['choix'] == 'Créer un donjon':
             nom_donjon = input("Saisissez le nom du donjon à créer.")
@@ -90,21 +67,26 @@ class MenuMJ(AbstractView):
             MaitreDuJeu.construire_donjon(self.joueur,donjon)
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur, self.campagne)
+        
         if reponse['choix'] == 'Lancer des dés':
             from client.view.des_view import MenuDes
             return MenuDes(self.joueur, self.campagne)    
+        
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur,self.campagne)
+        
         if reponse['choix'] == 'Donner un feedback':
             message = input("Quel est le feedback que vous souhaitez poster ?")
             Joueur.donner_feed_back(self.joueur,message)
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur,self.campagne)
+        
         if reponse['choix'] == 'Quitter la campagne':
             from client.view.accueil_jeu_view import AccueilJeuView
             return AccueilJeuView(self.joueur)
+        
         if reponse['choix'] == 'Réaliser une action sur un donjon':
             liste_donjon = self.joueur.donjons
             print("Voici les donjons disponibles:")
@@ -114,13 +96,16 @@ class MenuMJ(AbstractView):
             donjon = self.joueur.donjons[id_donj]         
             from client.view.donjon_view import MenuDonjon
             return MenuDonjon(self.joueur, self.campagne, donjon)
+        
         if reponse['choix'] == 'Créer un monstre':
                 from client.view.creation_monstre_view import MenuMonstre
                 return MenuMonstre(self.joueur,self.campagne)
+            
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
             CampagneService.sauvegarder(self.campagne) 
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur,self.campagne)
+        
         if reponse['choix'] == 'Consulter la fiche d\'une entité':
             message = input("Voulez-vous consulter la fiche d'un personnage ? Saisissez Oui ou Non")
             if message == "Non":
@@ -129,6 +114,7 @@ class MenuMJ(AbstractView):
                 MaitreDuJeu.consulter_monstre(monstre)
                 from client.view.maitre_du_jeu_view import MenuMJ
                 return MenuMJ(self.joueur,self.campagne)
+            
             if message == "Oui":    
                 id_personnage = input("Saisissez l'identifiant du personnage à consulter")
                 perso = MJService.trouve_entite(id_personnage)
@@ -142,6 +128,7 @@ class MenuMJ(AbstractView):
                 id_monstre = input("Saisissez l'identifiant du monstre à consulter")
                 monstre = MJService.trouve_entite(id_monstre)
                 MaitreDuJeu.modifier_monstre(monstre)
+                
             if message == "Oui":    
                 id_personnage = input("Saisissez l'identifiant du personnage à consulter")
                 perso = MJService.trouve_entite(id_personnage)

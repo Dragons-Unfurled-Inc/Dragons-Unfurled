@@ -17,7 +17,7 @@ class AjoutMonsView(AbstractView):
             {
                 'type': 'list',
                 'name': 'type',
-                'message': f'Choisissez le type de monstre que vous voulez importer :',
+                'message': 'Choisissez le type de monstre que vous voulez importer :',
                 'choices': self.liste_types
             },
             {

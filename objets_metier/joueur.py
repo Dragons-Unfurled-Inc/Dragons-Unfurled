@@ -15,17 +15,18 @@ class Joueur(Utilisateur, BaseModel):
     class Config:
         underscore_attrs_are_private = True
 
-    def __init__(self, personnage : List[Personnage], 
+    def __init__(self, personnages : List[Personnage], 
                        connecte : bool,
                        mot_de_passe : str,
                        identifiant : str,
                        est_administrateur : bool, 
                        feed_backs : List[Feedback] = [],
                        choix_revelation : bool = True): 
-        self._personnage = personnage
+        
+        self._personnages = personnages
         self._choix_revelation = choix_revelation
 
-        Utilisateur.__init__(connecte,mot_de_passe,identifiant,est_administrateur,feed_backs)
+        super().__init__(connecte,mot_de_passe,identifiant,est_administrateur,feed_backs)
 
 
     def creer_personnage(self):

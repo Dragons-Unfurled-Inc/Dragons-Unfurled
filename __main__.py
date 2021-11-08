@@ -3,6 +3,8 @@ from client.view.start_view import StartView
 
 if __name__ == '__main__':
     # Lance notre première vue : StartView
+    #test menu perso
+    #current_view = MenuPersonnage(Joueur([],True,"bla","id",True,))
     current_view = StartView()
 
     # Tant que la vue n'est pas None, l'application continue de tourner.

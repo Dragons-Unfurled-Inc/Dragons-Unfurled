@@ -11,7 +11,7 @@ class SupprPNJView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Voici la liste des PNJ :',
+                'message': 'Voici la liste des PNJ :',
                 'choices': self.liste_personnages
             }
         ]

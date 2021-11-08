@@ -10,7 +10,7 @@ class SupprPersView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Voici la liste des personnages :',
+                'message': 'Voici la liste des personnages :',
                 'choices': self.liste_personnages
             }
         ]

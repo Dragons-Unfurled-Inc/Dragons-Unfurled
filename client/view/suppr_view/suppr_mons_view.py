@@ -10,7 +10,7 @@ class SupprMonsView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Voici la liste des monstres :',
+                'message': 'Voici la liste des monstres :',
                 'choices': self.liste_monstres
             }
         ]

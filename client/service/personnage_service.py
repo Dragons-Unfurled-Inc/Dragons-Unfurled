@@ -43,8 +43,9 @@ class PersonnageService(metaclass=Singleton):
     
     @staticmethod           
     def liste_race():
-        r = req.get('https://www.dnd5eapi.co/api/races') #cette liste doit être définie ailleurs (dans le package web) plus tard 
+        r = req.get('https://www.dnd5eapi.co/api/races') 
         dicraces = r.json()
         return [dicraces['results'][i]['name'] for i in range(dicraces['count'])]
+    
 
         

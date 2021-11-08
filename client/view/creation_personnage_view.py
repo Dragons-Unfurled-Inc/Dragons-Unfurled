@@ -25,8 +25,8 @@ class NumberValidator(Validator):
 class MenuPersonnage(AbstractView):
     
     def __init__(self, joueur = Joueur):
-        self.classes = PersonnageService.liste_classe
-        self.races = PersonnageService.liste_race
+        self.classes = PersonnageService.liste_classe()
+        self.races = PersonnageService.liste_race()
         self.questions = [
             {
                 'type': 'list',
@@ -42,7 +42,7 @@ class MenuPersonnage(AbstractView):
             },
             {
                 'type': 'input',
-                'name': 'Race',
+                'name': 'Lore',
                 'message': 'Ecrivez le lore de votre personnage',
                 'default': 'Lore'
             },
@@ -68,6 +68,22 @@ class MenuPersonnage(AbstractView):
             },
             {
                 'type': 'input',
+                'name': 'Intelligence',
+                'message': 'Combien de points d\'intelligence a votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
+                'name': 'Charisme',
+                'message': 'Combien de points de charisme a votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
                 'name': 'Dextérité',
                 'message': 'Combien de points de dextérité a votre personnage ?',
                 'validate': NumberValidator,
@@ -84,28 +100,12 @@ class MenuPersonnage(AbstractView):
             },
             {
                 'type': 'input',
-                'name': 'Intelligence',
-                'message': 'Combien de points d\'intelligence a votre personnage ?',
-                'validate': NumberValidator,
-                'filter': lambda val: int(val),
-                'when' : lambda answers : answers['ChoixCarac']
-            },
-            {
-                'type': 'input',
                 'name': 'Sagesse',
                 'message': 'Combien de points de sagesse a votre personnage ?',
                 'validate': NumberValidator,
                 'filter': lambda val: int(val),
                 'when' : lambda answers : answers['ChoixCarac']
-            },
-            {
-                'type': 'input',
-                'name': 'Charisme',
-                'message': 'Combien de points de charisme a votre personnage ?',
-                'validate': NumberValidator,
-                'filter': lambda val: int(val),
-                'when' : lambda answers : answers['ChoixCarac']
-            },
+            }
             ]
         self.joueur = joueur
     def display_info(self):
@@ -114,6 +114,10 @@ class MenuPersonnage(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         print(reponse)
-        self.joueur._personnages += Personnage(reponse[1:4],Caracteristique(reponse[5:]))
+        if reponse['ChoixCarac'] : 
+            carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
+        else : 
+            carac = Caracteristique(reponse['Nom'])
+        self.joueur._personnages += Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],0,0,reponse["Nom"],carac)
         from client.view.accueil_jeu_view import AccueilJeuView
         return AccueilJeuView(self.joueur)
