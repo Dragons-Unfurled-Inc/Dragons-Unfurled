@@ -7,12 +7,15 @@ from objets_metier.caracteristique import Caracteristique
 from objets_metier.monstre import Monstre
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.donjon import Donjon
+from objets_metier.salle import Salle
+
 from web.service.personnage_service import PersonnageService
 from web.service.monstre_service import MonstreService
 from web.service.utilisateur_service import UtilisateurService
 from web.service.feedback_service import FeedbackService
 from web.service.campagne_service import CampagneService
 from web.service.donjon_service import DonjonService
+from web.service.salle_service import SalleService
 
 # On instancie le webservice
 app = FastAPI()
@@ -55,6 +58,11 @@ async def add_campagne(nom_campagne : str):
 async def add_donjon(id_campagne : int, donjon : Donjon):
     DonjonService.add_donjon(id_campagne, donjon)
     return donjon
+
+@app.put("/Salle")
+async def add_salle(id_donjon : int, coordonnees_salle_x : int, coordonnees_salle_y : int,salle : Salle) : 
+    SalleService.add_salle(id_donjon, coordonnees_salle_x, coordonnees_salle_y,salle)
+    return salle
 
 
 if __name__ == "__main__":

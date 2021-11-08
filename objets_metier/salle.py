@@ -12,6 +12,15 @@ class Salle(BaseModel):
 
     class Config:
         underscore_attrs_are_private = True
+        schema_extra = {
+            "example": {
+                "id_salle" : 3,
+                "nom_salle": "salle_essai",
+                "coordonnees_salle" : [0,0],
+                "objet" : None,
+                "entite" : None
+            }
+        } 
 
     def __init__(self, id_salle: str,
                        nom_salle: str,
