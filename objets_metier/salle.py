@@ -18,6 +18,7 @@ class Salle(BaseModel):
                 "id_salle" : 3,
                 "nom_salle": "salle_essai",
                 "coordonnees_salle_donjon" : [0,0],
+                "coordonnees_salle_cellule" : [[0,0], [3,2]],
                 "objet" : None,
                 "entite" : None
             }
@@ -105,12 +106,20 @@ class Salle(BaseModel):
         self.__nom_salle = value
 
     @property
-    def coordonnees_salle(self):
-        return self.__coordonnees_salle
+    def coordonnees_salle_donjon(self):
+        return self.__coordonnees_salle_donjon
 
-    @coordonnees_salle.setter
+    @coordonnees_salle_donjon.setter
     def coordonnees(self, value):
-        self.__coordonnees_salle = value   
+        self.__coordonnees_salle_donjon = value   
+
+    @property
+    def coordonnees_salle_cellule(self):
+        return self.__coordonnees_salle_cellule
+
+    @coordonnees_salle_cellule.setter
+    def coordonnees(self, value):
+        self.__coordonnees_salle_cellule = value  
 
     @property
     def objets(self):

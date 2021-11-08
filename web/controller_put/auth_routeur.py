@@ -58,6 +58,6 @@ async def add_donjon(id_campagne : int, donjon : Donjon):
     return donjon
 
 @routerput.put("/Salle")
-async def add_salle(id_donjon : int, coordonnees_salle_x : int, coordonnees_salle_y : int,salle : Salle) : 
-    SalleService.add_salle(id_donjon, coordonnees_salle_x, coordonnees_salle_y,salle)
+async def add_salle(id_donjon : int,salle : Salle) : 
+    SalleService.add_salle(id_donjon,salle)
     return salle
