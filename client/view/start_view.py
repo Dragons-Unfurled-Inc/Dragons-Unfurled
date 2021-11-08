@@ -23,8 +23,8 @@ class StartView(AbstractView):
         ]
 
     def display_info(self):
-        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/texte/accueil_connexion.txt', 'r', encoding="utf-8") as affichage2:
-            print(affichage1.read(),affichage2.read())
+        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/texte/accueil_connexion.txt', 'r', encoding="utf-8") as affichage2, open('client/dessins_ascii/texte/titre1.txt', 'r', encoding="utf-8") as affichage3, open('client/dessins_ascii/texte/titre2.txt', 'r', encoding="utf-8") as affichage4:
+            print(affichage3.read(), affichage4.read(), affichage1.read(), affichage2.read())
 
     def make_choice(self):
         reponse = prompt(self.questions)
