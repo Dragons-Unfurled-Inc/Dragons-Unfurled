@@ -212,6 +212,9 @@ instance/
 # Scrapy stuff:
 .scrapy
 
+# Session:
+.session.py
+
 # Sphinx documentation
 docs/_build/
 
