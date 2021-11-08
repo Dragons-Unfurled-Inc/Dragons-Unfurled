@@ -11,7 +11,11 @@ CREATE TABLE Entite(
     sagesse int NOT NULL, 
     vie int NOT NULL,
     description text NOT NULL, 
-    classe_armure int NOT NULL
+    classe_armure int NOT NULL,
+    id_campagne int,
+    id_cellule int, 
+    FOREIGN KEY (id_campagne) REFERENCES Campagne(id_campagne),
+    FOREIGN KEY (id_cellule) REFERENCES Cellule(id_cellule)
 ); 
 
 CREATE TABLE Campagne(
