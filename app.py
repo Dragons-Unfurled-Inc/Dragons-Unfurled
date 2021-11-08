@@ -6,11 +6,13 @@ from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.monstre import Monstre
 from objets_metier.utilisateur import Utilisateur
+from objets_metier.donjon import Donjon
 from web.service.personnage_service import PersonnageService
 from web.service.monstre_service import MonstreService
 from web.service.utilisateur_service import UtilisateurService
 from web.service.feedback_service import FeedbackService
 from web.service.campagne_service import CampagneService
+from web.service.donjon_service import DonjonService
 
 # On instancie le webservice
 app = FastAPI()
@@ -44,10 +46,16 @@ async def add_personnage(username:str,utili:Utilisateur):
 #     resultat = {"username": username, **feed.dict()}
 #     return resultat
 
-@app.put("/campagne")
+@app.put("/Campagne")
 async def add_campagne(nom_campagne : str):
     id_campagne = CampagneService.add_campagne(nom_campagne)
     return (id_campagne, nom_campagne)
+
+@app.put("/Donjon")
+async def add_donjon(id_campagne : int, donjon : Donjon):
+    DonjonService.add_donjon(id_campagne, donjon)
+    return donjon
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)

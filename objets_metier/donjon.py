@@ -1,4 +1,5 @@
 from typing import List, Optional
+from objets_metier.objet import Objet
 from objets_metier.salle import Salle
 from pydantic import BaseModel
 
@@ -10,6 +11,19 @@ class Donjon(BaseModel):
 
     class Config:
         underscore_attrs_are_private = True
+        schema_extra = {
+            "example": {
+                "id_donjon": 3,
+                "nom_donjon": "donjondumythe",
+                "pieces": {
+                    "id_salle" : 3,
+                    "nom_salle" : "salle du mythe",
+                    "coordonnees_salle" : [0,0],
+                    "objet" : None,
+                    "entite" : None
+                }
+            }
+        }
 
     def __init__(self,
                     id_donjon: str,
