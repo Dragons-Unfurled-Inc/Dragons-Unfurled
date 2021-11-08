@@ -18,3 +18,11 @@ class DonjonDAO(metaclass=Singleton):
                     , {"nom_donjon" : donjon.nom_donjon
                     , "id_campagne" : id_campagne
                     })
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT MAX(id_donjon) as max FROM Donjon")
+                    id_donj = cursor.fetchone()
+                    id_donj = id_donj['max']
+            return Donjon(id_donj, donjon.nom_donjon, donjon.pieces)
+            

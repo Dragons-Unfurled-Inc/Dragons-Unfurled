@@ -136,7 +136,7 @@ CREATE TABLE Utilisateur_Campagne(
 CREATE TABLE Salle_Objet(
     id_salle int NOT NULL,
     id_objet int NOT NULL,
-	PRIMARY KEY (id_salle, id_objet),
+	PRIMARY KEY (id_objet),
 	FOREIGN KEY (id_salle) REFERENCES Salle(id_salle),
 	FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
 );

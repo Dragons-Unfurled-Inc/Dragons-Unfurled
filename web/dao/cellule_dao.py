@@ -10,13 +10,13 @@ class CelluleDAO(metaclass=Singleton):
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "INSERT INTO Cellule (coordonnees_cellule_x, "\
-                                              "coordonnees_celulle_y, "\
+                        "INSERT INTO Cellule (coordonnee_cellule_x, "\
+                                              "coordonnee_cellule_y, "\
                                               "id_salle) "\
                         "VALUES "\
-                        "(%(coordonnees_cellule_x)s,%(coordonnees_celulle_y)s,%(id_salle)s)"\
+                        "(%(coordonnee_cellule_x)s,%(coordonnee_cellule_y)s,%(id_salle)s)"\
    
-                    , {"coordonnees_cellule_x" : coord_x
-                    , "coordonnees_cellule_y" :coord_y
+                    , {"coordonnee_cellule_x" : coord_x
+                    , "coordonnee_cellule_y" :coord_y
                     , "id_salle" : id_salle
                     })        
