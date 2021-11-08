@@ -7,5 +7,5 @@ class Session(metaclass=Singleton):
         """
         self.connecte = False
         self.mot_de_passe: str = "Testest"
-        self.identifiant: str = "Julien"
+        self.identifiant: str = "Arthur"
         self.est_administrateur = True
