@@ -8,7 +8,7 @@ from objets_metier.donjon import Donjon
 from client.view.session import Session
 from web.dao.jet_dao import JetDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
-from suppr_enti_view import SupprEntiView
+from client.view.suppr_view.suppr_enti_view import SupprEntiView
 
 class MenuMJ(AbstractView):
 
@@ -78,7 +78,7 @@ class MenuMJ(AbstractView):
         if reponse['choix'] == 'Créer un donjon':
             
             nom_donjon = input("Saisissez le nom du donjon à créer.")
-            import client.service.donjon_service import DonjonService
+            from client.service.donjon_service import DonjonService
             donjon = DonjonService.creation_donjon(nom_donjon) #doit créer au moins une salle
             MaitreDuJeu.construire_donjon(self.joueur,donjon)
             from client.view.maitre_du_jeu_view import MenuMJ

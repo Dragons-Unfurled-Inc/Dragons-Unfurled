@@ -5,14 +5,14 @@ if __name__ == '__main__':
     # Lance notre première vue : StartView
     current_view = StartView()
 
-    # while current_view is not none, the application is still running
+    # Tant que la vue n'est pas None, l'application continue de tourner.
     while current_view:
-        # a border between view
+        # On affiche notre bordure entre chaque view.
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
             print(asset.read())
-        # Display the info of the view
+        # Nous Affichons les infos de la vue.
         current_view.display_info()
-        # ask user for a choice
+        # On demande à l'utilisateur son choix.
         current_view = current_view.make_choice()
 
     with open('client/dessins_ascii/logo.txt', 'r', encoding="utf-8") as asset:
