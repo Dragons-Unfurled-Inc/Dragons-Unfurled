@@ -19,7 +19,11 @@ class Salle(BaseModel):
                 "nom_salle": "salle_essai",
                 "coordonnees_salle_donjon" : [0,0],
                 "coordonnees_salle_cellule" : [[0,0], [3,2]],
-                "objet" : None,
+                "objets" : [{
+                        "id_objet" : "4", 
+                        "nom_objet" : "objet test",
+                        "description" : "pioche"
+                } ],
                 "entite" : None
             }
         } 
