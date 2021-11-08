@@ -52,21 +52,26 @@ class MenuMJ(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.__questions)
-        if reponse['choix'] == 'Ajouter ou supprimer une entité':
-            message = input("Voulez-vous ajouter une entité à votre campagne ? \n Saisissez Oui ou Non")
-            if message == "Non":
-                return(SupprEntiView(self.joueur))
+        
+        if reponse['choix'] == 'Ajouter une entité':
+            from ajout_view.ajout_enti_view import AjoutEntiView
+            return AjoutEntiView(self.joueur)
             
-            if message == "Oui":
-                mes = input("Voulez-vous ajouter un personnage joueur ? \n Saisissez Oui ou Non")
-                if mes == "Oui":
+        if reponse['choix'] == 'Supprimer une entité':
+            from suppr_view.suppr_enti_view import SupprEntiView
+            return SupprEntiView(self.joueur)
+        reponse = prompt(self.__questions)
+    
+        if message == "Oui":
+            mes = input("Voulez-vous ajouter un personnage joueur ? \n Saisissez Oui ou Non")
+            if mes == "Oui":
                     identifiant_entite = input("Saisissez l'identifiant du personnage à ajouter.")
                     MJService.ajouter_entite(identifiant_entite) # Peut-être demander le nom pour un joueur
                     from client.view.maitre_du_jeu_view import MenuMJ
                     return MenuMJ(self.joueur,self.campagne)
-                if mes == "Non":
-                    mess = input("Voulez-vous ajouter un personnage non-joueur ? \n \n Saisissez Oui ou Non")
-                    if mess == "Oui":
+            if mes == "Non":
+                mess = input("Voulez-vous ajouter un personnage non-joueur ? \n \n Saisissez Oui ou Non")
+                if mess == "Oui":
                         identifiant_entite = input("Saisissez l'identifiant du pnj à ajouter.")
                         MJService.ajouter_entite(identifiant_entite)
                         from client.view.maitre_du_jeu_view import MenuMJ
