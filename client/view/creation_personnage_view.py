@@ -105,6 +105,7 @@ class MenuPersonnage(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        self.joueur._personnages += Personnage(reponse)
+        print(reponse)
+        #self.joueur._personnages += Personnage(reponse)
         from client.view.accueil_jeu_view import AccueilJeuView
         return AccueilJeuView(self.joueur)
