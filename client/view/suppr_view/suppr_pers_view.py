@@ -1,5 +1,5 @@
-from typing import AbstractSet
-
+from PyInquirer import prompt
+from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.view.abstract_view import AbstractView
 
 class SupprPersView(AbstractView):
@@ -21,6 +21,6 @@ class SupprPersView(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        Mj_services.supprimer_entite(reponse)
+        #Mj_services.supprimer_entite(reponse)
         from client.view.maitre_du_jeu_view import MenuMJ
         return MenuMJ(self.joueur,self.campagne)

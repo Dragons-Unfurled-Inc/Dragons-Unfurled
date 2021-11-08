@@ -1,9 +1,11 @@
 from client.view.abstract_view import AbstractView
-from PyInquirer import Separator, prompt
-from pydantic import main
+from PyInquirer import prompt
 from suppr_pers_view import SupprPersView
 from suppr_mons_view import SupprMonsView
 from suppr_pnj_view import SupprPNJView
+from objets_metier.maitre_du_jeu import MaitreDuJeu
+
+
 
 class SupprEntiView(AbstractView):
 
