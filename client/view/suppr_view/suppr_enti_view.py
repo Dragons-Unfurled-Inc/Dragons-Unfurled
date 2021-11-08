@@ -1,8 +1,8 @@
 from client.view.abstract_view import AbstractView
 from PyInquirer import prompt
-from view.suppr_view.suppr_pers_view import SupprPersView
-from view.suppr_view.suppr_mons_view import SupprMonsView
-from view.suppr_view.suppr_pnj_view import SupprPNJView
+from client.view.suppr_view.suppr_pers_view import SupprPersView
+from client.view.suppr_view.suppr_mons_view import SupprMonsView
+from client.view.suppr_view.suppr_pnj_view import SupprPNJView
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 
 
