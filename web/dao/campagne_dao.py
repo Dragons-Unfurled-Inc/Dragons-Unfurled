@@ -27,3 +27,10 @@ class CampagneDAO:
    
                     , { "nom_campagne" : nom_campagne}
                     )
+        with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT MAX(id_campagne) as max FROM campagne")
+                    id_camp = cursor.fetchone()
+                    id_camp = id_camp['max']
+        return id_camp

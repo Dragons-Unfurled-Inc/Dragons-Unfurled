@@ -46,8 +46,8 @@ async def add_personnage(username:str,utili:Utilisateur):
 
 @app.put("/campagne")
 async def add_campagne(nom_campagne : str):
-    CampagneService.add_campagne(nom_campagne)
-    return nom_campagne
+    id_campagne = CampagneService.add_campagne(nom_campagne)
+    return (id_campagne, nom_campagne)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)
