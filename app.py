@@ -10,6 +10,7 @@ from web.service.personnage_service import PersonnageService
 from web.service.monstre_service import MonstreService
 from web.service.utilisateur_service import UtilisateurService
 from web.service.feedback_service import FeedbackService
+from web.service.campagne_service import CampagneService
 
 # On instancie le webservice
 app = FastAPI()
@@ -42,6 +43,11 @@ async def add_personnage(username:str,utili:Utilisateur):
 #     FeedbackService.add_feedback(feed, username)
 #     resultat = {"username": username, **feed.dict()}
 #     return resultat
+
+@app.put("/campagne")
+async def add_campagne(nom_campagne : str):
+    CampagneService.add_campagne(nom_campagne)
+    return nom_campagne
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)

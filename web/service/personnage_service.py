@@ -21,7 +21,6 @@ class PersonnageService():
         if entite_persistee.objets != None:
             ObjetEntiteDAO.add_entite_objet(entite_persistee)
         personnage = Personnage(perso.classe, perso.race, perso.lore, perso.id_joueur, entite_persistee.id_entite, perso.nom_entite, Caracteristique(perso.caracteristiques_entite['nom_entite'],perso.caracteristiques_entite['attaques'], perso.caracteristiques_entite['capacites'], perso.caracteristiques_entite['languages'], perso.caracteristiques_entite['description']), [Objet(perso.objets[i]["id_objet"], perso.objets[i]["nom_objet"],perso.objets[i]["description"]) for i in range(0, len(perso.objets))])
-        print(personnage)
         PersonnageDAO.add_personnage(personnage)
 
 

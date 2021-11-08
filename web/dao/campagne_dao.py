@@ -17,5 +17,13 @@ class CampagneDAO:
         pass 
 
     @staticmethod  
-    def creer_campagne(nom_campagne):  #Creer_campagne affiche l'identifiant de la campagne
-        pass    
+    def add_campagne(nom_campagne : str):  #Creer_campagne affiche l'identifiant de la campagne
+        with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Campagne (nom_campagne) "\
+                        "VALUES "\
+                        "(%(nom_campagne)s)"\
+   
+                    , { "nom_campagne" : nom_campagne}
+                    )
