@@ -8,3 +8,4 @@ def Creer_monstre(nom_monstre: str):
     return MonstreService.ImportMonstreWeb(nom_monstre)
 
 
+
