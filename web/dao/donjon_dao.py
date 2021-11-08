@@ -1,7 +1,5 @@
 from web.dao.db_connection import DBConnection
 from utils.singleton import Singleton
-import requests as req
-from abc import abstractstaticmethod
 
 from objets_metier.donjon import Donjon
 
