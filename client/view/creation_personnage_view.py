@@ -7,7 +7,9 @@ import regex
 from pprint import pprint
 from objets_metier.entite import Entite
 import requests as req
-
+from client.service.personnage_service import PersonnageService
+from objets_metier.joueur import Joueur
+from objets_metier.personnage import Personnage
 from objets_metier.utilisateur import Utilisateur
 
 class NumberValidator(Validator):
@@ -19,31 +21,23 @@ class NumberValidator(Validator):
                 message='Entrez un nombre, s\'il vous plaît.',
                 cursor_position=len(document.text))  # Move cursor to end
 
-print('Bienvenue sur l\'écran de création de personnage')
-
-r = req.get('https://www.dnd5eapi.co/api/races') #cette liste doit être définie ailleurs (dans le package web) plus tard 
-dicraces = r.json()
-listraces = [dicraces['results'][i]['name'] for i in range(dicraces['count'])]
-
-c = req.get('https://www.dnd5eapi.co/api/classes') #cette liste doit être définie ailleurs (dans le package web) plus tard 
-dicclasses = c.json()
-listclasses = [dicclasses['results'][i]['name'] for i in range(dicclasses['count'])]
-
 class MenuPersonnage(AbstractView):
     
-    def __init__(self, utilisateur = Utilisateur):
+    def __init__(self, joueur = Joueur):
+        self.classes = PersonnageService.liste_classe
+        self.races = PersonnageService.liste_race
         self.questions = [
             {
                 'type': 'list',
                 'name': 'Classe',
                 'message': 'Choisissez la classe de votre personnage',
-                'choices': listclasses
+                'choices': self.classes
             },
             {
                 'type': 'list',
                 'name': 'Race',
                 'message': 'Choisissez la race de votre personnage',
-                'choices': listraces
+                'choices': self.races
             },
             {
                 'type': 'confirm',
@@ -105,11 +99,12 @@ class MenuPersonnage(AbstractView):
                 'message': 'Comment s\'appelle votre personnage ?',
                 'default': 'Ragnar'
             }]
-        self.utilisateur = utilisateur
+        self.joueur = joueur
     def display_info(self):
-        print(f"Bonjour {Session().identifiant}, choisissez les caractéristiques de votre personnage ")
+        print(f"Bonjour {Session().identifiant}, Bienvenue sur l\'écran de création de personnage")
 
     def make_choice(self):
         reponse = prompt(self.questions)
+        self.joueur._personnages += Personnage(reponse)
         from client.view.accueil_jeu_view import AccueilJeuView
-        return AccueilJeuView(self.utilisateur)
+        return AccueilJeuView(self.joueur)
