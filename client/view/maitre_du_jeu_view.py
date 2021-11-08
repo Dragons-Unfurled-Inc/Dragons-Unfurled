@@ -11,6 +11,8 @@ from web.dao.maitre_du_jeu_dao import MjDAO
 from client.view.suppr_view.suppr_enti_view import SupprEntiView
 from client.service.maitre_du_jeu_service import MJService
 from client.service.donjon_service import DonjonService
+from client.service.campagne_service import CampagneService
+            
             
 
 class MenuMJ(AbstractView):
@@ -112,7 +114,6 @@ class MenuMJ(AbstractView):
                 from client.view.creation_monstre_view import MenuMonstre
                 return MenuMonstre(self.joueur,self.campagne)
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
-            from client.service.campagne_service import CampagneService
             CampagneService.sauvegarder(self.campagne) 
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur,self.campagne)
