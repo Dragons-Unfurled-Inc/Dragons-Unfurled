@@ -1,7 +1,7 @@
 from objets_metier.objet import Objet
 from web.dao.db_connection import DBConnection
 from utils.singleton import Singleton
-import requests as req
+import requests as requ
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.monstre import Monstre
 
@@ -9,7 +9,7 @@ class MonstreDAO(metaclass = Singleton):
     
     @staticmethod
     def web_monstre(nom = str):
-        req = req.get('https://www.dnd5eapi.co/api/monsters/' + nom)
+        req = requ.get('https://www.dnd5eapi.co/api/monsters/' + nom)
         return (req)
     
     @staticmethod    

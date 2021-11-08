@@ -1,20 +1,10 @@
 from fastapi import APIRouter
-from objets_metier.user import User
-from service.user_service import UserService
+from client.service.monstre_service import MonstreService
 
 router = APIRouter()
 
-
-@router.post("/users/", tags=["users"])
-def create_user(user: User):
-    return UserService.createUser(user)
-
-
-@router.put("/users/{user_name}", tags=["users"])
-def update_user(user_name: str, user: User):
-    return UserService.updateUser(user_name, user)
+@router.get("/monstres/{nom_monstre}")
+def Creer_monstre(nom_monstre: str):
+    return MonstreService.ImportMonstreWeb(nom_monstre)
 
 
-@router.get("/users/{user_name}", tags=["users"])
-def get_user(user_name: str):
-    return UserService.getUser(user_name)

@@ -16,9 +16,10 @@ from web.service.feedback_service import FeedbackService
 from web.service.campagne_service import CampagneService
 from web.service.donjon_service import DonjonService
 from web.service.salle_service import SalleService
-
+from web.controller.auth_router import router
 # On instancie le webservice
 app = FastAPI()
+app.include_router(router)
 
 caract = Caracteristique("Nom","Attaques", "Capacité", "langages","des")
 perso = Personnage("classe","race","lore","id_joueur", "id_entite", "nomentite", caract)

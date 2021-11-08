@@ -1,3 +1,6 @@
-from objets_metier.__main__ import essai 
+from client.service.monstre_service import MonstreService
 
-print(essai.__dict__())
+#print(essai.__dict__())
+
+M = MonstreService.ImportMonstreWeb('aboleth')
+print(M)
