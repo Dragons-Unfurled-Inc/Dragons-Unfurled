@@ -5,6 +5,7 @@ from client.view.abstract_view import AbstractView
 from client.view.session import Session
 import regex
 from pprint import pprint
+from objets_metier.caracteristique import Caracteristique
 from objets_metier.entite import Entite
 import requests as req
 from client.service.personnage_service import PersonnageService
@@ -38,6 +39,18 @@ class MenuPersonnage(AbstractView):
                 'name': 'Race',
                 'message': 'Choisissez la race de votre personnage',
                 'choices': self.races
+            },
+            {
+                'type': 'input',
+                'name': 'Race',
+                'message': 'Ecrivez le lore de votre personnage',
+                'default': 'Lore'
+            },
+            {
+                'type': 'input',
+                'name': 'Nom',
+                'message': 'Comment s\'appelle votre personnage ?',
+                'default': 'Ragnar'
             },
             {
                 'type': 'confirm',
@@ -93,12 +106,7 @@ class MenuPersonnage(AbstractView):
                 'filter': lambda val: int(val),
                 'when' : lambda answers : answers['ChoixCarac']
             },
-            {
-                'type': 'input',
-                'name': 'Nom',
-                'message': 'Comment s\'appelle votre personnage ?',
-                'default': 'Ragnar'
-            }]
+            ]
         self.joueur = joueur
     def display_info(self):
         print(f"Bonjour {Session().identifiant}, Bienvenue sur l\'écran de création de personnage")
@@ -106,6 +114,6 @@ class MenuPersonnage(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         print(reponse)
-        #self.joueur._personnages += Personnage(reponse)
+        self.joueur._personnages += Personnage(reponse[1:4],Caracteristique(reponse[5:]))
         from client.view.accueil_jeu_view import AccueilJeuView
         return AccueilJeuView(self.joueur)

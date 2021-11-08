@@ -6,6 +6,7 @@ from objets_metier.donjon import Donjon
 from objets_metier.monstre import Monstre
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.feedback import Feedback
+from client.service.monstre_service import MonstreService
 
 
 class MaitreDuJeu(Joueur,BaseModel):
@@ -14,7 +15,7 @@ class MaitreDuJeu(Joueur,BaseModel):
     __personnages_joueurs : List[Personnage]
     __personnages_non_joueurs : List[Personnage]
     __donjons : List[Donjon]
-    __monstre : List[Monstre]
+    __monstres : List[Monstre]
     
     class Config:
         underscore_attrs_are_private = True
@@ -46,8 +47,9 @@ class MaitreDuJeu(Joueur,BaseModel):
                        feed_backs,
                        choix_revelation)
 
-    def creer_monstre(self, monstre : Monstre):
-        None
+    def creer_monstre(self, nom):
+        self.__monstres.append(MonstreService.ImportMonstreWeb(nom))
+        
 
     def consulter_monstre(self, monstre : Monstre):
         None

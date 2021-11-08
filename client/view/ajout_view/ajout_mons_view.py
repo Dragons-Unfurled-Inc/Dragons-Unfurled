@@ -2,7 +2,7 @@ from PyInquirer import prompt
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.view.abstract_view import AbstractView
 
-class SupprMonsView(AbstractView):
+class AjoutMonsView(AbstractView):
     def __init__(self, joueur: MaitreDuJeu, campagne):
         self.joueur = joueur 
         self.liste_monstres = self.joueur.monstres  
