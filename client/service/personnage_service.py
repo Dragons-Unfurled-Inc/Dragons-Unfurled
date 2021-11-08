@@ -1,5 +1,6 @@
 from objets_metier.personnage import Personnage 
 from utils.singleton import Singleton
+import requests as req
 '''
 Experience Points	Level	Proficiency Bonus
 0       1	+2
@@ -34,4 +35,16 @@ class PersonnageService(metaclass=Singleton):
             i += 1 
             personnage.__caracteristiques_entite.niveau = i+1 
 
-            
+    @staticmethod
+    def liste_classe():
+        r = req.get('https://www.dnd5eapi.co/api/classes')
+        dicclasses = r.json()
+        return [dicclasses['results'][i]['name'] for i in range(dicclasses['count'])]
+    
+    @staticmethod           
+    def liste_race():
+        r = req.get('https://www.dnd5eapi.co/api/races') #cette liste doit être définie ailleurs (dans le package web) plus tard 
+        dicraces = r.json()
+        return [dicraces['results'][i]['name'] for i in range(dicraces['count'])]
+
+        

@@ -7,11 +7,6 @@ from objets_metier.monstre import Monstre
 
 class MonstreDAO(metaclass = Singleton):
     
-    @staticmethod
-    def web_monstre(nom = str):
-        req = requ.get('https://www.dnd5eapi.co/api/monsters/' + nom)
-        return (req)
-    
     @staticmethod    
     def add_monstre(monstre : Monstre) -> Monstre:
             if monstre.objets == None :

@@ -45,21 +45,28 @@ class MenuJoueur(AbstractView):
             Joueur.modifier_personnage(self.joueur,self.campagne)
             from client.view.joueur_view import MenuJoueur
             return MenuJoueur(self.joueur,self.campagne)
+        
         if reponse['choix'] == 'Consulter la fiche de votre personnage':
             Joueur.consulter_personnage(self.joueur,self.campagne)
             from client.view.joueur_view import MenuJoueur
             
         if reponse['choix'] == 'Lancer des dés':
             from client.view.des_view import MenuDes
-            return MenuDes(self.joueur, self.campagne)    
+            return MenuDes(self.joueur, self.campagne)   
+
+
+
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
             from client.view.joueur_view import MenuJoueur
             return MenuJoueur(self.joueur,self.campagne)
+
+
         if reponse['choix'] == 'Donner un feedback':
             message = input("Quel est le feedback que vous souhaitez poster ?")
             Joueur.donner_feed_back(self.joueur,message)
             return MenuJoueur(self.joueur,self.campagne)
+
         if reponse['choix'] == 'Quitter la campagne':
             from client.view.accueil_jeu_view import AccueilJeuView
             return AccueilJeuView(self.joueur)
