@@ -6,6 +6,17 @@ import requests as req
 #M = MonstreService.ImportMonstreWeb('aboleth')
 #print(M)
 
-req = MonstreService.web_monstre(nom)
-req = requ.get('https://www.dnd5eapi.co/api/monsters/' + nom)
-d=req.json()
+monstres = req.get('https://www.dnd5eapi.co/api/monsters')
+monstres = monstres.json()
+nom_monstres = [d["index"] for d in monstres["results"]]
+monstres_par_types = {}
+for monstre in nom_monstres : 
+    dic_monstre = req.get('https://www.dnd5eapi.co/api/monsters/' + monstre)
+    dic_monstre = dic_monstre.json()
+    type_monstre = dic_monstre["type"]
+    if type_monstre not in monstres_par_types:
+        monstres_par_types[type_monstre] = [monstre]
+    else :
+        monstres_par_types.update({type_monstre : monstres_par_types[type_monstre]+[monstre]})
+    print(monstres_par_types)
+print(monstres_par_types)

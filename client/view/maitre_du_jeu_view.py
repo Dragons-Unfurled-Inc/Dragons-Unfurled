@@ -54,13 +54,12 @@ class MenuMJ(AbstractView):
         reponse = prompt(self.__questions)
         
         if reponse['choix'] == 'Ajouter une entité':
-            from ajout_view.ajout_enti_view import AjoutEntiView
-            return AjoutEntiView(self.joueur)
+            from ajout_view.ajout_mons_view import AjoutMonsView
+            return AjoutMonsView(self.joueur)
             
         if reponse['choix'] == 'Supprimer une entité':
             from suppr_view.suppr_enti_view import SupprEntiView
             return SupprEntiView(self.joueur)
-        reponse = prompt(self.__questions)
     
         # if message == "Oui":
         #     mes = input("Voulez-vous ajouter un personnage joueur ? \n Saisissez Oui ou Non")

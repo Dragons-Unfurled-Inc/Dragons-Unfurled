@@ -1,17 +1,30 @@
 from PyInquirer import prompt
+from client.service.monstre_service import MonstreService
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.view.abstract_view import AbstractView
 
+
 class AjoutMonsView(AbstractView):
-    def __init__(self, joueur: MaitreDuJeu, campagne):
-        self.joueur = joueur 
-        self.liste_monstres = self.joueur.monstres  
+    
+    @staticmethod
+    def choix(reponse): 
+        return((MonstreService.ImportMonstreParType(True))[reponse['type']])
+    
+    def __init__(self):
+        #self.joueur = joueur 
+        self.liste_types = MonstreService.ImportListeTypes()
         self.questions = [
             {
                 'type': 'list',
-                'name': 'choix',
-                'message': f'Voici la liste des monstres :',
-                'choices': self.liste_monstres
+                'name': 'type',
+                'message': f'Choisissez le type de monstre que vous voulez importer :',
+                'choices': self.liste_types
+            },
+            {
+                'type': 'list',
+                'name': 'type',
+                'message': f'Choisissez le type de monstre que vous voulez importer :',
+                'choices': AjoutMonsView.choix,
             }
         ]
         
@@ -21,6 +34,5 @@ class AjoutMonsView(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        #Mj_services.supprimer_entite(reponse)
         from client.view.maitre_du_jeu_view import MenuMJ
         return MenuMJ(self.joueur,self.campagne)
