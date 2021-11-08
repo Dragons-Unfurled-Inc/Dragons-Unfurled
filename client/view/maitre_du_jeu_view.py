@@ -47,8 +47,8 @@ class MenuMJ(AbstractView):
         self.campagne = campagne
     
     def display_info(self):
-        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
-            print(asset.read())
+        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/texte/accueil_maitre_du_jeu.txt', 'r', encoding="utf-8") as affichage2:
+            print(affichage1.read(),affichage2.read())
 
     def make_choice(self):
         reponse = prompt(self.__questions)
