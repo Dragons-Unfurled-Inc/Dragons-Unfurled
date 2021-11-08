@@ -213,7 +213,7 @@ instance/
 .scrapy
 
 # Session:
-.session.py
+*session.py
 
 # Sphinx documentation
 docs/_build/
