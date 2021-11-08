@@ -9,6 +9,7 @@ from client.view.session import Session
 from web.dao.jet_dao import JetDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
 from client.view.suppr_view.suppr_enti_view import SupprEntiView
+from client.service.maitre_du_jeu_service import MJ_service
 
 class MenuMJ(AbstractView):
 
@@ -56,19 +57,19 @@ class MenuMJ(AbstractView):
                 mes = input("Voulez-vous ajouter un personnage joueur ? \n Saisissez Oui ou Non")
                 if mes == "Oui":
                     identifiant_entite = input("Saisissez l'identifiant du personnage à ajouter.")
-                    Mj_services.ajouter_entite(identifiant_entite) # Peut-être demander le nom pour un joueur
+                    MJ_service.ajouter_entite(identifiant_entite) # Peut-être demander le nom pour un joueur
                     from client.view.maitre_du_jeu_view import MenuMJ
                     return MenuMJ(self.joueur,self.campagne)
                 if mes == "Non":
                     mess = input("Voulez-vous ajouter un personnage non-joueur ? \n \n Saisissez Oui ou Non")
                     if mess == "Oui":
                         identifiant_entite = input("Saisissez l'identifiant du pnj à ajouter.")
-                        Mj_services.ajouter_entite(identifiant_entite)
+                        MJ_service.ajouter_entite(identifiant_entite)
                         from client.view.maitre_du_jeu_view import MenuMJ
                         return MenuMJ(self.joueur,self.campagne)
                     else:
                         identifiant_entite = input("Saisissez l'identifiant du monstre à ajouter.")
-                        Mj_services.supprimer_entite(identifiant_entite)
+                        MJ_service.supprimer_entite(identifiant_entite)
                         from client.view.maitre_du_jeu_view import MenuMJ
                         return MenuMJ(self.joueur,self.campagne)    
             else:
@@ -119,13 +120,13 @@ class MenuMJ(AbstractView):
             message = input("Voulez-vous consulter la fiche d'un personnage ? Saisissez Oui ou Non")
             if message == "Non":
                 id_monstre = input("Saisissez l'identifiant du monstre à consulter")
-                monstre = Mj_services.trouve_entite(id_monstre)
+                monstre = MJ_service.trouve_entite(id_monstre)
                 MaitreDuJeu.consulter_monstre(monstre)
                 from client.view.maitre_du_jeu_view import MenuMJ
                 return MenuMJ(self.joueur,self.campagne)
             if message == "Oui":    
                 id_personnage = input("Saisissez l'identifiant du personnage à consulter")
-                perso = Mj_services.trouve_entite(id_personnage)
+                perso = MJ_service.trouve_entite(id_personnage)
                 MaitreDuJeu.consulter_personnage(perso, self.campagne[0])
                 from client.view.maitre_du_jeu_view import MenuMJ
                 return MenuMJ(self.joueur,self.campagne)
@@ -135,11 +136,11 @@ class MenuMJ(AbstractView):
             message = input("Voulez-vous modifier la fiche d'un personnage ? Saisissez Oui ou Non")
             if message == "Non":
                 id_monstre = input("Saisissez l'identifiant du monstre à consulter")
-                monstre = Mj_services.trouve_entite(id_monstre)
+                monstre = MJ_service.trouve_entite(id_monstre)
                 MaitreDuJeu.modifier_monstre(monstre)
             if message == "Oui":    
                 id_personnage = input("Saisissez l'identifiant du personnage à consulter")
-                perso = Mj_services.trouve_entite(id_personnage)
+                perso = MJ_service.trouve_entite(id_personnage)
                 MaitreDuJeu.modifier_personnage(perso)  
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur,self.campagne)
