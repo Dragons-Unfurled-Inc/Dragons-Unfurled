@@ -3,6 +3,7 @@ from PyInquirer import Separator, prompt
 from client.view.abstract_view import AbstractView
 from client.view.accueil_jeu_view import AccueilJeuView
 from client.view.session import Session
+from web.dao.utilisateur_dao import UtilisateurDAO
 
 
 class StartView(AbstractView):
@@ -16,7 +17,8 @@ class StartView(AbstractView):
                 'choices': [
                     'S\'authentifier' ,
                     'Créer un compte' , 
-                    'Quitter l\'application'
+                    'Quitter l\'application',
+                    'La réponse D'
 
                 ]
             }
@@ -47,3 +49,10 @@ class StartView(AbstractView):
         if reponse['choix'] == 'Quitter l\'application':
             import sys
             sys.exit()
+            
+        if reponse['choix'] == 'La réponse D':
+            from objets_metier.utilisateur import Utilisateur
+            utilisateur = Utilisateur(True,"bla","id",True)
+            from client.view.accueil_jeu_view import AccueilJeuView
+            return AccueilJeuView(utilisateur)   
+        

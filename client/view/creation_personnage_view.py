@@ -25,6 +25,7 @@ class NumberValidator(Validator):
 class MenuPersonnage(AbstractView):
     
     def __init__(self, joueur = Joueur):
+        self.joueur = joueur
         self.classes = PersonnageService.liste_classe()
         self.races = PersonnageService.liste_race()
         self.questions = [
@@ -107,17 +108,16 @@ class MenuPersonnage(AbstractView):
                 'when' : lambda answers : answers['ChoixCarac']
             }
             ]
-        self.joueur = joueur
     def display_info(self):
         print(f"Bonjour {Session().identifiant}, Bienvenue sur l\'écran de création de personnage")
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        print(reponse)
+        #print(reponse)
         if reponse['ChoixCarac'] : 
             carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
         else : 
             carac = Caracteristique(reponse['Nom'])
-        self.joueur._personnages += Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],0,0,reponse["Nom"],carac)
+        self.joueur.personnages = Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],0,0,reponse["Nom"],carac)
         from client.view.accueil_jeu_view import AccueilJeuView
         return AccueilJeuView(self.joueur)

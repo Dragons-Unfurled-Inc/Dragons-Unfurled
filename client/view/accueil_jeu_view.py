@@ -39,7 +39,9 @@ class AccueilJeuView(AbstractView):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Créer un personnage':
             from client.view.creation_personnage_view import MenuPersonnage
-            return MenuPersonnage()
+            return MenuPersonnage(Joueur([],True,"bla","id",True,))
+            #faut ajouter la classe joueur pour le stocker je mets une val au pif pour l'instant
+        
         if reponse['choix'] == 'Rejoindre une campagne': #Il faudrait charger une sauvegarde ici
             identifiant_campagne = input('Quel est l\'identifiant de votre campagne ?')
             if identifiant_campagne in CampagneDAO.liste_noms():

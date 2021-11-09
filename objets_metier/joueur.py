@@ -9,13 +9,13 @@ class Joueur(Utilisateur, BaseModel):
     """
     Un joueur est un utilisateur qui est présent dans une campagne sans être maître du jeu.
     """
-    _personnages : List[Personnage]
-    _choix_revelation : bool 
+    personnages : List[Personnage] = []
+    _choix_revelation : bool = True
 
     class Config:
         underscore_attrs_are_private = True
 
-    def __init__(self, personnages : List[Personnage], 
+    def __init__(self, 
                        connecte : bool,
                        mot_de_passe : str,
                        identifiant : str,
@@ -23,8 +23,8 @@ class Joueur(Utilisateur, BaseModel):
                        feed_backs : List[Feedback] = [],
                        choix_revelation : bool = True): 
         
-        self._personnages = personnages
-        self._choix_revelation = choix_revelation
+        #self._personnages = personnages
+        self._choix_revelation = choix_revelation 
 
         super().__init__(connecte,mot_de_passe,identifiant,est_administrateur,feed_backs)
 
@@ -43,12 +43,12 @@ class Joueur(Utilisateur, BaseModel):
 
     @property
     def personnages(self):
-        return self._personnages
+        return self.personnages
 
     @personnages.setter
     def personnages(self, value):
-        self._personnages = value
-
+         self.personnages = value
+    
     @property
     def choix_revelation(self):
         return self._choix_revelation
