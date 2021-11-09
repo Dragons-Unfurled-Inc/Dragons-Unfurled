@@ -42,11 +42,11 @@ async def add_personnage(username:str,utili:Utilisateur):
     resultat = {"username": username, **utilisateur.dict()}
     return resultat
 
-@routerput.put("/Feedback")
-async def add_feedback(username : str, feed : Feedback):
-    FeedbackService.add_feedback(username, feed)
-    resultat = {username}
-    return resultat
+# @routerput.put("/Feedback")
+# async def add_feedback(username : str, feed : Feedback):
+#     FeedbackService.add_feedback(username, feed)
+#     resultat = {username}
+#     return resultat
 
 @routerput.put("/Campagne")
 async def add_campagne(nom_campagne : str):
