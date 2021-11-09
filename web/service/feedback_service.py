@@ -4,5 +4,5 @@ from web.dao.feed_back_dao import FeedBackDAO
 class FeedbackService() :
 
     @staticmethod
-    def add_feedback(feed : Feedback, username : str):
-        FeedBackDAO.add_feedback(feed, username)
+    def add_feedback(username : str, feed : Feedback):
+        FeedBackDAO.add_feedback(username, feed)
