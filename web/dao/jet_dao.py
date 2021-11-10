@@ -30,5 +30,11 @@ class JetDAO:
 
     @staticmethod
     def consulter_tous_les_jets():
-        return []
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * FROM Jet ")
+                feed = cursor.fetchone()
+        return feed
+        
 

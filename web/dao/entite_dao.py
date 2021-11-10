@@ -65,9 +65,31 @@ class EntiteDAO:
             return entite_retournee
             
     @staticmethod
-    def diminution_pv(nom_entite: str): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
-        return 
+    def diminution_pv(nom_entite: str, nombre_pv): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT vie FROM Entite "\
+                    "WHERE nom_entite = %(nom_entite)s;"\
+                    , {"nom_entite": nom_entite}) 
+                vie = cursor.fetchone()  
+                vie = vie['vie']  
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Entite "\
+                    "SET vie = %(vie)s"\
+                    "WHERE nom_entite = %(nom_entite)s;"\
+                    , {"vie" : vie - nombre_pv
+                    , "nom_entite": nom_entite}) 
 
     @staticmethod
     def tuer(nom_entite: str): # Cette fonction réduit les points de vies des entités à 0.
-        return 
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Entite "\
+                    "SET vie = %(vie)s"\
+                    "WHERE nom_entite = %(nom_entite)s;"\
+                    , {"vie" : 0
+                    , "nom_entite": nom_entite}) 
