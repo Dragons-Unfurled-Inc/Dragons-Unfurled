@@ -10,12 +10,28 @@ class AdministrateurDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "Delete from utilisateur where id_utilisateur=%(utilisateur_nom)s;", {"utilisateur_nom": utilisateur_a_supprimer.id})
+                    "DELETE FROM Utilisateur "\
+                    "WHERE username = %(utilisateur_nom)s;"\
+                    , {"utilisateur_nom": utilisateur_a_supprimer.identifiant})
 
     @staticmethod
     def ajouter_droits_administrateur(utilisateur: Utilisateur):
-        return []
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Utilisateur "\
+                    "SET est_administrateur = %(est_administreurs)s"\
+                    "WHERE username = %(utilisateur_nom)s;"\
+                    , {"est_administrateur" : True
+                    , "utilisateur_nom": utilisateur.identifiant})
 
     @staticmethod
     def supprimer_droits_administrateur(utilisateur: Utilisateur):
-        return []
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Utilisateur "\
+                    "SET est_administrateur = %(est_administreurs)s"\
+                    "WHERE username = %(utilisateur_nom)s;"\
+                    , {"est_administrateur" : False
+                    , "utilisateur_nom": utilisateur.identifiant})
