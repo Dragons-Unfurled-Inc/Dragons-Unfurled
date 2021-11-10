@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi.params import Header
 from objets_metier.feedback import Feedback
 from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
@@ -41,10 +42,10 @@ async def add_personnage(username:str,utili:Utilisateur):
     resultat = {"username": username, **utilisateur.dict()}
     return resultat
 
-# @routerput.put("/Feedback/{username}")
+# @routerput.put("/Feedback")
 # async def add_feedback(username : str, feed : Feedback):
-#     FeedbackService.add_feedback(feed, username)
-#     resultat = {"username": username, **feed.dict()}
+#     FeedbackService.add_feedback(username, feed)
+#     resultat = {username}
 #     return resultat
 
 @routerput.put("/Campagne")

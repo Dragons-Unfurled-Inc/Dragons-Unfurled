@@ -5,7 +5,7 @@ from objets_metier.utilisateur import Utilisateur
 class FeedBackDAO:
 
     @staticmethod
-    def add_feedback(feed : Feedback, username : str): 
+    def add_feedback(username : str, feed : Feedback): 
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
