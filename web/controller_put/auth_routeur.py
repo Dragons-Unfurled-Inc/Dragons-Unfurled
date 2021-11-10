@@ -62,3 +62,5 @@ async def add_donjon(id_campagne : int, donjon : Donjon):
 async def add_salle(id_donjon : int,salle : Salle) : 
     SalleService.add_salle(id_donjon,salle)
     return salle
+
+
