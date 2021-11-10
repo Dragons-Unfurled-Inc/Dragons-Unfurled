@@ -52,7 +52,7 @@ class StartView(AbstractView):
             
         if reponse['choix'] == 'La réponse D':
             from objets_metier.utilisateur import Utilisateur
-            utilisateur = Utilisateur(True,"bla","id",True)
+            utilisateur = Utilisateur(connecte = True,mot_de_passe = "bla",identifiant = "id",est_administrateur = True,feed_backs = True)
             from client.view.accueil_jeu_view import AccueilJeuView
             return AccueilJeuView(utilisateur)   
         

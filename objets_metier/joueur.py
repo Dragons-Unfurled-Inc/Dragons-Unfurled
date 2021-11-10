@@ -9,26 +9,9 @@ class Joueur(Utilisateur, BaseModel):
     """
     Un joueur est un utilisateur qui est présent dans une campagne sans être maître du jeu.
     """
-    personnages : List[Personnage] = []
-    _choix_revelation : bool = True
-
-    class Config:
-        underscore_attrs_are_private = True
-
-    def __init__(self, 
-                       connecte : bool,
-                       mot_de_passe : str,
-                       identifiant : str,
-                       est_administrateur : bool, 
-                       feed_backs : List[Feedback] = [],
-                       choix_revelation : bool = True): 
-        
-        #self._personnages = personnages
-        self._choix_revelation = choix_revelation 
-
-        super().__init__(connecte,mot_de_passe,identifiant,est_administrateur,feed_backs)
-
-
+    personnages : List[Personnage]
+    choix_revelation : bool 
+    
     def creer_personnage(self):
         None
 
@@ -41,18 +24,18 @@ class Joueur(Utilisateur, BaseModel):
     def changer_revelation_jet(self):
         self._choix_revelation = not(self._choix_revelation)
 
-    @property
-    def personnages(self):
-        return self.personnages
+    # @property
+    # def personnages(self):
+    #     return self.personnages
 
-    @personnages.setter
-    def personnages(self, value):
-         self.personnages = value
+    # @personnages.setter
+    # def personnages(self, value):
+    #      self.personnages = value
     
-    @property
-    def choix_revelation(self):
-        return self._choix_revelation
+    # @property
+    # def choix_revelation(self):
+    #     return self._choix_revelation
 
-    @choix_revelation.setter
-    def choix_revelation(self, value):
-        self._choix_revelation = value
+    # @choix_revelation.setter
+    # def choix_revelation(self, value):
+    #     self._choix_revelation = value

@@ -91,13 +91,13 @@ class UtilisateurService:
             mdp.update(pass_hash)
             if mdp.digest() == bytes(UtilisateurDAO.getUtilisateur(nom_utilisateur)[2][:]):
                 if compte_utilisateur[3] == "joueur":
-                    utilisateur = Utilisateur(connecte = False,
+                    utilisateur = Utilisateur(connecte = True,
                                                 mot_de_passe = compte_utilisateur[1],
                                                 identifiant = compte_utilisateur[0],
                                                 est_administrateur = False)
                     return utilisateur
                 elif compte_utilisateur[3] == "administrateur":
-                    utilisateur = Utilisateur(connecte = False,
+                    utilisateur = Utilisateur(connecte = True,
                                                 mot_de_passe = compte_utilisateur[1],
                                                 identifiant = compte_utilisateur[0],
                                                 est_administrateur = True)

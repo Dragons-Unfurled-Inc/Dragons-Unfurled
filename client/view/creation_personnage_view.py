@@ -124,12 +124,13 @@ class MenuPersonnage(AbstractView):
         print(f"Bonjour {Session().identifiant}, Bienvenue sur l\'écran de création de personnage")
 
     def make_choice(self):
-        reponse = prompt(self.questions,style=style)
+        reponse = prompt(self.questions)
         #print(reponse)
         if reponse['ChoixCarac'] : 
             carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
         else : 
             carac = Caracteristique(reponse['Nom'])
-        self.joueur.personnages = Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],0,0,reponse["Nom"],carac)
+        self.joueur.personnages.append(Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],0,0,reponse["Nom"],carac))
+        print(self.joueur.personnages[0])
         from client.view.accueil_jeu_view import AccueilJeuView
         return AccueilJeuView(self.joueur)
