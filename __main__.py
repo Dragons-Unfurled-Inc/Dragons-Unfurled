@@ -1,11 +1,12 @@
 from client.view.start_view import StartView
-
+from client.view.creation_personnage_view import MenuPersonnage
+from objets_metier.joueur import Joueur
 
 if __name__ == '__main__':
     # Lance notre première vue : StartView
     #test menu perso
-    #current_view = MenuPersonnage(Joueur([],True,"bla","id",True,))
-    current_view = StartView()
+    current_view = MenuPersonnage(Joueur([],True,"bla","id",True,))
+    #current_view = StartView()
 
     # Tant que la vue n'est pas None, l'application continue de tourner.
     while current_view:

@@ -4,6 +4,7 @@ from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 from objets_metier.entite import Entite
 
+
 class Personnage(Entite,BaseModel):
 
     __classe: str

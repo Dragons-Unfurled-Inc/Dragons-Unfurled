@@ -1,5 +1,4 @@
 from __future__ import print_function, unicode_literals
-from PyInquirer import Separator, prompt
 from PyInquirer import Validator, ValidationError
 from client.view.abstract_view import AbstractView
 from client.view.session import Session
@@ -12,6 +11,18 @@ from client.service.personnage_service import PersonnageService
 from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
 from objets_metier.utilisateur import Utilisateur
+from PyInquirer import style_from_dict, Token, prompt, Separator
+from pprint import pprint
+
+style = style_from_dict({
+    Token.Separator: '#cc5454',
+    Token.QuestionMark: '#673ab7 bold',
+    Token.Selected: '#f40099',  # default
+    Token.Pointer: '#1f5100 bold',
+    Token.Instruction: '#a2ff92 italic',  # default
+    Token.Answer: '#f44336 bold',
+    Token.Question: '#f7be00',
+})
 
 class NumberValidator(Validator):
     def validate(self, document):
@@ -28,6 +39,7 @@ class MenuPersonnage(AbstractView):
         self.joueur = joueur
         self.classes = PersonnageService.liste_classe()
         self.races = PersonnageService.liste_race()
+        self.races.append(Separator('= The Meats ='))
         self.questions = [
             {
                 'type': 'list',
@@ -85,7 +97,7 @@ class MenuPersonnage(AbstractView):
             },
             {
                 'type': 'input',
-                'name': 'Dextérité',
+                'name': 'Dexterite',
                 'message': 'Combien de points de dextérité a votre personnage ?',
                 'validate': NumberValidator,
                 'filter': lambda val: int(val),
@@ -112,7 +124,7 @@ class MenuPersonnage(AbstractView):
         print(f"Bonjour {Session().identifiant}, Bienvenue sur l\'écran de création de personnage")
 
     def make_choice(self):
-        reponse = prompt(self.questions)
+        reponse = prompt(self.questions,style=style)
         #print(reponse)
         if reponse['ChoixCarac'] : 
             carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
