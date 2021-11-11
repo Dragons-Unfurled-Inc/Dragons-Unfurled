@@ -63,7 +63,7 @@ def main():
     g = Grille(20, 10)
     g.mures = place_mures(g)
     deplacement = "t"
-    print("Entrez d pour aller à droite, g pour aller à gauche, h pour aller en haut, ou b pour décendre. \n q vous permet de vous arreter à votre position.")
+    print("Entrez d pour aller à droite, g pour aller à gauche, h pour aller en haut, ou b pour décendre. \nq vous permet de vous arreter à votre position.")
     while deplacement[0] != 'q':
         dessiner_grille(g)
         deplacement = input("Déplacez-vous ! (d, g, h, b, q)")
