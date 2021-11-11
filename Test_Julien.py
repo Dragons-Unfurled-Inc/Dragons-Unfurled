@@ -17,14 +17,13 @@ class Grille:
 
         if deplacement[0] == 'd':
             pos = (x + 1, y)
-        if deplacement[0] == 'g':
+        elif deplacement[0] == 'g':
             pos = (x - 1, y)
-        if deplacement[0] == 'h':
+        elif deplacement[0] == 'h':
             pos = (x, y - 1)
-        if deplacement[0] == 'b':
+        elif deplacement[0] == 'b':
             pos = (x, y + 1)
-
-        if deplacement[0] == 'q':
+        else:
             pos = (x, y)
             self.joueur = pos
 
@@ -56,7 +55,7 @@ def place_mures(g: Grille, pct=.25) -> list:
 
 # def nettoyer():
 #     subprocess.Popen("cls" if platform.system() == "Windows" else "clear", shell=True)
-#     time.sleep(.01)
+#     time.sleep(.1)
 
 
 def main():
@@ -68,7 +67,7 @@ def main():
         dessiner_grille(g)
         deplacement = input("Déplacez-vous ! (d, g, h, b, q)")
         g.deplace_joueur(deplacement)
-        #nettoyer() # Cette fonction devrait permettre d'effacer les grilles précedentes. Pas
+        # nettoyer() # Cette fonction devrait permettre d'effacer les grilles précedentes.
     message = "".join(["Vous voilà placé en position ", str(g.joueur)])
     print(message)
 
