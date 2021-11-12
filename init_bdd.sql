@@ -1,3 +1,33 @@
+CREATE TABLE Campagne(
+    id_campagne serial PRIMARY KEY NOT NULL, 
+    nom_campagne text NOT NULL
+);
+
+CREATE TABLE Donjon(
+    id_donjon serial PRIMARY KEY NOT NULL,
+    nom_donjon text NOT NULL, 
+    id_campagne int NOT NULL,
+	FOREIGN KEY (id_campagne) REFERENCES Campagne(id_campagne)
+);
+
+CREATE TABLE Salle(
+    id_salle serial PRIMARY KEY NOT NULL,
+    nom_salle text NOT NULL,
+    coordonnee_salle_x int NOT NULL, 
+    coordonnee_salle_y int NOT NULL,
+    id_donjon int NOT NULL,
+	FOREIGN KEY (id_donjon) REFERENCES Donjon(id_donjon)
+);
+
+CREATE TABLE Cellule
+(
+    id_cellule serial NOT NULL PRIMARY KEY , 
+    coordonnee_cellule_x int NOT NULL,
+    coordonnee_cellule_y int NOT NULL, 
+    id_salle int NOT NULL,
+	FOREIGN KEY (id_salle) REFERENCES Salle(id_salle)
+);
+
 CREATE TABLE Entite(
     id_entite serial PRIMARY KEY NOT NULL,
     nom_entite text NOT NULL,
@@ -17,19 +47,6 @@ CREATE TABLE Entite(
     FOREIGN KEY (id_campagne) REFERENCES Campagne(id_campagne),
     FOREIGN KEY (id_cellule) REFERENCES Cellule(id_cellule)
 ); 
-
-CREATE TABLE Campagne(
-    id_campagne serial PRIMARY KEY NOT NULL, 
-    nom_campagne text NOT NULL
-);
-
-
-CREATE TABLE Donjon(
-    id_donjon serial PRIMARY KEY NOT NULL,
-    nom_donjon text NOT NULL, 
-    id_campagne int NOT NULL,
-	FOREIGN KEY (id_campagne) REFERENCES Campagne(id_campagne)
-);
 
 CREATE TABLE Capacite(
     id_entite int NOT NULL, 
@@ -66,25 +83,6 @@ CREATE TABLE Objet(
     nom_objet text NOT NULL, 
     description text NOT NULL
 );
-
-CREATE TABLE Salle(
-    id_salle serial PRIMARY KEY NOT NULL,
-    nom_salle text NOT NULL,
-    coordonnee_salle_x int NOT NULL, 
-    coordonnee_salle_y int NOT NULL,
-    id_donjon int NOT NULL,
-	FOREIGN KEY (id_donjon) REFERENCES Donjon(id_donjon)
-);
-
-CREATE TABLE Cellule
-(
-    id_cellule serial NOT NULL PRIMARY KEY , 
-    coordonnee_cellule_x int NOT NULL,
-    coordonnee_cellule_y int NOT NULL, 
-    id_salle int NOT NULL,
-	FOREIGN KEY (id_salle) REFERENCES Salle(id_salle)
-);
-
 
 CREATE TABLE Combat(
     id_jet int PRIMARY KEY NOT NULL,
