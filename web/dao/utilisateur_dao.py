@@ -7,7 +7,14 @@ class UtilisateurDAO:
 
     @staticmethod
     def liste_noms():
-        return []
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT username "\
+                    "FROM utilisateur"
+                )
+                res = cursor.fetchone()
+        return res["username"]
 
     @staticmethod
     def creation_compte(nouvel_utilisateur: Utilisateur):

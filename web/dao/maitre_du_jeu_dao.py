@@ -42,13 +42,7 @@ class MjDAO:
                 lore = [perso["id_entite"],perso["lore"]]
                 id_entite = perso["id_entite"]
                 id_joueur = [perso["id_entite"],perso["id_joueur"]]
-
-                
-
-
-
-
-
+                description = [perso["id_entite"],perso["description"]]             
         liste_perso = []
         for i in range(0, len(perso["username"])):
             carac = Caracteristique(nom_entite = nom_entite, force = force, experience = experience, intelligence = intelligence, charisme = charisme, dexterite = dexterite, constitution = constitution, vie = vie, sagesse =  sagesse, attaques= attaques, capacites = capacites, languages = languages, description = description, classe_armure = classe_armure)
