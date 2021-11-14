@@ -76,6 +76,7 @@ class UtilisateurService:
                                             )
         UtilisateurDAO.createUtilisateur(Session.utilisateur)
         print("Votre compte a été créé avec succès !")
+        # return nouvel_utilisateur
         # else:
         #     print("Votre compte n'a pas pu être créé !")
 
@@ -98,27 +99,6 @@ class UtilisateurService:
             return True
         return False 
 
-
-    # def creation_compte(compte,type_compte):
-    #     if compte != None:
-    #         if type_compte == "joueur":
-    #             nouvel_utilisateur = Utilisateur(connecte = True,
-    #                                             mot_de_passe = compte[1],
-    #                                             identifiant = compte[0],
-    #                                             est_administrateur = False,
-    #                                             feed_backs = True
-    #                                             )  
-    #         elif type_compte == "administrateur":
-    #             nouvel_utilisateur = Utilisateur(connecte = False,
-    #                                             mot_de_passe = compte[1],
-    #                                             identifiant = compte[0],
-    #                                             est_administrateur = True,
-    #                                             feed_backs = True) 
-    #         UtilisateurDAO.createUtilisateur(nouvel_utilisateur)
-    #         print("Votre compte a été créé avec succès !")
-    #         return nouvel_utilisateur
-    #     else:
-    #         print("Votre compte n'a pas pu être créé !")
 
     # @staticmethod
     # def connexion(nom_utilisateur = None, tentative_num: int = 1):
