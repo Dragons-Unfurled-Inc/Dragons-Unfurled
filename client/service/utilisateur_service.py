@@ -37,7 +37,7 @@ class UtilisateurService:
                 print("Votre mot de passe doit comporter au moins une minuscule ! \n Veuillez choisir un autre mot de passe, s'il vous plaît.")
                 
             elif len([x for x in mot_de_passe if x in caractere]) != 0:
-                print("Votre mot de passe ne doit pas comporter de caractère ! \n Veuillez choisir un autre mot de passe, s'il vous plaît.")
+                print("Votre mot de passe ne doit pas comporter de caractère spécial ! \n Veuillez choisir un autre mot de passe, s'il vous plaît.")
                 
             elif mot_de_passe2 != mot_de_passe:
                 print("Vous n'avez pas entré deux fois le même mot de passe ! \n Veuillez recommencer, s'il vous plaît.")
