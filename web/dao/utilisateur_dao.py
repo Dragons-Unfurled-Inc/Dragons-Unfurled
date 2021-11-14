@@ -1,3 +1,4 @@
+from typing import Any
 from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
 from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
@@ -24,15 +25,17 @@ class UtilisateurDAO:
         return res["username"]
 
     @staticmethod
-    def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
+    def verifie_mdp(utilisateur_nom: str, password: Any) -> bool:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "
-                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom) and utilisateur.password=%(password)"
+                    "\nFROM utilisateur where utilisateur.username=%(nom)s and utilisateur.password=%(mdp)s"\
+                    ,{"nom" : utilisateur_nom,"mdp":password}
                 )
                 res = cursor.fetchone()
-            if res["utilisateur_nom"] != None:
+                
+            if res != None:
                 return True
             return False
 
@@ -47,20 +50,18 @@ class UtilisateurDAO:
                 )
                 res = cursor.fetchone()
         if res:
-            return Utilisateur(connecte = True,
-                                                mot_de_passe = res['password'],
-                                                identifiant = res['username'],
-                                                est_administrateur = False,
-                                                feed_backs = True
-                                                )
-        else:
-            raise UtilisateurIntrouvableException(utilisateur_nom)
+            return True
+        else : 
+            return False
+        # else:
+        #     raise UtilisateurIntrouvableException(utilisateur_nom)
 
     @staticmethod
-    def createUtilisateur(utilisateur: Utilisateur) -> Utilisateur:
-        try:
-            UtilisateurDAO.getUtilisateur(utilisateur.identifiant)
-        except UtilisateurIntrouvableException:
+    def createUtilisateur():
+        if UtilisateurDAO.getUtilisateur(Utilisateur().identifiant):
+            print('utilisateur existe deja')
+            return False
+        else :
                 with DBConnection().connection as connection:
                     with connection.cursor() as cursor:
                         cursor.execute(
@@ -69,11 +70,11 @@ class UtilisateurDAO:
                                                     "password) "\
                             "VALUES "\
                             "(%(username)s,%(est_administrateur)s, %(password)s);", 
-                            { "username" : utilisateur.identifiant
-                            , "est_administrateur": utilisateur.est_administrateur
-                            , "password": utilisateur.mot_de_passe}
+                            { "username" : Utilisateur().identifiant
+                            , "est_administrateur": Utilisateur().est_administrateur
+                            , "password": Utilisateur().mot_de_passe}
                         )
-                return utilisateur
+        
 
     @staticmethod
     def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:

@@ -95,7 +95,7 @@ CREATE TABLE Combat(
 CREATE TABLE Utilisateur(
     username text PRIMARY KEY NOT NULL, 
     est_administrateur boolean NOT NULL, 
-    password text NOT NULL
+    password bytea NOT NULL
 );
 
 CREATE TABLE Jet(

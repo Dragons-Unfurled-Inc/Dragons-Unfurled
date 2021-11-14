@@ -1,10 +1,12 @@
 from os import access
 from PyInquirer import Separator, prompt
 from client.view.abstract_view import AbstractView
-from client.view.accueil_jeu_view import AccueilJeuView
+#from client.view.accueil_jeu_view import AccueilJeuView
 from client.view.session import Session
 from web.dao.utilisateur_dao import UtilisateurDAO
 from client.view.creation_compte_view import CreaCompteView
+from objets_metier.utilisateur import Utilisateur
+
 
 
 class StartView(AbstractView):
@@ -32,19 +34,25 @@ class StartView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'S\'authentifier':
-            from client.service.utilisateur_service import UtilisateurService
-            utilisateur = UtilisateurService.connexion()
-            if utilisateur.est_administrateur:
-                from client.view.accueil_administrateur_view import AccueilAdministrateurView
-                return AccueilAdministrateurView(utilisateur)
-            else:
-                from client.view.accueil_jeu_view import AccueilJeuView
-                return AccueilJeuView(utilisateur)
-
+            # from client.service.utilisateur_service import UtilisateurService
+            # utilisateur = UtilisateurService.connexion()
+            # if utilisateur.est_administrateur:
+            #     from client.view.accueil_administrateur_view import AccueilAdministrateurView
+            #     return AccueilAdministrateurView(utilisateur)
+            # else:
+            #     from client.view.accueil_jeu_view import AccueilJeuView
+            #     return AccueilJeuView(utilisateur)
+            from objets_metier.utilisateur import Utilisateur
+            utilisateur = Utilisateur()
+            from client.view.connexion_view import ConnCompteView
+            return ConnCompteView()
+        
         if reponse['choix'] == 'Créer un compte':
             # from client.service.utilisateur_service import UtilisateurService
             # utilisateur = UtilisateurService.creation_compte("joueur")
             # from client.view.accueil_jeu_view import AccueilJeuView
+            from objets_metier.utilisateur import Utilisateur
+            utilisateur = Utilisateur()
             return CreaCompteView()  
         
         if reponse['choix'] == 'Quitter l\'application':

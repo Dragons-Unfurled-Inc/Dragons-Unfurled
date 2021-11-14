@@ -5,9 +5,14 @@ from PyInquirer import Validator, ValidationError
 #from client.view.accueil_jeu_view import AccueilJeuView
 from objets_metier.utilisateur import Utilisateur
 
-class CreaCompteView(AbstractView):
-    def __init__(self,precedent = ""):
+class ConnCompteView(AbstractView):
+    @staticmethod
+    def choix(reponse): 
+        return(Utilisateur)
+    
+    def __init__(self,precedent = "",tentative_num = 1):
         self.precedent = precedent
+        self.tentative_num = tentative_num
         self.questions = [
                 {
                     'type': 'input',
@@ -19,11 +24,6 @@ class CreaCompteView(AbstractView):
                     'type': 'password',
                     'name': 'mdp',
                     'message': 'Entrez votre mot de passe :'
-                },
-                {
-                    'type': 'password',
-                    'name': 'mdp2',
-                    'message': 'Confirmez votre mot de passe :'
                 }
             ]
         
@@ -33,12 +33,13 @@ class CreaCompteView(AbstractView):
             
     def make_choice(self):
         reponse = prompt(self.questions)
-        R = UtilisateurService.validation_creation_compte(reponse['Nom'],reponse['mdp'],reponse['mdp2'])
-        #plus tard, R sera juste le booleen de validation de compte et le compte sera stocké en session
-        #pour l'instant, c'est la liste qui contient l'utilisateur qui est entré sur cet ecran et le booleen qui indique si il est valide
+        R = UtilisateurService.connexion(reponse['Nom'],reponse['mdp'])
+        print(R)
         if not R : 
-            return CreaCompteView(reponse['Nom'])
-        if R:
-            UtilisateurService.creation_compte()
-            return AccueilJeuView(Utilisateur.identifiant) 
+            if self.tentative_num < 2 : 
+                print("Veuillez reessayer")
+                return ConnCompteView(reponse['Nom'],self.tentative_num+1)
+            print("Vous avez fait le nombre d'essais maximal. \n Vous allez être déconnecté.")
+            import sys
+            sys.exit()
             

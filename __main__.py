@@ -1,6 +1,6 @@
 from client.view.start_view import StartView
-from client.view.creation_personnage_view import MenuPersonnage
-from objets_metier.joueur import Joueur
+#from client.view.creation_personnage_view import MenuPersonnage
+#from objets_metier.joueur import Joueur
 from client.view.creation_compte_view import CreaCompteView
 
 if __name__ == '__main__':

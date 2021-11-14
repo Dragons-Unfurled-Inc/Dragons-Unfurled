@@ -1,14 +1,14 @@
 from typing import List,Any
 from pydantic import BaseModel
 from objets_metier.feedback import Feedback
+from utils.singleton import Singleton
 
-class Utilisateur(BaseModel):
+class Utilisateur(metaclass=Singleton):
     
-    connecte : bool
-    mot_de_passe : Any
-    identifiant : str
-    est_administrateur : bool
-    feed_backs : bool 
+    mot_de_passe : Any = 'test'
+    identifiant : str = 'test'
+    est_administrateur : bool = False
+    feed_backs : bool = False 
 
     class Config:
         schema_extra = {
