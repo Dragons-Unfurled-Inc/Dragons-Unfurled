@@ -4,6 +4,7 @@ from client.view.abstract_view import AbstractView
 from client.view.accueil_jeu_view import AccueilJeuView
 from client.view.session import Session
 from web.dao.utilisateur_dao import UtilisateurDAO
+from client.view.creation_compte_view import CreaCompteView
 
 
 class StartView(AbstractView):
@@ -41,10 +42,10 @@ class StartView(AbstractView):
                 return AccueilJeuView(utilisateur)
 
         if reponse['choix'] == 'Créer un compte':
-            from client.service.utilisateur_service import UtilisateurService
-            utilisateur = UtilisateurService.creation_compte("joueur")
-            from client.view.accueil_jeu_view import AccueilJeuView
-            return AccueilJeuView(utilisateur)   
+            # from client.service.utilisateur_service import UtilisateurService
+            # utilisateur = UtilisateurService.creation_compte("joueur")
+            # from client.view.accueil_jeu_view import AccueilJeuView
+            return CreaCompteView()  
         
         if reponse['choix'] == 'Quitter l\'application':
             import sys

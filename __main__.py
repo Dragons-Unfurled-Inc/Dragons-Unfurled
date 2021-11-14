@@ -7,8 +7,8 @@ if __name__ == '__main__':
     # Lance notre première vue : StartView
     #test menu perso
     #current_view = MenuPersonnage(Joueur([],True,"bla","id",True,))
-    #current_view = StartView()
-    current_view = CreaCompteView()
+    current_view = StartView()
+    #current_view = CreaCompteView()
     with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1,open('client/dessins_ascii/logo_moyen.txt', 'r', encoding="utf-8") as affichage2:
             print(affichage1.read(),affichage2.read())
             

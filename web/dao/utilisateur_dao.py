@@ -47,7 +47,12 @@ class UtilisateurDAO:
                 )
                 res = cursor.fetchone()
         if res:
-            return Utilisateur(id=res["id_utilisateur"], utilisateur_nom=res["utilisateur_nom"], password=res["password"])
+            return Utilisateur(connecte = True,
+                                                mot_de_passe = res['password'],
+                                                identifiant = res['username'],
+                                                est_administrateur = False,
+                                                feed_backs = True
+                                                )
         else:
             raise UtilisateurIntrouvableException(utilisateur_nom)
 
