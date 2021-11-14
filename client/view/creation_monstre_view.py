@@ -32,7 +32,7 @@ listclasses = [dicclasses['results'][i]['name'] for i in range(dicclasses['count
 
 class MenuMonstre(AbstractView):
     
-    def __init__(self, joueur = MaitreDuJeu, campagne):
+    def __init__(self, joueur = MaitreDuJeu):
         self.questions = [
             {
                 'type': 'list',
@@ -102,7 +102,7 @@ class MenuMonstre(AbstractView):
                 'default': 'Ragnar'
             }]
         self.joueur = joueur
-        self.campagne = campagne
+        
     def display_info(self):
         print(f"Bonjour {Session().identifiant}, choisissez les caractéristiques de votre monstre ")
 
