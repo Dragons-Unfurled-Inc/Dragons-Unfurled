@@ -75,7 +75,6 @@ class UtilisateurService:
                                             feed_backs = True
                                             )
         UtilisateurDAO.createUtilisateur(Session.utilisateur)
-        print("Votre compte a été créé avec succès !")
         # return nouvel_utilisateur
         # else:
         #     print("Votre compte n'a pas pu être créé !")
@@ -101,7 +100,7 @@ class UtilisateurService:
 
     @staticmethod
     def est_admin(nom_utilisateur: str):
-        est_administrateur = UtilisateurDAO.getUtilisateur(nom_utilisateur)
+        est_administrateur = UtilisateurDAO.getUtilisateurAdmin(nom_utilisateur)
         if est_administrateur:
             return True
         return False 

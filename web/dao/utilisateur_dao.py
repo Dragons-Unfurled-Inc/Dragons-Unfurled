@@ -84,6 +84,8 @@ class UtilisateurDAO:
                             , "est_administrateur": utilisateur.est_administrateur
                             , "password": utilisateur.mot_de_passe}
                         )
+            
+            print("Votre compte a été créé avec succès !")
             return utilisateur
 
     @staticmethod
