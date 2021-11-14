@@ -29,10 +29,11 @@ class UtilisateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "
-                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom) and utilisateur.password=%(password)"
+                    "\nFROM utilisateur where utilisateur.username=%(nom)s and utilisateur.password=%(mdp)s"\
+                    ,{"nom" : utilisateur_nom,"mdp":password}
                 )
                 res = cursor.fetchone()
-            if res["utilisateur_nom"] != None:
+            if res != None:
                 return True
             return False
 

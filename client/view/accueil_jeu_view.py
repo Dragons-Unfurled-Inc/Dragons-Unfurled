@@ -17,7 +17,7 @@ class AccueilJeuView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'{Session().identifiant} que souhaitez-vous faire ? ',
+                'message': f'Bonjour {Session.utilisateur.identifiant}, que souhaitez-vous faire ? ',
                 'choices': [
                     'Rejoindre une campagne',
                     Separator(),

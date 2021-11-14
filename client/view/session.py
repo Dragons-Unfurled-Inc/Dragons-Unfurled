@@ -7,4 +7,4 @@ class Session(metaclass=Singleton):
         Définition des variables que l'on stocke en session.
         """
         self.est_administrateur = True
-        self.utilisateur = Utilisateur()
+        self.utilisateur = Utilisateur

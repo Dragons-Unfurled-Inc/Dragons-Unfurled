@@ -32,12 +32,9 @@ class CreaCompteView(AbstractView):
             
     def make_choice(self):
         reponse = prompt(self.questions)
-        R = UtilisateurService.validation_creation_compte(reponse['Nom'],reponse['mdp'],reponse['mdp2'])
-        #plus tard, R sera juste le booleen de validation de compte et le compte sera stocké en session
-        #pour l'instant, c'est la liste qui contient l'utilisateur qui est entré sur cet ecran et le booleen qui indique si il est valide
-        if not R[1] : 
+        if not UtilisateurService.validation_creation_compte(reponse['Nom'],reponse['mdp'],reponse['mdp2']) : 
             return CreaCompteView(reponse['Nom'])
-        if R[1]:
-            utilisateur = UtilisateurService.creation_compte(R[0],'joueur')
-            return AccueilJeuView(utilisateur) 
+        UtilisateurService.creation_compte(reponse['Nom'],reponse['mdp'])
+        from client.view.session import Session
+        return AccueilJeuView(Session.utilisateur) 
             

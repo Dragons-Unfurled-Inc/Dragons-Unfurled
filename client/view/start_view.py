@@ -14,7 +14,7 @@ class StartView(AbstractView):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f' Bonjour {Session().identifiant} ',
+                'message': ' Bonjour ! ',
                 'choices': [
                     'S\'authentifier' ,
                     'Créer un compte' , 
@@ -32,7 +32,7 @@ class StartView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'S\'authentifier':
-            from view.connexion_view import ConnCompteView
+            from client.view.connexion_view import ConnCompteView
             return ConnCompteView()
             from client.service.utilisateur_service import UtilisateurService
             utilisateur = UtilisateurService.connexion()

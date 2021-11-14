@@ -2,11 +2,12 @@ from client.service.utilisateur_service import UtilisateurService
 from client.view.abstract_view import AbstractView
 from PyInquirer import Separator, prompt
 from PyInquirer import Validator, ValidationError
-#from client.view.accueil_jeu_view import AccueilJeuView
+from client.view.session import Session
+from client.view.accueil_jeu_view import AccueilJeuView
 from objets_metier.utilisateur import Utilisateur
 
 class ConnCompteView(AbstractView):
-    @staticmethod
+    
     def __init__(self,precedent = "",tentative_num = 1):
         self.precedent = precedent
         self.tentative_num = tentative_num
@@ -30,12 +31,11 @@ class ConnCompteView(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        R = UtilisateurService.connexion(reponse['Nom'],reponse['mdp'])
-        print(R)
-        if not R : 
+        if not UtilisateurService.connexion(reponse['Nom'],reponse['mdp']) : 
             if self.tentative_num < 2 : 
                 print("Veuillez reessayer")
                 return ConnCompteView(reponse['Nom'],self.tentative_num+1)
             print("Vous avez fait le nombre d'essais maximal. \n Vous allez être déconnecté.")
             import sys
             sys.exit()
+        return AccueilJeuView(Session.utilisateur)
