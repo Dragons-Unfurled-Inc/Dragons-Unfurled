@@ -146,3 +146,8 @@ CREATE TABLE Entite_Objet(
 	FOREIGN KEY (id_entite) REFERENCES Entite(id_entite),
 	FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
 );
+
+-- Deux comptes administrateurs initaux à l'état de tests.
+INSERT INTO Utilisateur (username, est_administrateur, password)
+VALUES ('Arthur',True, ''),
+('Alicia','True', '');

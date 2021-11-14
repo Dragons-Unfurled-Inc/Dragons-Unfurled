@@ -1,2 +1,0 @@
-Ici vous avez les objets métiers
-la classe de dés est un bon exemple je pense 

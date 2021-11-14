@@ -69,8 +69,8 @@ class UtilisateurService:
                                                 est_administrateur = True,
                                                 feed_backs = True) 
             UtilisateurDAO.createUtilisateur(nouvel_utilisateur)
-            return nouvel_utilisateur
             print("Votre compte a été créé avec succès !")
+            return nouvel_utilisateur
         else:
             print("Votre compte n'a pas pu être créé !")
 
@@ -80,7 +80,7 @@ class UtilisateurService:
             nom_utilisateur = input("Quel est votre nom d'utilisateur ? ")
         if nom_utilisateur not in UtilisateurDAO.liste_noms():
             print("Ce nom d'utilisateur n'existe pas ! \n Veuillez réessayer, s'il vous plaît.")
-            return UtilisateurService.connexion(None, tentative_num)
+            return UtilisateurService.connexion(None, tentative_num+1)
         else:
             compte_utilisateur = UtilisateurDAO.getUtilisateur(nom_utilisateur)
             mot_de_passe_utilisateur = getpass("Veuillez entrer votre mot de passe, s'il vous plaît : ")
