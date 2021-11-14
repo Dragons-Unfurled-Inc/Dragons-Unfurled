@@ -34,3 +34,12 @@ print(j.personnages)
                        est_administrateur : bool, 
                        feed_backs : List[Feedback] = [],
                        choix_revelation : bool = True): '''
+query = """query{
+monsters(limit:-1){name,type}
+}
+"""
+endpoint="https://www.dnd5eapi.co/graphql"
+r = req.post("https://www.dnd5eapi.co/graphql",json={"query":query})
+print(r.status_code)
+names = r.json()
+print(names)

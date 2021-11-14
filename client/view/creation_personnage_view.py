@@ -124,7 +124,7 @@ class MenuPersonnage(AbstractView):
         print(f"Bonjour {Session().identifiant}, Bienvenue sur l\'écran de création de personnage")
 
     def make_choice(self):
-        reponse = prompt(self.questions)
+        reponse = prompt(self.questions,style=style_from_dict)
         #print(reponse)
         if reponse['ChoixCarac'] : 
             carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])

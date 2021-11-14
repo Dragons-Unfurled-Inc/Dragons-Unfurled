@@ -13,41 +13,35 @@ class UtilisateurService:
     de comptes aux utilisateurs, la connexion et la deconnexion."""
 
     @staticmethod
-    def validation_creation_compte(): # L'ensemble des conditions
+    def validation_creation_compte(nom_utilisateur,mot_de_passe,mot_de_passe2): # L'ensemble des conditions
         caractere = '[@_!#$%^&*()<>?/\|}{~:]'
         majuscule = 'ABCDEFGHIJKLMNOPQRSTUVXYZ'
         minuscule = 'abcdefghijklmnopqrstuvxyz'
         validation = False
 
-        while not validation:
-            nom_utilisateur = input("Veuillez entrer votre nom d'utilisateur : ")
-            mot_de_passe = getpass("Veuillez entrer votre mot de passe \n (Il doit contenir au moins cinq caractères dont une majuscule et une minuscules. Les charactères spéciaux ne sont pas autorisés.) :")
-            mot_de_passe2 = getpass("Veuillez confirmer votre mot de passe : ")
+        if not validation:
+            # nom_utilisateur = input("Veuillez entrer votre nom d'utilisateur : ")
+            # mot_de_passe = getpass("Veuillez entrer votre mot de passe \n (Il doit contenir au moins cinq caractères dont une majuscule et une minuscules. Les charactères spéciaux ne sont pas autorisés.) :")
+            # mot_de_passe2 = getpass("Veuillez confirmer votre mot de passe : ")
 
             if nom_utilisateur in UtilisateurDAO.liste_noms(): # Nous vérifions si ce nom d'utilisateur est déjà pris.
                 print("Votre nom d'utilisateur a déjà été pris par une autre personne ! \n Veuillez choisir un autre nom, s'il vous plaît.")
-                continue
-
+                
             elif len(mot_de_passe) < 5:
                 print("Votre mot de passe doit contenir au moins cinq caratères ! \n Veuillez choisir un autre mot de passe, s'il vous plaît.")
-                continue
-
+                
             elif len([x for x in mot_de_passe if x in majuscule]) < 1:
                 print("Votre mot de passe doit comporter au moins une majuscule ! \n Veuillez choisir un autre mot de passe, s'il vous plaît.")
-                continue
-
+                
             elif len([x for x in mot_de_passe if x in minuscule]) < 1:
                 print("Votre mot de passe doit comporter au moins une minuscule ! \n Veuillez choisir un autre mot de passe, s'il vous plaît.")
-                continue
-
+                
             elif len([x for x in mot_de_passe if x in caractere]) != 0:
                 print("Votre mot de passe ne doit pas comporter de caractère ! \n Veuillez choisir un autre mot de passe, s'il vous plaît.")
-                continue
-
+                
             elif mot_de_passe2 != mot_de_passe:
                 print("Vous n'avez pas entré deux fois le même mot de passe ! \n Veuillez recommencer, s'il vous plaît.")
-                continue
-
+                
             else:
                 validation = True
 
@@ -55,23 +49,27 @@ class UtilisateurService:
         mdp = hashlib.sha256()
         mdp.update(mdp_hash)
         compte_utilisateur = [nom_utilisateur, mdp.digest()]
-        return compte_utilisateur
+        return compte_utilisateur,validation
+        #à stocker dans un objet session plus tard
 
     @staticmethod
-    def creation_compte(type_compte):
-        compte = UtilisateurService.validation_creation_compte()
+    def creation_compte(compte,type_compte):
         if compte != None:
             if type_compte == "joueur":
-                nouvel_utilisateur = Utilisateur(connecte = False,
+                nouvel_utilisateur = Utilisateur(connecte = True,
                                                 mot_de_passe = compte[1],
                                                 identifiant = compte[0],
-                                                est_administrateur = False)  
+                                                est_administrateur = False,
+                                                feed_backs = True
+                                                )  
             elif type_compte == "administrateur":
                 nouvel_utilisateur = Utilisateur(connecte = False,
                                                 mot_de_passe = compte[1],
                                                 identifiant = compte[0],
-                                                est_administrateur = True) 
-            UtilisateurDAO.creation_compte(nouvel_utilisateur)
+                                                est_administrateur = True,
+                                                feed_backs = True) 
+            UtilisateurDAO.createUtilisateur(nouvel_utilisateur)
+            return nouvel_utilisateur
             print("Votre compte a été créé avec succès !")
         else:
             print("Votre compte n'a pas pu être créé !")

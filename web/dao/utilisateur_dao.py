@@ -1,7 +1,13 @@
 from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
 from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
+from psycopg2.extensions import register_adapter, AsIs
+from pydantic import SecretBytes
 
+# def adapt_pydantic_byte(Byte):
+#         return AsIs(repr(Byte))
+
+# register_adapter(SecretBytes, adapt_pydantic_byte)
 
 class UtilisateurDAO:
 
@@ -14,11 +20,8 @@ class UtilisateurDAO:
                     "FROM utilisateur"
                 )
                 res = cursor.fetchone()
-        return res["username"]
-
-    @staticmethod
-    def creation_compte(nouvel_utilisateur: Utilisateur):
         return []
+        return res["username"]
 
     @staticmethod
     def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
@@ -26,7 +29,7 @@ class UtilisateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "
-                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom)s and utilisateur.password=%(password)s"
+                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom) and utilisateur.password=%(password)"
                 )
                 res = cursor.fetchone()
             if res["utilisateur_nom"] != None:
@@ -38,12 +41,18 @@ class UtilisateurDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT * "
-                    "\nFROM utilisateur where utilisateur.utilisateur_nom=%(utilisateur_nom)s"
+                    "SELECT * "\
+                    "FROM Utilisateur where username=%(nom)s"\
+                    ,{"nom" : utilisateur_nom}
                 )
                 res = cursor.fetchone()
         if res:
-            return Utilisateur(id=res["id_utilisateur"], utilisateur_nom=res["utilisateur_nom"], password=res["password"])
+            return Utilisateur(connecte = True,
+                                                mot_de_passe = res['password'],
+                                                identifiant = res['username'],
+                                                est_administrateur = False,
+                                                feed_backs = True
+                                                )
         else:
             raise UtilisateurIntrouvableException(utilisateur_nom)
 
