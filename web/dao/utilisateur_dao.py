@@ -38,12 +38,27 @@ class UtilisateurDAO:
             return False
 
     @staticmethod
-    def getUtilisateur(utilisateur_nom: str) -> Utilisateur:
+    def getUtilisateur(utilisateur_nom: str) -> bool:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "\
                     "FROM Utilisateur where username=%(nom)s"\
+                    ,{"nom" : utilisateur_nom}
+                )
+                res = cursor.fetchone()
+        if res:
+            return True
+        else : 
+            return False
+
+    @staticmethod
+    def getUtilisateurAdmin(utilisateur_nom: str) -> bool:
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Utilisateur where username=%(nom)s and est_administrateur = True"\
                     ,{"nom" : utilisateur_nom}
                 )
                 res = cursor.fetchone()

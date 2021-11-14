@@ -98,3 +98,10 @@ class UtilisateurService:
                                             )
             return True
         return False 
+
+    @staticmethod
+    def est_admin(nom_utilisateur: str):
+        est_administrateur = UtilisateurDAO.getUtilisateur(nom_utilisateur)
+        if est_administrateur:
+            return True
+        return False 
