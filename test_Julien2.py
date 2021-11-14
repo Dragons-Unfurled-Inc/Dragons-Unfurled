@@ -1,3 +1,5 @@
+# pip install rich
+
 from datetime import datetime
 
 from rich import box

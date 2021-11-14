@@ -36,3 +36,4 @@ uvicorn
 wcwidth       
 prompt_toolkit
 pydantic
+rich
