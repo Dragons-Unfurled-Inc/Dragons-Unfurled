@@ -49,7 +49,7 @@ class UtilisateurService:
         #à stocker dans un objet session plus tard
 
     @staticmethod
-    def creation_compte(nom_utilisateur = str,mot_de_passe_utilisateur = str):
+    def creation_compte(nom_utilisateur = str, mot_de_passe_utilisateur = str, est_admin = False):
         # if compte != None:
         #     if type_compte == "joueur":
         #         nouvel_utilisateur = Utilisateur(connecte = True,
@@ -71,7 +71,7 @@ class UtilisateurService:
         Session.utilisateur =  Utilisateur(connecte = True,
                                             mot_de_passe = mdp.digest(),
                                             identifiant = nom_utilisateur,
-                                            est_administrateur = False,
+                                            est_administrateur = est_admin,
                                             feed_backs = True
                                             )
         UtilisateurDAO.createUtilisateur(Session.utilisateur)
