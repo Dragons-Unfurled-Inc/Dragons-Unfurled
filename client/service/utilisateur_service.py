@@ -49,7 +49,7 @@ class UtilisateurService:
         #à stocker dans un objet session plus tard
 
     @staticmethod
-    def creation_compte(nom_utilisateur = str, mot_de_passe_utilisateur = str, est_admin = False):
+    def creation_compte(nom_utilisateur: str, mot_de_passe_utilisateur: str, est_admin: bool = False):
         # if compte != None:
         #     if type_compte == "joueur":
         #         nouvel_utilisateur = Utilisateur(connecte = True,
@@ -81,7 +81,7 @@ class UtilisateurService:
         #     print("Votre compte n'a pas pu être créé !")
 
     @staticmethod
-    def connexion(nom_utilisateur = str,mot_de_passe_utilisateur = str):
+    def connexion(nom_utilisateur: str,mot_de_passe_utilisateur: str):
         if not UtilisateurDAO.getUtilisateur(nom_utilisateur):
             print('Cet utilisateur n\'existe pas')
             return False
