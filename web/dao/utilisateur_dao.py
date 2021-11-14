@@ -48,24 +48,19 @@ class UtilisateurDAO:
                 )
                 res = cursor.fetchone()
         if res:
-            return Utilisateur(connecte = True,
-                                                mot_de_passe = res['password'],
-                                                identifiant = res['username'],
-                                                est_administrateur = False,
-                                                feed_backs = True
-                                                )
-        else:
-            raise UtilisateurIntrouvableException(utilisateur_nom)
+            return True
+        else : 
+            return False
 
     @staticmethod
     def createUtilisateur(utilisateur: Utilisateur) -> Utilisateur:
-        try:
-            UtilisateurDAO.getUtilisateur(utilisateur.identifiant)
-        except UtilisateurIntrouvableException:
-                with DBConnection().connection as connection:
-                    with connection.cursor() as cursor:
-                        cursor.execute(
-                            "INSERT INTO Utilisateur (username, "\
+        if UtilisateurDAO.getUtilisateur(utilisateur.identifiant) :
+            print('Cet utilisateur existe déjà')
+        else :
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "INSERT INTO Utilisateur (username, "\
                                                     "est_administrateur, "\
                                                     "password) "\
                             "VALUES "\
@@ -74,7 +69,7 @@ class UtilisateurDAO:
                             , "est_administrateur": utilisateur.est_administrateur
                             , "password": utilisateur.mot_de_passe}
                         )
-                return utilisateur
+            return utilisateur
 
     @staticmethod
     def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:
