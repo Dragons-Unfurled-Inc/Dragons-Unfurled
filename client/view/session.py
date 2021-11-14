@@ -1,3 +1,4 @@
+from objets_metier.utilisateur import Utilisateur
 from utils.singleton import Singleton
 
 class Session(metaclass=Singleton):
@@ -5,7 +6,5 @@ class Session(metaclass=Singleton):
         """
         Définition des variables que l'on stocke en session.
         """
-        self.connecte = False
-        self.mot_de_passe: str = "Testest"
-        self.identifiant: str = "Arthur"
         self.est_administrateur = True
+        self.utilisateur = Utilisateur()
