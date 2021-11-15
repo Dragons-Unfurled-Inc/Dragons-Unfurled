@@ -20,7 +20,6 @@ class UtilisateurDAO:
                     "FROM utilisateur"
                 )
                 res = cursor.fetchone()
-        return []
         return res["username"]
 
     @staticmethod

@@ -41,7 +41,7 @@ class AccueilAdministrateurView(AbstractView):
             return AccueilAdministrateurView()
 
         if reponse['choix'] == 'Transférer ses droits':
-            AdministrateurService.transferer_droits_admin(input("Quel est le nom du joueur à qui vous voulez transférer vos droits ?"))
+            AdministrateurService.transferer_droits_admin(input("Quel est le nom du joueur à qui vous voulez transférer vos droits ?"), utilisateur.identifiant)
             return AccueilAdministrateurView()
         
         if reponse['choix'] == 'Se déconnecter':
