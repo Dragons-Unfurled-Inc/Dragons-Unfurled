@@ -50,6 +50,8 @@ class StartView(AbstractView):
             return CreaCompteView()  
         
         if reponse['choix'] == 'Quitter l\'application':
+            with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/dragons/dragon3.txt', 'r', encoding="utf-8") as affichage2:
+                print(affichage1.read(),affichage2.read())
             import sys
             sys.exit()
             

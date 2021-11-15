@@ -2,6 +2,10 @@ from PyInquirer import Separator, prompt, Validator, ValidationError
 
 from client.view.abstract_view import AbstractView
 from objets_metier.utilisateur import Utilisateur
+from client.view.session import Session
+from client.view.accueil_jeu_view import AccueilJeuView
+from client.view.passage_admin_view import PassageAdminView
+from client.service.utilisateur_service import UtilisateurService
 
 
 class Deconnexion(AbstractView):
@@ -9,19 +13,17 @@ class Deconnexion(AbstractView):
 
     def __init__(self, utilisateur:Utilisateur):
         self.__questions = [
-
-    {
-        'type': 'input',
-        'name': 'confirmer_deco',
-        'message': 'Confirmer la déconnexion.',
-
-    },
-    {
-        'type': 'password',
-        'name': 'Annuler',
-        'message': 'Annuler.'
-    }
-    ]
+            {
+                'type': 'list',
+                'name': 'choix',
+                'message': f'{Session.utilisateur.identifiant} que souhaitez-vous faire ? ',
+                'choices': [
+                    'Confirmer la déconnexion',
+                    'Annuler'
+                    
+                ]
+            }
+        ]
         self.__utilisateur = utilisateur
 
     def display_info(self):
@@ -34,11 +36,8 @@ class Deconnexion(AbstractView):
             from client.view.start_view import StartView
             return StartView()
         if reponse['choix'] == 'Annuler':
-            if self.__utilisateur.est_administrateur:
-                from client.view.accueil_administrateur_view import AccueilAdministrateurView
-                return AccueilAdministrateurView(self.__utilisateur)
-            else:
-                from client.view.accueil_jeu_view import AccueilJeuView
-                return AccueilJeuView(self.__utilisateur)
+            if Session.utilisateur.est_administrateur:
+                return PassageAdminView(Session.utilisateur)
+            return AccueilJeuView(Session.utilisateur)
             
             
