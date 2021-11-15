@@ -11,3 +11,4 @@ UtilisateurService.creation_compte('Alicia','Alicia', True)
 
 # Un compte joueur.
 UtilisateurService.creation_compte('Thomas','Thomas', False)
+UtilisateurService.creation_compte('Isabelle','Isabelle', False)

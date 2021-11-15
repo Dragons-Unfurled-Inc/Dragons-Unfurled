@@ -28,7 +28,8 @@ class UtilisateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "
-                    "\nFROM utilisateur where utilisateur.username=%(nom)s and utilisateur.password=%(mdp)s"\
+                    "\nFROM utilisateur "\
+                    "WHERE utilisateur.username=%(nom)s and utilisateur.password=%(mdp)s"\
                     ,{"nom" : utilisateur_nom,"mdp":password}
                 )
                 res = cursor.fetchone()
@@ -42,7 +43,8 @@ class UtilisateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "\
-                    "FROM Utilisateur where username=%(nom)s"\
+                    "FROM Utilisateur "\
+                    "WHERE username=%(nom)s"\
                     ,{"nom" : utilisateur_nom}
                 )
                 res = cursor.fetchone()
@@ -57,7 +59,8 @@ class UtilisateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "\
-                    "FROM Utilisateur where username=%(nom)s and est_administrateur = True"\
+                    "FROM Utilisateur "\
+                    "WHERE username=%(nom)s and est_administrateur = True"\
                     ,{"nom" : utilisateur_nom}
                 )
                 res = cursor.fetchone()

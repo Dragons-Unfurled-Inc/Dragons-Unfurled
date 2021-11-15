@@ -11,7 +11,8 @@ class JoueurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT username "\
-                    "FROM joueur"
+                    "FROM utilisateur "\
+                    "WHERE est_administrateur = False"
                 )
                 res = cursor.fetchone()
         return res["username"]
