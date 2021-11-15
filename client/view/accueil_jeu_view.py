@@ -12,7 +12,7 @@ from objets_metier.maitre_du_jeu import MaitreDuJeu
 
 class AccueilJeuView(AbstractView):
 
-    def __init__(self, utilisateur:Utilisateur):
+    def __init__(self):
         self.__questions = [
             {
                 'type': 'list',
@@ -23,14 +23,12 @@ class AccueilJeuView(AbstractView):
                     Separator(),
                     'Créer un personnage',
                     'Créer une campagne',
-                    'Consulter la liste des personnages d\'une campagne',
                     Separator(),
                     'Se déconnecter',
                     
                 ]
             }
         ]
-        self.utilisateur = utilisateur
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/texte/accueil_de_jeu.txt', 'r', encoding="utf-8") as affichage2:
             print(affichage1.read(),affichage2.read())
