@@ -8,3 +8,7 @@ class Session(metaclass=Singleton):
         """
         #self.est_administrateur = True
         self.utilisateur = Utilisateur
+        
+        @staticmethod
+        def upgrade_util_jou():
+            self.utilisateur

@@ -10,43 +10,9 @@ from client.service.monstre_service import MonstreService
 
 
 class MaitreDuJeu(Joueur,BaseModel):
-    __id_campagne : int
-    __nom_campagne : str
-    __personnages_joueurs : List[Personnage]
-    __personnages_non_joueurs : List[Personnage]
-    __donjons : List[Donjon]
-    __monstres : List[Monstre]
     
-    class Config:
-        underscore_attrs_are_private = True
-
-    def __init__(self, id_campagne : int,
-                       nom_campagne : str,
-                       personnage : List[Personnage], 
-                       connecte : bool,
-                       mot_de_passe : str,
-                       identifiant : str,
-                       est_administrateur : bool, 
-                       feed_backs : List[Feedback] = [],
-                       personnages_joueurs : List[Personnage] = [],
-                       personnages_non_joueurs : List[Personnage] = [],
-                       donjons : List[Donjon] = [],
-                       monstres : List[Monstre] = [],
-                       choix_revelation : bool = True): 
-        self.__id_campagne = id_campagne
-        self.__nom_campagne = nom_campagne
-        self.__personnages_joueurs = personnages_joueurs
-        self.__personnages_non_joueurs = personnages_non_joueurs
-        self.__donjons = donjons
-        self.__monstres = monstres
-        Joueur.__init__(personnage, 
-                       connecte,
-                       mot_de_passe,
-                       identifiant,
-                       est_administrateur, 
-                       feed_backs,
-                       choix_revelation)
-
+    id_campagne : int
+    
     def creer_monstre(self, nom):
         self.__monstres.append(MonstreService.ImportMonstreWeb(nom))
         
@@ -89,59 +55,3 @@ class MaitreDuJeu(Joueur,BaseModel):
 
     def editer_donjon(self, donjon : Donjon): 
        None        
-
-    @property
-    def id_campagne(self):
-        return self.__id_campagne
-
-    @id_campagne.setter
-    def id_campagne(self, value):
-        self.__id_campagne = value
-
-    @property
-    def nom_campagne(self):
-        return self.__nom_campagne
-
-    @nom_campagne.setter
-    def nom_campagne(self, value):
-        self.__nom_campagne = value
-
-    @property
-    def id_maitre_du_jeu(self):
-        return self.__id_maitre_du_jeu
-
-    @id_maitre_du_jeu.setter
-    def id_maitre_du_jeu(self, value):
-        self.__id_maitre_du_jeu = value
-
-    @property
-    def personnages_joueurs(self):
-        return self.__personnages_joueurs
-
-    @personnages_joueurs.setter
-    def personnages_joueurs(self, value):
-        self.__personnages_joueurs = value
-
-    @property
-    def personnages_non_joueurs(self):
-        return self.__personnages_non_joueurs
-
-    @personnages_non_joueurs.setter
-    def personnages_non_joueurs(self, value):
-        self.__personnages_non_joueurs = value
-
-    @property
-    def donjons(self):
-        return self.__donjons
-
-    @donjons.setter
-    def donjons(self, value):
-        self.__donjons = value
-
-    @property
-    def monstres(self):
-        return self.__monstres
-
-    @monstres.setter
-    def monstres(self, value):
-        self.__monstres = value

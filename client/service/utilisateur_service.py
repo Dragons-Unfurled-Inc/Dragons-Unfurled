@@ -1,5 +1,6 @@
 import hashlib
 from getpass import getpass
+from objets_metier.joueur import Joueur
 #import os
 #from datetime import datetime
 
@@ -89,12 +90,7 @@ class UtilisateurService:
         mdp.update(pass_hash)
         if UtilisateurDAO.verifie_mdp(nom_utilisateur,mdp.digest()):
             from client.view.session import Session
-            Session.utilisateur = Utilisateur(connecte = True,
-                                            mot_de_passe = mdp.digest(),
-                                            identifiant = nom_utilisateur,
-                                            est_administrateur = False,
-                                            feed_backs = True
-                                            )
+            Session.utilisateur = Joueur(identifiant = nom_utilisateur)
             return True
         return False 
 
@@ -104,3 +100,4 @@ class UtilisateurService:
         if est_administrateur:
             return True
         return False 
+    

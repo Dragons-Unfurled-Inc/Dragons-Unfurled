@@ -9,7 +9,7 @@ from objets_metier.utilisateur import Utilisateur
 
 class ConnCompteView(AbstractView):
     
-    def __init__(self,precedent = "",tentative_num = 1):
+    def __init__(self,precedent = "",tentative_num = 1): 
         self.precedent = precedent
         self.tentative_num = tentative_num
         self.questions = [
@@ -40,5 +40,5 @@ class ConnCompteView(AbstractView):
             import sys
             sys.exit()
         if UtilisateurService.est_admin(reponse['Nom']):
-            return PassageAdminView(Session.utilisateur)
-        return AccueilJeuView(Session.utilisateur)
+            return PassageAdminView()
+        return AccueilJeuView()

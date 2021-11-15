@@ -3,6 +3,7 @@ from PyInquirer import Separator, prompt
 from client.view.abstract_view import AbstractView
 from client.view.accueil_jeu_view import AccueilJeuView
 from client.view.session import Session
+from objets_metier.joueur import Joueur
 from web.dao.utilisateur_dao import UtilisateurDAO
 from client.view.creation_compte_view import CreaCompteView
 
@@ -34,14 +35,6 @@ class StartView(AbstractView):
         if reponse['choix'] == 'S\'authentifier':
             from client.view.connexion_view import ConnCompteView
             return ConnCompteView()
-            from client.service.utilisateur_service import UtilisateurService
-            utilisateur = UtilisateurService.connexion()
-            if utilisateur.est_administrateur:
-                from client.view.accueil_administrateur_view import AccueilAdministrateurView
-                return AccueilAdministrateurView(utilisateur)
-            else:
-                from client.view.accueil_jeu_view import AccueilJeuView
-                return AccueilJeuView(utilisateur)
 
         if reponse['choix'] == 'Créer un compte':
             # from client.service.utilisateur_service import UtilisateurService
@@ -58,7 +51,7 @@ class StartView(AbstractView):
         if reponse['choix'] == 'La réponse D':
             from objets_metier.utilisateur import Utilisateur
             from client.view.session import Session
-            Session.utilisateur=Utilisateur(connecte = True,mot_de_passe = "bla",identifiant = "id",est_administrateur = True,feed_backs = True)
+            Session.utilisateur=Joueur(identifiant = "id",id_campagne="61")
             from client.view.accueil_jeu_view import AccueilJeuView
             return AccueilJeuView()   
         

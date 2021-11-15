@@ -35,8 +35,7 @@ class NumberValidator(Validator):
 
 class MenuPersonnage(AbstractView):
     
-    def __init__(self, joueur = Joueur):
-        self.joueur = joueur
+    def __init__(self):
         self.classes = PersonnageService.liste_classe()
         self.races = PersonnageService.liste_race()
         self.races.append(Separator('= The Meats ='))
@@ -130,7 +129,7 @@ class MenuPersonnage(AbstractView):
             carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
         else : 
             carac = Caracteristique(reponse['Nom'])
-        self.joueur.personnages.append(Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],0,0,reponse["Nom"],carac))
-        print(self.joueur.personnages[0])
+        Session.utilisateur.personnages.append(Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],0,0,reponse["Nom"],carac))
+        print(Session.utilisateur.personnages[0])
         from client.view.accueil_jeu_view import AccueilJeuView
         return AccueilJeuView(self.joueur)
