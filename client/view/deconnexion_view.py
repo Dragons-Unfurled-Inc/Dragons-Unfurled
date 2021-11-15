@@ -11,11 +11,12 @@ from client.service.utilisateur_service import UtilisateurService
 class Deconnexion(AbstractView):
 
     def __init__(self, utilisateur:Utilisateur):
+        utilisateur = Session.utilisateur
         self.__questions = [
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'{Session.utilisateur.identifiant} que souhaitez-vous faire ? ',
+                'message': f'{utilisateur.identifiant} que souhaitez-vous faire ? ',
                 'choices': [
                     'Confirmer la déconnexion',
                     'Annuler'
@@ -30,12 +31,14 @@ class Deconnexion(AbstractView):
             print(affichage1.read(),affichage2.read())
 
     def make_choice(self):
+        utilisateur = Session.utilisateur
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Confirmer la déconnexion':
             from client.view.start_view import StartView
             return StartView()
         if reponse['choix'] == 'Annuler':
-            if Session.utilisateur.est_administrateur:
-                return PassageAdminView(Session.utilisateur)
-            return AccueilJeuView(Session.utilisateur)
+            est_administrateur = UtilisateurService.est_admin(utilisateur.nom_utilisateur)
+            if est_administrateur:
+                return PassageAdminView(utilisateur)
+            return AccueilJeuView(utilisateur)
             
