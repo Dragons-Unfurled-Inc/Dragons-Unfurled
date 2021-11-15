@@ -32,6 +32,7 @@ class MenuMJ(AbstractView):
                     'Supprimer une entité',
                     'Consulter la fiche d\'une entité',
                     'Modifier la fiche d\'une entité',
+                    #'Consulter la liste des personnages',
                     Separator(),
                     'Lancer des dés',
                     'Consulter les jets',
