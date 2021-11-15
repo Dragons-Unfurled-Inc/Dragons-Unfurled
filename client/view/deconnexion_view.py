@@ -9,7 +9,6 @@ from client.service.utilisateur_service import UtilisateurService
 
 
 class Deconnexion(AbstractView):
-    #def
 
     def __init__(self, utilisateur:Utilisateur):
         self.__questions = [
@@ -39,5 +38,4 @@ class Deconnexion(AbstractView):
             if Session.utilisateur.est_administrateur:
                 return PassageAdminView(Session.utilisateur)
             return AccueilJeuView(Session.utilisateur)
-            
             
