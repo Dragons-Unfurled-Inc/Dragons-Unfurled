@@ -8,7 +8,7 @@ from objets_metier.utilisateur import Utilisateur
 
 class PassageAdminView(AbstractView):
 
-    def __init__(self, utilisateur: Utilisateur):
+    def __init__(self):
         self.questions = [
             {
                 'type': 'list',
@@ -29,7 +29,7 @@ class PassageAdminView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'Se connecter en tant que joueur':
-            return AccueilJeuView(Session.utilisateur)
+            return AccueilJeuView()
             
         if reponse['choix'] == 'Se connecter en tant qu\'administrateur':
-            return AccueilAdministrateurView(Session.utilisateur)
+            return AccueilAdministrateurView()

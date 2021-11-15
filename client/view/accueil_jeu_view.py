@@ -64,19 +64,19 @@ class AccueilJeuView(AbstractView):
                         return MenuJoueur(maitre_du_jeu,campagne)
                 else:
                     print("Vous n'êtes pas membre de cette campagne.")
-                    return AccueilJeuView(self.utilisateur)
+                    return AccueilJeuView()
             else:
                 print("Cette campagne est introuvable.")
-                return AccueilJeuView(self.utilisateur)
+                return AccueilJeuView()
 
         if reponse['choix'] == 'Créer une campagne':
             nom_campagne = input("Ecrivez un nom pour votre campagne.")
             identifiant_campagne = CampagneDAO.creer_campagne(nom_campagne) #Creer_campagne affiche l'identifiant de la campagne
-            return AccueilJeuView(self.utilisateur)
+            return AccueilJeuView()
 
         if reponse['choix'] == 'Consulter la liste des personnages d\'une campagne':  
             pass #Pour le moment le MJ ajoute librement les joueurs.
         
         if reponse['choix'] == 'Se déconnecter':
             from client.view.deconnexion_view import Deconnexion
-            return Deconnexion(self.utilisateur)
+            return Deconnexion()

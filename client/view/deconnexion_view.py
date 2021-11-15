@@ -10,7 +10,7 @@ from client.service.utilisateur_service import UtilisateurService
 
 class Deconnexion(AbstractView):
 
-    def __init__(self, utilisateur:Utilisateur):
+    def __init__(self):
         utilisateur = Session.utilisateur
         self.__questions = [
             {
