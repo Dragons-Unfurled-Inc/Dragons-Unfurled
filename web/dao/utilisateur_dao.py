@@ -91,7 +91,6 @@ class UtilisateurDAO:
             
             print("Votre compte a été créé avec succès !")
             
-
     @staticmethod
     def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:
         utilisateur_to_update: Utilisateur = UtilisateurDAO.getUtilisateur(utilisateur_nom)
