@@ -10,6 +10,7 @@ from pprint import pp, pprint
 import hashlib
 from web.dao.entite_dao import EntiteDAO
 from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
+from web.service.monstre_service import MonstreService
 #print(essai.__dict__())
 
 #M = MonstreService.ImportMonstreWeb('aboleth')
@@ -61,12 +62,12 @@ def t():
     for key in d:
         print(key)
 
-print(UtilisateurCampagneDao.trouve_enti('Jules'))
+#print(UtilisateurCampagneDao.trouve_enti('Jules'))
 
 def encode(mdp):
     pass_hash = mdp.encode()
     mdp = hashlib.sha256()
     mdp.update(pass_hash)
     print(mdp.digest())
-    
-print(EntiteDAO.get_entite(0))
+
+print(MonstreService.getNetMonstreDeType('humanoid'))

@@ -9,12 +9,19 @@ class Entite(ABC, BaseModel):
     """
     Une entité est un personnage ou un monstre.
     """ 
-    id_joueur: str
-    id_entite: int
-    id_campagne : int                 
+    id_joueur: int
+    id_entite: int                
     caracteristiques_entite: Caracteristique
     objets: Optional[List[Objet]] = None
-
+    
+    def __init__(self,id_joueur : int,id_entite:int, caracteristiques_entite: Caracteristique, objets: Optional[List[Objet]] = None):
+        super().__init__(
+        id_joueur = id_joueur,
+        id_entite = id_entite,
+        caracteristiques_entite = caracteristiques_entite,
+        objets = objets,
+        )
+        
     class Config:
         underscore_attrs_are_private = True
         
