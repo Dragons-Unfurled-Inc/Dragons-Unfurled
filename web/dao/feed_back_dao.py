@@ -32,7 +32,7 @@ class FeedBackDAO:
 
     @staticmethod
     def consulter_feed_back():
-        from client.view.session import Session
+        from client.vue.session import Session
         nom_utilisateur = Session.utilisateur.identifiant
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:

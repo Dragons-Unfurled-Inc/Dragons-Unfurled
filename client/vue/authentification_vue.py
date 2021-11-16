@@ -1,8 +1,8 @@
 # from PyInquirer import Separator, prompt, Validator, ValidationError
-# from client.view.accueil_jeu_view import AccueilJeuView
+# from client.vue.accueil_jeu_vue import AccueilJeuVue
 
-# from client.view.abstract_view import AbstractView
-# from client.view.session import Session
+# from client.vue.abstract_vue import AbstractVue
+# from client.vue.session import Session
 
 # class PasswordValidator(Validator):
 #     def validate(self, document):
@@ -30,17 +30,17 @@
 
 
 
-# class Authentification(AbstractView):
+# class Authentification(AbstractVue):
 
 #     def display_info(self):
 #         print(f"Hello {Session().identifiant}, remplissez ces informations")
 
     
 #     def make_choice(self):
-#         from client.view.accueil_jeu_view import AccueilJeuView
+#         from client.vue.accueil_jeu_vue import AccueilJeuVue
 
 #         answers = prompt(questions)
 
 #         Session.identifiant = answers['pseudonyme']
 #         Session.mot_de_passe = answers['mot de passe']
-#         return AccueilJeuView()
+#         return AccueilJeuVue()

@@ -1,13 +1,13 @@
-from client.view.abstract_view import AbstractView
-from view.accueil_jeu_view import AccueilJeuView
+from client.vue.abstract_vue import AbstractVue
+from vue.accueil_jeu_vue import AccueilJeuVue
 from PyInquirer import prompt
-from view.session import Session
+from vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from web.dao.entite_dao import EntiteDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
 from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
 
-class ModifCaracView(AbstractView):
+class ModifCaracVue(AbstractVue):
 
     def __init__(self):
         utilisateur = Session.utilisateur
@@ -42,4 +42,4 @@ class ModifCaracView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         EntiteDAO.modifier_carac(self.id_enti,reponse['Nom'],reponse['Val'])
-        return AccueilJeuView()
+        return AccueilJeuVue()

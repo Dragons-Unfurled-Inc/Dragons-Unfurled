@@ -1,14 +1,14 @@
 from PyInquirer import Separator, prompt, Validator, ValidationError
 
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 from objets_metier.utilisateur import Utilisateur
-from client.view.session import Session
-from client.view.accueil_jeu_view import AccueilJeuView
-from client.view.passage_admin_view import PassageAdminView
+from client.vue.session import Session
+from client.vue.accueil_jeu_vue import AccueilJeuVue
+from client.vue.passage_admin_vue import PassageAdminVue
 from client.service.utilisateur_service import UtilisateurService
 
 
-class Deconnexion(AbstractView):
+class Deconnexion(AbstractVue):
 
     def __init__(self):
         utilisateur = Session.utilisateur
@@ -34,11 +34,11 @@ class Deconnexion(AbstractView):
         utilisateur = Session.utilisateur
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Confirmer la déconnexion':
-            from client.view.start_view import StartView
-            return StartView()
+            from client.vue.start_vue import StartVue
+            return StartVue()
         if reponse['choix'] == 'Annuler':
             est_administrateur = UtilisateurService.est_admin(utilisateur.nom_utilisateur)
             if est_administrateur:
-                return PassageAdminView(utilisateur)
-            return AccueilJeuView(utilisateur)
+                return PassageAdminVue(utilisateur)
+            return AccueilJeuVue(utilisateur)
             

@@ -1,10 +1,10 @@
 from client.service.utilisateur_service import UtilisateurService
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 from PyInquirer import Separator, prompt
 from PyInquirer import Validator, ValidationError
-from client.view.accueil_jeu_view import AccueilJeuView
+from client.vue.accueil_jeu_vue import AccueilJeuVue
 
-class CreaCompteView(AbstractView):
+class CreaCompteVue(AbstractVue):
     def __init__(self,precedent = ""):
         self.precedent = precedent
         self.questions = [
@@ -33,7 +33,7 @@ class CreaCompteView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if not UtilisateurService.validation_creation_compte(reponse['Nom'],reponse['mdp'],reponse['mdp2']) : 
-            return CreaCompteView(reponse['Nom'])
+            return CreaCompteVue(reponse['Nom'])
         UtilisateurService.creation_compte(reponse['Nom'],reponse['mdp'])
-        return AccueilJeuView() 
+        return AccueilJeuVue() 
             

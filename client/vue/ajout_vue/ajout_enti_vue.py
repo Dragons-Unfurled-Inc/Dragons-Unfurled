@@ -1,10 +1,10 @@
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 from PyInquirer import prompt
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 
 
 
-class AjoutEntiView(AbstractView):
+class AjoutEntiVue(AbstractVue):
 
     def __init__(self,joueur:MaitreDuJeu, campagne):
         self.questions = [
@@ -28,14 +28,14 @@ class AjoutEntiView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'Le personnage d\'un joueur':
-            from view.ajout_view.ajout_pers_view import AjoutPersView
-            return AjoutPersView(self.joueur)
+            from vue.ajout_vue.ajout_pers_vue import AjoutPersVue
+            return AjoutPersVue(self.joueur)
         
         if reponse['choix'] == 'Un monstre' :
-            from view.ajout_view.ajout_mons_view import AjoutMonsView
-            return AjoutMonsView(self.joueur)
+            from vue.ajout_vue.ajout_mons_vue import AjoutMonsVue
+            return AjoutMonsVue(self.joueur)
         
         if reponse['choix'] == 'Un personnage non joueur (PNJ)' :
-            from view.ajout_view.ajout_pnj_view import AjoutPNJView
-            return AjoutPNJView(self.joueur)
+            from vue.ajout_vue.ajout_pnj_vue import AjoutPNJVue
+            return AjoutPNJVue(self.joueur)
         

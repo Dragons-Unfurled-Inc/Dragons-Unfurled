@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 
-from client.view.session import Session
+from client.vue.session import Session
 
 
-class AbstractView(ABC):
+class AbstractVue(ABC):
     """
     Cette classe est la classe mère de toutes nos vues.
     """

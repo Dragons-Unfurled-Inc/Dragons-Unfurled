@@ -1,8 +1,8 @@
 from PyInquirer import prompt
 from objets_metier.maitre_du_jeu import MaitreDuJeu
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 
-class SupprPersView(AbstractView):
+class SupprPersVue(AbstractVue):
     def __init__(self, joueur:MaitreDuJeu, campagne):
         self.joueur = joueur 
         self.liste_personnages = self.joueur.personnages_joueurs  
@@ -22,5 +22,5 @@ class SupprPersView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         #Mj_services.supprimer_entite(reponse)
-        from client.view.maitre_du_jeu_view import MenuMJ
+        from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ(self.joueur,self.campagne)

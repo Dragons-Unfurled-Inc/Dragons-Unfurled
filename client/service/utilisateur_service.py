@@ -68,7 +68,7 @@ class UtilisateurService:
         mdp_hash = mot_de_passe_utilisateur.encode() # Hachage du mot de passe
         mdp = hashlib.sha256()
         mdp.update(mdp_hash)
-        from client.view.session import Session
+        from client.vue.session import Session
         Session.utilisateur = Utilisateur(identifiant = nom_utilisateur)  
         utilisateur = Session.utilisateur           
         UtilisateurDAO.createUtilisateur(utilisateur.identifiant,mdp.digest(),est_admin)
@@ -85,7 +85,7 @@ class UtilisateurService:
         mdp = hashlib.sha256()
         mdp.update(pass_hash)
         if UtilisateurDAO.verifie_mdp(nom_utilisateur,mdp.digest()):
-            from client.view.session import Session
+            from client.vue.session import Session
             Session.utilisateur = Joueur(identifiant = nom_utilisateur)
             return True
         return False 

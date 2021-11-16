@@ -1,16 +1,16 @@
 from PyInquirer import Separator, prompt
 
-from client.view.abstract_view import AbstractView
-from client.view.session import Session
-from client.view.maitre_du_jeu_view import MenuMJ
-from client.view.joueur_view import MenuJoueur
+from client.vue.abstract_vue import AbstractVue
+from client.vue.session import Session
+from client.vue.maitre_du_jeu_vue import MenuMJ
+from client.vue.joueur_vue import MenuJoueur
 from objets_metier.joueur import Joueur
 from objets_metier.utilisateur import Utilisateur
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 
-class AccueilJeuView(AbstractView):
+class AccueilJeuVue(AbstractVue):
 
     def __init__(self):
         utilisateur = Session.utilisateur 
@@ -39,7 +39,7 @@ class AccueilJeuView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Créer un personnage':
-            from client.view.creation_personnage_view import MenuPersonnage
+            from client.vue.creation_personnage_vue import MenuPersonnage
             return MenuPersonnage()
             #faut ajouter la classe joueur pour le stocker je mets une val au pif pour l'instant
         
@@ -53,7 +53,7 @@ class AccueilJeuView(AbstractView):
                     if self.utilisateur.identifiant == mj.id_maitre_du_jeu:
                         personnage_joueur = mj.trouver_personnage(self.utilisateur) 
                         joueur = Joueur(personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs)
-                        from client.view.maitre_du_jeu_view import MenuMJ
+                        from client.vue.maitre_du_jeu_vue import MenuMJ
                         return MenuMJ(joueur, campagne)
                     else:
                         personnage_joueur = mj.trouver_personnage(self.utilisateur) 
@@ -62,29 +62,29 @@ class AccueilJeuView(AbstractView):
                         monstres = MjDAO.monstres(campagne[0])
                         donjons = MjDAO.donjons(campagne[0])
                         maitre_du_jeu = MaitreDuJeu(campagne[0],campagne[1],personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs,personnages_joueurs,personnages_non_joueurs,monstres,donjons)
-                        from client.view.joueur_view import MenuJoueur
+                        from client.vue.joueur_vue import MenuJoueur
                         return MenuJoueur(maitre_du_jeu,campagne)
                 else:
                     print("Vous n'êtes pas membre de cette campagne.")
-                    return AccueilJeuView()
+                    return AccueilJeuVue()
             else:
                 print("Cette campagne est introuvable.")
-                return AccueilJeuView()
+                return AccueilJeuVue()
 
         if reponse['choix'] == 'Créer une campagne':
             nom_campagne = input("Ecrivez un nom pour votre campagne.")
             identifiant_campagne = CampagneDAO.creer_campagne(nom_campagne) #Creer_campagne affiche l'identifiant de la campagne
-            return AccueilJeuView()
+            return AccueilJeuVue()
         
         if reponse['choix'] == 'Ecrire son feed-back':
             message = input("Écrivez le feed-back que vous souhaitez poster ?")
             Utilisateur.ecrire_son_feed_back(message)
-            return AccueilJeuView()
+            return AccueilJeuVue()
 
         if reponse['choix'] == 'Consulter son feed-back':
             Utilisateur.consulter_son_feed_back()
-            return AccueilJeuView()
+            return AccueilJeuVue()
         
         if reponse['choix'] == 'Se déconnecter':
-            from client.view.deconnexion_view import Deconnexion
+            from client.vue.deconnexion_vue import Deconnexion
             return Deconnexion()

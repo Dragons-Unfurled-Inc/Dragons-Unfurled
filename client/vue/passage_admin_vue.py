@@ -1,12 +1,12 @@
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 from PyInquirer import Separator, prompt
 from PyInquirer import Validator, ValidationError
-from client.view.session import Session
-from client.view.accueil_jeu_view import AccueilJeuView
-from client.view.accueil_administrateur_view import AccueilAdministrateurView
+from client.vue.session import Session
+from client.vue.accueil_jeu_vue import AccueilJeuVue
+from client.vue.accueil_administrateur_vue import AccueilAdministrateurVue
 from objets_metier.utilisateur import Utilisateur
 
-class PassageAdminView(AbstractView):
+class PassageAdminVue(AbstractVue):
 
     def __init__(self):
         self.questions = [
@@ -29,7 +29,7 @@ class PassageAdminView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'Se connecter en tant que joueur':
-            return AccueilJeuView()
+            return AccueilJeuVue()
             
         if reponse['choix'] == 'Se connecter en tant qu\'administrateur':
-            return AccueilAdministrateurView()
+            return AccueilAdministrateurVue()

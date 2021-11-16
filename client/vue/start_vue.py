@@ -1,14 +1,14 @@
 from os import access
 from PyInquirer import Separator, prompt
-from client.view.abstract_view import AbstractView
-from client.view.accueil_jeu_view import AccueilJeuView
-from client.view.session import Session
+from client.vue.abstract_vue import AbstractVue
+from client.vue.accueil_jeu_vue import AccueilJeuVue
+from client.vue.session import Session
 from objets_metier.joueur import Joueur
 from web.dao.utilisateur_dao import UtilisateurDAO
-from client.view.creation_compte_view import CreaCompteView
+from client.vue.creation_compte_vue import CreaCompteVue
 
 
-class StartView(AbstractView):
+class StartVue(AbstractVue):
 
     def __init__(self):
         self.questions = [
@@ -33,14 +33,14 @@ class StartView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'S\'authentifier':
-            from client.view.connexion_view import ConnCompteView
-            return ConnCompteView()
+            from client.vue.connexion_vue import ConnCompteVue
+            return ConnCompteVue()
 
         if reponse['choix'] == 'Créer un compte':
             # from client.service.utilisateur_service import UtilisateurService
             # utilisateur = UtilisateurService.creation_compte("joueur")
-            # from client.view.accueil_jeu_view import AccueilJeuView
-            return CreaCompteView()  
+            # from client.vue.accueil_jeu_vue import AccueilJeuVue
+            return CreaCompteVue()  
         
         if reponse['choix'] == 'Quitter l\'application':
             with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/dragons/dragon3.txt', 'r', encoding="utf-8") as affichage2, open('client/dessins_ascii/texte/au_revoir.txt', 'r', encoding="utf-8") as affichage3:
@@ -50,8 +50,8 @@ class StartView(AbstractView):
             
         if reponse['choix'] == 'La réponse D':
             from objets_metier.utilisateur import Utilisateur
-            from client.view.session import Session
+            from client.vue.session import Session
             Session.utilisateur=Joueur(identifiant = "id",id_campagne="61")
-            from client.view.accueil_jeu_view import AccueilJeuView
-            return AccueilJeuView()   
+            from client.vue.accueil_jeu_vue import AccueilJeuVue
+            return AccueilJeuVue()   
         

@@ -1,13 +1,13 @@
 from client.service.utilisateur_service import UtilisateurService
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 from PyInquirer import Separator, prompt
 from PyInquirer import Validator, ValidationError
-from client.view.session import Session
-from client.view.accueil_jeu_view import AccueilJeuView
-from client.view.passage_admin_view import PassageAdminView
+from client.vue.session import Session
+from client.vue.accueil_jeu_vue import AccueilJeuVue
+from client.vue.passage_admin_vue import PassageAdminVue
 from objets_metier.utilisateur import Utilisateur
 
-class ConnCompteView(AbstractView):
+class ConnCompteVue(AbstractVue):
     
     def __init__(self,precedent = "",tentative_num = 1): 
         self.precedent = precedent
@@ -35,10 +35,10 @@ class ConnCompteView(AbstractView):
         if not UtilisateurService.connexion(reponse['Nom'],reponse['mdp']): 
             if self.tentative_num < 2 : 
                 print("Veuillez reessayer")
-                return ConnCompteView(reponse['Nom'],self.tentative_num+1)
+                return ConnCompteVue(reponse['Nom'],self.tentative_num+1)
             print("Vous avez fait le nombre d'essais maximal. \n Vous allez être déconnecté.")
             import sys
             sys.exit()
         if UtilisateurService.est_admin(reponse['Nom']):
-            return PassageAdminView()
-        return AccueilJeuView()
+            return PassageAdminVue()
+        return AccueilJeuVue()

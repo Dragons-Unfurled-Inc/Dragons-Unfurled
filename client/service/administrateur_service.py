@@ -1,7 +1,7 @@
 from typing import List
 
 from utils.singleton import Singleton
-from client.view.session import Session
+from client.vue.session import Session
 from objets_metier.feedback import FeedBack 
 from web.dao.feed_back_dao import FeedBackDAO
 from datetime import date

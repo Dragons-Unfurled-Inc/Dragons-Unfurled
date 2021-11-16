@@ -1,16 +1,16 @@
 from client.service.campagne_service import CampagneService
-from client.view.accueil_jeu_view import AccueilJeuView
-from client.view.joueur_view import MenuJoueur
-from client.view.maitre_du_jeu_view import MenuMJ
+from client.vue.accueil_jeu_vue import AccueilJeuVue
+from client.vue.joueur_vue import MenuJoueur
+from client.vue.maitre_du_jeu_vue import MenuMJ
 from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
-from view.session import Session
+from vue.session import Session
 from PyInquirer import Separator,prompt
-from view.abstract_view import AbstractView
+from vue.abstract_vue import AbstractVue
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.db_connection import DBConnection
 
-class RejCampView(AbstractView):
+class RejCampVue(AbstractVue):
     
     def __init__(self):
         self.__questions = [
@@ -44,5 +44,5 @@ class RejCampView(AbstractView):
                 return MenuMJ()
             Session.utilisateur = Joueur(utilisateur.identifiant,reponse['id'])
             return MenuJoueur()
-        return AccueilJeuView()
+        return AccueilJeuVue()
             

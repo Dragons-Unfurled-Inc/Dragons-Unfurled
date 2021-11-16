@@ -1,7 +1,7 @@
 from PyInquirer import prompt
 from client.service.monstre_service import MonstreService
 from objets_metier.maitre_du_jeu import MaitreDuJeu
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 from PyInquirer import Validator, ValidationError
 
 class NumberValidator(Validator):
@@ -13,7 +13,7 @@ class NumberValidator(Validator):
                 message='Entrez un nombre, s\'il vous plaît.',
                 cursor_position=len(document.text))  # Move cursor to end
 
-class AjoutPersView(AbstractView):
+class AjoutPersVue(AbstractVue):
     
     @staticmethod
     def __init__(self):
@@ -41,5 +41,5 @@ class AjoutPersView(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        from client.view.maitre_du_jeu_view import MenuMJ
+        from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ(self.joueur,self.campagne)

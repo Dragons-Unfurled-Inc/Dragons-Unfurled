@@ -1,14 +1,14 @@
 from PyInquirer import Separator, prompt
-from client.view import accueil_jeu_view
+from client.vue import accueil_jeu_vue
 
 
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 from web.dao.jet_dao import JetDAO
-from client.view.session import Session
+from client.vue.session import Session
 from objets_metier.joueur import Joueur
 
 
-class MenuJoueur(AbstractView):
+class MenuJoueur(AbstractVue):
 
     def __init__(self, joueur, campagne):
         self.__questions = [
@@ -43,22 +43,22 @@ class MenuJoueur(AbstractView):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Modifier la fiche de votre personnage':
             Joueur.modifier_personnage(self.joueur,self.campagne)
-            from client.view.joueur_view import MenuJoueur
+            from client.vue.joueur_vue import MenuJoueur
             return MenuJoueur(self.joueur,self.campagne)
             
         if reponse['choix'] == 'Consulter la fiche de votre personnage':
             Joueur.consulter_personnage(self.joueur,self.campagne)
-            from client.view.joueur_view import MenuJoueur
+            from client.vue.joueur_vue import MenuJoueur
             
         if reponse['choix'] == 'Lancer des dés':
-            from client.view.des_view import MenuDes
+            from client.vue.des_vue import MenuDes
             return MenuDes(self.joueur, self.campagne)   
 
 
 
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
-            from client.view.joueur_view import MenuJoueur
+            from client.vue.joueur_vue import MenuJoueur
             return MenuJoueur(self.joueur,self.campagne)
 
 
@@ -68,6 +68,6 @@ class MenuJoueur(AbstractView):
             return MenuJoueur(self.joueur,self.campagne)
 
         if reponse['choix'] == 'Quitter la campagne':
-            from client.view.accueil_jeu_view import AccueilJeuView
-            return AccueilJeuView(self.joueur)
+            from client.vue.accueil_jeu_vue import AccueilJeuVue
+            return AccueilJeuVue(self.joueur)
         

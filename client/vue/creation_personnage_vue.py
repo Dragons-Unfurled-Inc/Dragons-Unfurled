@@ -1,7 +1,7 @@
 from __future__ import print_function, unicode_literals
 from PyInquirer import Validator, ValidationError
-from client.view.abstract_view import AbstractView
-from client.view.session import Session
+from client.vue.abstract_vue import AbstractVue
+from client.vue.session import Session
 import regex
 from pprint import pprint
 from objets_metier.caracteristique import Caracteristique
@@ -35,7 +35,7 @@ class NumberValidator(Validator):
                 message='Entrez un nombre, s\'il vous plaît.',
                 cursor_position=len(document.text))  # Move cursor to end
 
-class MenuPersonnage(AbstractView):
+class MenuPersonnage(AbstractVue):
     
     def __init__(self):
         self.classes = PersonnageService.liste_classe()
@@ -133,5 +133,5 @@ class MenuPersonnage(AbstractView):
             carac = Caracteristique(reponse['Nom'])
         P=Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],utilisateur.identifiant,0,reponse["Nom"],carac) 
         EntiteDAO.add_entite(P)       
-        from client.view.accueil_jeu_view import AccueilJeuView
-        return AccueilJeuView()
+        from client.vue.accueil_jeu_vue import AccueilJeuVue
+        return AccueilJeuVue()

@@ -1,23 +1,23 @@
-from client.view.start_view import StartView
-from client.view.creation_personnage_view import MenuPersonnage
+from client.vue.start_vue import StartVue
+from client.vue.creation_personnage_vue import MenuPersonnage
 from objets_metier.joueur import Joueur
-from client.view.creation_compte_view import CreaCompteView
+from client.vue.creation_compte_vue import CreaCompteVue
 
 if __name__ == '__main__':
-    # Lance notre première vue : StartView
-    current_view = StartView()
-    #current_view = CreaCompteView()
+    # Lance notre première vue : StartVue
+    current_vue = StartVue()
+    #current_vue = CreaCompteVue()
     with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1,open('client/dessins_ascii/logo_moyen.txt', 'r', encoding="utf-8") as affichage2:
             print(affichage1.read(),affichage2.read())
             
     # Tant que la vue n'est pas None, l'application continue de tourner.
-    while current_view:
+    while current_vue:
     
         # Nous Affichons les infos de la vue.
-        current_view.display_info()
+        current_vue.display_info()
         
         # On demande à l'utilisateur son choix.
-        current_view = current_view.make_choice()
+        current_vue = current_vue.make_choice()
 
     with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
         print(asset.read())

@@ -1,10 +1,10 @@
-from client.view.abstract_view import AbstractView
+from client.vue.abstract_vue import AbstractVue
 from PyInquirer import prompt
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 
 
 
-class SupprEntiView(AbstractView):
+class SupprEntiVue(AbstractVue):
 
     def __init__(self,joueur:MaitreDuJeu, campagne):
         self.questions = [
@@ -29,11 +29,11 @@ class SupprEntiView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'Le personnage d\'un joueur':
-            from client.view.suppr_view.suppr_pers_view import SupprPersView
-            return SupprPersView(self.joueur)
+            from client.vue.suppr_vue.suppr_pers_vue import SupprPersVue
+            return SupprPersVue(self.joueur)
         if reponse['choix'] == 'Un monstre' :
-            from client.view.suppr_view.suppr_mons_view import SupprMonsView
-            return SupprMonsView(self.joueur)
+            from client.vue.suppr_vue.suppr_mons_vue import SupprMonsVue
+            return SupprMonsVue(self.joueur)
         if reponse['choix'] == 'Un personnage non joueur (PNJ)' :
-            from client.view.suppr_view.suppr_pnj_view import SupprPNJView
-            return SupprPNJView(self.joueur)
+            from client.vue.suppr_vue.suppr_pnj_vue import SupprPNJVue
+            return SupprPNJVue(self.joueur)

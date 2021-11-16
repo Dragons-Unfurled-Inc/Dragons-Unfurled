@@ -31,7 +31,7 @@ class Utilisateur(BaseModel):
 
     @staticmethod
     def ecrire_son_feed_back(message: str): # Cette fonction va écraser l'ancien feed-back, et en entrer un nouveau, c'est un choix que nous avons fait pour éviter les spams. 
-        from client.view.session import Session
+        from client.vue.session import Session
         print(FeedBack(-1, message, date.today()))
         print(date.today())
         FeedBackDAO.donner_feedback(Session.utilisateur.identifiant, FeedBack(-1, message, date.today()))

@@ -70,7 +70,7 @@ We will create one python file per class in the corresponding packages. This arc
 * The `business_object` package contains our 13 modules corresponding to the 13 business object classes. 
 * The modules of the `service` package import those of the DAO package to manage the persistence of user actions. Our service package classes also use those of the web package.  
 * The `web` package contains at least one search module to access our back-end server.  
-* The `view` package imports services to call business functionality. We will have one module per view. In particular, the abstract_vue module containing the AbstractView class will provide a template for the view classes that inherit from it. It will contain abstract methods for handling console display, menus and options.  
+* The `vue` package imports services to call business functionality. We will have one module per vue. In particular, the abstract_vue module containing the AbstractVue class will provide a template for the vue classes that inherit from it. It will contain abstract methods for handling console display, menus and options.  
 * The `test` package will contain a test module for each layer of our application. :smile:
 
 

@@ -1,8 +1,8 @@
 from __future__ import print_function, unicode_literals
 from PyInquirer import Separator, prompt
 from PyInquirer import Validator, ValidationError
-from client.view.abstract_view import AbstractView
-from client.view.session import Session
+from client.vue.abstract_vue import AbstractVue
+from client.vue.session import Session
 import regex
 from pprint import pprint
 from objets_metier.entite import Entite
@@ -30,7 +30,7 @@ c = req.get('https://www.dnd5eapi.co/api/classes') #cette liste doit être défi
 dicclasses = c.json()
 listclasses = [dicclasses['results'][i]['name'] for i in range(dicclasses['count'])]
 
-class MenuMonstre(AbstractView):
+class MenuMonstre(AbstractVue):
     
     def __init__(self, joueur = MaitreDuJeu):
         self.questions = [
@@ -108,5 +108,5 @@ class MenuMonstre(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        from client.view.maitre_du_jeu_view import MenuMJ
+        from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ(self.joueur,self.campagne)
