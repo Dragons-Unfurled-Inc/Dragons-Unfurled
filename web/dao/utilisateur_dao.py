@@ -20,6 +20,7 @@ class UtilisateurDAO:
                     "FROM utilisateur"
                 )
                 res = cursor.fetchone()
+        return []
         return res["username"]
 
     @staticmethod
@@ -27,25 +28,13 @@ class UtilisateurDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT * "\
-                    "FROM utilisateur "\
-                    "WHERE utilisateur.username=%(nom)s and utilisateur.password=%(mdp)s"\
-                    ,{"nom": utilisateur_nom, "mdp": password}
+                    "SELECT * "
+                    "\nFROM utilisateur where utilisateur.username=%(nom)s and utilisateur.password=%(mdp)s"\
+                    ,{"nom" : utilisateur_nom,"mdp":password}
                 )
                 res = cursor.fetchone()
-        # with DBConnection().connection as connection:
-        #     with connection.cursor() as cursor2:
-        #         cursor2.execute(
-        #             "SELECT * "\
-        #             "FROM utilisateur "\
-        #             "WHERE utilisateur.username=%(nom)s"\
-        #             ,{"nom": utilisateur_nom}
-        #         )
-        #         res2 = cursor2.fetchall()
             if res != None:
                 return True
-            print(utilisateur_nom, password)
-            # print(res2)
             return False
 
     @staticmethod
@@ -54,8 +43,7 @@ class UtilisateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "\
-                    "FROM Utilisateur "\
-                    "WHERE username=%(nom)s"\
+                    "FROM Utilisateur where username=%(nom)s"\
                     ,{"nom" : utilisateur_nom}
                 )
                 res = cursor.fetchone()
@@ -70,8 +58,7 @@ class UtilisateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * "\
-                    "FROM Utilisateur "\
-                    "WHERE username=%(nom)s and est_administrateur = True"\
+                    "FROM Utilisateur where username=%(nom)s and est_administrateur = True"\
                     ,{"nom" : utilisateur_nom}
                 )
                 res = cursor.fetchone()
@@ -81,8 +68,8 @@ class UtilisateurDAO:
             return False
 
     @staticmethod
-    def createUtilisateur(identifiant, mot_de_passe_utilisateur, est_admin):
-        if UtilisateurDAO.getUtilisateur(identifiant) :
+    def createUtilisateur(utilisateur: Utilisateur) -> Utilisateur:
+        if UtilisateurDAO.getUtilisateur(utilisateur.identifiant) :
             print('Cet utilisateur existe déjà')
         else :
             with DBConnection().connection as connection:
@@ -93,11 +80,13 @@ class UtilisateurDAO:
                                                     "password) "\
                             "VALUES "\
                             "(%(username)s,%(est_administrateur)s, %(password)s);", 
-                            { "username" : identifiant
-                            , "est_administrateur": est_admin
-                            , "password": mot_de_passe_utilisateur}
+                            { "username" : utilisateur.identifiant
+                            , "est_administrateur": utilisateur.est_administrateur
+                            , "password": utilisateur.mot_de_passe}
                         )
+            
             print("Votre compte a été créé avec succès !")
+            return utilisateur
 
     @staticmethod
     def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:
