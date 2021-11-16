@@ -1,6 +1,7 @@
 from objets_metier.feedback import FeedBack
 from web.dao.db_connection import DBConnection
 
+
 class FeedBackDAO:
 
     @staticmethod
@@ -41,5 +42,6 @@ class FeedBackDAO:
                     "WHERE username = %(username)s;"
                     , {"username" : nom_utilisateur})
                 feed = cursor.fetchall()
-        info = dict(feed[0])
-        print(FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]))
+        for ligne in feed:
+            info = dict(ligne)
+            print(FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]), "\n\n")

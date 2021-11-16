@@ -1,16 +1,16 @@
+from datetime import date
 from typing import List
 
-from utils.singleton import Singleton
+from client.exceptions.utilisateur_introuvable_exception import \
+    UtilisateurIntrouvableException
 from client.vue.session import Session
-from objets_metier.feedback import FeedBack 
-from web.dao.feed_back_dao import FeedBackDAO
-from datetime import date
+from objets_metier.feedback import FeedBack
 from objets_metier.utilisateur import Utilisateur
-from web.dao.utilisateur_dao import UtilisateurDAO
-from web.dao.joueur_dao import JoueurDAO
+from utils.singleton import Singleton
 from web.dao.administrateur_dao import AdministrateurDAO
 from web.dao.feed_back_dao import FeedBackDAO
-from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
+from web.dao.joueur_dao import JoueurDAO
+from web.dao.utilisateur_dao import UtilisateurDAO
 
 
 class AdministrateurService(metaclass = Singleton):
