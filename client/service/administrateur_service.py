@@ -25,8 +25,7 @@ class AdministrateurService(metaclass = Singleton):
 
     @staticmethod
     def transferer_droits_admin(nom_utilisateur: str, nom_administrateur_donneur: str):
-        if nom_utilisateur in JoueurDAO.liste_noms(): # Nous vérifions si ce nom d'utilisateur existe.
-            print(nom_utilisateur)
+        if nom_utilisateur in JoueurDAO.liste_noms(): # Nous vérifions si ce nom d'utilisateur existe et n'est pas déjà administrateur.
             AdministrateurDAO.ajouter_droits_administrateur(nom_utilisateur)
             AdministrateurDAO.supprimer_droits_administrateur(nom_administrateur_donneur)
         else:

@@ -20,7 +20,7 @@ class AdministrateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "UPDATE Utilisateur "\
-                    "SET est_administrateur = %(est_administreurs)s"\
+                    "SET est_administrateur = %(est_administrateur)s "\
                     "WHERE username = %(nom)s;"\
                     , {"est_administrateur" : True
                     , "nom": utilisateur_nom})
@@ -31,7 +31,7 @@ class AdministrateurDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "UPDATE Utilisateur "\
-                    "SET est_administrateur = %(est_administreurs)s"\
-                    "WHERE username = %(utilisateur_nom)s;"\
+                    "SET est_administrateur = %(est_administrateur)s "\
+                    "WHERE username = %(nom)s;"\
                     , {"est_administrateur" : False
                     , "nom": utilisateur_nom})

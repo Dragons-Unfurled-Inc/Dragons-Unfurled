@@ -27,9 +27,10 @@ class FeedBackDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * FROM Feedback ")
-                feed = cursor.fetchone()
-        for i in range(len(feed["id_feedback"])):
-            print(Feedback(feed["id_feedback"][i], feed["message"][i], feed["date_ecriture"][i]) + "\n\n" )
+                feed = cursor.fetchall()
+        for ligne in feed:
+            info = dict(ligne)
+            print(Feedback(info["id_feedback"], info["message"], info["date_ecriture"]) + "\n\n" )
 
     @staticmethod
     def consulter_ses_feed_backs(utilisateur: Utilisateur):
