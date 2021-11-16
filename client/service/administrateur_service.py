@@ -14,6 +14,7 @@ class AdministrateurService(metaclass = Singleton):
 
     @staticmethod    
     def bannir(nom_utilisateur: str):
+        print(JoueurDAO.liste_noms())
         if nom_utilisateur in JoueurDAO.liste_noms(): # Nous vérifions si ce nom d'utilisateur existe.
             AdministrateurDAO.supprimer_compte(nom_utilisateur)
         else:
