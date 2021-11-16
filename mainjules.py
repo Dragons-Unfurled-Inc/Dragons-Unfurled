@@ -7,7 +7,7 @@ from objets_metier.caracteristique import Caracteristique
 from objets_metier.utilisateur import Utilisateur
 from web.dao.campagne_dao import CampagneDAO
 from pprint import pp, pprint
-
+import hashlib
 from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
 #print(essai.__dict__())
 
@@ -61,3 +61,10 @@ def t():
         print(key)
 
 print(UtilisateurCampagneDao.trouve_enti('Jules'))
+
+def encode(mdp):
+    pass_hash = mdp.encode()
+    mdp = hashlib.sha256()
+    mdp.update(pass_hash)
+    print(mdp.digest())
+encode('Dhaussyjules59')

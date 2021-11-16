@@ -1,4 +1,5 @@
 
+from typing import Any
 from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
 from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
@@ -24,7 +25,7 @@ class UtilisateurDAO:
         return res["username"]
 
     @staticmethod
-    def verifie_mdp(utilisateur_nom: str, password: str) -> bool:
+    def verifie_mdp(utilisateur_nom: str, password: Any) -> bool:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(

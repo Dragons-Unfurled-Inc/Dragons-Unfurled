@@ -70,7 +70,7 @@ class UtilisateurService:
         mdp.update(mdp_hash)
         from client.view.session import Session
         Session.utilisateur = Utilisateur(identifiant = nom_utilisateur)             
-        UtilisateurDAO.createUtilisateur(Session.utilisateur.identifiant,mot_de_passe_utilisateur,est_admin)
+        UtilisateurDAO.createUtilisateur(Session.utilisateur.identifiant,mdp.digest(),est_admin)
         # return nouvel_utilisateur
         # else:
         #     print("Votre compte n'a pas pu être créé !")
