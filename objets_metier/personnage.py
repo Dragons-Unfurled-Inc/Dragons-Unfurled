@@ -14,7 +14,7 @@ class Personnage(Entite,BaseModel):
     _id_entite: str
     __nom_entite: str
     __caracteristiques_entite: Caracteristique        
-    _objets: Optional[List[Objet]] = None
+    _objets: Optional [List[Objet]] = None
 
     class Config:
         underscore_attrs_are_private = True

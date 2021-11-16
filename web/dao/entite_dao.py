@@ -98,7 +98,7 @@ class EntiteDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "UPDATE Entite "\
-                    "SET %(carac)s = %(valeur)s"\
+                    "SET %(carac)s = %(valeur)s "\
                     "WHERE id_entite = %(id_entite)s;"\
                     , {"carac" : carac
                     , "valeur": valeur
