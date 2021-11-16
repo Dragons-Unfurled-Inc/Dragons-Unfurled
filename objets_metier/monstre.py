@@ -12,14 +12,14 @@ class Monstre(Entite,BaseModel):
     caracteristiques_entite: Caracteristique
     objets: Optional[List[Objet]] = None
     
-    def __init__(self,type: str,id_joueur : int,id_entite:int, caracteristiques_entite: Caracteristique, objets: Optional[List[Objet]] = None):
+    def __init__(self,type : str,id_joueur : int,id_entite:int, caracteristiques_entite: Caracteristique, objets: Optional[List[Objet]] = None):
         super().__init__(
-        type = type,
         id_joueur = id_joueur,
         id_entite = id_entite,
         caracteristiques_entite = caracteristiques_entite,
         objets = objets,
         )
+        type = type
         
     class Config:
         underscore_attrs_are_private = True
@@ -43,51 +43,26 @@ class Monstre(Entite,BaseModel):
             }
         }
 
-    def __init__(self, type: str,
-                       id_joueur: str, 
-                       id_entite: str,                  
-                       caracteristiques_entite: Caracteristique,
-                       objets: Optional[List[Objet]] = None ) -> None: 
-
-        super().__init__(
-            id_joueur= id_joueur,
-            id_entite = id_entite,
-            caracteristiques_entite = caracteristiques_entite,
-            objets = objets,
-            )
-
-        self.__type = type
-
     def __str__(self):
         """
         Affichage des monstres 
         """
         aff_obj = '        Vide'
-        if self._objets != None :
-            curs = len(self._objets)
+        if self.objets != None :
+            curs = len(self.objets)
             aff_obj = ''
-            for obj in self._objets: 
+            for obj in self.objets: 
                 if curs == 1 :
                     aff_obj += Objet.__str__(obj)
                 else :
                     aff_obj += Objet.__str__(obj) + '\n \n'
                     curs -= 1
         modele = '\n'.join(['        Type : {} \n        Identifiant joueur : {} \n        Identifiant monstres : {} \n        Caractéristiques : \n{} \n        Objets : \n{}'])
-        return modele.format(self.__type,
-                             self._id_joueur,
-                             self._id_entite,
-                             Caracteristique.__str__(self._caracteristiques_entite),
+        return modele.format(self.type,
+                             self.id_joueur,
+                             self.id_entite,
+                             Caracteristique.__str__(self.caracteristiques_entite),
                              aff_obj)
-
-
-    @property
-    def type(self):
-        return self.__type
-
-    @type.setter
-    def type(self, value):
-        self.__type = value
-
 
 
 
