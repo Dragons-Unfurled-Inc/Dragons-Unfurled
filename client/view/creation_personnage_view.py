@@ -14,6 +14,8 @@ from objets_metier.utilisateur import Utilisateur
 from PyInquirer import style_from_dict, Token, prompt, Separator
 from pprint import pprint
 
+from web.dao.entite_dao import EntiteDAO
+
 style = style_from_dict({
     Token.Separator: '#cc5454',
     Token.QuestionMark: '#673ab7 bold',
@@ -38,7 +40,6 @@ class MenuPersonnage(AbstractView):
     def __init__(self):
         self.classes = PersonnageService.liste_classe()
         self.races = PersonnageService.liste_race()
-        self.races.append(Separator('= The Meats ='))
         self.questions = [
             {
                 'type': 'list',
@@ -124,12 +125,13 @@ class MenuPersonnage(AbstractView):
 
     def make_choice(self):
         reponse = prompt(self.questions,style=style_from_dict)
+        utilisateur = Session.utilisateur
         #print(reponse)
-        if reponse['ChoixCarac'] : 
+        if reponse['ChoixCarac'] :
             carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
-        else : 
+        else :
             carac = Caracteristique(reponse['Nom'])
-        Session.utilisateur.personnages.append(Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],0,0,reponse["Nom"],carac))
-        print(Session.utilisateur.personnages[0])
+        P=Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],utilisateur.identifiant,0,reponse["Nom"],carac) 
+        EntiteDAO.add_entite(P)       
         from client.view.accueil_jeu_view import AccueilJeuView
-        return AccueilJeuView(self.joueur)
+        return AccueilJeuView()
