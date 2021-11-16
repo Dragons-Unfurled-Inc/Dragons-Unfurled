@@ -19,7 +19,7 @@ class Monstre(Entite,BaseModel):
         caracteristiques_entite = caracteristiques_entite,
         objets = objets,
         )
-        type = type
+        self.type = type
         
     class Config:
         underscore_attrs_are_private = True
