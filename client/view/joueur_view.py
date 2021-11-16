@@ -45,7 +45,7 @@ class MenuJoueur(AbstractView):
             Joueur.modifier_personnage(self.joueur,self.campagne)
             from client.view.joueur_view import MenuJoueur
             return MenuJoueur(self.joueur,self.campagne)
-        
+            
         if reponse['choix'] == 'Consulter la fiche de votre personnage':
             Joueur.consulter_personnage(self.joueur,self.campagne)
             from client.view.joueur_view import MenuJoueur

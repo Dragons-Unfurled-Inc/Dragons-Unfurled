@@ -124,11 +124,11 @@ CREATE TABLE Utilisateur_Entite(
 
 CREATE TABLE Utilisateur_Campagne(
     username text NOT NULL,
-    id_entite int NOT NULL,
+    id_campagne int NOT NULL,
     est_joueur boolean NOT NULL,
-	PRIMARY KEY (username, id_entite),
+	PRIMARY KEY (username, id_campagne),
 	FOREIGN KEY (username) REFERENCES Utilisateur(username),
-	FOREIGN KEY (id_entite) REFERENCES Entite(id_entite)
+	FOREIGN KEY (id_campagne) REFERENCES Campagne(id_campagne)
 );
 
 CREATE TABLE Salle_Objet(

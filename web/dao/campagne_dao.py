@@ -30,8 +30,29 @@ class CampagneDAO:
         return [id_camp, nom_camp]
 
     @staticmethod
-    def trouve_mj(id_campagne) -> MaitreDuJeu:
-        None
+    def trouve_mj(id_campagne): 
+        with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT id_campagne as id, username as nom , est_joueur as bool FROM Utilisateur_Campagne WHERE est_joueur = false;"
+                    ,{"id_campagne" : id_campagne})
+                    campagne = cursor.fetchall()
+                    res = []
+                    for dic in campagne :
+                        res.append(dic['nom'])
+        return res
+    
+    def trouve_joueurs(id_campagne): 
+        with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT id_campagne as id, username as nom , est_joueur as bool FROM Utilisateur_Campagne WHERE est_joueur = true;"
+                    ,{"id_campagne" : id_campagne})
+                    campagne = cursor.fetchall()
+                    res = []
+                    for dic in campagne :
+                        res.append(dic['nom'])
+        return res
 
     @staticmethod  
     def add_campagne(nom_campagne : str):  #Creer_campagne affiche l'identifiant de la campagne

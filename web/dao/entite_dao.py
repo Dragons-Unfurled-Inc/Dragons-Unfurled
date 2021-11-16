@@ -63,6 +63,18 @@ class EntiteDAO:
             else:
                 entite_retournee = Entite(enti.id_joueur, id_ent, Caracteristique.parse_obj(enti.caracteristiques_entite), [Objet.parse_obj(enti.objets[i]) for i in range(0, len(enti.objets))])
             return entite_retournee
+        
+    @staticmethod    
+    def get_entite(id_campagne) -> Entite:
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT * FROM Entite WHERE id_campagne = %(id_campagne)s;"\
+                    , {"id_campagne": id_campagne} 
+                    )
+                    enti = cursor.fetchone()
+                return Entite(enti)
+        
             
     @staticmethod
     def diminution_pv(nom_entite: str, nombre_pv): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.

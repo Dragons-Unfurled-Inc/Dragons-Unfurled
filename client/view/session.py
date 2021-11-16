@@ -1,3 +1,5 @@
+from objets_metier.joueur import Joueur
+from objets_metier.maitre_du_jeu import MaitreDuJeu
 from objets_metier.utilisateur import Utilisateur
 from utils.singleton import Singleton
 

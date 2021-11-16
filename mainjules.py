@@ -1,8 +1,14 @@
+from os import umask
 from client.service.monstre_service import MonstreService
 import requests as req
 from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
+from objets_metier.utilisateur import Utilisateur
+from web.dao.campagne_dao import CampagneDAO
+from pprint import pp, pprint
+
+from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
 #print(essai.__dict__())
 
 #M = MonstreService.ImportMonstreWeb('aboleth')
@@ -22,24 +28,36 @@ def f():
             monstres_par_types.update({type_monstre : monstres_par_types[type_monstre]+[monstre]})
         print(monstres_par_types)
     print(monstres_par_types)
-    
-caract = Caracteristique(nom_entite="Nom", attaques="Attaques", capacites="Capacité", languages="langages",description="des")
-perso = Personnage("classe","race","lore","id_joueur", "id_entite", "nomentite", caract)
-j = Joueur(personnages = [],choix_revelation = True,connecte = True,mot_de_passe = "bla",identifiant = "id",est_administrateur = True,feed_backs = True)
-j.personnages.append(perso)
-print(j.personnages)
+
+def h():
+    caract = Caracteristique(nom_entite="Nom", attaques="Attaques", capacites="Capacité", languages="langages",description="des")
+    perso = Personnage("classe","race","lore","id_joueur", "id_entite", "nomentite", caract)
+    j = Joueur(personnages = [],choix_revelation = True,connecte = True,mot_de_passe = "bla",identifiant = "id",est_administrateur = True,feed_backs = True)
+    j.personnages.append(perso)
+    print(j.personnages)
 '''connecte : bool,
                        mot_de_passe : str,
                        identifiant : str,
                        est_administrateur : bool, 
                        feed_backs : List[Feedback] = [],
                        choix_revelation : bool = True): '''
-query = """query{
-monsters(limit:-1){name,type}
-}
-"""
-endpoint="https://www.dnd5eapi.co/graphql"
-r = req.post("https://www.dnd5eapi.co/graphql",json={"query":query})
-print(r.status_code)
-names = r.json()
-print(names)
+                       
+def g():
+    query = """query{
+    monsters(limit:-1){name,type}
+    }
+    """
+    endpoint="https://www.dnd5eapi.co/graphql"
+    r = req.post("https://www.dnd5eapi.co/graphql",json={"query":query})
+    print(r.status_code)
+    names = r.json()
+    print(names)
+
+def t():
+    c = Caracteristique(nom_entite = 'nom')
+    #pprint(l)
+    d = c.__dict__.keys()
+    for key in d:
+        print(key)
+
+print(UtilisateurCampagneDao.trouve_enti('Jules'))

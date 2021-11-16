@@ -15,3 +15,16 @@ class UtilisateurCampagneDao:
                     , {"username" : username
                     , "id_entite" : id_entite
                     })
+                    
+    def trouve_enti(username): 
+        with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT id_entite as entis FROM Utilisateur_Entite WHERE username = %(username)s ; "
+                    ,{"username" : username})
+                    entis = cursor.fetchall()
+                    res = []
+                    for dic in entis :
+                        res.append(dic['entis'])
+        return res
+    
