@@ -1,6 +1,5 @@
 from web.dao.db_connection import DBConnection
-from objets_metier.utilisateur import Utilisateur
-from web.dao.utilisateur_dao import UtilisateurDAO
+
 
 class AdministrateurDAO:
 
