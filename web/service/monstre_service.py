@@ -26,7 +26,8 @@ class MonstreService():
     def getNetMonstre(nom):
         req = requ.get('https://www.dnd5eapi.co/api/monsters/' + nom)
         d=req.json()
-        return (Monstre(d["type"],0,0,Caracteristique(d['name'],d['actions'],d['senses'],d['languages'],d['special_abilities']+d['legendary_actions'],'')))
+        print(d["type"])
+        return Monstre(d["type"],0,0,Caracteristique(d['name']))
     
     def getNetMonstreEtType():
         query = """query{
