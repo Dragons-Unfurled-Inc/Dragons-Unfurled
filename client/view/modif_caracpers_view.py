@@ -6,32 +6,32 @@ from web.dao.entite_dao import EntiteDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
 from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
 
-class ModifPersView(AbstractView):
+class ModifCaracView(AbstractView):
+
     def __init__(self):
         utilisateur = Session.utilisateur
-        campagne = utilisateur.id_campagne
-        entis = UtilisateurCampagneDao.trouve_enti(utilisateur.identifiant)
-        entis_camp = EntiteDAO.get_entite(campagne)
+        id_campagne = utilisateur.id_campagne
+        id_entis = UtilisateurCampagneDao.trouve_enti(utilisateur.identifiant)
+        entis_camp = EntiteDAO.get_entite_campagne(id_campagne)
+        for id in id_entis : 
+            for enti in entis_camp :
+                if enti.id_entite == id :
+                    enti_perso = enti
+                    self.id_enti = id 
         #matcher l'id entre entis et entis_camp et hop on a l'entite du joueur, ensuite faire modif enti.caracs en choixx
-        self.list_choix = 
-        def f():
-            return 't'
+        self.list_choix = enti_perso.caracteristiques_entite.__dict__.keys() 
         self.questions = [
                 {
                     'type': 'list',
                     'name': 'Nom',
                     'message': 'Que souhaitez-vous modifier ?',
-                    'choices' :  d = c.__dict__.keys()
-                                    for key in d:
-                                        print(key)
+                    'choices' : self.list_choix 
                 },
                 {
                     'type': 'input',
-                    'name': 'Nom',
-                    'message': 'Que souhaitez-vous modifier ?',
-                    'choices' : ModifPersView.f()
-                    'filter' lambda val: int(val)
-                }  
+                    'name': 'Val',
+                    'message': 'Quelle est la nouvelle valeur ?'
+                }
             ]
         
     def display_info(self):
@@ -40,3 +40,4 @@ class ModifPersView(AbstractView):
             
     def make_choice(self):
         reponse = prompt(self.questions)
+        EntiteDAO.modifier_carac(self.id_enti,reponse['Nom'],reponse['Val'])

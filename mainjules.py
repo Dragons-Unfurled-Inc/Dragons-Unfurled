@@ -8,6 +8,7 @@ from objets_metier.utilisateur import Utilisateur
 from web.dao.campagne_dao import CampagneDAO
 from pprint import pp, pprint
 import hashlib
+from web.dao.entite_dao import EntiteDAO
 from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
 #print(essai.__dict__())
 
@@ -67,4 +68,5 @@ def encode(mdp):
     mdp = hashlib.sha256()
     mdp.update(pass_hash)
     print(mdp.digest())
-encode('Dhaussyjules59')
+    
+print(EntiteDAO.get_entite(0))
