@@ -27,14 +27,25 @@ class UtilisateurDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT * "
-                    "\nFROM utilisateur "\
+                    "SELECT * "\
+                    "FROM utilisateur "\
                     "WHERE utilisateur.username=%(nom)s and utilisateur.password=%(mdp)s"\
-                    ,{"nom" : utilisateur_nom,"mdp":password}
+                    ,{"nom": utilisateur_nom, "mdp": password}
                 )
                 res = cursor.fetchone()
+        # with DBConnection().connection as connection:
+        #     with connection.cursor() as cursor2:
+        #         cursor2.execute(
+        #             "SELECT * "\
+        #             "FROM utilisateur "\
+        #             "WHERE utilisateur.username=%(nom)s"\
+        #             ,{"nom": utilisateur_nom}
+        #         )
+        #         res2 = cursor2.fetchall()
             if res != None:
                 return True
+            print(utilisateur_nom, password)
+            # print(res2)
             return False
 
     @staticmethod
