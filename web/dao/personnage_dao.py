@@ -38,4 +38,4 @@ class PersonnageDAO(metaclass=Singleton):
                     , "description":personnage.caracteristiques_entite.description
                     , })
              
-            return created
+            

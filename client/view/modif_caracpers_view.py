@@ -1,4 +1,5 @@
 from client.view.abstract_view import AbstractView
+from view.accueil_jeu_view import AccueilJeuView
 from PyInquirer import prompt
 from view.session import Session
 from objets_metier.caracteristique import Caracteristique
@@ -41,3 +42,4 @@ class ModifCaracView(AbstractView):
     def make_choice(self):
         reponse = prompt(self.questions)
         EntiteDAO.modifier_carac(self.id_enti,reponse['Nom'],reponse['Val'])
+        return AccueilJeuView()
