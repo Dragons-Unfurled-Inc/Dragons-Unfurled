@@ -35,6 +35,5 @@ class CreaCompteView(AbstractView):
         if not UtilisateurService.validation_creation_compte(reponse['Nom'],reponse['mdp'],reponse['mdp2']) : 
             return CreaCompteView(reponse['Nom'])
         UtilisateurService.creation_compte(reponse['Nom'],reponse['mdp'])
-        from client.view.session import Session
-        return AccueilJeuView(Session.utilisateur) 
+        return AccueilJeuView() 
             

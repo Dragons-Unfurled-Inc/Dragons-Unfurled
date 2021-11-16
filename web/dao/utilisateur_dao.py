@@ -27,14 +27,25 @@ class UtilisateurDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT * "
-                    "\nFROM utilisateur "\
+                    "SELECT * "\
+                    "FROM utilisateur "\
                     "WHERE utilisateur.username=%(nom)s and utilisateur.password=%(mdp)s"\
-                    ,{"nom" : utilisateur_nom,"mdp":password}
+                    ,{"nom": utilisateur_nom, "mdp": password}
                 )
                 res = cursor.fetchone()
+        # with DBConnection().connection as connection:
+        #     with connection.cursor() as cursor2:
+        #         cursor2.execute(
+        #             "SELECT * "\
+        #             "FROM utilisateur "\
+        #             "WHERE utilisateur.username=%(nom)s"\
+        #             ,{"nom": utilisateur_nom}
+        #         )
+        #         res2 = cursor2.fetchall()
             if res != None:
                 return True
+            print(utilisateur_nom, password)
+            # print(res2)
             return False
 
     @staticmethod
@@ -70,8 +81,8 @@ class UtilisateurDAO:
             return False
 
     @staticmethod
-    def createUtilisateur(utilisateur: Utilisateur) -> Utilisateur:
-        if UtilisateurDAO.getUtilisateur(utilisateur.identifiant) :
+    def createUtilisateur(identifiant, mot_de_passe_utilisateur, est_admin):
+        if UtilisateurDAO.getUtilisateur(identifiant) :
             print('Cet utilisateur existe déjà')
         else :
             with DBConnection().connection as connection:
@@ -82,13 +93,11 @@ class UtilisateurDAO:
                                                     "password) "\
                             "VALUES "\
                             "(%(username)s,%(est_administrateur)s, %(password)s);", 
-                            { "username" : utilisateur.identifiant
-                            , "est_administrateur": utilisateur.est_administrateur
-                            , "password": utilisateur.mot_de_passe}
+                            { "username" : identifiant
+                            , "est_administrateur": est_admin
+                            , "password": mot_de_passe_utilisateur}
                         )
-            
             print("Votre compte a été créé avec succès !")
-            return utilisateur
 
     @staticmethod
     def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:
