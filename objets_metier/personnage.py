@@ -1,8 +1,10 @@
 from typing import List, Optional
+
 from pydantic import BaseModel
+
 from objets_metier.caracteristique import Caracteristique
-from objets_metier.objet import Objet
 from objets_metier.entite import Entite
+from objets_metier.objet import Objet
 
 
 class Personnage(Entite,BaseModel):
@@ -23,8 +25,8 @@ class Personnage(Entite,BaseModel):
                 "classe": "Barbare",
                 "race": "Nain",
                 "lore": "Un nain très barbu qui vient d/'une mine",
-                "id_joueur": 5,
-                "id_entite":4,
+                "id_joueur": -1,
+                "id_entite": -1,
                 "nom_entite": "Martin",
                 "caracteristiques_entite": {
                         "nom_entite":"Nom", 

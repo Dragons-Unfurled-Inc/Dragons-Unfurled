@@ -1,19 +1,19 @@
 from __future__ import print_function, unicode_literals
-from PyInquirer import Validator, ValidationError
-from client.vue.abstract_vue import AbstractVue
-from client.vue.session import Session
-import regex
+
 from pprint import pprint
-from objets_metier.caracteristique import Caracteristique
-from objets_metier.entite import Entite
+
+import regex
 import requests as req
 from client.service.personnage_service import PersonnageService
+from client.vue.abstract_vue import AbstractVue
+from client.vue.session import Session
+from objets_metier.caracteristique import Caracteristique
+from objets_metier.entite import Entite
 from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
 from objets_metier.utilisateur import Utilisateur
-from PyInquirer import style_from_dict, Token, prompt, Separator
-from pprint import pprint
-
+from PyInquirer import (Separator, Token, ValidationError, Validator, prompt,
+                        style_from_dict)
 from web.dao.entite_dao import EntiteDAO
 
 style = style_from_dict({
@@ -131,7 +131,7 @@ class MenuPersonnage(AbstractVue):
             carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
         else :
             carac = Caracteristique(reponse['Nom'])
-        P=Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],utilisateur.identifiant,0,reponse["Nom"],carac) 
-        EntiteDAO.add_entite(P)       
+        personnage = Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],utilisateur.identifiant,0,reponse["Nom"],carac) 
+        EntiteDAO.add_entite(personnage)       
         from client.vue.accueil_jeu_vue import AccueilJeuVue
         return AccueilJeuVue()
