@@ -11,15 +11,6 @@ class Monstre(Entite,BaseModel):
     id_entite: str                 
     caracteristiques_entite: Caracteristique
     objets: Optional[List[Objet]] = None
-    
-    def __init__(self,type : str,id_joueur : int,id_entite:int, caracteristiques_entite: Caracteristique, objets: Optional[List[Objet]] = None):
-        super().__init__(
-        id_joueur = id_joueur,
-        id_entite = id_entite,
-        caracteristiques_entite = caracteristiques_entite,
-        objets = objets,
-        )
-        self.type = type
         
     class Config:
         underscore_attrs_are_private = True
