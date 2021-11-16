@@ -26,5 +26,5 @@ class UtilisateurCampagneDao:
                     res = []
                     for dic in entis :
                         res.append(dic['entis'])
-        return res
+                return res
     

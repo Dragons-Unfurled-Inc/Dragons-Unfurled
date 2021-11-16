@@ -65,17 +65,45 @@ class EntiteDAO:
             return entite_retournee
         
     @staticmethod    
-    def get_entite(id_campagne) -> Entite:
+    def get_entite_campagne(id_campagne):
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
                         "SELECT * FROM Entite WHERE id_campagne = %(id_campagne)s;"\
-                    , {"id_campagne": id_campagne} 
+                    ,{"id_campagne": id_campagne}
                     )
-                    enti = cursor.fetchone()
-                return Entite(enti)
-        
+                    entis = cursor.fetchall()
+                    res = []
+                    for dic in entis :
+                        res.append(dic)
+                return res
             
+    @staticmethod    
+    def get_entite(id_entite):
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT * FROM Entite WHERE id_entite = %(id_entite)s;"\
+                    ,{"id_entite": id_entite}
+                    )
+                    entis = cursor.fetchall()
+                    res = []
+                    for dic in entis :
+                        res.append(dic)
+                return res
+        
+    @staticmethod
+    def modifier_carac(id_entite,carac,valeur):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Entite "\
+                    "SET %(carac)s = %(valeur)s"\
+                    "WHERE id_entite = %(id_entite)s;"\
+                    , {"carac" : carac
+                    , "valeur": valeur
+                    , "id_entite": id_entite})
+                
     @staticmethod
     def diminution_pv(nom_entite: str, nombre_pv): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
         with DBConnection().connection as connection:
