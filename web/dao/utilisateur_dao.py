@@ -44,7 +44,7 @@ class UtilisateurDAO:
         #         res2 = cursor2.fetchall()
             if res != None:
                 return True
-            print(utilisateur_nom, password)
+    #        print(utilisateur_nom, password)
             # print(res2)
             return False
 
