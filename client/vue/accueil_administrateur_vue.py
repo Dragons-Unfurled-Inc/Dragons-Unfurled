@@ -39,15 +39,15 @@ class AccueilAdministrateurVue(AbstractVue):
             return AccueilAdministrateurVue()
 
         if reponse['choix'] == 'Répondre à un feed-back':
-            AdministrateurService.repondre_feed_back(input("Quel est le nom du joueur auquel vous voulez répondre ?"), input("Quelle est votre réponse ?"))
+            AdministrateurService.repondre_feed_back(input("Quel est le nom du joueur auquel vous voulez répondre ?\n"), input("Quelle est votre réponse ?\n"))
             return AccueilAdministrateurVue()
         
         if reponse['choix'] == 'Bannir un joueur': # Un administrateur ne peut pas être banni.
-            AdministrateurService.bannir(input("Quel est le nom du joueur que vous souhaitez bannir ?"))
+            AdministrateurService.bannir(input("Quel est le nom du joueur que vous souhaitez bannir ?\n"))
             return AccueilAdministrateurVue()
 
         if reponse['choix'] == 'Transférer ses droits': # Nous avons mis des controles pour que le nombre d'administrateur reste inchangé.
-            AdministrateurService.transferer_droits_admin(input("Quel est le nom du joueur à qui vous voulez transférer vos droits ?"), utilisateur.identifiant)
+            AdministrateurService.transferer_droits_admin(input("Quel est le nom du joueur à qui vous voulez transférer vos droits ?\n"), utilisateur.identifiant)
             return StartVue()
         
         if reponse['choix'] == 'Se déconnecter':

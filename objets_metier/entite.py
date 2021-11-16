@@ -14,6 +14,17 @@ class Entite(ABC, BaseModel):
     caracteristiques_entite: Caracteristique
     objets: Optional[List[Objet]] = None
     
+    def __init__(self,id_joueur : int,id_entite:int, caracteristiques_entite: Caracteristique, objets: Optional[List[Objet]] = None):
+        super().__init__(
+        id_joueur = id_joueur,
+        id_entite = id_entite,
+        caracteristiques_entite = caracteristiques_entite,
+        objets = objets,
+        )
+        
+    class Config:
+        underscore_attrs_are_private = True
+        
     def __str__(self) : 
         """
         Affichage d'une entité

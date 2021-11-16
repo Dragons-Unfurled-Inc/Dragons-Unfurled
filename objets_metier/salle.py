@@ -4,12 +4,12 @@ from objets_metier.objet import Objet
 from objets_metier.entite import Entite
 
 class Salle(BaseModel):
-    id_salle: str
-    nom_salle: str
-    coordonnees_salle_donjon: List[int] = [0,0]
-    coordonnees_salle_cellule : List[List[int]] = [[0,0], [1,1]]
-    objets: Optional[List[Objet]] = None
-    entites: Optional[List[Entite]] = None 
+    __id_salle: str
+    __nom_salle: str
+    __coordonnees_salle_donjon: List[int] = [0,0]
+    __coordonnees_salle_cellule : List[List[int]] = [[0,0], [1,1]]
+    __objets: Optional[List[Objet]] = None
+    __entites: Optional[List[Entite]] = None 
 
     class Config:
         underscore_attrs_are_private = True
@@ -27,6 +27,21 @@ class Salle(BaseModel):
                 "entite" : None
             }
         } 
+
+    def __init__(self, id_salle: str,
+                       nom_salle: str,
+                       coordonnees_salle_donjon: List[int] = [0,0],
+                       coordonnees_salle_cellule : List[List[int]] =  [[0,0], [1,1]], 
+                       objets: Optional[List[Objet]] = None, 
+                       entites: Optional[List[Entite]] = None ) -> None:
+
+        self.__id_salle = id_salle
+        self.__nom_salle = nom_salle
+        self.__coordonnees_salle_donjon = coordonnees_salle_donjon
+        self.__coordonnees_salle_cellule = coordonnees_salle_cellule
+        self.__objets = objets
+        self.__entites = entites
+
     def __str__(self):
         """
         Gère les données d'affichages des salles 
@@ -34,8 +49,8 @@ class Salle(BaseModel):
         aff_obj ='        Vide'
         if self.__objets != None:
             aff_obj = ''
-            curs = len(self.objets)
-            for obj in self.objets: 
+            curs = len(self.__objets)
+            for obj in self.__objets: 
                 if curs == 1 :
                     aff_obj += Objet.__str__(obj) 
                 else: 
@@ -44,18 +59,18 @@ class Salle(BaseModel):
         aff_ent ='        Vide'
         if self.__entites != None :
             aff_ent =''
-            curs = len(self.entites)
-            for enti in self.entites: 
+            curs = len(self.__entites)
+            for enti in self.__entites: 
                 if curs == 1 :
                     aff_ent += Entite.__str__(enti) 
                 else : 
                     aff_ent += Entite.__str__(enti) + '\n \n'
                     curs -= 1
         modele = '\n'.join(['    Identifiant : {} \n    Nom : {} \n    Coordonnées donjon : {} \n    Coordonnées cellule : {}\n    Objets : \n{} \n    Entités :\n{}'])
-        return modele.format(self.id_salle,
-                             self.nom_salle,
-                             self.coordonnees_salle_donjon,
-                             self.coordonnees_salle_cellule,
+        return modele.format(self.__id_salle,
+                             self.__nom_salle,
+                             self.__coordonnees_salle_donjon,
+                             self.__coordonnees_salle_cellule,
                              aff_obj,
                              aff_ent)
 

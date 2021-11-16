@@ -1,19 +1,17 @@
-from PyInquirer import Separator, prompt
-from pydantic import main
-
-from objets_metier.maitre_du_jeu import MaitreDuJeu
+from client.service.campagne_service import CampagneService
+from client.service.donjon_service import DonjonService
+from client.service.maitre_du_jeu_service import MJService
 from client.vue.abstract_vue import AbstractVue
-from objets_metier.joueur import Joueur
-from objets_metier.donjon import Donjon
 from client.vue.session import Session
+from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
+from objets_metier.donjon import Donjon
+from objets_metier.joueur import Joueur
+from objets_metier.maitre_du_jeu import MaitreDuJeu
+from pydantic import main
+from PyInquirer import Separator, prompt
 from web.dao.jet_dao import JetDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
-from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
-from client.service.maitre_du_jeu_service import MJService
-from client.service.donjon_service import DonjonService
-from client.service.campagne_service import CampagneService
-            
-            
+
 
 class MenuMJ(AbstractVue):
 

@@ -37,8 +37,8 @@ class Deconnexion(AbstractVue):
             from client.vue.start_vue import StartVue
             return StartVue()
         if reponse['choix'] == 'Annuler':
-            est_administrateur = UtilisateurService.est_admin(utilisateur.nom_utilisateur)
+            est_administrateur = UtilisateurService.est_admin(utilisateur.identifiant)
             if est_administrateur:
-                return PassageAdminVue(utilisateur)
-            return AccueilJeuVue(utilisateur)
+                return PassageAdminVue()
+            return AccueilJeuVue()
             

@@ -33,11 +33,9 @@ class Utilisateur(BaseModel):
         None 
 
     @staticmethod
-    def ecrire_son_feed_back(message: str): # Cette fonction va écraser l'ancien feed-back, et en entrer un nouveau, c'est un choix que nous avons fait pour éviter les spams. 
+    def ecrire_un_feed_back(message: str): 
         from client.vue.session import Session
-        print(FeedBack(-1, message, date.today()))
-        print(date.today())
         FeedBackDAO.donner_feedback(Session.utilisateur.identifiant, FeedBack(-1, message, date.today()))
     
-    def consulter_son_feed_back(): # Cela permet de récupérer ce qu'on avait écrit pour pouvoir faire un copier collé, de se relire, mais surtout de regardé si nous avons reçu une réponse de la part d'un administrateur.
+    def consulter_ses_feed_back(): 
         FeedBackDAO.consulter_feed_back()

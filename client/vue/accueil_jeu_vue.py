@@ -25,8 +25,8 @@ class AccueilJeuVue(AbstractVue):
                     'Créer un personnage',
                     'Créer une campagne',
                     Separator(),
-                    'Ecrire son feed-back',
-                    'Consulter son feed-back',
+                    'Ecrire un feed-back',
+                    'Consulter ses feed-back',
                     'Se déconnecter',
                     
                 ]
@@ -72,17 +72,17 @@ class AccueilJeuVue(AbstractVue):
                 return AccueilJeuVue()
 
         if reponse['choix'] == 'Créer une campagne':
-            nom_campagne = input("Ecrivez un nom pour votre campagne.")
+            nom_campagne = input("Ecrivez un nom pour votre campagne.\n")
             identifiant_campagne = CampagneDAO.creer_campagne(nom_campagne) #Creer_campagne affiche l'identifiant de la campagne
             return AccueilJeuVue()
         
-        if reponse['choix'] == 'Ecrire son feed-back':
-            message = input("Écrivez le feed-back que vous souhaitez poster ?")
-            Utilisateur.ecrire_son_feed_back(message)
+        if reponse['choix'] == 'Ecrire un feed-back':
+            message = input("Écrivez le feed-back que vous souhaitez poster.\n")
+            Utilisateur.ecrire_un_feed_back(message)
             return AccueilJeuVue()
 
-        if reponse['choix'] == 'Consulter son feed-back':
-            Utilisateur.consulter_son_feed_back()
+        if reponse['choix'] == 'Consulter ses feed-back':
+            Utilisateur.consulter_ses_feed_back()
             return AccueilJeuVue()
         
         if reponse['choix'] == 'Se déconnecter':
