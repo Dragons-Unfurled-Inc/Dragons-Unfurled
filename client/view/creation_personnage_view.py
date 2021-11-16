@@ -121,10 +121,10 @@ class MenuPersonnage(AbstractView):
             }
             ]
     def display_info(self):
-        print(f"Bonjour {Session.utilisateur.identifiant}, Bienvenue sur l\'écran de création de personnage")
+        print(f"Bonjour {Session.utilisateur.identifiant}, \n Bienvenue sur l\'écran de création de personnage")
 
     def make_choice(self):
-        reponse = prompt(self.questions,style=style_from_dict)
+        reponse = prompt(self.questions) # prompt(self.questions,style=style_from_dict)
         utilisateur = Session.utilisateur
         #print(reponse)
         if reponse['ChoixCarac'] :

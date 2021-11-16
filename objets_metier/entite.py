@@ -9,7 +9,7 @@ class Entite(ABC, BaseModel):
     """
     Une entité est un personnage ou un monstre.
     """ 
-    id_joueur: int
+    id_joueur: str
     id_entite: int                
     caracteristiques_entite: Caracteristique
     objets: Optional[List[Objet]] = None
