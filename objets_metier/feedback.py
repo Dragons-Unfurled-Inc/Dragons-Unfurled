@@ -2,9 +2,9 @@ import datetime
 from pydantic import BaseModel
 class FeedBack(BaseModel):
 
-    __id_feedback: int
-    __message: str
-    __date_ecriture: datetime.date
+    id_feedback: int
+    message: str
+    date_ecriture: datetime.date
     
     class Config:
         underscore_attrs_are_private = True
@@ -15,14 +15,6 @@ class FeedBack(BaseModel):
                 "date_ecriture" : datetime.date.today    
             }
         }
-
-    def __init__(self,
-                    id_feedback: int,
-                    message: str,
-                    date_ecriture: datetime.date) -> None:
-        self.__id_feedback = id_feedback
-        self.__message = message
-        self.__date_ecriture = date_ecriture
 
 
     def __str__(self):
