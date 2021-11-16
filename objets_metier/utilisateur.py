@@ -1,9 +1,12 @@
 from abc import abstractmethod
-from typing import List,Any
-from pydantic import BaseModel
-from objets_metier.feedback import FeedBack 
-from web.dao.feed_back_dao import FeedBackDAO
 from datetime import date
+from typing import Any, List
+
+from pydantic import BaseModel
+from web.dao.feed_back_dao import FeedBackDAO
+
+from objets_metier.feedback import FeedBack
+
 
 class Utilisateur(BaseModel):
 
