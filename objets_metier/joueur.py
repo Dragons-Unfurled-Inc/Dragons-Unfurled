@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 from objets_metier.utilisateur import Utilisateur
 from objets_metier.personnage import Personnage
-from objets_metier.feedback import Feedback
+from objets_metier.feedback import FeedBack
 
 class Joueur(Utilisateur, BaseModel):
     """

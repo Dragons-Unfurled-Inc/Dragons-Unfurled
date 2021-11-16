@@ -1,12 +1,10 @@
 from objets_metier.feedback import FeedBack
 from web.dao.db_connection import DBConnection
-from objets_metier.utilisateur import Utilisateur
-from client.view.session import Session
 
 class FeedBackDAO:
 
     @staticmethod
-    def donner_feedback(username : str, feed : FeedBack): 
+    def donner_feedback(username: str, feed: FeedBack): 
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
@@ -30,10 +28,11 @@ class FeedBackDAO:
                 feed = cursor.fetchall()
         for ligne in feed:
             info = dict(ligne)
-            print(FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]) + "\n\n" )
+            print(info["username"],"\n", FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]), "\n\n")
 
     @staticmethod
     def consulter_feed_back():
+        from client.view.session import Session
         nom_utilisateur = Session.utilisateur.identifiant
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
@@ -42,6 +41,5 @@ class FeedBackDAO:
                     "WHERE username = %(username)s;"
                     , {"username" : nom_utilisateur})
                 feed = cursor.fetchall()
-        for ligne in feed:
-            info = dict(ligne)
-            print(FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]) + "\n\n" )
+        info = dict(feed[0])
+        print(FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]))

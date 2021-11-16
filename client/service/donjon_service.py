@@ -1,7 +1,7 @@
 from typing import List
 
 from utils.singleton import Singleton
-from objets_metier.feedback import Feedback
+from objets_metier.feedback import FeedBack
 from objets_metier.utilisateur import Utilisateur
 from web.dao.utilisateur_dao import UtilisateurDAO
 from web.dao.administrateur_dao import AdministrateurDAO

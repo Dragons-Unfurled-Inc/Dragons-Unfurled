@@ -25,7 +25,8 @@ class AccueilJeuView(AbstractView):
                     'Créer un personnage',
                     'Créer une campagne',
                     Separator(),
-                    'Donner un feed-back',
+                    'Ecrire son feed-back',
+                    'Consulter son feed-back',
                     'Se déconnecter',
                     
                 ]
@@ -74,13 +75,14 @@ class AccueilJeuView(AbstractView):
             nom_campagne = input("Ecrivez un nom pour votre campagne.")
             identifiant_campagne = CampagneDAO.creer_campagne(nom_campagne) #Creer_campagne affiche l'identifiant de la campagne
             return AccueilJeuView()
-
-        if reponse['choix'] == 'Consulter la liste des personnages d\'une campagne':  
-            pass #Pour le moment le MJ ajoute librement les joueurs.
         
-        if reponse['choix'] == 'Donner un feed-back':
+        if reponse['choix'] == 'Ecrire son feed-back':
             message = input("Écrivez le feed-back que vous souhaitez poster ?")
-            Joueur.donner_feed_back(message)
+            Utilisateur.ecrire_son_feed_back(message)
+            return AccueilJeuView()
+
+        if reponse['choix'] == 'Consulter son feed-back':
+            Utilisateur.consulter_son_feed_back()
             return AccueilJeuView()
         
         if reponse['choix'] == 'Se déconnecter':

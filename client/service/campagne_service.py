@@ -1,7 +1,7 @@
 from typing import List
 
 from utils.singleton import Singleton
-from objets_metier.feedback import Feedback
+from objets_metier.feedback import FeedBack
 from objets_metier.utilisateur import Utilisateur
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.utilisateur_campagne_dao import UtilisateurCampagneDao

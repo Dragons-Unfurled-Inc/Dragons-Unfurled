@@ -5,7 +5,7 @@ from objets_metier.personnage import Personnage
 from objets_metier.donjon import Donjon
 from objets_metier.monstre import Monstre
 from objets_metier.utilisateur import Utilisateur
-from objets_metier.feedback import Feedback
+from objets_metier.feedback import FeedBack
 from client.service.monstre_service import MonstreService
 
 

@@ -75,7 +75,7 @@ class MenuMJ(AbstractView):
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
             from client.view.maitre_du_jeu_view import MenuMJ
-            return MenuMJ(self.joueur,self.campagne)
+            return MenuMJ(self.joueur, self.campagne)
         
         if reponse['choix'] == 'Quitter la campagne':
             from client.view.accueil_jeu_view import AccueilJeuView

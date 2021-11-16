@@ -16,7 +16,8 @@ class AccueilAdministrateurView(AbstractView):
                 'name': 'choix',
                 'message': f'{utilisateur.identifiant} que souhaitez-vous faire ? ',
                 'choices': [
-                    'Consulter les feedbacks',
+                    'Consulter les feed-backs',
+                    'Répondre à un feed-back',
                     'Bannir un joueur',
                     'Transférer ses droits',
                     Separator(),
@@ -33,8 +34,12 @@ class AccueilAdministrateurView(AbstractView):
     def make_choice(self):
         utilisateur = Session.utilisateur
         reponse = prompt(self.__questions)
-        if reponse['choix'] == 'Consulter les feedbacks':
+        if reponse['choix'] == 'Consulter les feed-backs':
             AdministrateurService.consulter_feed_back_admin()
+            return AccueilAdministrateurView()
+
+        if reponse['choix'] == 'Répondre à un feed-back':
+            AdministrateurService.repondre_feed_back(input("Quel est le nom du joueur auquel vous voulez répondre ?"), input("Quelle est votre réponse ?"))
             return AccueilAdministrateurView()
         
         if reponse['choix'] == 'Bannir un joueur': # Un administrateur ne peut pas être banni.

@@ -1,7 +1,10 @@
 from typing import List
 
 from utils.singleton import Singleton
-from objets_metier.feedback import Feedback
+from client.view.session import Session
+from objets_metier.feedback import FeedBack 
+from web.dao.feed_back_dao import FeedBackDAO
+from datetime import date
 from objets_metier.utilisateur import Utilisateur
 from web.dao.utilisateur_dao import UtilisateurDAO
 from web.dao.joueur_dao import JoueurDAO
@@ -30,3 +33,7 @@ class AdministrateurService(metaclass = Singleton):
             AdministrateurDAO.supprimer_droits_administrateur(nom_administrateur_donneur)
         else:
             raise UtilisateurIntrouvableException(nom_utilisateur)
+
+    @staticmethod
+    def repondre_feed_back(identifiant_joueur: str, message: str): # Cette fonction va effacer le feed-back et donner la réponse de l'administrateur.
+        FeedBackDAO.donner_feedback(identifiant_joueur, FeedBack(-1, message, date.today()))
