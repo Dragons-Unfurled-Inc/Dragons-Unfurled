@@ -18,7 +18,7 @@ class AdministrateurService(metaclass = Singleton):
             AdministrateurDAO.supprimer_compte(nom_utilisateur)
         else:
             raise UtilisateurIntrouvableException(nom_utilisateur)
-    
+
     @staticmethod
     def consulter_feed_back_admin():
         FeedBackDAO.consulter_tous()

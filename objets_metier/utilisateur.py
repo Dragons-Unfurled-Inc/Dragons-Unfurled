@@ -1,6 +1,10 @@
+from abc import abstractmethod
 from typing import List,Any
 from pydantic import BaseModel
-from objets_metier.feedback import Feedback
+from objets_metier.feedback import FeedBack 
+from web.dao.feed_back_dao import FeedBackDAO
+from client.view.session import Session
+from datetime import date
 
 class Utilisateur(BaseModel):
 
@@ -22,8 +26,9 @@ class Utilisateur(BaseModel):
     def se_deconnecter(self):
         None 
 
-    def donner_feed_back(self, message : str):
-        None
+    @staticmethod
+    def ecrire_son_feed_back(message: str): # Cette fonction va écraser l'ancien feed-back, et en entrer un nouveau, c'est un choix que nous avons fait pour éviter les spams. 
+        FeedBackDAO.donner_feedback(Session.utilisateur.identifiant, FeedBack(-1, message, date.today))
     
-    def consulter_feed_back(self):
-        None
+    def consulter_son_feed_back(): # Cela permet de récupérer ce qu'on avait écrit pour pouvoir faire un copier collé, de se relire, mais surtout de regardé si nous avons reçu une réponse de la part d'un administrateur.
+        FeedBackDAO.consulter_feed_backs()

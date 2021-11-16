@@ -1,11 +1,12 @@
-from objets_metier.feedback import Feedback
+from objets_metier.feedback import FeedBack
 from web.dao.db_connection import DBConnection
 from objets_metier.utilisateur import Utilisateur
+from client.view.session import Session
 
 class FeedBackDAO:
 
     @staticmethod
-    def add_feedback(username : str, feed : Feedback): 
+    def donner_feedback(username : str, feed : FeedBack): 
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
@@ -19,7 +20,6 @@ class FeedBackDAO:
                         , "date_ecriture": feed.date_ecriture
                         , "username" : username}
                     )
-        return feed
 
     @staticmethod
     def consulter_tous():
@@ -30,16 +30,18 @@ class FeedBackDAO:
                 feed = cursor.fetchall()
         for ligne in feed:
             info = dict(ligne)
-            print(Feedback(info["id_feedback"], info["message"], info["date_ecriture"]) + "\n\n" )
+            print(FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]) + "\n\n" )
 
     @staticmethod
-    def consulter_ses_feed_backs(utilisateur: Utilisateur):
+    def consulter_feed_back():
+        nom_utilisateur = Session.utilisateur.identifiant
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * FROM Feedback "\
                     "WHERE username = %(username)s;"
-                    , {"username" : utilisateur.identifiant})
-                feed = cursor.fetchone()
-        for i in range(len(feed["id_feedback"])):
-            print(Feedback(feed["id_feedback"][i], feed["message"][i], feed["date_ecriture"][i]) + "\n\n" )
+                    , {"username" : nom_utilisateur})
+                feed = cursor.fetchall()
+        for ligne in feed:
+            info = dict(ligne)
+            print(FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]) + "\n\n" )

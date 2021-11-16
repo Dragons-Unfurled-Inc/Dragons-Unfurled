@@ -25,6 +25,7 @@ class AccueilJeuView(AbstractView):
                     'Créer un personnage',
                     'Créer une campagne',
                     Separator(),
+                    'Donner un feed-back',
                     'Se déconnecter',
                     
                 ]
@@ -76,6 +77,11 @@ class AccueilJeuView(AbstractView):
 
         if reponse['choix'] == 'Consulter la liste des personnages d\'une campagne':  
             pass #Pour le moment le MJ ajoute librement les joueurs.
+        
+        if reponse['choix'] == 'Donner un feed-back':
+            message = input("Écrivez le feed-back que vous souhaitez poster ?")
+            Joueur.donner_feed_back(message)
+            return AccueilJeuView()
         
         if reponse['choix'] == 'Se déconnecter':
             from client.view.deconnexion_view import Deconnexion

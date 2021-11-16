@@ -36,7 +36,6 @@ class MenuMJ(AbstractView):
                     Separator(),
                     'Lancer des dés',
                     'Consulter les jets',
-                    'Donner un feedback',
                     Separator(),
                     'Sauvegarder l\état de la campagne',
                     'Quitter la campagne',
@@ -75,12 +74,6 @@ class MenuMJ(AbstractView):
         
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
-            from client.view.maitre_du_jeu_view import MenuMJ
-            return MenuMJ(self.joueur,self.campagne)
-        
-        if reponse['choix'] == 'Donner un feedback':
-            message = input("Quel est le feedback que vous souhaitez poster ?")
-            Joueur.donner_feed_back(self.joueur,message)
             from client.view.maitre_du_jeu_view import MenuMJ
             return MenuMJ(self.joueur,self.campagne)
         

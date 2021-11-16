@@ -1,6 +1,6 @@
 import datetime
 from pydantic import BaseModel
-class Feedback(BaseModel):
+class FeedBack(BaseModel):
 
     __id_feedback: int
     __message: str
@@ -19,7 +19,7 @@ class Feedback(BaseModel):
     def __init__(self,
                     id_feedback: int,
                     message: str,
-                    date_ecriture: datetime.date ) -> None:
+                    date_ecriture: datetime.date) -> None:
         self.__id_feedback = id_feedback
         self.__message = message
         self.__date_ecriture = date_ecriture

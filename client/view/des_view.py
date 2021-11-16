@@ -46,7 +46,7 @@ class MenuDes(AbstractView):
             from client.view.des_view import MenuDes
             return MenuDes(self.joueur,self.campagne)
         if reponse['choix'] == 'Quitter le menu de lancer de dés':
-            if  est_mj_campagne(self.joueur.identifiant):
+            if est_mj_campagne(self.joueur.identifiant):
                 from client.view.maitre_du_jeu_view import MenuMJ
                 return MenuMJ(self.joueur,self.campagne)
             else:
