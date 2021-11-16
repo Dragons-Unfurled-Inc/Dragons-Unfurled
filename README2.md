@@ -74,7 +74,7 @@ We will create one python file per class in the corresponding packages. This arc
 * The `test` package will contain a test module for each layer of our application. :smile:
 
 
-<p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 ### Used when implementing the code
 
@@ -82,7 +82,7 @@ This section will present our development tools.
 
 * [Visual Studio Code](https://code.visualstudio.com/)
 
-<p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 
 <!-- MISE EN PLACE -->
@@ -141,7 +141,7 @@ the test_Services package file of the test package : []
 You can also look at our raw code which we have commented out. 
 We have commented in more detail the class in the file []. This allows you to grasp the construction logic of our code.
 
-<p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
+<p align="right">(<a href="#top">Back to top</a>)</p>
 
 
 <div id="utilis"></div>
