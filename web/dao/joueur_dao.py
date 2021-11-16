@@ -14,5 +14,6 @@ class JoueurDAO:
                     "FROM utilisateur "\
                     "WHERE est_administrateur = False"
                 )
-                res = cursor.fetchone()
-        return res["username"]
+                res = cursor.fetchall()
+        liste_nom = [dict(row)["username"] for row in res] # Nous récupérons la liste des noms à partir de res, qui peut être par exemple de la forme : [RealDictRow([('username', 'Isabelle')]), RealDictRow([('username', 'Thomas')])]
+        return liste_nom
