@@ -7,14 +7,14 @@ class Objet(BaseModel) :
     """
     __id_objet: str = PrivateAttr()
     __nom_objet: str = PrivateAttr()
-    __description: str = PrivateAttr()
+    __description_obj: str = PrivateAttr()
 
     def __init__(self,  id_objet: str,
                         nom_objet: str,
-                        description: str):
+                        description_obj: str):
         self.__id_objet = id_objet
         self.__nom_objet = nom_objet
-        self.__description = description
+        self.__description_obj = description_obj
 
     def __str__(self): 
         """
@@ -23,7 +23,7 @@ class Objet(BaseModel) :
         modele = '\n'.join(['            Identifiant : {} \n            Nom : {} \n            Description : {}'])
         return modele.format(self.__id_objet,
                              self.__nom_objet,
-                             self.__description)
+                             self.__description_obj)
 
     @property
     def id_objet(self):
@@ -42,9 +42,9 @@ class Objet(BaseModel) :
         self.__nom_objet = value   
 
     @property
-    def description(self):
-        return self.__description
+    def description_obj(self):
+        return self.__description_obj
 
-    @description.setter
-    def description(self, value):
-        self.__description = value     
+    @description_obj.setter
+    def description_obj(self, value):
+        self.__description_obj = value     

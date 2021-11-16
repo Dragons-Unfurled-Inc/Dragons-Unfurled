@@ -14,9 +14,9 @@ class ObjetDAO(metaclass = Singleton):
                 with connection.cursor() as cursor :
                     cursor.execute(
                         "INSERT INTO Objet (nom_objet, "\
-                                            "description)"\
+                                            "description_obj)"\
                         "VALUES "\
-                        "(%(nom_objet)s, %(description)s)"\
+                        "(%(nom_objet)s, %(description_obj)s)"\
    
                     , {"nom_objet" : objet.nom_objet
                     , "description" : objet.description

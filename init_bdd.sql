@@ -81,7 +81,7 @@ CREATE TABLE Monstre(
 CREATE TABLE Objet(
     id_objet serial PRIMARY KEY NOT NULL, 
     nom_objet text NOT NULL, 
-    description text NOT NULL
+    description_obj text NOT NULL
 );
 
 CREATE TABLE Combat(
