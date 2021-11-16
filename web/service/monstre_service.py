@@ -22,13 +22,17 @@ class MonstreService():
         if monstre.objets != None: 
             ObjetEntiteDAO.add_entite_objet(entite_persistee)
         MonstreDAO.add_personnage(monstre)
-        
+    
+    @staticmethod  
     def getNetMonstre(nom):
         req = requ.get('https://www.dnd5eapi.co/api/monsters/' + nom)
         d=req.json()
-        print(d["type"])
-        return Monstre(type = d["type"],id_joueur = 0, id_entite = 0,caracteristiques_entite = Caracteristique(d['name']))
+        print(d['type'])
+        c = Caracteristique(nom_entite = d['name'])
+        M = Monstre(type = d["type"],id_joueur = 't', id_entite = 't',caracteristiques_entite = c)
+        return M
     
+    @staticmethod
     def getNetMonstreEtType():
         query = """query{
         monsters(limit : 500){name,type}
@@ -39,6 +43,7 @@ class MonstreService():
         noms_types = r.json()
         return(noms_types['data']['monsters'])
     
+    @staticmethod
     def getNetMonstreParType():
         dicnom_type = MonstreService.getNetMonstreEtType()
         dic_types = {}
@@ -49,6 +54,7 @@ class MonstreService():
                 dic_types.update({dic['type'] : dic_types[dic['type']]+[dic['name']]})
         return(dic_types)
     
+    @staticmethod
     def getNetMonstreDeType(type):
         dic = MonstreService.getNetMonstreParType()
         return dic[type]
@@ -56,3 +62,4 @@ class MonstreService():
     @staticmethod
     def ImportListeTypes():
         return (MonstreService.getNetMonstreParType.keys())
+    
