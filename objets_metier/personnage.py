@@ -16,7 +16,7 @@ class Personnage(Entite,BaseModel):
     id_entite: str
     nom_entite: str
     caracteristiques_entite: Caracteristique        
-    objets: Optional [List[Objet]] = None
+    objets: Optional [List[Objet]] = []
 
     class Config:
         schema_extra = {

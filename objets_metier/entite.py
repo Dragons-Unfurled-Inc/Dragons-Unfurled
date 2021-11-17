@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import List, Optional
+
 from pydantic import BaseModel
+
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 
@@ -12,7 +14,7 @@ class Entite(ABC, BaseModel):
     id_joueur: str
     id_entite: int                
     caracteristiques_entite: Caracteristique
-    objets: Optional[List[Objet]] = None
+    objets: Optional[List[Objet]] = []
         
     def __str__(self) : 
         """

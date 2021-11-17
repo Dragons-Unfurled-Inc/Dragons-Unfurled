@@ -1,11 +1,12 @@
-from web.dao.db_connection import DBConnection
-from utils.singleton import Singleton
-import requests as req
 from abc import abstractstaticmethod
 
-from objets_metier.entite import Entite  
+import requests as req
 from objets_metier.caracteristique import Caracteristique
+from objets_metier.entite import Entite
 from objets_metier.objet import Objet
+from utils.singleton import Singleton
+from web.dao.db_connection import DBConnection
+
 
 #le code est pas ouf mais vous avez une idée de comment faire, par contre c'est ptet plus à sa place dans le package web
 class EntiteDAO:
@@ -63,6 +64,78 @@ class EntiteDAO:
             else:
                 entite_retournee = Entite(enti.id_joueur, id_ent, Caracteristique.parse_obj(enti.caracteristiques_entite), [Objet.parse_obj(enti.objets[i]) for i in range(0, len(enti.objets))])
             return entite_retournee
+
+    @staticmethod    
+    def ajoute_entite(entite : Entite):
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Entite (nom_entite, "\
+                                            "niveau,"\
+                                            "experience,"\
+                                            "force,"\
+                                            "intelligence, "\
+                                            "charisme, "\
+                                            "dexterite, "\
+                                            "constitution,"\
+                                            "sagesse, "\
+                                            "vie, "\
+                                            "description,"\
+                                            "classe_armure) "\
+                        "VALUES "\
+                        "(%(nom_entite)s,%(niveau)s,%(experience)s, %(force)s, %(intelligence)s, %(charisme)s, %(dexterite)s, %(constitution)s, %(sagesse)s,%(vie)s, %(description)s, %(classe_armure)s)"
+   
+                    , { "nom_entite" : entite.caracteristiques_entite.nom_entite
+                    , "niveau": entite.caracteristiques_entite.niveau
+                    , "experience": entite.caracteristiques_entite.experience
+                    , "force": entite.caracteristiques_entite.force
+                    , "intelligence": entite.caracteristiques_entite.intelligence
+                    , "charisme": entite.caracteristiques_entite.charisme
+                    , "dexterite": entite.caracteristiques_entite.dexterite
+                    , "constitution": entite.caracteristiques_entite.constitution
+                    , "sagesse": entite.caracteristiques_entite.sagesse
+                    , "vie": entite.caracteristiques_entite.vie
+                    , "description": entite.caracteristiques_entite.description
+                    , "classe_armure": entite.caracteristiques_entite.classe_armure
+                    }) 
+            print(entite.caracteristiques_entite.description)
+            with DBConnection().connection as connection: # Nous récupérons l'id de l'entité.
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT MAX(id_entite) as max FROM Entite")
+                    id_entite = cursor.fetchone()
+                    id_ent = id_entite['max']
+            EntiteDAO.ajouter_objets(entite, id_ent)
+
+    @staticmethod    
+    def ajouter_objets(entite: Entite, id_entite: int): # L'entité entrée n'a pas d'id pour le moment. Il est donc en argument.
+        for objet in entite.objets:
+            with DBConnection().connection as connection: # Insertion de l'objet
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Objet (description_obj, "\
+                                            "nom_objet) "\
+                        "VALUES "\
+                        "(%(description)s,%(nom)s)"
+                    , { "description": objet.description_obj
+                    , "nom": objet.nom_objet}) 
+            with DBConnection().connection as connection: # Nous récupérons l'id de l'objet.
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "SELECT MAX(id_objet) as max FROM Objet")
+                    id_obj = cursor.fetchone()
+                    id_objet = id_obj['max']
+            with DBConnection().connection as connection: # Nous complétons la table Entite_Objet.
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Entite_Objet (id_entite, "\
+                                            "id_objet) "\
+                        "VALUES "\
+                        "(%(id_entite)s,%(id_objet)s)"
+   
+                    , { "id_entite" : id_entite
+                    , "id_objet": id_objet}) 
+            
         
     @staticmethod    
     def get_entite_campagne(id_campagne):
