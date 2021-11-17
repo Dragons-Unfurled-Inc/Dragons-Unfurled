@@ -70,4 +70,4 @@ def encode(mdp):
     mdp.update(pass_hash)
     print(mdp.digest())
 
-print(MonstreService.getNetMonstreDeType('humanoid'))
+#print(MonstreService.getNetMonstreDeType('humanoid'))
