@@ -7,3 +7,7 @@ class WebConfig(metaclass=Singleton):
         output_dir=os.environ["OUTPUT_DIR"]
         self.api_port=api_port
         self.output_dir=output_dir
+        
+    def getApiPort(self) -> str:
+        return str(self.api_port)
+    

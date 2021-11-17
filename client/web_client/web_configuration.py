@@ -11,7 +11,7 @@ class WebConfiguration(metaclass=Singleton):
 
     def __init__(self):
         # Open the connection.
-        self._api_url = os.environ["API_URL"]
+        self.api_url = os.environ["API_URL"]
 
     @property
     def connection(self):
@@ -20,4 +20,4 @@ class WebConfiguration(metaclass=Singleton):
 
         :return: the opened connection.
         """
-        return self.__connection
+        return self.connection
