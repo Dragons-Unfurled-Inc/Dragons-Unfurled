@@ -68,6 +68,7 @@ class CampagneDAO:
 
     @staticmethod  
     def creer_campagne(nom_campagne : str):  # Creer_campagne affiche l'identifiant de la campagne
+        from client.vue.session import Session
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
@@ -79,7 +80,21 @@ class CampagneDAO:
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "SELECT MAX(id_campagne) as max FROM campagne") # La dernière campagne ajouté a l'id le plus élevé.
+                        "SELECT MAX(id_campagne) as max FROM campagne") # La dernière campagne ajoutée a l'id le plus élevé.
                     id_camp = cursor.fetchone()
                     id_camp = id_camp['max']
         print("Voici l'identifiant de votre campagne :\n", id_camp)
+        with DBConnection().connection as connection: # Nous sauvegardons le fait que le joueur devient MJ.
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Utilisateur_Campagne (username, "\
+                                         "id_campagne, "\
+                                         "est_joueur)"\
+                        "VALUES "\
+                        "(%(username)s,%(id_campagne)s,%(est_joueur)s)"\
+   
+                    , {"username" : Session.utilisateur.identifiant
+                    , "id_campagne" : id_camp
+                    , "est_joueur" : False
+                    }
+                    )
