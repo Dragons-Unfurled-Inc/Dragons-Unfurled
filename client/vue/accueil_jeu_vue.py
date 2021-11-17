@@ -45,7 +45,7 @@ class AccueilJeuVue(AbstractVue):
             #faut ajouter la classe joueur pour le stocker je mets une val au pif pour l'instant
         
         if reponse['choix'] == 'Rejoindre une campagne': #Il faudrait charger une sauvegarde ici
-            identifiant_campagne = int(input('Quel est l\'identifiant de votre campagne ?'))
+            identifiant_campagne = int(input('Quel est l\'identifiant de votre campagne ?\n'))
             if identifiant_campagne in CampagneDAO.liste_id():
                 campagne = CampagneDAO.get_campagne(identifiant_campagne) # liste avec l'id et le nom
                 mj = CampagneDAO.trouve_mj(identifiant_campagne) # Ici, il faut utiliser la table Utilisateur_campagne
