@@ -12,3 +12,7 @@ def get_NetMonstre(nom_monstre: str):
 @routerm.get("/monstre/{type}", tags=["monstre"])
 def get_NetMonstre(type_monstre: str):
     return MonstreService.getNetMonstreDeType(type_monstre)
+
+@routerm.get("/monstres/{nom_monstre}")
+def Creer_monstre(nom_monstre: str):
+    return MonstreService.ImportMonstreWeb(nom_monstre)
