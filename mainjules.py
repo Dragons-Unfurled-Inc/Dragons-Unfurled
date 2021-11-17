@@ -77,5 +77,5 @@ def encode(mdp):
 
 print(MonstreService.ImportMonstreWeb('aboleth'))
 
-import os 
-print(os.environ['api_url'])
+# import os 
+# print(os.environ['api_url'])
