@@ -50,3 +50,5 @@ personnage2_arthur = Personnage("Paladin",
                                 "Hemmet Shaw", 
                                 carac) 
 EntiteDAO.add_entite(personnage2_arthur)  
+
+# Deux campagnes.

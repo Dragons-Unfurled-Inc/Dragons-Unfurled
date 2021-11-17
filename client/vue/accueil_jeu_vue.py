@@ -48,7 +48,7 @@ class AccueilJeuVue(AbstractVue):
             identifiant_campagne = int(input('Quel est l\'identifiant de votre campagne ?'))
             if identifiant_campagne in CampagneDAO.liste_id():
                 campagne = CampagneDAO.get_campagne(identifiant_campagne) # liste avec l'id et le nom
-                mj = CampagneDAO.trouve_mj(identifiant_campagne)
+                mj = CampagneDAO.trouve_mj(identifiant_campagne) # Ici, il faut utiliser la table Utilisateur_campagne
                 liste_id_joueurs = mj.liste_joueurs()
                 if self.utilisateur.identifiant in liste_id_joueurs:
                     if self.utilisateur.identifiant == mj.id_maitre_du_jeu:
