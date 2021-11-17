@@ -1,6 +1,6 @@
 import os
 
-import psycopg2.extras 
+import psycopg2.extras
 from utils.singleton import Singleton
 
 
@@ -12,12 +12,19 @@ class WebConfiguration(metaclass=Singleton):
     def __init__(self):
         # Open the connection.
         self._api_url = os.environ["API_URL"]
+        self._output_dir = os.environ["FILE_OUTPUT_DIR"]
 
-    @property
-    def connection(self):
-        """
-        return the opened connection.
+    # @property
+    # def connection(self):
+    #     """
+    #     return the opened connection.
 
-        :return: the opened connection.
-        """
-        return self.__connection
+    #     :return: the opened connection.
+    #     """
+    #     return self.__connection
+
+    def getApiUrl(self):
+        return self._api_url
+    
+    def getOutputDir(self):
+        return self._output_dir
