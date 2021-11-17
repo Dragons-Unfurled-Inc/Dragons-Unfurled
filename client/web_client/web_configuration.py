@@ -11,18 +11,12 @@ class WebConfiguration(metaclass=Singleton):
 
     def __init__(self):
         # Open the connection.
-        self.api_url = os.environ["API_URL"]
-        #self._output_dir = os.environ["FILE_OUTPUT_DIR"]
+        self._api_url = os.environ["API_URL"]
+        self._output_dir = os.environ["FILE_OUTPUT_DIR"]
 
     # @property
     # def connection(self):
-    #     """
     #     return the opened connection.
-
-     
-    #   :return: the opened connection.
-    #    return self.connection
-    #     :return: the opened connection.
     #     return self.__connection
 
     def getApiUrl(self):
