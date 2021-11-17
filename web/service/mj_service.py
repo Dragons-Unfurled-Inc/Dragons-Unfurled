@@ -1,7 +1,7 @@
 from web.dao.maitre_du_jeu_dao import MjDAO
 
 class MjService : 
-
+    
     @staticmethod
     def personnage_joueurs(id_campagne):
         return MjDAO.personnages_joueurs
