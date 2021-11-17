@@ -20,40 +20,7 @@ class Caracteristique(BaseModel) :
     sagesse: int = 20 
     vie: int = 10
     classe_armure: int = 10
-    
-    def __init__(self,nom_entite: str,
-                        niveau: int = 1, 
-                        experience: int = 10,
-                        force: int = 20, 
-                        intelligence: int = 20, 
-                        charisme: int = 20, 
-                        dexterite: int = 20, 
-                        constitution: int = 5, 
-                        sagesse: int = 20, 
-                        attaques: List[str] = [],
-                        capacites: List[str] = [], 
-                        languages: List[str] = [], 
-                        description: Optional[str] = '',
-                        vie: int = 10,
-                        classe_armure: int = 10) -> None:
-        super().__init__(
-        nom_entite = nom_entite,
-        niveau = niveau,
-        experience = experience,
-        force = force ,
-        dexterite = dexterite ,
-        constitution = constitution,
-        intelligence = intelligence ,
-        sagesse = sagesse ,
-        charisme = charisme ,
-        capacites = capacites,
-        vie = vie,
-        attaques = attaques,
-        languages = languages,
-        description = description,
-        classe_armure = classe_armure,
-        )
-        
+     
     class Config:
         underscore_attrs_are_private = True
         schema_extra = { 

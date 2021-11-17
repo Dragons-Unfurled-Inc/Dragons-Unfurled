@@ -2,6 +2,7 @@ from os import umask
 from client.service.monstre_service import MonstreService
 import requests as req
 from objets_metier.joueur import Joueur
+from objets_metier.monstre import Monstre
 from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.utilisateur import Utilisateur

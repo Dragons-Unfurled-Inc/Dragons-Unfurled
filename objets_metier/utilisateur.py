@@ -11,10 +11,6 @@ from objets_metier.feedback import FeedBack
 class Utilisateur(BaseModel):
 
     identifiant : str
-    
-    def __init__(self,identifiant : str):
-        super().__init__(
-        identifiant = identifiant)
         
     class Config:
         schema_extra = {

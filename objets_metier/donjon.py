@@ -5,9 +5,9 @@ from pydantic import BaseModel
 
 class Donjon(BaseModel):
 
-    __id_donjon: str
-    __nom_donjon: str
-    __pieces: Optional[List[Salle]] 
+    id_donjon: str
+    nom_donjon: str
+    pieces: Optional[List[Salle]] 
 
     class Config:
         underscore_attrs_are_private = True
@@ -25,32 +25,23 @@ class Donjon(BaseModel):
             }
         }
 
-    def __init__(self,
-                    id_donjon: str,
-                    nom_donjon: str,
-                    pieces: Optional[List[Salle]] = None ) -> None:
-        
-        self.__id_donjon = id_donjon
-        self.__nom_donjon = nom_donjon
-        self.__pieces = pieces
-
     def __str__(self):
         """
         Gère l'affichage des données du donjon
         """  
         mod_salle = '        Vide'
-        if self.__pieces != None: 
+        if self.pieces != None: 
             mod_salle = ''
-            curs = len(self.__pieces)
-            for piece in self.__pieces:
+            curs = len(self.pieces)
+            for piece in self.pieces:
                 if curs == 1 : 
                     mod_salle += Salle.__str__(piece)
                 else :
                     mod_salle += Salle.__str__(piece) + '\n\n'
                     curs -= 1 
         modele = '\n'.join(['id_donjon : {} \nNom : {} \nSalle : \n{} '])
-        return modele.format(self.__id_donjon, 
-                             self.__nom_donjon,
+        return modele.format(self.id_donjon, 
+                             self.nom_donjon,
                              mod_salle)
 
     
@@ -87,26 +78,4 @@ class Donjon(BaseModel):
                 inventaire.append(entite)
         return inventaire
     
-    @property
-    def id_donjon(self):
-        return self.__id_donjon
-
-    @id_donjon.setter
-    def id_donjon(self, value):
-        self.__id_donjon = value   
-
-    @property
-    def nom_donjon(self):
-        return self.__nom_donjon
-
-    @nom_donjon.setter
-    def nom_donjon(self, value):
-        self.__nom_donjon = value
-
-    @property
-    def pieces(self):
-        return self.__pieces
-
-    @pieces.setter
-    def pieces(self, value):
-        self.__pieces = value  
+  

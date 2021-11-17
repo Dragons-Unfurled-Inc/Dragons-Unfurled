@@ -46,7 +46,7 @@ class MaitreDuJeu(Joueur,BaseModel):
        Cette fonction ajoute un monstre dans la campagne. 
        Par défaut l'entité ajoutée ne se trouve pas dans un donjon.
        """
-       self.__monstres.append(monstre)
+       self.monstres.append(monstre)
        if donjon != None: 
            donjon.pieces[0].monstres.append(monstre)
 

@@ -13,10 +13,4 @@ class Des(BaseModel):
     def lancer_le_des(self):
         self.valeur_des = randint(1, self.nb_face)
 
-    @property
-    def valeur_des(self):
-        return self.__valeur_des
- 
-    @valeur_des.setter
-    def valeur_des(self, value):
-        self.__valeur_des = value 
+   
