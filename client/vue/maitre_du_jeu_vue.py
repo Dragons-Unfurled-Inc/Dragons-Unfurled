@@ -1,6 +1,6 @@
 from client.service.campagne_service import CampagneService
 from client.service.donjon_service import DonjonService
-from client.service.maitre_du_jeu_service import MJService
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
@@ -102,14 +102,14 @@ class MenuMJ(AbstractVue):
             message = input("Voulez-vous consulter la fiche d'un personnage ? Saisissez Oui ou Non")
             if message == "Non":
                 id_monstre = input("Saisissez l'identifiant du monstre à consulter")
-                monstre = MJService.trouve_entite(id_monstre)
+                monstre = MaitreDuJeuService.trouve_entite(id_monstre)
                 MaitreDuJeu.consulter_monstre(monstre)
                 from client.vue.maitre_du_jeu_vue import MenuMJ
                 return MenuMJ(self.joueur,self.campagne)
             
             if message == "Oui":    
                 id_personnage = input("Saisissez l'identifiant du personnage à consulter")
-                perso = MJService.trouve_entite(id_personnage)
+                perso = MaitreDuJeuService.trouve_entite(id_personnage)
                 MaitreDuJeu.consulter_personnage(perso, self.campagne[0])
                 from client.vue.maitre_du_jeu_vue import MenuMJ
                 return MenuMJ(self.joueur,self.campagne)
@@ -118,12 +118,12 @@ class MenuMJ(AbstractVue):
             message = input("Voulez-vous modifier la fiche d'un personnage ? Saisissez Oui ou Non")
             if message == "Non":
                 id_monstre = input("Saisissez l'identifiant du monstre à consulter")
-                monstre = MJService.trouve_entite(id_monstre)
+                monstre = MaitreDuJeuService.trouve_entite(id_monstre)
                 MaitreDuJeu.modifier_monstre(monstre)
                 
             if message == "Oui":    
                 id_personnage = input("Saisissez l'identifiant du personnage à consulter")
-                perso = MJService.trouve_entite(id_personnage)
+                perso = MaitreDuJeuService.trouve_entite(id_personnage)
                 MaitreDuJeu.modifier_personnage(perso)  
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ(self.joueur,self.campagne)

@@ -1,14 +1,15 @@
-from PyInquirer import Separator, prompt
-
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
-from client.vue.session import Session
-from client.vue.maitre_du_jeu_vue import MenuMJ
 from client.vue.joueur_vue import MenuJoueur
+from client.vue.maitre_du_jeu_vue import MenuMJ
+from client.vue.session import Session
 from objets_metier.joueur import Joueur
+from objets_metier.maitre_du_jeu import MaitreDuJeu
 from objets_metier.utilisateur import Utilisateur
+from PyInquirer import Separator, prompt
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
-from objets_metier.maitre_du_jeu import MaitreDuJeu
+
 
 class AccueilJeuVue(AbstractVue):
 
@@ -44,8 +45,8 @@ class AccueilJeuVue(AbstractVue):
             #faut ajouter la classe joueur pour le stocker je mets une val au pif pour l'instant
         
         if reponse['choix'] == 'Rejoindre une campagne': #Il faudrait charger une sauvegarde ici
-            identifiant_campagne = input('Quel est l\'identifiant de votre campagne ?')
-            if identifiant_campagne in CampagneDAO.liste_noms():
+            identifiant_campagne = int(input('Quel est l\'identifiant de votre campagne ?'))
+            if identifiant_campagne in CampagneDAO.liste_id():
                 campagne = CampagneDAO.get_campagne(identifiant_campagne) # liste avec l'id et le nom
                 mj = CampagneDAO.trouve_mj(identifiant_campagne)
                 liste_id_joueurs = mj.liste_joueurs()
@@ -73,7 +74,7 @@ class AccueilJeuVue(AbstractVue):
 
         if reponse['choix'] == 'Créer une campagne':
             nom_campagne = input("Ecrivez un nom pour votre campagne.\n")
-            identifiant_campagne = CampagneDAO.creer_campagne(nom_campagne) #Creer_campagne affiche l'identifiant de la campagne
+            identifiant_campagne = MaitreDuJeuService.creer_campagne(nom_campagne) # Creer_campagne affiche l'identifiant de la campagne
             return AccueilJeuVue()
         
         if reponse['choix'] == 'Ecrire un feed-back':
