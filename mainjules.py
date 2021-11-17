@@ -1,16 +1,19 @@
+import hashlib
 from os import umask
-from client.service.monstre_service import MonstreService
+from pprint import pp, pprint
+
 import requests as req
+
+from client.service.monstre_service import MonstreService
+from objets_metier.caracteristique import Caracteristique
 from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
-from objets_metier.caracteristique import Caracteristique
 from objets_metier.utilisateur import Utilisateur
 from web.dao.campagne_dao import CampagneDAO
-from pprint import pp, pprint
-import hashlib
 from web.dao.entite_dao import EntiteDAO
 from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
 from web.service.monstre_service import MonstreService
+
 #print(essai.__dict__())
 
 #M = MonstreService.ImportMonstreWeb('aboleth')
@@ -70,4 +73,4 @@ def encode(mdp):
     mdp.update(pass_hash)
     print(mdp.digest())
 
-#print(MonstreService.getNetMonstreDeType('humanoid'))
+print(MonstreService.getNetMonstreDeType('humanoid'))

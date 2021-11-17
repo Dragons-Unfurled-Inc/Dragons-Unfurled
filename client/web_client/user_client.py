@@ -45,7 +45,7 @@ class UtilisateurClient:
         userAsDict = requests.post(api_dest)
         
     @staticmethod
-    def deleteUtilisateur(user:Utilisateur):
+    def deleteUtilisateur(user: Utilisateur):
         pass
 
     @staticmethod
