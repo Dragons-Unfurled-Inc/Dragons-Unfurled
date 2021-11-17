@@ -1,11 +1,13 @@
 from typing import List
+
 from pydantic import BaseModel
+
 from objets_metier.des import Des
 
-    
+
 class Jet(BaseModel):
     liste_des: List[Des]
-    valeur_jet = None
+    valeur_jet: int
 
 
     def __init__(self, liste_des: List[Des]):
