@@ -4,13 +4,14 @@ from client.vue.abstract_vue import AbstractVue
 from client.vue.joueur_vue import MenuJoueur
 from client.vue.maitre_du_jeu_vue import MenuMJ
 from client.vue.session import Session
-from web.service.mj_service import MjService
 from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from objets_metier.utilisateur import Utilisateur
 from PyInquirer import Separator, prompt
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
+from web.service.mj_service import MjService
+
 
 class AccueilJeuVue(AbstractVue):
 

@@ -26,7 +26,7 @@ style = style_from_dict({
     Token.Question: '#f7be00',
 })
 
-class NumberValidator(Validator):
+class NumberValidator(Validator): 
     def validate(self, document):
         try:
             int(document.text)
@@ -166,9 +166,9 @@ class MenuPersonnage(AbstractVue):
         reponse = prompt(self.questions) # prompt(self.questions,style=style_from_dict)
         utilisateur = Session.utilisateur
         #print(reponse)
-        if reponse['ChoixCarac'] :
-            carac = Caracteristique(nom_entite = reponse['Nom'], description = reponse['Description'], attaques = reponse['Force'], capacites = reponse['Intelligence'], languages = reponse['Charisme'], dexterite = reponse['Dexterite'], constitution = reponse['Constitution'], sagesse = reponse['Sagesse'], vie = reponse['Vie'], experience = reponse['Experience'], classe_armure = reponse['ClasseArmure'], niveau = reponse['Niveau'])
-        else: 
+        if reponse['ChoixCarac']:  
+            carac = Caracteristique(nom_entite = reponse['Nom'], description = reponse['Description'], force = reponse['Force'], intelligence = reponse['Intelligence'], charisme = reponse['Charisme'], dexterite = reponse['Dexterite'], constitution = reponse['Constitution'], sagesse = reponse['Sagesse'], vie = reponse['Vie'], experience = reponse['Experience'], classe_armure = reponse['ClasseArmure'], niveau = reponse['Niveau'])
+        else:  
             carac = Caracteristique(nom_entite = reponse['Nom'])
         personnage = Personnage(classe = reponse["Classe"], race = reponse["Race"], lore = reponse["Lore"], id_joueur = utilisateur.identifiant, id_entite = -1, nom_entite = reponse["Nom"], caracteristiques_entite = carac) 
         EntiteDAO.ajoute_entite(personnage)       

@@ -35,7 +35,7 @@ class MenuMJ(AbstractVue):
                     'Lancer des dés',
                     'Consulter les jets',
                     Separator(),
-                    'Sauvegarder l\état de la campagne',
+                    'Sauvegarder l\'état de la campagne',
                     'Quitter la campagne',
                     
                 ]
@@ -94,7 +94,7 @@ class MenuMJ(AbstractVue):
                 return MenuMonstre(self.joueur,self.campagne)
             
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
-            CampagneService.sauvegarder(self.campagne) 
+            CampagneService.sauvegarder() 
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
