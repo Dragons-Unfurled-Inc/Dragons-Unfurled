@@ -105,6 +105,23 @@ class CampagneDAO:
                     }
                     )
     
+    @staticmethod  
+    def mettre_joueur_dans_campagne(username):
+        id_camp = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "INSERT INTO Utilisateur_Campagne (username, "\
+                                         "id_campagne, "\
+                                         "est_joueur)"\
+                        "VALUES "\
+                        "(%(username)s,%(id_campagne)s,%(est_joueur)s)"\
+
+                    , {"username" : username
+                    , "id_campagne" : id_camp
+                    , "est_joueur" : True
+                    }
+                    )
 
 
 

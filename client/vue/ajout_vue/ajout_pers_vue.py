@@ -50,6 +50,6 @@ class AjoutPersVue(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.questions)
         MaitreDuJeuService.ajouter_entite_campagne(reponse['ID'])  
-        CampagneService.add_util_campagne(reponse['Joueur'], Session.id_campagne,True)
+        CampagneService.mettre_joueur_dans_campagne(reponse['Joueur'])
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()
