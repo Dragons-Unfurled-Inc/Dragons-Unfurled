@@ -1,13 +1,14 @@
 from abc import abstractstaticmethod
 
 import requests as req
+from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.entite import Entite
 from objets_metier.objet import Objet
 from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
-from client.vue.session import Session
 from web.dao.personnage_dao import PersonnageDAO
+from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
 
 
 #le code est pas ouf mais vous avez une idée de comment faire, par contre c'est ptet plus à sa place dans le package web
@@ -100,18 +101,19 @@ class EntiteDAO:
                     , "description": entite.caracteristiques_entite.description
                     , "classe_armure": entite.caracteristiques_entite.classe_armure
                     }) 
-            print(entite.caracteristiques_entite.description)
             with DBConnection().connection as connection: # Nous récupérons l'id de l'entité.
                 with connection.cursor() as cursor :
                     cursor.execute(
                         "SELECT MAX(id_entite) as max FROM Entite")
                     id_entite = cursor.fetchone()
                     id_ent = id_entite['max']
-            EntiteDAO.ajouter_objets(entite, id_ent)
             entite.id_entite = id_ent
+            EntiteDAO.ajouter_objets(entite)
             PersonnageDAO.add_personnage(entite)
+            UtilisateurEntiteDao.ajoute_utilisateur_entite(entite)
+
     @staticmethod    
-    def ajouter_objets(entite: Entite, id_entite: int): # L'entité entrée n'a pas d'id pour le moment. Il est donc en argument.
+    def ajouter_objets(entite: Entite): 
         for objet in entite.objets:
             with DBConnection().connection as connection: # Insertion de l'objet
                 with connection.cursor() as cursor :
@@ -136,7 +138,7 @@ class EntiteDAO:
                         "VALUES "\
                         "(%(id_entite)s,%(id_objet)s)"
    
-                    , { "id_entite" : id_entite
+                    , { "id_entite" : entite.id_entite
                     , "id_objet": id_objet}) 
             
         

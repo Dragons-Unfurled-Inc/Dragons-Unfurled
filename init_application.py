@@ -1,5 +1,6 @@
 from client.service.personnage_service import PersonnageService
 from client.service.utilisateur_service import UtilisateurService
+from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.personnage import Personnage
 from web.dao.entite_dao import EntiteDAO
@@ -20,35 +21,42 @@ UtilisateurService.creation_compte('Alicia','Alicia', True)
 UtilisateurService.creation_compte('Thomas','Thomas', False)
 UtilisateurService.creation_compte('Isabelle','Isabelle', False)
 
-# Trois personnages.
-carac = Caracteristique(nom_entite = "Gilthar Arcal")
+
+# Trois personnages joueurs.
+
+# Un personnage appartenant à Thomas.
+Session.utilisateur.identifiant = "Thomas"
+carac = Caracteristique(nom_entite = "Gilthar Arcal", description = "Gilthar est un magicien de 2 metres qui aime l'aventure !")
 personnage_thomas = Personnage(classe = "Wizard",
                                 race = "Elf",
                                 lore = "Les années d'apprentissage ont apaisées le jeune Gilthar, il n'est plus malveillant mais possède toujours les traits de caractère de son enfance.", 
                                 id_joueur = "Thomas", 
-                                id_entite = -1, 
+                                id_entite = -1, # Nous l'inition à -1 mais la base de données va lui en attribuer un autre automatiquement.
                                 nom_entite = "Gilthar Arcal", 
                                 caracteristiques_entite = carac) 
 EntiteDAO.ajoute_entite(personnage_thomas)   
 
-# carac = Caracteristique("Reciä Lanīakwæ") # Il faut ajouter un objet et faire marcher la description en bdd
-# personnage_arthur = Personnage("Druid",
-#                                 "Half-Elf",
-#                                 "Reciä est une espèce de créateur, d'artiste même, qui serait capable d'insuffler la vie à des engrenages inertes... \n Il s'est promis de vaincre coûte que coûte.", 
-#                                 "Arthur", 
-#                                 -1, 
-#                                 "Reciä Lanīakwæ", 
-#                                 carac) 
-# EntiteDAO.add_entite(personnage_arthur)  
+# Un personnage appartenant à Arthur.
+Session.utilisateur.identifiant = "Arthur"
+carac = Caracteristique(nom_entite = "Reciä Lanīakwæ")
+personnage_arthur = Personnage(classe = "Druid",
+                                race = "Half-Elf",
+                                lore = "Reciä est une espèce de créateur, d'artiste même, qui serait capable d'insuffler la vie à des engrenages inertes... \n Il s'est promis de vaincre coûte que coûte.", 
+                                id_joueur = "Arthur", 
+                                id_entite = -1, 
+                                nom_entite = "Reciä Lanīakwæ", 
+                                caracteristiques_entite = carac) 
+EntiteDAO.ajoute_entite(personnage_arthur)  
 
-# carac = Caracteristique("Hemmet Shaw")
-# personnage2_arthur = Personnage("Paladin",
-#                                 "Human",
-#                                 "Il vécut son enfance comme écuyer d'un paladin et prit la voie de la chevalerie.", 
-#                                 "Arthur", 
-#                                 -1, 
-#                                 "Hemmet Shaw", 
-#                                 carac) 
-# EntiteDAO.add_entite(personnage2_arthur)  
+# Un deuxième personnage appartenant à Arthur.
+carac = Caracteristique(nom_entite = "Hemmet Shaw")
+personnage2_arthur = Personnage(classe = "Paladin",
+                                race = "Human",
+                                lore = "Il vécut son enfance comme écuyer d'un paladin et prit la voie de la chevalerie.", 
+                                id_joueur = "Arthur", 
+                                id_entite = -1, 
+                                nom_entite = "Hemmet Shaw", 
+                                caracteristiques_entite = carac) 
+EntiteDAO.ajoute_entite(personnage2_arthur)  
 
 # Deux campagnes.
