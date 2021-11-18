@@ -3,6 +3,8 @@ from client.service.monstre_service import MonstreService
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.vue.abstract_vue import AbstractVue
 from PyInquirer import Validator, ValidationError
+from client.vue.session import Session
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
 
 class NumberValidator(Validator):
     def validate(self, document):
@@ -15,10 +17,9 @@ class NumberValidator(Validator):
 
 class AjoutPersVue(AbstractVue):
     
-    @staticmethod
+    
     def __init__(self):
-        #self.joueur = joueur 
-        self.liste_types = MonstreService.ImportListeTypes()
+        self.joueur = Session.utilisateur 
         self.questions = [
             {
                 'type': 'input',
@@ -38,8 +39,9 @@ class AjoutPersVue(AbstractVue):
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
             print(asset.read())
-
+  
     def make_choice(self):
         reponse = prompt(self.questions)
+        MaitreDuJeuService.ajouter_entite_campagne(reponse['ID'])  
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()

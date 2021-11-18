@@ -52,11 +52,11 @@ class MenuMJ(AbstractVue):
         reponse = prompt(self.__questions)
         
         if reponse['choix'] == 'Ajouter une entité':
-            from ajout_vue.ajout_enti_vue import AjoutEntiVue
-            return AjoutEntiVue(self.joueur)
+            from client.vue.ajout_vue.ajout_enti_vue import AjoutEntiVue
+            return AjoutEntiVue()
             
         if reponse['choix'] == 'Supprimer une entité':
-            from suppr_vue.suppr_enti_vue import SupprEntiVue
+            from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
             return SupprEntiVue(self.joueur)
         
         if reponse['choix'] == 'Créer un donjon':

@@ -276,6 +276,5 @@ class MjDAO:
             liste_donjon.append(Donjon(id_donjon, donjon[1][id_donjon], liste_salle))
         return liste_donjon
 
-                    
                 
 

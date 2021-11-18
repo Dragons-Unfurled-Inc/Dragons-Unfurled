@@ -6,6 +6,8 @@ from objets_metier.entite import Entite
 from objets_metier.objet import Objet
 from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
+from client.vue.session import Session
+from web.dao.personnage_dao import PersonnageDAO
 
 
 #le code est pas ouf mais vous avez une idée de comment faire, par contre c'est ptet plus à sa place dans le package web
@@ -106,7 +108,8 @@ class EntiteDAO:
                     id_entite = cursor.fetchone()
                     id_ent = id_entite['max']
             EntiteDAO.ajouter_objets(entite, id_ent)
-
+            entite.id_entite = id_ent
+            PersonnageDAO.add_personnage(entite)
     @staticmethod    
     def ajouter_objets(entite: Entite, id_entite: int): # L'entité entrée n'a pas d'id pour le moment. Il est donc en argument.
         for objet in entite.objets:
@@ -206,3 +209,15 @@ class EntiteDAO:
                     "WHERE nom_entite = %(nom_entite)s;"\
                     , {"vie" : 0
                     , "nom_entite": nom_entite}) 
+    
+    @staticmethod
+    def ajouter_entite_campagne(id_entite):
+        id_camp = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Entite "\
+                    "SET id_campagne = %(valeur)s "\
+                    "WHERE id_entite = %(id_entite)s;"\
+                    , { "valeur": id_camp
+                    , "id_entite": id_entite})

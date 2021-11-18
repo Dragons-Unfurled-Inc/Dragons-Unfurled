@@ -29,6 +29,7 @@ personnage_thomas = Personnage(classe = "Wizard",
                                 id_entite = -1, 
                                 nom_entite = "Gilthar Arcal", 
                                 caracteristiques_entite = carac) 
+print(personnage_thomas)
 EntiteDAO.ajoute_entite(personnage_thomas)   
 
 # carac = Caracteristique("Reciä Lanīakwæ") # Il faut ajouter un objet et faire marcher la description en bdd
