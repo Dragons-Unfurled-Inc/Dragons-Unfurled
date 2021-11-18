@@ -21,7 +21,7 @@ class MenuMJ(AbstractVue):
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f' {Session().identifiant} que souhaitez-vous faire ?',
+                'message': f' {Session.utilisateur.identifiant} que souhaitez-vous faire ?',
                 'choices': [
                     'Créer un donjon',
                     'Réaliser une action sur un donjon',
