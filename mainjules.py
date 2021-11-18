@@ -4,7 +4,7 @@ from pprint import pp, pprint
 
 import requests as req
 from dotenv import load_dotenv
-
+load_dotenv()
 from client.service.monstre_service import MonstreService
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.joueur import Joueur
@@ -15,7 +15,6 @@ from web.dao.campagne_dao import CampagneDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
 
-load_dotenv()
 #print(essai.__dict__())
 
 #M = MonstreService.ImportMonstreWeb('aboleth')
@@ -77,8 +76,7 @@ def encode(mdp):
 
 #print(MonstreService.getNetMonstreDeType('humanoid'))
 
-#print(MonstreService.ImportMonstreWeb('rat'))
+print(MonstreService.ImportMonstreWeb('rat'))
 
-import os
-
-print(os.environ['API_URL'])
+# import os 
+# print(os.environ['API_URL'])
