@@ -8,15 +8,15 @@ class MjService :
    
     @staticmethod
     def personnage_joueurs(id_campagne):
-        return MjDAO.personnages_joueurs
+        return MjDAO.personnages_joueurs(id_campagne)
     
     @staticmethod
     def personnage_non_joueur(id_campagne):
-        return MjDAO.personnages_non_joueurs
+        return MjDAO.personnages_non_joueurs(id_campagne)
 
     @staticmethod
     def monstres(id_campagne): 
-        return MjDAO.monstres
+        return MjDAO.monstres(id_campagne)
     
     @staticmethod
     def donjons(id_campagne):

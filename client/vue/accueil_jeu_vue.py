@@ -58,10 +58,10 @@ class AccueilJeuVue(AbstractVue):
                     return MenuMJ(joueur, campagne)
                 elif self.utilisateur.identifiant in liste_id_joueurs:
                     personnage_joueur = MjService.trouver_personnage(campagne[0], id_mj) 
-                    personnages_joueurs = MjDAO.personnages_joueurs(campagne[0])
-                    personnages_non_joueurs = MjDAO.personnages_non_joueurs(campagne[0])
-                    monstres = MjDAO.monstres(campagne[0])
-                    donjons = MjDAO.donjons(campagne[0])
+                    personnages_joueurs = MjService.personnage_joueurs(campagne[0])
+                    personnages_non_joueurs = MjService.personnage_non_joueur(campagne[0])
+                    monstres = MjService.monstres(campagne[0])
+                    donjons = MjService.donjons(campagne[0])
                     maitre_du_jeu = MaitreDuJeu(campagne[0],campagne[1],personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs,personnages_joueurs,personnages_non_joueurs,monstres,donjons)
                     from client.vue.joueur_vue import MenuJoueur
                     return MenuJoueur(maitre_du_jeu,campagne)
