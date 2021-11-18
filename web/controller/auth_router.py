@@ -28,6 +28,6 @@ def get_noms_utilisateurs():
 # def getUtilisateurAdmin(utilisateur_nom):
 #     return UtilisateurService.UtilisateurAdmin(utilisateur_nom)
 
-@router.get("/utilisateurs/{utilisateur_nom}", tags=["utilisateurs"])
+@router.get("/utilisateur/{utilisateur_nom}")
 def existe_utilisateur(utilisateur_nom):
     return UtilisateurService.est_utilisateur(utilisateur_nom)

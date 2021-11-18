@@ -50,7 +50,7 @@ class UtilisateurDAO:
                     ,{"nom" : utilisateur_nom}
                 )
                 res = cursor.fetchone()
-        if res:
+        if res != None:
             return True
         else : 
             return False

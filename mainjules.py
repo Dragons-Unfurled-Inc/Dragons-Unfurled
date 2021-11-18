@@ -76,7 +76,9 @@ def encode(mdp):
 
 #print(MonstreService.getNetMonstreDeType('humanoid'))
 
-print(MonstreService.ImportMonstreWeb('rat'))
+#print(MonstreService.ImportMonstreWeb('rat'))
 
 # import os 
 # print(os.environ['API_URL'])
+from web.dao.utilisateur_dao import UtilisateurDAO
+print(UtilisateurDAO.getUtilisateur('A'))
