@@ -53,7 +53,6 @@ class AccueilJeuVue(AbstractVue):
                 liste_id_joueurs = CampagneDAO.trouve_joueurs(identifiant_campagne)
                 if self.utilisateur.identifiant == id_mj:
                     personnage_joueur = MjService.trouver_personnage(campagne[0], id_mj) 
-#                    joueur = Joueur(personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs)
                     joueur = Joueur(personnage_joueur, identifiant_campagne)
                     from client.vue.maitre_du_jeu_vue import MenuMJ
                     return MenuMJ(joueur, campagne)
