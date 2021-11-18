@@ -121,10 +121,43 @@ class MenuPersonnage(AbstractVue):
             },
             {
                 'type': 'input',
+                'name': 'Niveau',
+                'message': 'Quel est le niveau de votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
+                'name': 'Vie',
+                'message': 'Combien de points de vie a votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
+                'name': 'ClasseArmure',
+                'message': 'Quelle est la classe d\'armure de votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
+                'name': 'Experience',
+                'message': 'Combien de points d\'experience a votre personnage ?',
+                'validate': NumberValidator,
+                'filter': lambda val: int(val),
+                'when' : lambda answers : answers['ChoixCarac']
+            },
+            {
+                'type': 'input',
                 'name': 'Description',
                 'message': 'Quelle est la description de votre personnage ?',
-                'default': 'C\'est un grand aventurier.'
-            },
+                'default': 'C\'est un grand aventurier.',
+                'when' : lambda answers : answers['ChoixCarac']
+            }
             ]
     def display_info(self):
         print(f"Bonjour {Session.utilisateur.identifiant}, \n Bienvenue sur l\'écran de création de personnage")
@@ -134,34 +167,10 @@ class MenuPersonnage(AbstractVue):
         utilisateur = Session.utilisateur
         #print(reponse)
         if reponse['ChoixCarac'] :
-            carac = Caracteristique(nom_entite = reponse['Nom'], attaques = reponse['Force'], capacites = reponse['Intelligence'], languages = reponse['Charisme'], dexterite = reponse['Dexterite'], constitution = reponse['Constitution'], sagesse = reponse['Sagesse'])
+            carac = Caracteristique(nom_entite = reponse['Nom'], description = reponse['Description'], attaques = reponse['Force'], capacites = reponse['Intelligence'], languages = reponse['Charisme'], dexterite = reponse['Dexterite'], constitution = reponse['Constitution'], sagesse = reponse['Sagesse'], vie = reponse['Vie'], experience = reponse['Experience'], classe_armure = reponse['ClasseArmure'], niveau = reponse['Niveau'])
         else: 
             carac = Caracteristique(nom_entite = reponse['Nom'])
-        personnage = Personnage(classe = reponse["Classe"], race = reponse["Race"], lore = reponse["Lore"], id_joueur = utilisateur.identifiant, id_entite = -1, nom_entite = reponse["Nom"],carac) 
+        personnage = Personnage(classe = reponse["Classe"], race = reponse["Race"], lore = reponse["Lore"], id_joueur = utilisateur.identifiant, id_entite = -1, nom_entite = reponse["Nom"], caracteristiques_entite = carac) 
         EntiteDAO.ajoute_entite(personnage)       
         from client.vue.accueil_jeu_vue import AccueilJeuVue
         return AccueilJeuVue()
-
-        nom_entite: str 
-personnage_arthur = Personnage(classe = "Druid",
-                                race = "Half-Elf",
-                                lore = "Reciä est une espèce de créateur, d'artiste même, qui serait capable d'insuffler la vie à des engrenages inertes... \n Il s'est promis de vaincre coûte que coûte.", 
-                                id_joueur = "Arthur", 
-                                id_entite = -1, 
-                                nom_entite = "Reciä Lanīakwæ", 
-                                caracteristiques_entite = carac) 
-
-    # attaques: List[str] = []
-    # capacites: List[str] = []
-    # languages: List[str] = []
-    # description: Optional[str] = ''
-    # niveau: int = 1
-    # experience: int = 20
-    # force: int = 20
-    # intelligence: int = 20
-    # charisme: int = 20
-    # dexterite: int = 20 
-    # constitution: int = 5
-    # sagesse: int = 20 
-    # vie: int = 10
-    # classe_armure
