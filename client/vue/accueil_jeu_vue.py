@@ -3,6 +3,7 @@ from client.vue.abstract_vue import AbstractVue
 from client.vue.joueur_vue import MenuJoueur
 from client.vue.maitre_du_jeu_vue import MenuMJ
 from client.vue.session import Session
+from web.service.mj_service import MjService
 from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from objets_metier.utilisateur import Utilisateur
@@ -10,16 +11,15 @@ from PyInquirer import Separator, prompt
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
 
-
 class AccueilJeuVue(AbstractVue):
 
     def __init__(self):
-        utilisateur : Utilisateur = Session.utilisateur 
+        self.utilisateur : Utilisateur = Session.utilisateur 
         self.__questions = [
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f'Bonjour {utilisateur.identifiant}, que souhaitez-vous faire ? ',
+                'message': f'Bonjour {self.utilisateur.identifiant}, que souhaitez-vous faire ? ',
                 'choices': [
                     'Rejoindre une campagne',
                     Separator(),
@@ -49,23 +49,23 @@ class AccueilJeuVue(AbstractVue):
             identifiant_campagne = int(input('Quel est l\'identifiant de votre campagne ?\n'))
             if identifiant_campagne in CampagneDAO.liste_id():
                 campagne = CampagneDAO.get_campagne(identifiant_campagne) # liste avec l'id et le nom
-                mj = CampagneDAO.trouve_mj(identifiant_campagne) # Ici, il faut utiliser la table Utilisateur_campagne
+                id_mj = CampagneDAO.trouve_mj(identifiant_campagne) # Ici, il faut utiliser la table Utilisateur_campagne
                 liste_id_joueurs = CampagneDAO.trouve_joueurs(identifiant_campagne)
-                if self.utilisateur.identifiant in liste_id_joueurs:
-                    if self.utilisateur.identifiant == mj.id_maitre_du_jeu:
-                        personnage_joueur = mj.trouver_personnage(self.utilisateur) 
-                        joueur = Joueur(personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs)
-                        from client.vue.maitre_du_jeu_vue import MenuMJ
-                        return MenuMJ(joueur, campagne)
-                    else:
-                        personnage_joueur = mj.trouver_personnage(self.utilisateur) 
-                        personnages_joueurs = MjDAO.personnages_joueurs(campagne[0])
-                        personnages_non_joueurs = MjDAO.personnages_non_joueurs(campagne[0])
-                        monstres = MjDAO.monstres(campagne[0])
-                        donjons = MjDAO.donjons(campagne[0])
-                        maitre_du_jeu = MaitreDuJeu(campagne[0],campagne[1],personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs,personnages_joueurs,personnages_non_joueurs,monstres,donjons)
-                        from client.vue.joueur_vue import MenuJoueur
-                        return MenuJoueur(maitre_du_jeu,campagne)
+                if self.utilisateur.identifiant == id_mj:
+                    personnage_joueur = MjService.trouver_personnage(campagne[0], id_mj) 
+#                    joueur = Joueur(personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs)
+                    joueur = Joueur(personnage_joueur, identifiant_campagne)
+                    from client.vue.maitre_du_jeu_vue import MenuMJ
+                    return MenuMJ(joueur, campagne)
+                elif self.utilisateur.identifiant in liste_id_joueurs:
+                    personnage_joueur = MjService.trouver_personnage(campagne[0], id_mj) 
+                    personnages_joueurs = MjDAO.personnages_joueurs(campagne[0])
+                    personnages_non_joueurs = MjDAO.personnages_non_joueurs(campagne[0])
+                    monstres = MjDAO.monstres(campagne[0])
+                    donjons = MjDAO.donjons(campagne[0])
+                    maitre_du_jeu = MaitreDuJeu(campagne[0],campagne[1],personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs,personnages_joueurs,personnages_non_joueurs,monstres,donjons)
+                    from client.vue.joueur_vue import MenuJoueur
+                    return MenuJoueur(maitre_du_jeu,campagne)
                 else:
                     print("Vous n'êtes pas membre de cette campagne.")
                     return AccueilJeuVue()

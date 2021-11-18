@@ -12,6 +12,10 @@ from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntro
 class MjDAO:
     
     @staticmethod
+    def trouver_personnage(id_campagne, id_mj):
+        None
+
+    @staticmethod
     def personnages_joueurs(id_campagne): 
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
