@@ -73,7 +73,7 @@ def encode(mdp):
 
 #print(MonstreService.getNetMonstreDeType('humanoid'))
 
-print(MonstreService.ImportMonstreWeb('aboleth'))
+print(MonstreService.ImportMonstreWeb('rat'))
 
 # import os 
 # print(os.environ['api_url'])

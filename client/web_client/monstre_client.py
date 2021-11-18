@@ -10,9 +10,13 @@ class MonstreClient():
         def ImportMonstreWeb(nom = str):
             configuration = WebConfiguration()
             api_url = configuration.getApiUrl()
-            api_dest = str.format("{}/monstre/{}",api_url,nom)
+            api_dest = str.format("http://{}/monstre/{}",api_url,nom)
+            # http://localhost:5000/monstre/zombie
+            # localhost:5000/monstre/zombie
             d = requ.get(api_dest)
-            return (Monstre(d["type"],0,0,Caracteristique(d['name'],d['actions'],d['senses'],d['languages'],d['special_abilities']+d['legendary_actions'],'')))
+            d = d.json()
+            print(d)
+            return (Monstre(type = d["type"],id_joueur = d['id_joueur'],id_entite = d['id_entite'],caracteristiques_entite = Caracteristique(nom_entite = d['caracteristiques_entite']['nom_entite'])))
             
     
         @staticmethod

@@ -12,4 +12,4 @@ app.include_router(routerm)
 
 if __name__ == "__main__" :
     port = WebConfig().getApiPort()
-    uvicorn.run("webservice:app", host="localhost", port=port, log_level="info")
+    uvicorn.run(app, host="localhost", port = "5000", log_level="info")

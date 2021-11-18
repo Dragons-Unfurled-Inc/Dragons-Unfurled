@@ -11,8 +11,8 @@ class WebConfiguration(metaclass=Singleton):
 
     def __init__(self):
         # Open the connection.
-        self._api_url = os.environ["API_URL"]
-        self._output_dir = os.environ["FILE_OUTPUT_DIR"]
+        self.api_url = "localhost:5000"
+        self.output_dir = "./generated/"
 
     # @property
     # def connection(self):
@@ -20,7 +20,7 @@ class WebConfiguration(metaclass=Singleton):
     #     return self.__connection
 
     def getApiUrl(self):
-        return self._api_url
+        return self.api_url
     
     def getOutputDir(self):
-        return self._output_dir
+        return self.output_dir
