@@ -5,4 +5,6 @@ class CampagneService():
     @staticmethod
     def add_campagne(nom_campagne):
         id_camp = CampagneDAO.add_campagne(nom_campagne)
-        return id_camp
+        return id_camp  
+
+        

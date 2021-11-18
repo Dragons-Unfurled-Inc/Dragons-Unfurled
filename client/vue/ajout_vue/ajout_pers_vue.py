@@ -42,4 +42,4 @@ class AjoutPersVue(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.questions)
         from client.vue.maitre_du_jeu_vue import MenuMJ
-        return MenuMJ(self.joueur,self.campagne)
+        return MenuMJ()

@@ -6,7 +6,7 @@ from objets_metier.maitre_du_jeu import MaitreDuJeu
 
 class SupprEntiVue(AbstractVue):
 
-    def __init__(self,joueur:MaitreDuJeu, campagne):
+    def __init__(self,joueur:MaitreDuJeu):
         self.questions = [
             {
                 'type': 'list',

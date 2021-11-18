@@ -17,7 +17,7 @@ class CampagneDAO:
         liste_nom = [dict(row)["nom"] for row in res] # Nous récupérons la liste des noms à partir de res. res peut être par exemple de la forme : [RealDictRow([('nom', 'Grande partie')]), RealDictRow([('nom', 'Une campagne secondaire')])]
         return liste_nom
         
-    @staticmethod
+    @staticmethod 
     def liste_id():
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :

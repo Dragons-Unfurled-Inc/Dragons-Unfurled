@@ -26,3 +26,16 @@ class CampagneService(metaclass = Singleton):
     def add_util_campagne(nom_util,id_camp,joueur):
         if nom_util in CampagneDAO.trouve_joueurs(id_camp):
             return UtilisateurCampagneDao.add_utilisateur_campagne(nom_util,id_camp,joueur)
+
+    def liste_id():
+        return CampagneDAO.liste_id()
+
+    def get_campagne(id_campagne):
+        return CampagneDAO.get_campagne(id_campagne)
+
+    def trouve_mj(id_campagne):
+        return CampagneDAO.trouve_mj(id_campagne)
+
+    def trouve_joueurs(id_campagne):
+        return CampagneDAO.trouve_joueurs(id_campagne)            
+

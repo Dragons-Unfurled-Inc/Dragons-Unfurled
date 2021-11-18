@@ -9,7 +9,12 @@ class Session(metaclass=Singleton):
         """
         #self.est_administrateur = True
         self.utilisateur = Utilisateur
-        
+        self.id_campagne = -1
+
         @staticmethod
         def upgrade_util_jou():
             self.utilisateur
+         
+        @staticmethod
+        def upgrade_id_campagne():
+            self.id_campagne

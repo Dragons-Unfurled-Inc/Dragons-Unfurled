@@ -16,7 +16,7 @@ from web.dao.maitre_du_jeu_dao import MjDAO
 class MenuMJ(AbstractVue):
 
 
-    def __init__(self, joueur:MaitreDuJeu, campagne):
+    def __init__(self):
         self.__questions = [
             {
                 'type': 'list',
@@ -41,8 +41,8 @@ class MenuMJ(AbstractVue):
                 ]
             }
         ]
-        self.joueur = joueur
-        self.campagne = campagne
+        self.joueur = Session.utilisateur
+        self.id_campagne = Session.id_campagne
     
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/texte/accueil_maitre_du_jeu.txt', 'r', encoding="utf-8") as affichage2:
@@ -64,7 +64,7 @@ class MenuMJ(AbstractVue):
             donjon = DonjonService.creation_donjon(nom_donjon) #doit créer au moins une salle
             MaitreDuJeu.construire_donjon(self.joueur,donjon)
             from client.vue.maitre_du_jeu_vue import MenuMJ
-            return MenuMJ(self.joueur, self.campagne)
+            return MenuMJ()
         
         if reponse['choix'] == 'Lancer des dés':
             from client.vue.des_vue import MenuDes
@@ -73,11 +73,11 @@ class MenuMJ(AbstractVue):
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
             from client.vue.maitre_du_jeu_vue import MenuMJ
-            return MenuMJ(self.joueur, self.campagne)
+            return MenuMJ()
         
         if reponse['choix'] == 'Quitter la campagne':
             from client.vue.accueil_jeu_vue import AccueilJeuVue
-            return AccueilJeuVue(self.joueur)
+            return AccueilJeuVue()
         
         if reponse['choix'] == 'Réaliser une action sur un donjon':
             liste_donjon = self.joueur.donjons
@@ -96,7 +96,7 @@ class MenuMJ(AbstractVue):
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
             CampagneService.sauvegarder(self.campagne) 
             from client.vue.maitre_du_jeu_vue import MenuMJ
-            return MenuMJ(self.joueur,self.campagne)
+            return MenuMJ()
         
         if reponse['choix'] == 'Consulter la fiche d\'une entité':
             message = input("Voulez-vous consulter la fiche d'un personnage ? Saisissez Oui ou Non")
@@ -105,14 +105,14 @@ class MenuMJ(AbstractVue):
                 monstre = MaitreDuJeuService.trouve_entite(id_monstre)
                 MaitreDuJeu.consulter_monstre(monstre)
                 from client.vue.maitre_du_jeu_vue import MenuMJ
-                return MenuMJ(self.joueur,self.campagne)
+                return MenuMJ()
             
             if message == "Oui":    
                 id_personnage = input("Saisissez l'identifiant du personnage à consulter")
                 perso = MaitreDuJeuService.trouve_entite(id_personnage)
-                MaitreDuJeu.consulter_personnage(perso, self.campagne[0])
+                MaitreDuJeu.consulter_personnage(perso, self.id_campagne)
                 from client.vue.maitre_du_jeu_vue import MenuMJ
-                return MenuMJ(self.joueur,self.campagne)
+                return MenuMJ()
 
         if reponse['choix'] == 'Modifier la fiche d\'une entité':
             message = input("Voulez-vous modifier la fiche d'un personnage ? Saisissez Oui ou Non")
@@ -126,4 +126,4 @@ class MenuMJ(AbstractVue):
                 perso = MaitreDuJeuService.trouve_entite(id_personnage)
                 MaitreDuJeu.modifier_personnage(perso)  
             from client.vue.maitre_du_jeu_vue import MenuMJ
-            return MenuMJ(self.joueur,self.campagne)
+            return MenuMJ()
