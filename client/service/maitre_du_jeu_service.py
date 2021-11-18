@@ -7,15 +7,17 @@ from objets_metier.utilisateur import Utilisateur
 from utils.singleton import Singleton
 from web.dao.administrateur_dao import AdministrateurDAO
 from web.dao.campagne_dao import CampagneDAO
+from web.dao.entite_dao import EntiteDAO
 from web.dao.feed_back_dao import FeedBackDAO
 from web.dao.utilisateur_dao import UtilisateurDAO
+from web.dao.maitre_du_jeu_dao import MjDAO
 
 
 class MaitreDuJeuService(metaclass = Singleton):
-
+  
     @staticmethod    
-    def ajouter_entite(identifiant_entite): 
-        pass
+    def ajouter_entite_campagne(identifiant_entite): 
+        EntiteDAO.ajouter_entite_campagne(identifiant_entite)
 
     @staticmethod    
     def supprimer_entite(identifiant_entite): 

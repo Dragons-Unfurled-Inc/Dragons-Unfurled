@@ -2,7 +2,7 @@ from PyInquirer import prompt
 from client.service.monstre_service import MonstreService
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.vue.abstract_vue import AbstractVue
-
+from client.vue.session import Session
 
 class AjoutMonsVue(AbstractVue):
     
