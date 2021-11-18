@@ -1,7 +1,10 @@
 from typing import List, Optional
+
+from pydantic import BaseModel
+
 from objets_metier.objet import Objet
 from objets_metier.salle import Salle
-from pydantic import BaseModel
+
 
 class Donjon(BaseModel):
 
@@ -44,9 +47,9 @@ class Donjon(BaseModel):
                              self.nom_donjon,
                              mod_salle)
 
-    
-    def afficher_donjon(self):
-        print(self)
+    @staticmethod
+    def afficher_donjon():
+        pass
 
     def deplacer_element_salles(self, element:type):
         """

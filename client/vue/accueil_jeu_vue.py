@@ -9,7 +9,7 @@ from objets_metier.maitre_du_jeu import MaitreDuJeu
 from objets_metier.utilisateur import Utilisateur
 from PyInquirer import Separator, prompt
 from web.dao.campagne_dao import CampagneDAO
-from web.dao.maitre_du_jeu_dao import MjDAO
+from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 from web.service.mj_service import MjService
 
 

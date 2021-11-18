@@ -1,15 +1,16 @@
+from client.exceptions.utilisateur_introuvable_exception import \
+    UtilisateurIntrouvableException
 from objets_metier.caracteristique import Caracteristique
-from objets_metier.personnage import Personnage
+from objets_metier.donjon import Donjon
 from objets_metier.monstre import Monstre
 from objets_metier.objet import Objet
+from objets_metier.personnage import Personnage
 from objets_metier.salle import Salle
-from objets_metier.donjon import Donjon
 from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
-from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
 
 
-class MjDAO:
+class MaitreDuJeuDAO:
     
     @staticmethod
     def trouver_personnage(id_campagne, id_mj):
@@ -210,7 +211,9 @@ class MjDAO:
         return liste_perso_joueur
 
     @staticmethod
-    def donjons(id_campagne):# Cette fonction renvoie l'ensemble des donjons
+    def donjons():# Cette fonction renvoie l'ensemble des donjons
+        from client.vue.session import Session
+        id_campagne = Session.id_campagne
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -218,7 +221,7 @@ class MjDAO:
                     "FROM Donjon "\
                     "WHERE (id_campagne = %(id_campagne)s) "\
                     , {"id_campagne" : id_campagne})
-                liste_id_donjon = cursor.fetchone()
+                liste_id_donjon = cursor.fetchall()
                 liste_id_donjon = liste_id_donjon["id_donjon"]
         liste_donjon = []
         for id_donjon in liste_id_donjon:

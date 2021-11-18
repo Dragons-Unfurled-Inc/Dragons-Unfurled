@@ -2,7 +2,7 @@ from client.vue.abstract_vue import AbstractVue
 from objets_metier.caracteristique import Caracteristique
 from PyInquirer import prompt
 from web.dao.entite_dao import EntiteDAO
-from web.dao.maitre_du_jeu_dao import MjDAO
+from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
 
 from vue.accueil_jeu_vue import AccueilJeuVue

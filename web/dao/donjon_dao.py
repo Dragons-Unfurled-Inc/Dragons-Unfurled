@@ -1,28 +1,66 @@
-from web.dao.db_connection import DBConnection
-from utils.singleton import Singleton
-
+from client.vue.session import Session
 from objets_metier.donjon import Donjon
+from utils.singleton import Singleton
+from web.dao.db_connection import DBConnection
+from web.dao.salle_dao import SalleDAO
+
 
 class DonjonDAO(metaclass=Singleton):
     
     @staticmethod    
-    def add_donjon(id_campagne : int, donjon : Donjon) :
-            with DBConnection().connection as connection:
-                with connection.cursor() as cursor :
-                    cursor.execute(
-                        "INSERT INTO Donjon (nom_donjon, "\
-                                            "id_campagne) "\
-                        "VALUES "\
-                        "(%(nom_donjon)s,%(id_campagne)s)"\
-   
-                    , {"nom_donjon" : donjon.nom_donjon
-                    , "id_campagne" : id_campagne
-                    })
-            with DBConnection().connection as connection:
+    def ajoute_donjon(nom_donjon: str, coordonnees_salle_donjon_x, coordonnees_salle_donjon_y):
+        id_campagne = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
+                cursor.execute(
+                    "INSERT INTO Donjon (nom_donjon, "\
+                                        "id_campagne) "\
+                    "VALUES "\
+                    "(%(nom_donjon)s,%(id_campagne)s)"\
+
+                , {"nom_donjon" : nom_donjon
+                , "id_campagne" : id_campagne
+                })
+        with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
                         "SELECT MAX(id_donjon) as max FROM Donjon")
-                    id_donj = cursor.fetchone()
-                    id_donj = id_donj['max']
-            return Donjon(id_donj, donjon.nom_donjon, donjon.pieces)
+                    res = cursor.fetchone()
+                    id_donjon = res['max']
+        SalleDAO.ajoute_salle_rectangulaire(id_donjon, coordonnees_salle_donjon_x, coordonnees_salle_donjon_y, "Salle principale")
             
+    @staticmethod
+    def dict_donjons():# Cette fonction renvoie un dictionnaire des donjons.
+        from client.vue.session import Session
+        id_campagne = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_donjon, nom_donjon "\
+                    "FROM Donjon "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    , {"id_campagne" : id_campagne})
+                res = cursor.fetchall()
+                if res != None:
+                    liste_dict_donjons = [dict(row) for row in res] 
+                else:
+                    liste_dict_donjons = []
+        return liste_dict_donjons
+
+    @staticmethod
+    def existe_donjon_campagne(id_donjon):# Cette fonction renvoie un dictionnaire des donjons.
+        from client.vue.session import Session
+        id_campagne = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_donjon "\
+                    "FROM Donjon "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND (id_donjon = %(id_donjon)s)"\
+                    , {"id_campagne" : id_campagne, "id_donjon" : id_donjon})
+                res = cursor.fetchone()
+        if res != None:
+            return True
+        else : 
+            return False

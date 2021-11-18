@@ -7,3 +7,5 @@ SELECT * FROM Objet;
 SELECT * FROM Entite_objet;
 SELECT * FROM Utilisateur_entite;
 SELECT * FROM Donjon;
+SELECT * FROM Salle;
+SELECT * FROM Cellule;

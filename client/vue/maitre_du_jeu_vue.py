@@ -4,13 +4,12 @@ from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
-from objets_metier.donjon import Donjon
 from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from pydantic import main
 from PyInquirer import Separator, prompt
 from web.dao.jet_dao import JetDAO
-from web.dao.maitre_du_jeu_dao import MjDAO
+from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 
 
 class MenuMJ(AbstractVue):
@@ -25,6 +24,7 @@ class MenuMJ(AbstractVue):
                 'choices': [
                     'Créer un donjon',
                     'Réaliser une action sur un donjon',
+                    'Regarder le contenu de tous ses donjons'
                     'Créer une entité',
                     'Ajouter une entité',
                     'Supprimer une entité',
@@ -61,8 +61,14 @@ class MenuMJ(AbstractVue):
         
         if reponse['choix'] == 'Créer un donjon':
             nom_donjon = input("Saisissez le nom du donjon à créer.")
-            donjon = DonjonService.creation_donjon(nom_donjon) #doit créer au moins une salle
-            MaitreDuJeu.construire_donjon(nom_donjon)
+            x = int(input("Saisissez la largeur de la salle initiale."))
+            y = int(input("Saisissez la profondeur de la salle initiale"))
+            donjon = DonjonService.construire_donjon(nom_donjon, x, y)
+            from client.vue.maitre_du_jeu_vue import MenuMJ
+            return MenuMJ()
+
+        if reponse['choix'] == 'Regarder le contenu de tous ses donjons':
+            MaitreDuJeuService.voir_les_donjons()
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
@@ -80,14 +86,20 @@ class MenuMJ(AbstractVue):
             return AccueilJeuVue()
         
         if reponse['choix'] == 'Réaliser une action sur un donjon':
-            liste_donjons = self.joueur.donjons
+            dict_donjons = DonjonService.dict_donjons()
             print("Voici les donjons disponibles:")
-            for donjon in liste_donjons:
-                print(donjon)
-            id_donj = input("Saisissez l'identifiant du donjon souhaité.")   # A changer
-            donjon = self.joueur.donjon[id_donj]         
-            from client.vue.donjon_vue import MenuDonjon
-            return MenuDonjon(self.joueur, self.campagne, donjon)
+            for donjon in dict_donjons:
+                print(donjon["nom_donjon"],' : ',donjon["id_donjon"])
+            id_donjon = input("Saisissez l'identifiant du donjon souhaité.")
+            existe_donjon = DonjonService.existe_donjon_campagne(id_donjon)
+            if existe_donjon:
+                Session.id_donjon = id_donjon       
+                from client.vue.donjon_vue import MenuDonjon
+                return MenuDonjon()
+            else:
+                print("L'identifiant du donjon saisi est introuvable.")
+                from client.vue.maitre_du_jeu_vue import MenuMJ
+                return MenuMJ()
         
         if reponse['choix'] == 'Créer un monstre':
                 from client.vue.creation_monstre_vue import MenuMonstre

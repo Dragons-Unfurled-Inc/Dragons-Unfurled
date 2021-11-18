@@ -1,25 +1,29 @@
 from typing import List
-from pydantic import BaseModel
-from objets_metier.joueur import Joueur
-from objets_metier.personnage import Personnage
-from objets_metier.donjon import Donjon
-from objets_metier.monstre import Monstre
-from objets_metier.utilisateur import Utilisateur
-from objets_metier.feedback import FeedBack
+
 from client.service.monstre_service import MonstreService
+from pydantic import BaseModel
+
+from objets_metier.donjon import Donjon
+from objets_metier.feedback import FeedBack
+from objets_metier.joueur import Joueur
+from objets_metier.monstre import Monstre
+from objets_metier.personnage import Personnage
+from objets_metier.utilisateur import Utilisateur
 
 
 class MaitreDuJeu(Joueur,BaseModel):
     
     id_campagne : int
     
+    @staticmethod
     def creer_monstre(self, nom):
         self.__monstres.append(MonstreService.ImportMonstreWeb(nom))
         
-
+    @staticmethod
     def consulter_monstre(self, monstre : Monstre):
         None
 
+    @staticmethod
     def liste_joueurs(self):
         liste_joueurs = [] # C'est la liste des identifiants des joueurs.
         liste_personnages = self.personnages_joueurs
@@ -27,6 +31,7 @@ class MaitreDuJeu(Joueur,BaseModel):
             liste_joueurs.append(personnage.id_joueur)
         return liste_joueurs
 
+    @staticmethod
     def trouver_personnage(self,utilisateur_joueur: Joueur): # Cette fonction cherche le personnage d'un utilisateur.
         personnage_joueur = None # C'est le personnage du joueur.
         liste_personnages = utilisateur_joueur.personnages # Les personnages du joueur
@@ -35,12 +40,15 @@ class MaitreDuJeu(Joueur,BaseModel):
                 personnage_joueur = personnage
         return personnage_joueur
 
+    @staticmethod
     def modifier_monstre(self, monstre : Monstre):
         None
 
+    @staticmethod
     def modifier_personnage(self, personnage : Personnage):
         None    
 
+    @staticmethod
     def ajouter_monstre(self, monstre : Monstre, donjon : Donjon = None): 
        """
        Cette fonction ajoute un monstre dans la campagne. 
@@ -49,9 +57,3 @@ class MaitreDuJeu(Joueur,BaseModel):
        self.monstres.append(monstre)
        if donjon != None: 
            donjon.pieces[0].monstres.append(monstre)
-
-    def construire_donjon(nom_donjon: str):
-       None
-
-    def editer_donjon(self, donjon : Donjon): 
-       None        
