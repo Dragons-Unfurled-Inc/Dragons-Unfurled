@@ -118,7 +118,13 @@ class MenuPersonnage(AbstractVue):
                 'validate': NumberValidator,
                 'filter': lambda val: int(val),
                 'when' : lambda answers : answers['ChoixCarac']
-            }
+            },
+            {
+                'type': 'input',
+                'name': 'Description',
+                'message': 'Quelle est la description de votre personnage ?',
+                'default': 'C\'est un grand aventurier.'
+            },
             ]
     def display_info(self):
         print(f"Bonjour {Session.utilisateur.identifiant}, \n Bienvenue sur l\'écran de création de personnage")
@@ -128,10 +134,26 @@ class MenuPersonnage(AbstractVue):
         utilisateur = Session.utilisateur
         #print(reponse)
         if reponse['ChoixCarac'] :
-            carac = Caracteristique(reponse['Nom'],reponse['Force'],reponse['Intelligence'],reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
-        else :
+            carac = Caracteristique(nom_entite = reponse['Nom'], attaques = reponse['Force'], capacites = reponse['Intelligence'], languages = reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
+        else : 
             carac = Caracteristique(reponse['Nom'])
         personnage = Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],utilisateur.identifiant,0,reponse["Nom"],carac) 
         EntiteDAO.add_entite(personnage)       
         from client.vue.accueil_jeu_vue import AccueilJeuVue
         return AccueilJeuVue()
+
+        nom_entite: str 
+    # attaques: List[str] = []
+    # capacites: List[str] = []
+    # languages: List[str] = []
+    # description: Optional[str] = ''
+    # niveau: int = 1
+    # experience: int = 20
+    # force: int = 20
+    # intelligence: int = 20
+    # charisme: int = 20
+    # dexterite: int = 20 
+    # constitution: int = 5
+    # sagesse: int = 20 
+    # vie: int = 10
+    # classe_armure
