@@ -1,12 +1,15 @@
 import hashlib
 from getpass import getpass
+
+from client.web_client.utilisateur_client import UtilisateurClient
 from objets_metier.joueur import Joueur
+from objets_metier.utilisateur import Utilisateur
+#from objets_metier import utilisateur
+from web.dao.utilisateur_dao import UtilisateurDAO
+
 #import os
 #from datetime import datetime
 
-#from objets_metier import utilisateur
-from web.dao.utilisateur_dao import UtilisateurDAO
-from objets_metier.utilisateur import Utilisateur
 
 
 class UtilisateurService:
@@ -71,14 +74,15 @@ class UtilisateurService:
         from client.vue.session import Session
         Session.utilisateur = Utilisateur(identifiant = nom_utilisateur)  
         utilisateur = Session.utilisateur           
-        UtilisateurDAO.createUtilisateur(utilisateur.identifiant,mdp.digest(),est_admin)
+        UtilisateurDAO.createUtilisateur(utilisateur.identifiant,mdp.digest(),est_admin) 
         # return nouvel_utilisateur
         # else:
         #     print("Votre compte n'a pas pu être créé !")
 
     @staticmethod
     def connexion(nom_utilisateur: str,mot_de_passe_utilisateur: str):
-        if not UtilisateurDAO.getUtilisateur(nom_utilisateur):
+        if not UtilisateurClient.est_utilisateur(nom_utilisateur): 
+        #if not UtilisateurDAO.getUtilisateur(nom_utilisateur): 
             print('Cet utilisateur n\'existe pas')
             return False
         pass_hash = mot_de_passe_utilisateur.encode()

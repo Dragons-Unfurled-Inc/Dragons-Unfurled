@@ -17,13 +17,17 @@ class UtilisateurService:
         UtilisateurDAO.liste_noms() 
 
     @staticmethod
-    def creation_compte(identifiant,mot_de_passe,est_admin):         
-        UtilisateurDAO.createUtilisateur(identifiant,mot_de_passe,est_admin)
+    def creation_compte(identifiant, mot_de_passe, est_admin):         
+        UtilisateurDAO.createUtilisateur(identifiant, mot_de_passe, est_admin)
 
     @staticmethod
     def verifie_mdp(utilisateur_nom: str, mdp):
         UtilisateurDAO.verifie_mdp(utilisateur_nom, mdp)
 
     @staticmethod
-    def UtilisateurAdmin(utilisateur_nom: str):
+    def utilisateur_admin(utilisateur_nom: str):
         UtilisateurDAO.getUtilisateurAdmin(utilisateur_nom)
+
+    @staticmethod
+    def est_utilisateur(nom: str):
+        UtilisateurDAO.getUtilisateur(nom)

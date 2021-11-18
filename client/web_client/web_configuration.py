@@ -6,7 +6,7 @@ from utils.singleton import Singleton
 
 class WebConfiguration(metaclass=Singleton):
     """
-    Technical class to open only one connection to the DB.
+    Classe technique pour se connecter à la base de données
     """
 
     def __init__(self):

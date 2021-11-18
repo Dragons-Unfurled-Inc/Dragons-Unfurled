@@ -26,16 +26,21 @@ class UtilisateurClient:
     #         raise UtilisateurNonAuthentifie(username=username)
 
     @staticmethod
-    def createUtilisateur(user: Utilisateur) :
-        pass
-
-    @staticmethod
-    def authenticate_and_get_user(username: str, password: str) :
+    def creation_utilisateur(identifiant: int, mdp_hache, est_admin: bool):
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
-        api_dest = str.format("{}/users/{}",api_url,username)
-        userAsDict = requests.get(api_dest)
-        return userAsDict
+        api_dest = str.format("http://{}/utilisateur/{}",api_url,identifiant)
+        destination = requests.get(api_dest)
+        destination = destination.json()
+        print(destination)
+
+    @staticmethod
+    def est_utilisateur(nom: str) :
+        configuration = WebConfiguration()
+        api_url = configuration.getApiUrl()
+        api_dest = str.format("{}/utilisateurs/{}",api_url,nom)
+        est_un_utilisateur = requests.get(api_dest)
+        return est_un_utilisateur
 
     @staticmethod
     def updateUtilisateur(user: Utilisateur)-> None:
@@ -60,6 +65,6 @@ class UtilisateurClient:
             users.append(UtilisateurClient.userDictToUtilisateur(userAsDict))
         return users
 
-    @staticmethod
-    def userDictToUtilisateur(user_as_dict: dict) -> Utilisateur:
-        return Utilisateur(user_as_dict["id"],user_as_dict["username"],user_as_dict["password"])
+    # @staticmethod
+    # def userDictToUtilisateur(user_as_dict: dict) -> Utilisateur:
+    #     return Utilisateur(user_as_dict["id"],user_as_dict["username"],user_as_dict["password"])
