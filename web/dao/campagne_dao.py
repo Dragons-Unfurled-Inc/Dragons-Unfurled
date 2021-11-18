@@ -106,7 +106,7 @@ class CampagneDAO:
                     )
     
     @staticmethod  
-    def mettre_joueur_dans_campagne():
+    def mettre_joueur_dans_campagne(username):
         id_camp = Session.id_campagne
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
@@ -116,11 +116,12 @@ class CampagneDAO:
                                          "est_joueur)"\
                         "VALUES "\
                         "(%(username)s,%(id_campagne)s,%(est_joueur)s)"\
-   
-                    , {"username" : Session.utilisateur.identifiant
+
+                    , {"username" : username
                     , "id_campagne" : id_camp
                     , "est_joueur" : True
                     }
-                    ) 
+                    )
+
 
 
