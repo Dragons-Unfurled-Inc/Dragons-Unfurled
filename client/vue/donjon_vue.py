@@ -28,9 +28,9 @@ class MenuDonjon(AbstractVue):
                     'Ajouter une salle',
                     'Modifier une salle',
                     Separator(),
-                    'Ajouter ou déplacer un élément dans le donjon',
+                    'Ajouter un élément dans une salle du donjon',
                     'Modifier un élément dans le donjon',
-                    'Déplacer un élément',
+                    'Déplacer ou retirer un élément',
                     Separator(),
                     'Quitter le donjon',
                     
@@ -71,56 +71,16 @@ class MenuDonjon(AbstractVue):
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon(self.joueur,self.campagne,self.donjon)
 
-        if reponse['choix'] == 'Ajouter un élément dans le donjon':
-            message = input("Voulez-vous ajouter un objet ? Saisissez Oui ou Non")
-            if message == "Oui":
-                nom_objet = input("Saisissez le nom (en anglais) de l'objet à ajouter. L'objet doit être présent dans D&D 5eme edition.")
-                objet = DonjonService.ajouter_objet_donjon(nom_objet,self.donjon)
-                from client.vue.donjon_vue import MenuDonjon
-                return MenuDonjon(self.joueur,self.campagne,self.donjon)
-            if message == "Non":
-                message2 =  input("Voulez-vous ajouter une entité ? Saisissez Oui ou Non")
-                if message2 == "Oui":
-                    liste_entites = MaitreDuJeu.liste_entites()
-                    print("Voici la liste des différentes entités:")
-                    for entite in liste_entites:
-                        print(entite)
-                    identifiant_entite = input("Saisissez l'identifiant de l'entité à ajouter")
-                    DonjonService.ajouter_entite(identifiant_entite,self.joueur,self.donjon) #Cherche l'entité à partir de l'identifiant dans la liste des entités du MJ
-                    from client.vue.donjon_vue import MenuDonjon
-                    return MenuDonjon(self.joueur,self.campagne,self.donjon)
+        if reponse['choix'] == 'Ajouter un élément dans une salle du donjon':
+            from client.vue.donjon_vues.ajout_vue import MenuAjout
+            return MenuAjout()
 
         if reponse['choix'] == 'Modifier un élément dans le donjon':
             pass
 
-        if reponse['choix'] == 'Placer ou déplacer un élément dans le donjon': # Il faut une fonction pour déplacer tous les joueurs d'un coup
-            message = input("Voulez-vous déplacer un objet ? Saisissez Oui ou Non")
-            if message == "Oui":
-                print("Voici les salles du donjon")
-                DonjonService.afficher_nom_id_salles(self.donjon)
-                id_salle = input("Rentrez l'identifiant de la salle contenant l'objet")
-                message3 = input("Voulez-vous déplacer l'objet dans la salle ? Saisissez Oui ou Non.")
-                salle = SalleService.trouve_salle(id_salle)
-                if message3 == "Oui":
-                    print("Voici le contenu de la salle:")
-                    print(salle)
-                    identifiant_objet = input("Saisissez l'identifiant de l'objet")
-                    nouvelles_coordonnees = input("Saisissez sous format liste les nouvelles coordonnées de l'objet")  
-                    DonjonService.deplacer_objet_dans_salle(self.donjon,identifiant_objet,nouvelles_coordonnees)
-                    from client.vue.donjon_vue import MenuDonjon
-                    return MenuDonjon(self.joueur,self.campagne,self.donjon)
-                if message3 =="Non":
-                    id_salle2 = input("Rentrez l'identifiant de la salle dans laquelle vous voulez placer l'objet.")
-                    salle2 = SalleService.trouve_salle(id_salle2)
-                    print("Voici le contenu de la salle contenant l'objet:")
-                    print(salle)
-                    identifiant_objet = input("Saisissez l'identifiant de l'objet")
-                    print("Voici le contenu de la salle où vous voulez placer l'objet:")
-                    print(salle2)
-                    nouvelles_coordonnees = input("Saisissez sous format liste les nouvelles coordonnées de l'objet")  
-                    DonjonService.deplacer_objet_salle(self.donjon,identifiant_objet,salle2,nouvelles_coordonnees) #Il faudra enlever l'objet de la première salle
-                    from client.vue.donjon_vue import MenuDonjon
-                    return MenuDonjon(self.joueur,self.campagne,self.donjon)
+        if reponse['choix'] == 'Déplacer ou retirer un élément':
+            from client.vue.donjon_vues.deplace_vue import MenuDeplace
+            return MenuDeplace()
 
         if reponse['choix'] == 'Quitter le donjon':
             from client.vue.maitre_du_jeu_vue import MenuMJ

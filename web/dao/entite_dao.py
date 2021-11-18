@@ -227,3 +227,21 @@ class EntiteDAO:
                     "WHERE id_entite = %(id_entite)s;"\
                     , { "valeur": id_camp
                     , "id_entite": id_entite})
+
+    @staticmethod
+    def existe_entite_campagne(id_entite): 
+        from client.vue.session import Session
+        id_campagne = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_entite "\
+                    "FROM Entite "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND (id_entite = %(id_entite)s)"\
+                    , {"id_campagne" : id_campagne, "id_entite" : id_entite})
+                res = cursor.fetchone()
+        if res != None:
+            return True
+        else : 
+            return False

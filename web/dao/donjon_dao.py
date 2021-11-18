@@ -48,7 +48,7 @@ class DonjonDAO(metaclass=Singleton):
         return liste_dict_donjons
 
     @staticmethod
-    def existe_donjon_campagne(id_donjon):# Cette fonction renvoie un dictionnaire des donjons.
+    def existe_donjon_campagne(id_donjon):
         from client.vue.session import Session
         id_campagne = Session.id_campagne
         with DBConnection().connection as connection:
@@ -59,6 +59,24 @@ class DonjonDAO(metaclass=Singleton):
                     "WHERE (id_campagne = %(id_campagne)s) "\
                     "AND (id_donjon = %(id_donjon)s)"\
                     , {"id_campagne" : id_campagne, "id_donjon" : id_donjon})
+                res = cursor.fetchone()
+        if res != None:
+            return True
+        else : 
+            return False
+
+    @staticmethod
+    def existe_salle_donjon(id_salle):
+        from client.vue.session import Session
+        id_donjon = Session.id_donjon
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_salle "\
+                    "FROM Salle "\
+                    "WHERE (id_donjon = %(id_donjon)s) "\
+                    "AND (id_salle = %(id_salle)s)"\
+                    , {"id_donjon" : id_donjon, "id_salle" : id_salle})
                 res = cursor.fetchone()
         if res != None:
             return True
