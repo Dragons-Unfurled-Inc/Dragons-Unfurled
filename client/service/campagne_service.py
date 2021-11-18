@@ -38,5 +38,8 @@ class CampagneService(metaclass = Singleton):
         return CampagneDAO.trouve_mj(id_campagne)
 
     def trouve_joueurs(id_campagne):
-        return CampagneDAO.trouve_joueurs(id_campagne)            
+        return CampagneDAO.trouve_joueurs(id_campagne) 
+
+    def mettre_joueur_dans_campagne():
+        return CampagneDAO.mettre_joueur_dans_campagne()           
 

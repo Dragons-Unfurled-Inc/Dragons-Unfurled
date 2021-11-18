@@ -68,6 +68,7 @@ class AccueilJeuVue(AbstractVue):
                     #maitre_du_jeu = MaitreDuJeu(campagne[0],campagne[1],personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs,personnages_joueurs,personnages_non_joueurs,monstres,donjons)
                     from client.vue.joueur_vue import MenuJoueur
                     Session.id_campagne = identifiant_campagne
+                    CampagneService.mettre_joueur_dans_campagne()
                     return MenuJoueur()
                 else:
                     print("Vous n'êtes pas membre de cette campagne.")
