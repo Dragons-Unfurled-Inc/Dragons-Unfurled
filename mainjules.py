@@ -10,7 +10,6 @@ from web.dao.campagne_dao import CampagneDAO
 from pprint import pp, pprint
 import hashlib
 from web.dao.entite_dao import EntiteDAO
-from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
 from client.service.monstre_service import MonstreService
 from dotenv import load_dotenv
 
@@ -76,7 +75,7 @@ def encode(mdp):
 
 #print(MonstreService.getNetMonstreDeType('humanoid'))
 
-#print(MonstreService.ImportMonstreWeb('rat'))
+print(MonstreService.ImportMonstreWeb('rat'))
 
-import os 
-print(os.environ['API_URL'])
+# import os 
+# print(os.environ['API_URL'])
