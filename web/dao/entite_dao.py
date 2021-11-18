@@ -7,6 +7,7 @@ from objets_metier.entite import Entite
 from objets_metier.objet import Objet
 from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
+from web.dao.monstre_dao import MonstreDAO
 from web.dao.personnage_dao import PersonnageDAO
 from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
 
@@ -109,7 +110,10 @@ class EntiteDAO:
                     id_ent = id_entite['max']
             entite.id_entite = id_ent
             EntiteDAO.ajouter_objets(entite)
-            PersonnageDAO.add_personnage(entite)
+            if hasattr(entite, "lore"):
+                PersonnageDAO.add_personnage(entite)
+            else:
+                MonstreDAO.add_monstre(entite)
             UtilisateurEntiteDao.ajoute_utilisateur_entite(entite)
 
     @staticmethod    
