@@ -1,9 +1,14 @@
+from client.vue.session import Session
+from objets_metier.entite import Entite
+from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
 
-class UtilisateurCampagneDao:
+
+class UtilisateurEntiteDao:
 
     @staticmethod
-    def add_utilisateur_campagne(username : str, id_entite : int):
+    def ajoute_utilisateur_entite(entite : Entite):
+        utilisateur: Utilisateur = Session.utilisateur
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
@@ -12,8 +17,8 @@ class UtilisateurCampagneDao:
                         "VALUES "\
                         "(%(username)s,%(id_entite)s)"\
    
-                    , {"username" : username
-                    , "id_entite" : id_entite
+                    , {"username" : utilisateur.identifiant
+                    , "id_entite" : entite.id_entite
                     })
                     
     def trouve_enti(username): 

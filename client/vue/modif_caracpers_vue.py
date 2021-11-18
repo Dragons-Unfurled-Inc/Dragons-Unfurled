@@ -1,18 +1,20 @@
 from client.vue.abstract_vue import AbstractVue
-from vue.accueil_jeu_vue import AccueilJeuVue
-from PyInquirer import prompt
-from vue.session import Session
 from objets_metier.caracteristique import Caracteristique
+from PyInquirer import prompt
 from web.dao.entite_dao import EntiteDAO
 from web.dao.maitre_du_jeu_dao import MjDAO
-from web.dao.utilisateur_entite_dao import UtilisateurCampagneDao
+from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
+
+from vue.accueil_jeu_vue import AccueilJeuVue
+from vue.session import Session
+
 
 class ModifCaracVue(AbstractVue):
 
     def __init__(self):
         utilisateur = Session.utilisateur
         id_campagne = utilisateur.id_campagne
-        id_entis = UtilisateurCampagneDao.trouve_enti(utilisateur.identifiant)
+        id_entis = UtilisateurEntiteDao.trouve_enti(utilisateur.identifiant)
         entis_camp = EntiteDAO.get_entite_campagne(id_campagne)
         for id in id_entis : 
             for enti in entis_camp :
