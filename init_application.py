@@ -1,3 +1,4 @@
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.personnage_service import PersonnageService
 from client.service.utilisateur_service import UtilisateurService
 from client.vue.session import Session
@@ -17,14 +18,14 @@ UtilisateurService.creation_compte('Alicia','Alicia', True)
 
 # Ci-dessous se trouve le contenu pratique pour découvrir notre application :
 
-# Deux comptes joueurs.
+# Deux comptes joueurs :
 UtilisateurService.creation_compte('Thomas','Thomas', False)
 UtilisateurService.creation_compte('Isabelle','Isabelle', False)
 
 
-# Trois personnages joueurs.
+# Trois personnages joueurs :
 
-# Un personnage appartenant à Thomas.
+# Un personnage appartenant à Thomas :
 Session.utilisateur.identifiant = "Thomas"
 carac = Caracteristique(nom_entite = "Gilthar Arcal", description = "Gilthar est un magicien de 2 metres qui aime l'aventure !")
 personnage_thomas = Personnage(classe = "Wizard",
@@ -36,7 +37,7 @@ personnage_thomas = Personnage(classe = "Wizard",
                                 caracteristiques_entite = carac) 
 EntiteDAO.ajoute_entite(personnage_thomas)   
 
-# Un personnage appartenant à Arthur.
+# Un personnage appartenant à Arthur :
 Session.utilisateur.identifiant = "Arthur"
 carac = Caracteristique(nom_entite = "Reciä Lanīakwæ")
 personnage_arthur = Personnage(classe = "Druid",
@@ -48,7 +49,7 @@ personnage_arthur = Personnage(classe = "Druid",
                                 caracteristiques_entite = carac) 
 EntiteDAO.ajoute_entite(personnage_arthur)  
 
-# Un deuxième personnage appartenant à Arthur.
+# Un deuxième personnage appartenant à Arthur :
 carac = Caracteristique(nom_entite = "Hemmet Shaw")
 personnage2_arthur = Personnage(classe = "Paladin",
                                 race = "Human",
@@ -59,4 +60,13 @@ personnage2_arthur = Personnage(classe = "Paladin",
                                 caracteristiques_entite = carac) 
 EntiteDAO.ajoute_entite(personnage2_arthur)  
 
-# Deux campagnes.
+
+# Deux campagnes :
+
+# Une campagne à Arthur :
+Session.utilisateur.identifiant = "Arthur"
+MaitreDuJeuService.creer_campagne("Orbe mystérieuse !")
+
+# La campagne à Isabelle :
+Session.utilisateur.identifiant = "Isabelle"
+MaitreDuJeuService.creer_campagne("Le royaume d'Isendar")

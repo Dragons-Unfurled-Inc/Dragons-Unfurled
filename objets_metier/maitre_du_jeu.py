@@ -50,7 +50,7 @@ class MaitreDuJeu(Joueur,BaseModel):
        if donjon != None: 
            donjon.pieces[0].monstres.append(monstre)
 
-    def construire_donjon(self, donjon : Donjon):
+    def construire_donjon(nom_donjon: str):
        None
 
     def editer_donjon(self, donjon : Donjon): 

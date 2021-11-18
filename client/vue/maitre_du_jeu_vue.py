@@ -62,7 +62,7 @@ class MenuMJ(AbstractVue):
         if reponse['choix'] == 'Créer un donjon':
             nom_donjon = input("Saisissez le nom du donjon à créer.")
             donjon = DonjonService.creation_donjon(nom_donjon) #doit créer au moins une salle
-            MaitreDuJeu.construire_donjon(self.joueur,donjon)
+            MaitreDuJeu.construire_donjon(nom_donjon)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
@@ -80,12 +80,12 @@ class MenuMJ(AbstractVue):
             return AccueilJeuVue()
         
         if reponse['choix'] == 'Réaliser une action sur un donjon':
-            liste_donjon = self.joueur.donjons
+            liste_donjons = self.joueur.donjons
             print("Voici les donjons disponibles:")
-            for donjons in liste_donjon:
-                print(donjons)
+            for donjon in liste_donjons:
+                print(donjon)
             id_donj = input("Saisissez l'identifiant du donjon souhaité.")   # A changer
-            donjon = self.joueur.donjons[id_donj]         
+            donjon = self.joueur.donjon[id_donj]         
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon(self.joueur, self.campagne, donjon)
         
