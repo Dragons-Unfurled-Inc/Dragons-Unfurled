@@ -134,15 +134,23 @@ class MenuPersonnage(AbstractVue):
         utilisateur = Session.utilisateur
         #print(reponse)
         if reponse['ChoixCarac'] :
-            carac = Caracteristique(nom_entite = reponse['Nom'], attaques = reponse['Force'], capacites = reponse['Intelligence'], languages = reponse['Charisme'],reponse['Dexterite'],reponse['Constitution'],reponse['Sagesse'])
-        else : 
-            carac = Caracteristique(reponse['Nom'])
-        personnage = Personnage(reponse["Classe"],reponse["Race"],reponse["Lore"],utilisateur.identifiant,0,reponse["Nom"],carac) 
-        EntiteDAO.add_entite(personnage)       
+            carac = Caracteristique(nom_entite = reponse['Nom'], attaques = reponse['Force'], capacites = reponse['Intelligence'], languages = reponse['Charisme'], dexterite = reponse['Dexterite'], constitution = reponse['Constitution'], sagesse = reponse['Sagesse'])
+        else: 
+            carac = Caracteristique(nom_entite = reponse['Nom'])
+        personnage = Personnage(classe = reponse["Classe"], race = reponse["Race"], lore = reponse["Lore"], id_joueur = utilisateur.identifiant,0,reponse["Nom"],carac) 
+        EntiteDAO.ajoute_entite(personnage)       
         from client.vue.accueil_jeu_vue import AccueilJeuVue
         return AccueilJeuVue()
 
         nom_entite: str 
+personnage_arthur = Personnage(classe = "Druid",
+                                race = "Half-Elf",
+                                lore = "Reciä est une espèce de créateur, d'artiste même, qui serait capable d'insuffler la vie à des engrenages inertes... \n Il s'est promis de vaincre coûte que coûte.", 
+                                id_joueur = "Arthur", 
+                                id_entite = -1, 
+                                nom_entite = "Reciä Lanīakwæ", 
+                                caracteristiques_entite = carac) 
+
     # attaques: List[str] = []
     # capacites: List[str] = []
     # languages: List[str] = []
