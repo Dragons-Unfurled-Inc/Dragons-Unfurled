@@ -14,20 +14,20 @@ class UtilisateurService:
 
     @staticmethod
     def noms_utilisateurs(): 
-        UtilisateurDAO.liste_noms() 
+        return UtilisateurDAO.liste_noms() 
 
     @staticmethod
     def creation_compte(identifiant, mot_de_passe, est_admin):         
-        UtilisateurDAO.createUtilisateur(identifiant, mot_de_passe, est_admin)
+        return UtilisateurDAO.createUtilisateur(identifiant, mot_de_passe, est_admin)
 
     @staticmethod
     def verifie_mdp(utilisateur_nom: str, mdp):
-        UtilisateurDAO.verifie_mdp(utilisateur_nom, mdp)
+        return UtilisateurDAO.verifie_mdp(utilisateur_nom, mdp)
 
     @staticmethod
     def utilisateur_admin(utilisateur_nom: str):
-        UtilisateurDAO.getUtilisateurAdmin(utilisateur_nom)
+        return UtilisateurDAO.getUtilisateurAdmin(utilisateur_nom)
 
     @staticmethod
     def est_utilisateur(nom: str):
-        UtilisateurDAO.getUtilisateur(nom)
+        return UtilisateurDAO.getUtilisateur(nom)

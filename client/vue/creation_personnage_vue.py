@@ -137,7 +137,7 @@ class MenuPersonnage(AbstractVue):
             carac = Caracteristique(nom_entite = reponse['Nom'], attaques = reponse['Force'], capacites = reponse['Intelligence'], languages = reponse['Charisme'], dexterite = reponse['Dexterite'], constitution = reponse['Constitution'], sagesse = reponse['Sagesse'])
         else: 
             carac = Caracteristique(nom_entite = reponse['Nom'])
-        personnage = Personnage(classe = reponse["Classe"], race = reponse["Race"], lore = reponse["Lore"], id_joueur = utilisateur.identifiant,0,reponse["Nom"],carac) 
+        personnage = Personnage(classe = reponse["Classe"], race = reponse["Race"], lore = reponse["Lore"], id_joueur = utilisateur.identifiant, id_entite = -1, nom_entite = reponse["Nom"],carac) 
         EntiteDAO.ajoute_entite(personnage)       
         from client.vue.accueil_jeu_vue import AccueilJeuVue
         return AccueilJeuVue()
