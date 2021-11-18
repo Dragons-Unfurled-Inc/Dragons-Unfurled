@@ -81,8 +81,8 @@ class UtilisateurService:
 
     @staticmethod
     def connexion(nom_utilisateur: str,mot_de_passe_utilisateur: str):
-        if not UtilisateurClient.est_utilisateur(nom_utilisateur): 
-        #if not UtilisateurDAO.getUtilisateur(nom_utilisateur): 
+        #if not UtilisateurClient.est_utilisateur(nom_utilisateur): 
+        if not UtilisateurDAO.getUtilisateur(nom_utilisateur): 
             print('Cet utilisateur n\'existe pas')
             return False
         pass_hash = mot_de_passe_utilisateur.encode()
