@@ -10,6 +10,8 @@ class WebConfiguration(metaclass=Singleton):
     """
 
     def __init__(self):
+        from dotenv import load_dotenv
+        load_dotenv()
         # Open the connection.
         self.api_url = os.environ['API_URL']
         self.output_dir = os.environ['FILE_OUTPUT_DIR']

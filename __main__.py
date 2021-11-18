@@ -1,5 +1,5 @@
 from client.vue.creation_compte_vue import CreaCompteVue
-from client.vue.creation_personnage_vue import MenuPersonnage
+#from client.vue.creation_personnage_vue import MenuPersonnage
 from client.vue.start_vue import StartVue
 from objets_metier.joueur import Joueur
 

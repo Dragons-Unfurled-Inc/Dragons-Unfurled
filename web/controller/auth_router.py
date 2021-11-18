@@ -24,9 +24,9 @@ def get_noms_utilisateurs():
 # def update_utilisateur(utilisateur_name: str, utilisateur: Utilisateur):
 #     return UtilisateurService.updateUtilisateur(utilisateur_name, utilisateur)
 
-@router.get("/utilisateurs/{utilisateur_nom}", tags=["utilisateurs_admin"])
-def getUtilisateurAdmin(utilisateur_nom):
-    return UtilisateurService.UtilisateurAdmin(utilisateur_nom)
+# @router.get("/utilisateurs/{utilisateur_nom}", tags=["utilisateurs_admin"])
+# def getUtilisateurAdmin(utilisateur_nom):
+#     return UtilisateurService.UtilisateurAdmin(utilisateur_nom)
 
 @router.get("/utilisateurs/{utilisateur_nom}", tags=["utilisateurs"])
 def existe_utilisateur(utilisateur_nom):

@@ -40,7 +40,8 @@ class UtilisateurClient:
         api_url = configuration.getApiUrl()
         api_dest = str.format("{}/utilisateurs/{}",api_url,nom)
         est_un_utilisateur = requests.get(api_dest)
-        return est_un_utilisateur
+        destination = est_un_utilisateur.json()
+        return destination
 
     @staticmethod
     def updateUtilisateur(user: Utilisateur)-> None:
