@@ -55,13 +55,15 @@ class CampagneDAO:
                     res = []
                     for dic in campagne :
                         res.append(dic['nom'])
-        return res
+        return res[0]
     
     def trouve_joueurs(id_campagne): 
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "SELECT id_campagne as id, username as nom , est_joueur as bool FROM Utilisateur_Campagne WHERE est_joueur = true;"
+                        "SELECT id_campagne as id, username as nom , est_joueur as bool "\
+                        "FROM Utilisateur_Campagne "\
+                        "WHERE est_joueur = true;"
                     ,{"id_campagne" : id_campagne})
                     campagne = cursor.fetchall()
                     res = []

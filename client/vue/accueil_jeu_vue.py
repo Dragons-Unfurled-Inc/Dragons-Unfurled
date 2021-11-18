@@ -14,7 +14,7 @@ from web.dao.maitre_du_jeu_dao import MjDAO
 class AccueilJeuVue(AbstractVue):
 
     def __init__(self):
-        utilisateur = Session.utilisateur 
+        utilisateur : Utilisateur = Session.utilisateur 
         self.__questions = [
             {
                 'type': 'list',
@@ -33,6 +33,7 @@ class AccueilJeuVue(AbstractVue):
                 ]
             }
         ]
+
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/texte/accueil_de_jeu.txt', 'r', encoding="utf-8") as affichage2:
             print(affichage1.read(),affichage2.read())
@@ -49,7 +50,7 @@ class AccueilJeuVue(AbstractVue):
             if identifiant_campagne in CampagneDAO.liste_id():
                 campagne = CampagneDAO.get_campagne(identifiant_campagne) # liste avec l'id et le nom
                 mj = CampagneDAO.trouve_mj(identifiant_campagne) # Ici, il faut utiliser la table Utilisateur_campagne
-                liste_id_joueurs = mj.liste_joueurs()
+                liste_id_joueurs = CampagneDAO.trouve_joueurs(identifiant_campagne)
                 if self.utilisateur.identifiant in liste_id_joueurs:
                     if self.utilisateur.identifiant == mj.id_maitre_du_jeu:
                         personnage_joueur = mj.trouver_personnage(self.utilisateur) 
