@@ -31,7 +31,7 @@ class Utilisateur(BaseModel):
     @staticmethod
     def ecrire_un_feed_back(message: str): 
         from client.vue.session import Session
-        FeedBackDAO.donner_feedback(Session.utilisateur.identifiant, FeedBack(-1, message, date.today()))
+        FeedBackDAO.donner_feedback(Session.utilisateur.identifiant, FeedBack(id_feedback = -1, message = message, date_ecriture = date.today()))
     
     def consulter_ses_feed_back(): 
         FeedBackDAO.consulter_feed_back()

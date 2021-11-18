@@ -36,4 +36,4 @@ class AdministrateurService(metaclass = Singleton):
 
     @staticmethod
     def repondre_feed_back(identifiant_joueur: str, message: str): # Cette fonction va effacer le feed-back et donner la réponse de l'administrateur.
-        FeedBackDAO.donner_feedback(identifiant_joueur, FeedBack(-1, message, date.today()))
+        FeedBackDAO.donner_feedback(identifiant_joueur, FeedBack(id_feedback = -1, message = message, date_ecriture = date.today()))

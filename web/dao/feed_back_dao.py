@@ -29,7 +29,7 @@ class FeedBackDAO:
                 feed = cursor.fetchall()
         for ligne in feed:
             info = dict(ligne)
-            print(info["username"],"\n", FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]), "\n\n")
+            print(info["username"],"\n", FeedBack(id_feedback = info["id_feedback"], message = info["message"], date_ecriture = info["date_ecriture"]), "\n\n")
 
     @staticmethod
     def consulter_feed_back():
@@ -44,4 +44,4 @@ class FeedBackDAO:
                 feed = cursor.fetchall()
         for ligne in feed:
             info = dict(ligne)
-            print(FeedBack(info["id_feedback"], info["message"], info["date_ecriture"]), "\n\n")
+            print(FeedBack(id_feedback = info["id_feedback"], message = info["message"], date_ecriture = info["date_ecriture"]), "\n\n")
