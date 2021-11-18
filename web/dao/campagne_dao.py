@@ -46,7 +46,10 @@ class CampagneDAO:
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "SELECT id_campagne as id, username as nom , est_joueur as bool FROM Utilisateur_Campagne WHERE est_joueur = false;"
+                        "SELECT id_campagne as id, username as nom , est_joueur as bool "\
+                        "FROM Utilisateur_Campagne "\
+                        "WHERE est_joueur = false "\
+                        "AND id_campagne = %(id_campagne)s;"
                     ,{"id_campagne" : id_campagne})
                     campagne = cursor.fetchall()
                     res = []
@@ -83,7 +86,7 @@ class CampagneDAO:
                         "SELECT MAX(id_campagne) as max FROM campagne") # La dernière campagne ajoutée a l'id le plus élevé.
                     id_camp = cursor.fetchone()
                     id_camp = id_camp['max']
-        print("Voici l'identifiant de votre campagne :\n", id_camp)
+        print("Voici l'identifiant de votre campagne :\n",        id_camp)
         with DBConnection().connection as connection: # Nous sauvegardons le fait que le joueur devient MJ.
                 with connection.cursor() as cursor :
                     cursor.execute(
