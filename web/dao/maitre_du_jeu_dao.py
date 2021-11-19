@@ -222,7 +222,7 @@ class MaitreDuJeuDAO:
                     "WHERE (id_campagne = %(id_campagne)s) "\
                     , {"id_campagne" : id_campagne})
                 liste_id_donjon = cursor.fetchall()
-                liste_id_donjon = liste_id_donjon["id_donjon"]
+                liste_id_donjon = [liste_id_donjon[i]["id_donjon"] for i in range(0, len(liste_id_donjon))]
         liste_donjon = []
         for id_donjon in liste_id_donjon:
             liste_salle = []
@@ -242,8 +242,9 @@ class MaitreDuJeuDAO:
                         "FROM Salle "\
                         "WHERE (id_donjon = %(id_donjon)s) "\
                         , {"id_donjon" : id_donjon})
-                    salle = cursor.fetchone()
-                    salle = [salle["id_salle"], salle["nom_salle"], salle["coordonnee_salle_x"], salle["coordonnee_salle_y"]]
+                    salle = cursor.fetchall()
+                    salle = [[salle[i]["id_salle"] for i in range(0, len(salle))], [salle[i]["nom_salle"] for i in range(0, len(salle))], [salle[i]["coordonnee_salle_x"] for i in range(0, len(salle))] , [salle[i]["coordonnee_salle_y"] for i in range(0, len(salle))]]
+                    print(salle)
             for id_salle in salle[0]: 
                 with DBConnection().connection as connection:
                     with connection.cursor() as cursor:
@@ -252,8 +253,11 @@ class MaitreDuJeuDAO:
                             "FROM Salle_Objet "\
                             "WHERE (id_salle = %(id_salle)s) "\
                             , {"id_salle" : id_salle})
-                        salle_objet = cursor.fetchone()
-                        salle_objet = salle_objet["id_objet"]
+                        salle_objet = cursor.fetchall()
+                        if salle_objet != None:
+                            salle_objet = [salle_objet[i]["id_objet"] for i in range(0, len(salle_objet))]
+                        else :
+                            salle_objet = []
                 with DBConnection().connection as connection:
                     with connection.cursor() as cursor:
                         cursor.execute(
@@ -274,9 +278,9 @@ class MaitreDuJeuDAO:
                                 , {"id_objet" : id_objet})
                             objet = cursor.fetchone()
                             objet = [objet["id_objet"], objet["nom_objet"], objet["description_obj"]]
-                    liste_objet.append(Objet(objet[0], objet[1], objet[2]))
-                liste_salle.append(Salle(id_salle, salle[1][id_salle],objets = liste_objet))
-            liste_donjon.append(Donjon(id_donjon, donjon[1][id_donjon], liste_salle))
+                    liste_objet.append(Objet(id_objet = objet[0], nom_objet = objet[1], description = objet[2]))
+                liste_salle.append(Salle(id_salle = id_salle, nom_salle = salle[1][0], objets = liste_objet))
+            liste_donjon.append(Donjon(id_donjon = id_donjon, nom_donjon = donjon[1][id_donjon], pieces = liste_salle))
         return liste_donjon
 
                 

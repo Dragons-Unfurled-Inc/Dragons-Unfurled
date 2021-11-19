@@ -24,7 +24,7 @@ class MenuMJ(AbstractVue):
                 'choices': [
                     'Créer un donjon',
                     'Réaliser une action sur un donjon',
-                    'Regarder le contenu de tous ses donjons'
+                    'Regarder le contenu de tous ses donjons',
                     'Créer une entité',
                     'Ajouter une entité',
                     'Supprimer une entité',
