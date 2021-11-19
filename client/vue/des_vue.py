@@ -6,12 +6,14 @@ from objets_metier.joueur import Joueur
 from client.service.dommage import Dommage
 class MenuDes(AbstractVue):
 
-    def __init__(self,joueur,campagne):
+    def __init__(self):
+        self.joueur = Session.utilisateur
+        self.id_campagne = Session.id_campagne
         self.__questions = [
             {
                 'type': 'list',
                 'name': 'choix',
-                'message': f' {Session().identifiant} que souhaitez-vous faire ?',
+                'message': f' {self.joueur.identifiant} que souhaitez-vous faire ?',
                 'choices': [
                     'Attaquer une entité',
                     Separator(),
@@ -23,8 +25,7 @@ class MenuDes(AbstractVue):
                 ]
             }
         ]
-        self.joueur = joueur 
-        self.campagne = campagne
+
     
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
