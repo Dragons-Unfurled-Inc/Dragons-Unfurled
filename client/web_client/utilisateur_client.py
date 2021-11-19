@@ -37,7 +37,7 @@ class UtilisateurClient:
     def est_utilisateur(nom: str) :
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
-        api_dest = str.format("http://{}/utilisateur/{}",api_url,nom)
+        api_dest = str.format("http://{}/utilisateurs/{}",api_url,nom)
         est_un_utilisateur = requests.get(api_dest)
         destination = est_un_utilisateur.json()
         return destination
