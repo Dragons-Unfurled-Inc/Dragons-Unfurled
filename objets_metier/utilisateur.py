@@ -2,6 +2,7 @@ from abc import abstractmethod
 from datetime import date
 from typing import Any, List
 
+from client.web_client.feed_back_client import FeedBackClient
 from pydantic import BaseModel
 from web.dao.feed_back_dao import FeedBackDAO
 

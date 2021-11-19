@@ -21,13 +21,13 @@ class FeedBackClient:
         return resultat
 
     @staticmethod
-    def est_administrateur(nom: str) :
+    def donne_feedback(identifiant_joueur: int, message: str) :
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
-        api_dest = str.format("http://{}/administrateur/{}",api_url,nom)
-        est_un_administrateur = requests.get(api_dest)
-        resultat = est_un_administrateur.json()
-        return resultat
+        api_dest = str.format("http://{}/identifiant_joueur/{}/message/{}", api_url, identifiant_joueur, message)
+        print(identifiant_joueur)
+        print(message)
+        requests.post(api_dest)
 
     @staticmethod
     def bon_mot_de_passe(feed_back_nom, mot_de_passe):
