@@ -39,3 +39,7 @@ class MaitreDuJeuService(metaclass = Singleton):
         donjons = MaitreDuJeuDAO.donjons()
         for donjon in donjons:
             print(donjon)
+     
+    @staticmethod
+    def dict_entites(id_campagne):
+        MaitreDuJeuDAO.dict_entites(id_campagne)

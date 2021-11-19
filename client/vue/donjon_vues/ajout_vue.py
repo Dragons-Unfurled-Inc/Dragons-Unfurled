@@ -9,7 +9,6 @@ from objets_metier.salle import Salle
 from PyInquirer import Separator, prompt
 from web.service.salle_service import SalleService
 
-
 class MenuAjout(AbstractVue):
     
     def __init__(self):
@@ -39,7 +38,7 @@ class MenuAjout(AbstractVue):
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/texte/ecran_donjon.txt', 'r', encoding="utf-8") as affichage2:
             print(affichage1.read(),affichage2.read())
-
+         
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Créer et ajouter un objet':
