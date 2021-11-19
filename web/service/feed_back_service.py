@@ -16,3 +16,7 @@ class FeedBackService:
     @staticmethod
     def consulter_tous_les_feedbacks(): 
         return FeedBackDAO.consulter_tous()
+
+    @staticmethod
+    def consulter_tous_ses_feedbacks(identifiant_joueur): 
+        return FeedBackDAO.consulter_tous_ses_feedbacks(identifiant_joueur) 

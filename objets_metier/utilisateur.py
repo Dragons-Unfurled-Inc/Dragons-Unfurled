@@ -2,7 +2,6 @@ from abc import abstractmethod
 from datetime import date
 from typing import Any, List
 
-from client.web_client.feed_back_client import FeedBackClient
 from pydantic import BaseModel
 from web.dao.feed_back_dao import FeedBackDAO
 
@@ -32,7 +31,12 @@ class Utilisateur(BaseModel):
     @staticmethod
     def ecrire_un_feed_back(message: str): 
         from client.vue.session import Session
-        FeedBackDAO.donner_feedback(Session.utilisateur.identifiant, FeedBack(id_feedback = -1, message = message, date_ecriture = date.today()))
+        from client.web_client.feed_back_client import FeedBackClient
+        FeedBackClient.donne_feedback(Session.utilisateur.identifiant, message) 
     
     def consulter_ses_feed_back(): 
-        FeedBackDAO.consulter_feed_back()
+        from client.web_client.feed_back_client import FeedBackClient
+        feed_backs = FeedBackClient.consulter_feed_back()
+        for ligne in feed_backs:
+            info = dict(ligne)
+            print(info["username"],"\n", FeedBack(id_feedback = info["id_feedback"], message = info["message"], date_ecriture = info["date_ecriture"]), "\n\n")

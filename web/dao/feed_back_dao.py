@@ -30,9 +30,8 @@ class FeedBackDAO:
         return feed_backs
 
     @staticmethod
-    def consulter_feed_back():
-        from client.vue.session import Session
-        nom_utilisateur = Session.utilisateur.identifiant
+    def consulter_tous_ses_feedbacks(identifiant):
+        nom_utilisateur = identifiant
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -40,6 +39,4 @@ class FeedBackDAO:
                     "WHERE username = %(username)s;"
                     , {"username" : nom_utilisateur})
                 feed = cursor.fetchall()
-        for ligne in feed:
-            info = dict(ligne)
-            print(FeedBack(id_feedback = info["id_feedback"], message = info["message"], date_ecriture = info["date_ecriture"]), "\n\n")
+        return feed

@@ -88,7 +88,7 @@ class UtilisateurService:
         pass_hash = mot_de_passe_utilisateur.encode()
         mdp = hashlib.sha256()
         mdp.update(pass_hash)
-        if UtilisateurClient.bon_mot_de_passe(nom_utilisateur, mdp.digest()):
+        if UtilisateurClient.bon_mot_de_passe(nom_utilisateur, mdp.digest()) == True:
             from client.vue.session import Session
             Session.utilisateur = Joueur(identifiant = nom_utilisateur)
             return True
