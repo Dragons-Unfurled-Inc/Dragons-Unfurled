@@ -19,8 +19,7 @@ class StartVue(AbstractVue):
                 'choices': [
                     'S\'authentifier' ,
                     'Créer un compte' , 
-                    'Quitter l\'application',
-                    'La réponse D'
+                    'Quitter l\'application'
 
                 ]
             }
