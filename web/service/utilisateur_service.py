@@ -1,8 +1,3 @@
-import hashlib
-from getpass import getpass
-
-from objets_metier.joueur import Joueur
-from objets_metier.utilisateur import Utilisateur
 from web.dao.utilisateur_dao import UtilisateurDAO
 
 
@@ -18,7 +13,7 @@ class UtilisateurService:
 
     @staticmethod
     def creation_compte(identifiant, mot_de_passe, est_admin):         
-        return UtilisateurDAO.createUtilisateur(identifiant, mot_de_passe, est_admin)
+        UtilisateurDAO.createUtilisateur(identifiant, mot_de_passe, est_admin)
 
     @staticmethod
     def verifie_mdp(utilisateur_nom: str, mdp):

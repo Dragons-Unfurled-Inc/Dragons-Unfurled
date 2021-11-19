@@ -11,6 +11,7 @@ from web.dao.administrateur_dao import AdministrateurDAO
 from web.dao.feed_back_dao import FeedBackDAO
 from web.dao.joueur_dao import JoueurDAO
 from web.dao.utilisateur_dao import UtilisateurDAO
+from client.web_client.feed_back_client import FeedBackClient
 
 
 class AdministrateurService(metaclass = Singleton):
@@ -24,7 +25,7 @@ class AdministrateurService(metaclass = Singleton):
 
     @staticmethod
     def consulter_feed_back_admin():
-        FeedBackDAO.consulter_tous()
+        FeedBackClient.consulter_tous_les_feed_backs() 
 
     @staticmethod
     def transferer_droits_admin(nom_utilisateur: str, nom_administrateur_donneur: str):

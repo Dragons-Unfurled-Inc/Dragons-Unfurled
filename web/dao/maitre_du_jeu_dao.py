@@ -13,6 +13,20 @@ from web.dao.db_connection import DBConnection
 class MaitreDuJeuDAO:
     
     @staticmethod
+    def est_mj_campagne(id_campagne, id_joueur):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_campagne, username "\
+                    "FROM Utilisateur_Campagne "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND est_joueur = false"\
+                    , {"id_campagne" : id_campagne})
+                username = cursor.fetchone()
+                username = username["username"]
+        return id_joueur == username
+
+    @staticmethod
     def trouver_personnage(id_campagne, id_mj):
         None
 
