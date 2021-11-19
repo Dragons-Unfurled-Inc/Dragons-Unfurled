@@ -33,7 +33,7 @@ class Entite(ABC, BaseModel):
         modele = '\n'.join(['        Identifiant Joueur : {} \n        Identifiant entité : {} \n        Caractéristiques : \n{} \n        Objets : \n{}'])
         return modele.format(self.id_joueur,
                              self.id_entite,
-                             Caracteristique.__str__(self.caracteristiques_entite),
+                             Caracteristique.str(self.caracteristiques_entite),
                              aff_obj)
 
     
