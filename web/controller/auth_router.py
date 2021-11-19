@@ -35,3 +35,7 @@ def existe_utilisateur(utilisateur_nom):
 @router.get("/utilisateur/{utilisateur_nom}/mot_de_passe/{mot_de_passe}")
 def existe_utilisateur(utilisateur_nom, mot_de_passe):
     return UtilisateurService.verifie_mdp(utilisateur_nom, eval(mot_de_passe))
+
+@router.post("/utilisateur/{utilisateur_nom}/mot_de_passe/{mot_de_passe}/est_administrateur/{est_administrateur}")
+def existe_utilisateur(utilisateur_nom, mot_de_passe, est_administrateur):
+    UtilisateurService.creation_compte(utilisateur_nom, eval(mot_de_passe), est_administrateur)

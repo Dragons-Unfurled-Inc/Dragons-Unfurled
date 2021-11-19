@@ -26,15 +26,14 @@ class UtilisateurClient:
     #         raise UtilisateurNonAuthentifie(username=username)
 
     @staticmethod
-    def creation_utilisateur(identifiant: int, mdp_hache, est_admin: bool):
+    def creation_utilisateur(utilisateur_nom, mot_de_passe, est_administrateur):
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
-        api_dest = str.format("http://{}/utilisateur/{}",api_url,identifiant)
-        resultat = requests.get(api_dest)
-        resultat = resultat.json()
-        print(resultat)
+        api_dest = str.format("http://{}/utilisateur/{}/mot_de_passe/{}/est_administrateur/{}", api_url, utilisateur_nom, mot_de_passe, est_administrateur)
+        requests.post(api_dest)
         
-    def est_utilisateur(nom: str) :
+    @staticmethod
+    def est_utilisateur(nom: str):
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
         api_dest = str.format("http://{}/utilisateur/{}",api_url,nom)
@@ -42,6 +41,7 @@ class UtilisateurClient:
         resultat = est_un_utilisateur.json()
         return resultat
 
+    @staticmethod
     def est_administrateur(nom: str) :
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
@@ -50,6 +50,7 @@ class UtilisateurClient:
         resultat = est_un_administrateur.json()
         return resultat
 
+    @staticmethod
     def bon_mot_de_passe(utilisateur_nom, mot_de_passe):
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()

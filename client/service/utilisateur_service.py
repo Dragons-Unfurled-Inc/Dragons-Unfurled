@@ -74,14 +74,15 @@ class UtilisateurService:
         from client.vue.session import Session
         Session.utilisateur = Utilisateur(identifiant = nom_utilisateur)  
         utilisateur = Session.utilisateur           
-        UtilisateurDAO.createUtilisateur(utilisateur.identifiant,mdp.digest(),est_admin) 
+        UtilisateurClient.creation_utilisateur(utilisateur.identifiant, mdp.digest(), est_admin) 
         # return nouvel_utilisateur
         # else:
         #     print("Votre compte n'a pas pu être créé !")
 
     @staticmethod
     def connexion(nom_utilisateur: str,mot_de_passe_utilisateur: str):
-        if not UtilisateurClient.est_utilisateur(nom_utilisateur): 
+        existe = UtilisateurClient.est_utilisateur(nom_utilisateur)
+        if not existe == True: 
         #if not UtilisateurDAO.getUtilisateur(nom_utilisateur): 
             print('Cet utilisateur n\'existe pas')
             return False
@@ -97,7 +98,7 @@ class UtilisateurService:
     @staticmethod
     def est_admin(nom_utilisateur: str):
         est_administrateur = UtilisateurClient.est_administrateur(nom_utilisateur)
-        if est_administrateur:
+        if est_administrateur == True:
             return True
         return False
     

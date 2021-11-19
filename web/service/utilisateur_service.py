@@ -18,7 +18,7 @@ class UtilisateurService:
 
     @staticmethod
     def creation_compte(identifiant, mot_de_passe, est_admin):         
-        return UtilisateurDAO.createUtilisateur(identifiant, mot_de_passe, est_admin)
+        UtilisateurDAO.createUtilisateur(identifiant, mot_de_passe, est_admin)
 
     @staticmethod
     def verifie_mdp(utilisateur_nom: str, mdp):
