@@ -42,4 +42,4 @@ class MaitreDuJeuService(metaclass = Singleton):
      
     @staticmethod
     def dict_entites(id_campagne):
-        MaitreDuJeuDAO.dict_entites(id_campagne)
+        return MaitreDuJeuDAO.dict_entites(id_campagne)

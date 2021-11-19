@@ -293,4 +293,6 @@ class MaitreDuJeuDAO:
                     ,{"nom" : id_campagne}
                 )
                 res = cursor.fetchall()        
-        return res
+        liste_entite = [dict(row) for row in res]
+        return liste_entite
+

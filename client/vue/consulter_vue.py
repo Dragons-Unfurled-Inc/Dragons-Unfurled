@@ -30,9 +30,9 @@ class MenuConsultation(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'La fiche d\'un joueur':
-            dict_entites = MaitreDuJeuService.dict_entites(Session.id_campagne)
+            dict_enti = MaitreDuJeuService.dict_entites(Session.id_campagne)
             print("Voici la liste des différentes entités :")
-            print(dict_entites)
+            print(dict_enti)
             identifiant_perso = input("Saisissez l'identifiant du personnage à consulter. \n")
             perso = UtilisateurService.trouver_perso(Session.id_campagne,identifiant_perso)
             print(perso)
