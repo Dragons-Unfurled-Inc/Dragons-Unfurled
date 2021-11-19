@@ -75,10 +75,14 @@ def encode(mdp):
     print(mdp.digest())
 
 #print(MonstreService.getNetMonstreDeType('humanoid'))
-
-#print(MonstreService.ImportMonstreWeb('rat'))
+print(MonstreService.ImportMonstreWeb('rat'))
 
 # import os 
 # print(os.environ['API_URL'])
-from web.dao.utilisateur_dao import UtilisateurDAO
-print(UtilisateurDAO.getUtilisateur('A'))
+# from web.dao.utilisateur_dao import UtilisateurDAO
+# print(UtilisateurDAO.getUtilisateur('A'))
+
+# from translate import Translator
+# translator= Translator(to_lang="fr")
+# translation = translator.translate("Strength")
+# print(translation)

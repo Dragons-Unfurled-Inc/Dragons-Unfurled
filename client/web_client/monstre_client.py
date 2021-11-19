@@ -12,8 +12,6 @@ class MonstreClient():
             configuration = WebConfiguration()
             api_url = configuration.getApiUrl()
             api_dest = str.format("http://{}/monstre/{}",api_url,nom)
-            # http://localhost:5000/monstre/zombie
-            # localhost:5000/monstre/zombie
             d = requ.get(api_dest)
             d = d.json()
             print(d)
