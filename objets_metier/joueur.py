@@ -15,7 +15,7 @@ class Joueur(Utilisateur, BaseModel):
     
     def ajouter_personnage(self):
         None
-
+        
     def consulter_personnage(id_campagne, id_utilisateur):
         personnage = UtilisateurDAO.trouver_perso(id_campagne, id_utilisateur)
         print(personnage)

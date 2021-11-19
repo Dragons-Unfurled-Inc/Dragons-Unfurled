@@ -107,40 +107,47 @@ class UtilisateurDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT *"\
+                    "SELECT * "\
                     "FROM Entite "\
-                    "WHERE id_joueur = %(id_joueur)s"\
-                    "AND id_campagne = %(id_campagne)s"
-                    , {"id_joueur" : id_joueur
+                    "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE username = %(username)s "\
+                    "AND id_campagne = %(id_campagne)s "
+                    , {"username" : id_joueur
                     , "id_campagne" : id_campagne})
                 entite = cursor.fetchone()
                 id_entite = entite["id_entite"]
                 cursor.execute(
-                    "SELECT *"\
+                    "SELECT * "\
                     "FROM Personnage "\
                     "WHERE id_entite = %(id_entite)s"\
                     , {"id_entite" : id_entite})
                 personnage = cursor.fetchone()
                 cursor.execute(
-                    "SELECT *"\
+                    "SELECT * "\
                     "FROM Capacite "\
-                    "WHERE id_entite = %(id_entite)s"\
+                    "WHERE id_entite = %(id_entite)s "\
                     , {"id_entite" : id_entite})
-                capacite = cursor.fetchone()
+                capacite = cursor.fetchall()
+                if capacite == None : 
+                    capacite = []
                 cursor.execute(
-                    "SELECT *"\
+                    "SELECT * "\
                     "FROM Langage "\
                     "WHERE id_entite = %(id_entite)s"\
                     , {"id_entite" : id_entite})
-                langage = cursor.fetchone()
+                langage = cursor.fetchall()
+                if langage == None:
+                    langage =[]
                 cursor.execute(
-                    "SELECT *"\
-                    "FROM  Attaque"\
+                    "SELECT * "\
+                    "FROM  Attaque "\
                     "WHERE id_entite = %(id_entite)s"\
                     , {"id_entite" : id_entite})
-                attaque = cursor.fetchone()
+                attaque = cursor.fetchall()
+                if attaque == None :
+                    attaque = []
                 cursor.execute(
-                    "SELECT *"\
+                    "SELECT * "\
                     "FROM Entite_Objet "\
                     "WHERE id_entite = %(id_entite)s"\
                     , {"id_entite" : id_entite})
@@ -148,11 +155,13 @@ class UtilisateurDAO:
                 liste_objet = []
                 for i in [enti_obj[i]["id_objet"] for i in range(0, len(enti_obj))]:
                     cursor.execute(
-                    "SELECT *"\
+                    "SELECT * "\
                     "FROM Objet "\
                     "WHERE id_objet = %(id_objet)s"\
                     , {"id_objet" : i})
-                    objet = cursor.fetchone()
+                    objet = cursor.fetchall()
+                    if objet == None: 
+                        objet = []
                     liste_objet.append(Objet(id_objet = i, nom_objet = objet[enti_obj["nom_objet"]], description_obj=objet[enti_obj["description_obj"]]))
             caract = Caracteristique(nom_entite = entite["nom_entite"], force = entite["force"], experience = entite["experience"], intelligence = entite["intelligence"], charisme = entite["charisme"], dexterite = entite["dexterite"], constitution = entite["constitution"], vie = entite["vie"], sagesse =  entite["sagesse"], attaques= attaque["nom_attaque"], capacites = capacite["nom_capacite"], languages = langage["nom_langage"], description = entite["description"], classe_armure = entite["classe_armure"])
             perso = Personnage(personnage["classe"], personnage["race"], personnage["lore"],entite["id_joueur"], i, entite["nom_entite"], caract, liste_objet)

@@ -46,9 +46,9 @@ class MenuJoueur(AbstractVue):
             return MenuJoueur(self.joueur,self.id_campagne)
             
         if reponse['choix'] == 'Consulter la fiche de votre personnage':
-            Joueur.consulter_personnage(self.joueur,self.id_campagne)
+            Joueur.consulter_personnage(self.id_campagne, self.joueur.identifiant)
             from client.vue.joueur_vue import MenuJoueur
-            return MenuJoueur()
+            return MenuJoueur(self.joueur,self.id_campagne)
             
         if reponse['choix'] == 'Lancer des dés':
             from client.vue.des_vue import MenuDes
