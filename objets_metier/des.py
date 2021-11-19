@@ -8,9 +8,10 @@ class Des(BaseModel):
     Par exemple, un dés comprenant 10 faces est numéroté de 1 à 10
     """
     nb_face : int
-    valeur_des = int
+    valeur_des : int
 
     def lancer_le_des(self):
         self.valeur_des = randint(1, self.nb_face)
+        return self.valeur_des
 
    
