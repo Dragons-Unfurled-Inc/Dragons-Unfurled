@@ -69,5 +69,5 @@ class MenuJoueur(AbstractVue):
 
         if reponse['choix'] == 'Quitter la campagne':
             from client.vue.accueil_jeu_vue import AccueilJeuVue
-            return AccueilJeuVue(self.joueur)
+            return AccueilJeuVue()
         
