@@ -11,6 +11,7 @@ from PyInquirer import Separator, prompt
 from objets_metier.personnage import Personnage
 from web.dao.jet_dao import JetDAO
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
+from web.service.utilisateur_service import UtilisateurService
 
 
 class MenuMJ(AbstractVue):

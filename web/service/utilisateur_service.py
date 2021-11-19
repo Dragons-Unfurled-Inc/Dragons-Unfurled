@@ -29,3 +29,6 @@ class UtilisateurService:
 
     def trouver_perso(id_campagne : int, id_joueur : int):
         return UtilisateurDAO.trouver_perso(id_campagne, id_joueur)
+
+    def trouver_perso_par_id(id_campagne : int, id_entite : int):
+        return UtilisateurDAO.trouver_perso_par_id(id_campagne,id_entite)
