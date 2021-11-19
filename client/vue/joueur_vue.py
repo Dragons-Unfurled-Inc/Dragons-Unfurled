@@ -3,9 +3,11 @@ from client.vue import accueil_jeu_vue
 
 
 from client.vue.abstract_vue import AbstractVue
+from objets_metier.utilisateur import Utilisateur
 from web.dao.jet_dao import JetDAO
 from client.vue.session import Session
 from objets_metier.joueur import Joueur
+from web.service.jet_service import JetService
 
 
 class MenuJoueur(AbstractVue):
@@ -54,17 +56,15 @@ class MenuJoueur(AbstractVue):
             from client.vue.des_vue import MenuDes
             return MenuDes()   
 
-
-
         if reponse['choix'] == 'Consulter les résultats des jets':
-            JetDAO.consulter_tous_les_jets(self.id_campagne,self.joueur)
+            JetService.consulter_tous_les_jets(self.id_campagne)
             from client.vue.joueur_vue import MenuJoueur
-            return MenuJoueur(self.joueur,self.id_campagne)
+            return MenuJoueur()
 
 
         if reponse['choix'] == 'Donner un feedback':
             message = input("Quel est le feedback que vous souhaitez poster ?")
-            Joueur.donner_feed_back(self.joueur,message)
+            Utilisateur.ecrire_un_feed_back(self.joueur,message)
             return MenuJoueur(self.joueur,self.id_campagne)
 
         if reponse['choix'] == 'Quitter la campagne':
