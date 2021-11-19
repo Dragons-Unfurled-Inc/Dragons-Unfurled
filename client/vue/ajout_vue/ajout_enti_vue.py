@@ -33,9 +33,9 @@ class AjoutEntiVue(AbstractVue):
         
         if reponse['choix'] == 'Un monstre' :
             from client.vue.ajout_vue.ajout_mons_vue import AjoutMonsVue
-            return AjoutMonsVue(self.joueur)
+            return AjoutMonsVue()
         
         if reponse['choix'] == 'Un personnage non joueur (PNJ)' :
             from client.vue.ajout_vue.ajout_pnj_vue import AjoutPNJVue
-            return AjoutPNJVue(self.joueur)
+            return AjoutPNJVue()
         

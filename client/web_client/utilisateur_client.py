@@ -30,17 +30,33 @@ class UtilisateurClient:
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
         api_dest = str.format("http://{}/utilisateur/{}",api_url,identifiant)
-        destination = requests.get(api_dest)
-        destination = destination.json()
-        print(destination)
+        resultat = requests.get(api_dest)
+        resultat = resultat.json()
+        print(resultat)
         
     def est_utilisateur(nom: str) :
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
-        api_dest = str.format("http://{}/utilisateurs/{}",api_url,nom)
+        api_dest = str.format("http://{}/utilisateur/{}",api_url,nom)
         est_un_utilisateur = requests.get(api_dest)
-        destination = est_un_utilisateur.json()
-        return destination
+        resultat = est_un_utilisateur.json()
+        return resultat
+
+    def est_administrateur(nom: str) :
+        configuration = WebConfiguration()
+        api_url = configuration.getApiUrl()
+        api_dest = str.format("http://{}/administrateur/{}",api_url,nom)
+        est_un_administrateur = requests.get(api_dest)
+        resultat = est_un_administrateur.json()
+        return resultat
+
+    def bon_mot_de_passe(utilisateur_nom, mot_de_passe):
+        configuration = WebConfiguration()
+        api_url = configuration.getApiUrl()
+        api_dest = str.format("http://{}/utilisateur/{}/mot_de_passe/{}", api_url, utilisateur_nom, mot_de_passe)
+        mdp_juste = requests.get(api_dest)
+        resultat = mdp_juste.json()
+        return resultat
 
     @staticmethod
     def updateUtilisateur(user: Utilisateur)-> None:

@@ -16,8 +16,8 @@ class NumberValidator(Validator):
                 message='Entrez un nombre, s\'il vous plaît.',
                 cursor_position=len(document.text))  # Move cursor to end
 
-class AjoutPersVue(AbstractVue):
-    
+class AjoutPersVue(AbstractVue):  
+      
     
     def __init__(self):
         self.joueur = Session.utilisateur 
@@ -53,3 +53,6 @@ class AjoutPersVue(AbstractVue):
         CampagneService.mettre_joueur_dans_campagne(reponse['Joueur'])
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()
+
+             
+             

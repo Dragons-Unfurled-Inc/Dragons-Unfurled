@@ -88,7 +88,7 @@ class UtilisateurService:
         pass_hash = mot_de_passe_utilisateur.encode()
         mdp = hashlib.sha256()
         mdp.update(pass_hash)
-        if UtilisateurDAO.verifie_mdp(nom_utilisateur,mdp.digest()):
+        if UtilisateurClient.bon_mot_de_passe(nom_utilisateur, mdp.digest()):
             from client.vue.session import Session
             Session.utilisateur = Joueur(identifiant = nom_utilisateur)
             return True
@@ -96,8 +96,8 @@ class UtilisateurService:
 
     @staticmethod
     def est_admin(nom_utilisateur: str):
-        est_administrateur = UtilisateurDAO.getUtilisateurAdmin(nom_utilisateur)
+        est_administrateur = UtilisateurClient.est_administrateur(nom_utilisateur)
         if est_administrateur:
             return True
-        return False 
+        return False
     
