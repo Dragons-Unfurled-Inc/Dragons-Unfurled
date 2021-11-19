@@ -244,7 +244,6 @@ class MaitreDuJeuDAO:
                         , {"id_donjon" : id_donjon})
                     salle = cursor.fetchall()
                     salle = [[salle[i]["id_salle"] for i in range(0, len(salle))], [salle[i]["nom_salle"] for i in range(0, len(salle))], [salle[i]["coordonnee_salle_x"] for i in range(0, len(salle))] , [salle[i]["coordonnee_salle_y"] for i in range(0, len(salle))]]
-                    print(salle)
             for id_salle in salle[0]: 
                 with DBConnection().connection as connection:
                     with connection.cursor() as cursor:
