@@ -50,22 +50,22 @@ class MenuDonjon(AbstractVue):
             return MenuDonjon()
 
         if reponse['choix'] == 'Consulter une salle':
-            id_salle = input("Saisissez l'identifiant de la salle à consulter.")
+            id_salle = input("Saisissez l'identifiant de la salle à consulter. \n")
             salle = SalleService.trouve_salle(id_salle)
             print(salle)
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 
         if reponse['choix'] == 'Ajouter une salle':
-            id_salle = input("Saisissez l'identifiant de la salle à créer.") 
-            nom_salle =  input("Saisissez le nom de la salle à créer.")  
-            salle = Salle(id_salle, nom_salle)
+            id_salle = input("Saisissez l'identifiant de la salle à créer. \n") 
+            nom_salle =  input("Saisissez le nom de la salle à créer. \n")  
+            salle = Salle(id_salle = id_salle, nom_salle = nom_salle)
             Donjon.ajouter_salle(self.donjon, salle)
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon(self.joueur,self.campagne,self.donjon)
 
         if reponse['choix'] == 'Modifier une salle':
-            id_salle = input("Saisissez l'identifiant de la salle à consulter.")
+            id_salle = input("Saisissez l'identifiant de la salle à consulter. \n")
             salle = SalleService.trouve_salle(id_salle)
             Donjon.editer_salle(self.donjon, salle)
             from client.vue.donjon_vue import MenuDonjon
