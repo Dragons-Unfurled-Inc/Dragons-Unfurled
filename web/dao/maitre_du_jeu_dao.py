@@ -162,7 +162,7 @@ class MaitreDuJeuDAO:
         return liste_perso_non_joueur
 
     @staticmethod
-    def monstres(id_campagne):# Cette fonction renvoie l'ensemble des pmonstres 
+    def monstres(id_campagne):# Cette fonction renvoie l'ensemble des monstres 
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -296,5 +296,17 @@ class MaitreDuJeuDAO:
             liste_donjon.append(Donjon(id_donjon = id_donjon, nom_donjon = donjon[1][id_donjon], pieces = liste_salle))
         return liste_donjon
 
-                
+    @staticmethod
+    def dict_entites(id_campagne):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_entite, nom_entite "\
+                    "FROM Entite "\
+                    "WHERE id_campagne=%(nom)s"\
+                    ,{"nom" : id_campagne}
+                )
+                res = cursor.fetchall()        
+        liste_entite = [dict(row) for row in res]
+        return liste_entite
 

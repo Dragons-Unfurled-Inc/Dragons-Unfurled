@@ -8,8 +8,10 @@ from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from pydantic import main
 from PyInquirer import Separator, prompt
+from objets_metier.personnage import Personnage
 from web.dao.jet_dao import JetDAO
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
+from web.service.utilisateur_service import UtilisateurService
 
 
 class MenuMJ(AbstractVue):
@@ -113,20 +115,8 @@ class MenuMJ(AbstractVue):
             return MenuMJ()
         
         if reponse['choix'] == 'Consulter la fiche d\'une entité':
-            message = input("Voulez-vous consulter la fiche d'un personnage ? Saisissez Oui ou Non")
-            if message == "Non":
-                id_monstre = input("Saisissez l'identifiant du monstre à consulter")
-                monstre = MaitreDuJeuService.trouve_entite(id_monstre)
-                MaitreDuJeu.consulter_monstre(monstre)
-                from client.vue.maitre_du_jeu_vue import MenuMJ
-                return MenuMJ()
-            
-            if message == "Oui":    
-                id_personnage = input("Saisissez l'identifiant du personnage à consulter")
-                perso = MaitreDuJeuService.trouve_entite(id_personnage)
-                MaitreDuJeu.consulter_personnage(perso, self.id_campagne)
-                from client.vue.maitre_du_jeu_vue import MenuMJ
-                return MenuMJ()
+            from client.vue.consulter_vue import MenuConsultation
+            return MenuConsultation()
 
         if reponse['choix'] == 'Modifier la fiche d\'une entité':
             message = input("Voulez-vous modifier la fiche d'un personnage ? Saisissez Oui ou Non")

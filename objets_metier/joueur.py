@@ -11,7 +11,7 @@ class Joueur(Utilisateur, BaseModel):
     """
     Un joueur est un utilisateur qui est présent dans une campagne sans être maître du jeu.
     """
-    id_campagne: int = -1 
+    id_campagne: int = -1        
     
     def ajouter_personnage(self):
         None

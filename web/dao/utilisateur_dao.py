@@ -172,3 +172,73 @@ class UtilisateurDAO:
             caract = Caracteristique(nom_entite = entite["nom_entite"], force = entite["force"], experience = entite["experience"], intelligence = entite["intelligence"], charisme = entite["charisme"], dexterite = entite["dexterite"], constitution = entite["constitution"], vie = entite["vie"], sagesse =  entite["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = entite["description"], classe_armure = entite["classe_armure"])
             perso = Personnage(classe = personnage["classe"], race = personnage["race"], lore = personnage["lore"], id_joueur = entite["username"], id_entite = entite["id_entite"], nom_entite = entite["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet)
         return perso
+
+    @staticmethod
+    def trouver_perso_par_id(id_campagne : int, id_entite : int):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Entite "\
+                    "WHERE id_entite = %(username)s "\
+                    "AND id_campagne = %(id_campagne)s "
+                    , {"username" : id_entite
+                    , "id_campagne" : id_campagne})
+                entite = cursor.fetchone()
+                id_entite = entite["id_entite"]
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Personnage "\
+                    "WHERE id_entite = %(id_entite)s"\
+                    , {"id_entite" : id_entite})
+                personnage = cursor.fetchone()
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Capacite "\
+                    "WHERE id_entite = %(id_entite)s "\
+                    , {"id_entite" : id_entite})
+                capacite = cursor.fetchall()
+                if capacite == None : 
+                    capacite = []
+                else:
+                    capacite = [capacite[i]["nom_capacite"] for i in range(len(capacite))]
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Langage "\
+                    "WHERE id_entite = %(id_entite)s"\
+                    , {"id_entite" : id_entite})
+                langage = cursor.fetchall()
+                if langage == None:
+                    langage =[]
+                else:
+                    langage = [langage[i]["nom_langage"] for i in range(len(langage))]
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM  Attaque "\
+                    "WHERE id_entite = %(id_entite)s"\
+                    , {"id_entite" : id_entite})
+                attaque = cursor.fetchall()
+                if attaque == None :
+                    attaque = []
+                else : 
+                    attaque = [attaque[i]["nom_attaque"] for i in range(0, len(attaque))]
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Entite_Objet "\
+                    "WHERE id_entite = %(id_entite)s"\
+                    , {"id_entite" : id_entite})
+                enti_obj = cursor.fetchall()
+                liste_objet = []
+                for i in [enti_obj[i]["id_objet"] for i in range(0, len(enti_obj))]:
+                    cursor.execute(
+                    "SELECT * "\
+                    "FROM Objet "\
+                    "WHERE id_objet = %(id_objet)s"\
+                    , {"id_objet" : i})
+                    objet = cursor.fetchall()
+                    if objet == None: 
+                        objet = []
+                    liste_objet.append(Objet(id_objet = i, nom_objet = objet[enti_obj["nom_objet"]], description_obj=objet[enti_obj["description_obj"]]))
+            caract = Caracteristique(nom_entite = entite["nom_entite"], force = entite["force"], experience = entite["experience"], intelligence = entite["intelligence"], charisme = entite["charisme"], dexterite = entite["dexterite"], constitution = entite["constitution"], vie = entite["vie"], sagesse =  entite["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = entite["description"], classe_armure = entite["classe_armure"])
+            perso = Personnage(classe = personnage["classe"], race = personnage["race"], lore = personnage["lore"], id_joueur = -1, id_entite = entite["id_entite"], nom_entite = entite["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet)
+        return perso    

@@ -3,6 +3,7 @@ from typing import List
 from client.exceptions.utilisateur_introuvable_exception import \
     UtilisateurIntrouvableException
 from objets_metier.feedback import FeedBack
+from objets_metier.personnage import Personnage
 from objets_metier.utilisateur import Utilisateur
 from utils.singleton import Singleton
 from web.dao.administrateur_dao import AdministrateurDAO
@@ -25,7 +26,7 @@ class MaitreDuJeuService(metaclass = Singleton):
         pass
 
     @staticmethod    
-    def trouve_entite(identifiant_entite): 
+    def trouve_entite(identifiant_entite) -> Personnage: 
         pass
 
     @staticmethod
@@ -38,3 +39,7 @@ class MaitreDuJeuService(metaclass = Singleton):
         donjons = MaitreDuJeuDAO.donjons()
         for donjon in donjons:
             print(donjon)
+     
+    @staticmethod
+    def dict_entites(id_campagne):
+        return MaitreDuJeuDAO.dict_entites(id_campagne)

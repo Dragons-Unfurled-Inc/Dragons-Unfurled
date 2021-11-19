@@ -251,7 +251,7 @@ class EntiteDAO:
         id_campagne = Session.id_campagne
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
-                cursor.execute(
+                cursor.execute(    
                     "SELECT * "\
                     "FROM Entite "\
                     "WHERE (id_campagne = %(id_campagne)s) "\
