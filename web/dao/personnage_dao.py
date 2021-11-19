@@ -27,5 +27,5 @@ class PersonnageDAO(metaclass=Singleton):
                     , "race": personnage.race
                     , "lore": personnage.lore
                     })
-            
+  
             

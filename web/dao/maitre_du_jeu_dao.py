@@ -148,7 +148,7 @@ class MaitreDuJeuDAO:
         return liste_perso_non_joueur
 
     @staticmethod
-    def monstres(id_campagne):# Cette fonction renvoie l'ensemble des pmonstres 
+    def monstres(id_campagne):# Cette fonction renvoie l'ensemble des monstres 
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
