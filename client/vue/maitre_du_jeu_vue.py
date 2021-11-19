@@ -76,7 +76,7 @@ class MenuMJ(AbstractVue):
         
         if reponse['choix'] == 'Lancer des dés':
             from client.vue.des_vue import MenuDes
-            return MenuDes(self.joueur, self.campagne)    
+            return MenuDes()    
         
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
