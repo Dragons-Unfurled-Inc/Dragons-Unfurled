@@ -60,9 +60,9 @@ class MenuMJ(AbstractVue):
             return SupprEntiVue(self.joueur)
         
         if reponse['choix'] == 'Créer un donjon':
-            nom_donjon = input("Saisissez le nom du donjon à créer.")
-            x = int(input("Saisissez la largeur de la salle initiale."))
-            y = int(input("Saisissez la profondeur de la salle initiale"))
+            nom_donjon = input("Saisissez le nom du donjon à créer. \n")
+            x = int(input("Saisissez la largeur de la salle initiale. \n"))
+            y = int(input("Saisissez la profondeur de la salle initiale. \n"))
             donjon = DonjonService.construire_donjon(nom_donjon, x, y)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
