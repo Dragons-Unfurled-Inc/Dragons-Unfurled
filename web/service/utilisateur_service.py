@@ -31,3 +31,6 @@ class UtilisateurService:
     @staticmethod
     def est_utilisateur(nom: str):
         return UtilisateurDAO.getUtilisateur(nom)
+
+    def trouver_perso(id_campagne : int, id_joueur : int):
+        return UtilisateurDAO.trouver_perso(id_campagne, id_joueur)
