@@ -1,8 +1,3 @@
-import hashlib
-from getpass import getpass
-
-from objets_metier.joueur import Joueur
-from objets_metier.utilisateur import Utilisateur
 from web.dao.utilisateur_dao import UtilisateurDAO
 
 

@@ -83,7 +83,6 @@ class UtilisateurService:
     def connexion(nom_utilisateur: str,mot_de_passe_utilisateur: str):
         existe = UtilisateurClient.est_utilisateur(nom_utilisateur)
         if not existe == True: 
-        #if not UtilisateurDAO.getUtilisateur(nom_utilisateur): 
             print('Cet utilisateur n\'existe pas')
             return False
         pass_hash = mot_de_passe_utilisateur.encode()
