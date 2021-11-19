@@ -36,7 +36,7 @@ class NumberValidator(Validator):
                 cursor_position=len(document.text))  # Move cursor to end
 
 class MenuPersonnage(AbstractVue):
-    
+          
     def __init__(self):
         self.classes = PersonnageService.liste_classe()
         self.races = PersonnageService.liste_race()

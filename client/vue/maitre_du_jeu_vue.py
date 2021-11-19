@@ -30,6 +30,7 @@ class MenuMJ(AbstractVue):
                     'Supprimer une entité',
                     'Consulter la fiche d\'une entité',
                     'Modifier la fiche d\'une entité',
+                    'Créer un monstre',
                     #'Consulter la liste des personnages',
                     Separator(),
                     'Lancer des dés',
@@ -53,8 +54,9 @@ class MenuMJ(AbstractVue):
         
         if reponse['choix'] == 'Ajouter une entité':
             from client.vue.ajout_vue.ajout_enti_vue import AjoutEntiVue
-            return AjoutEntiVue()
+            return AjoutEntiVue()  
             
+
         if reponse['choix'] == 'Supprimer une entité':
             from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
             return SupprEntiVue(self.joueur)
@@ -103,7 +105,7 @@ class MenuMJ(AbstractVue):
         
         if reponse['choix'] == 'Créer un monstre':
                 from client.vue.creation_monstre_vue import MenuMonstre
-                return MenuMonstre(self.joueur,self.campagne)
+                return MenuMonstre()
             
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
             CampagneService.sauvegarder() 
