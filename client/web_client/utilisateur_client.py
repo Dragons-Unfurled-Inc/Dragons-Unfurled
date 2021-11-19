@@ -19,7 +19,7 @@ class UtilisateurClient:
         est_un_utilisateur = requests.get(api_dest)
         resultat = est_un_utilisateur.json()
         return resultat
-
+ 
     @staticmethod
     def est_administrateur(nom: str) :
         configuration = WebConfiguration()
