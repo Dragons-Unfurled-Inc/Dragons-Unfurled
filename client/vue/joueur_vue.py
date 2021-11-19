@@ -52,7 +52,7 @@ class MenuJoueur(AbstractVue):
             
         if reponse['choix'] == 'Lancer des dés':
             from client.vue.des_vue import MenuDes
-            return MenuDes(self.joueur, self.id_campagne)   
+            return MenuDes()   
 
 
 
