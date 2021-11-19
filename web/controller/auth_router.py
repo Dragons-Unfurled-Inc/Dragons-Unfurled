@@ -24,10 +24,14 @@ def get_noms_utilisateurs():
 # def update_utilisateur(utilisateur_name: str, utilisateur: Utilisateur):
 #     return UtilisateurService.updateUtilisateur(utilisateur_name, utilisateur)
 
-# @router.get("/utilisateurs/{utilisateur_nom}", tags=["utilisateurs_admin"])
-# def getUtilisateurAdmin(utilisateur_nom):
-#     return UtilisateurService.UtilisateurAdmin(utilisateur_nom)
+@router.get("/administrateur/{utilisateur_nom}", tags=["utilisateurs_admin"])
+def utilisateur_admin(utilisateur_nom):
+    return UtilisateurService.utilisateur_admin(utilisateur_nom)
 
-@router.get("/utilisateurs/{utilisateur_nom}")
+@router.get("/utilisateur/{utilisateur_nom}")
 def existe_utilisateur(utilisateur_nom):
     return UtilisateurService.est_utilisateur(utilisateur_nom)
+
+@router.get("/utilisateur/{utilisateur_nom}/mot_de_passe/{mot_de_passe}")
+def existe_utilisateur(utilisateur_nom, mot_de_passe):
+    return UtilisateurService.verifie_mdp(utilisateur_nom, eval(mot_de_passe))
