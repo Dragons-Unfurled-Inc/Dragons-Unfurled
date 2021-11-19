@@ -74,13 +74,14 @@ class UtilisateurService:
         from client.vue.session import Session
         Session.utilisateur = Utilisateur(identifiant = nom_utilisateur)  
         utilisateur = Session.utilisateur           
-        UtilisateurClient.creation_utilisateur(utilisateur.identifiant, mdp.digest(), est_admin) 
+        mot_de_passe = mdp.hexdigest()
+        UtilisateurClient.creation_utilisateur(utilisateur.identifiant, mot_de_passe, est_admin) 
         # return nouvel_utilisateur
         # else:
         #     print("Votre compte n'a pas pu être créé !")
 
     @staticmethod
-    def connexion(nom_utilisateur: str,mot_de_passe_utilisateur: str):
+    def connexion(nom_utilisateur: str, mot_de_passe_utilisateur: str):
         existe = UtilisateurClient.est_utilisateur(nom_utilisateur)
         if not existe == True: 
             print('Cet utilisateur n\'existe pas')
@@ -88,7 +89,7 @@ class UtilisateurService:
         pass_hash = mot_de_passe_utilisateur.encode()
         mdp = hashlib.sha256()
         mdp.update(pass_hash)
-        if UtilisateurClient.bon_mot_de_passe(nom_utilisateur, mdp.digest()) == True:
+        if UtilisateurClient.bon_mot_de_passe(nom_utilisateur, mdp.hexdigest()) == True:
             from client.vue.session import Session
             Session.utilisateur = Joueur(identifiant = nom_utilisateur)
             return True
