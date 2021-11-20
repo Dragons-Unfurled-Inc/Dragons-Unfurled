@@ -1,5 +1,6 @@
 from client.exceptions.utilisateur_introuvable_exception import \
     UtilisateurIntrouvableException
+from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.donjon import Donjon
 from objets_metier.monstre import Monstre
@@ -8,7 +9,6 @@ from objets_metier.personnage import Personnage
 from objets_metier.salle import Salle
 from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
-from client.vue.session import Session
 
 
 class MaitreDuJeuDAO:
@@ -264,7 +264,6 @@ class MaitreDuJeuDAO:
                         "WHERE (id_donjon = %(id_donjon)s) "\
                         , {"id_donjon" : id_donjon})
                     donjon = cursor.fetchone()
-                    donjon = [donjon["id_donjon"], donjon["nom_donjon"]]
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
@@ -274,7 +273,8 @@ class MaitreDuJeuDAO:
                         , {"id_donjon" : id_donjon})
                     salle = cursor.fetchall()
                     salle = [[salle[i]["id_salle"] for i in range(0, len(salle))], [salle[i]["nom_salle"] for i in range(0, len(salle))], [salle[i]["coordonnee_salle_x"] for i in range(0, len(salle))] , [salle[i]["coordonnee_salle_y"] for i in range(0, len(salle))]]
-            for id_salle in salle[0]: 
+            for k in range(len(salle[0])):
+                id_salle = salle[0][k]
                 with DBConnection().connection as connection:
                     with connection.cursor() as cursor:
                         cursor.execute(
@@ -308,8 +308,8 @@ class MaitreDuJeuDAO:
                             objet = cursor.fetchone()
                             objet = [objet["id_objet"], objet["nom_objet"], objet["description_obj"]]
                     liste_objet.append(Objet(id_objet = objet[0], nom_objet = objet[1], description = objet[2]))
-                liste_salle.append(Salle(id_salle = id_salle, nom_salle = salle[1][0], objets = liste_objet))
-            liste_donjon.append(Donjon(id_donjon = id_donjon, nom_donjon = donjon[1][id_donjon], pieces = liste_salle))
+                liste_salle.append(Salle(id_salle = id_salle, nom_salle = salle[1][k], coordonnees_salle_donjon = [salle[2][k], salle[3][k]], objets = liste_objet))
+            liste_donjon.append(Donjon(id_donjon = donjon["id_donjon"], nom_donjon = donjon["nom_donjon"], pieces = liste_salle))
         return liste_donjon
 
     @staticmethod

@@ -69,7 +69,7 @@ class MenuDes(AbstractVue):
                 # valeur_des = input("Saissisez la valeur du dés n°" +  str(i) + "\n")
                 liste_des.append(Des(nb_face = nb_faces)) #, valeur_des = valeur_de
             jet = Jet(liste_des = liste_des)
-            Jet.lancer_des(jet)
+            Jet.lancer_des(jet) 
             print(jet)
             print("La valeur de votre jet est : ", jet.valeur_jet)
             revelation = prompt(self.__questions[1])["choix_revel"]

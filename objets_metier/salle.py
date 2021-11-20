@@ -54,11 +54,10 @@ class Salle(BaseModel):
                 else : 
                     aff_ent += Entite.__str__(enti) + '\n \n'
                     curs -= 1
-        modele = '\n'.join(['    Identifiant : {} \n    Nom : {} \n    Coordonnées de la salle dans le donjon : {} \n    Coordonnées cellule : {}\n    Objets : \n{}    Entités :\n{}'])
+        modele = '\n'.join(['    Identifiant : {} \n    Nom : {} \n    Coordonnées de la salle dans le donjon : {} \n    Objets : \n{}    Entités :\n{}'])
         return modele.format(self.id_salle,
                              self.nom_salle,
                              self.coordonnees_salle_donjon,
-                             self.coordonnees_salle_cellule,
                              aff_obj,
                              aff_ent)
 
