@@ -43,3 +43,15 @@ class MaitreDuJeuService(metaclass = Singleton):
     @staticmethod
     def dict_entites(id_campagne):
         return MaitreDuJeuDAO.dict_entites(id_campagne)
+
+    @staticmethod
+    def dict_monstres(id_campagne):
+        return MaitreDuJeuDAO.dict_monstres(id_campagne)    
+
+    @staticmethod
+    def dict_personnages(id_campagne):
+        return MaitreDuJeuDAO.dict_personnages(id_campagne)      
+
+    @staticmethod
+    def dict_pnj(id_campagne):
+        return MaitreDuJeuDAO.dict_pnj(id_campagne)       

@@ -57,7 +57,7 @@ class AjoutPersVue(AbstractVue):
             CampagneService.mettre_joueur_dans_campagne(id_joueur)
             print("Le personnage a bien été ajouté !")
         else:
-            print("Le personnage n'a pas été ajouté. \nLes informations saisies étaient incorectes.")
+            print("Le personnage n'a pas été ajouté. \nLes informations saisies étaient incorrectes.")
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()
 

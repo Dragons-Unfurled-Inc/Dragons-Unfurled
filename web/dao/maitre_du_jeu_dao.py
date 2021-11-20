@@ -8,6 +8,7 @@ from objets_metier.personnage import Personnage
 from objets_metier.salle import Salle
 from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
+from client.vue.session import Session
 
 
 class MaitreDuJeuDAO:
@@ -325,3 +326,48 @@ class MaitreDuJeuDAO:
         liste_entite = [dict(row) for row in res]
         return liste_entite
 
+    @staticmethod
+    def dict_monstres(id_campagne):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_entite, nom_entite "\
+                    "FROM Monstre JOIN Entite ON Monstre.id_entite = Entite.id_entite "\
+                    "WHERE id_campagne=%(nom)s"\
+                    ,{"nom" : id_campagne}
+                )
+                res = cursor.fetchall()        
+        liste_monstres = [dict(row) for row in res]
+        return liste_monstres    
+
+    @staticmethod
+    def dict_personnages(id_campagne):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_entite, nom_entite "\
+                    "FROM Personnage JOIN Entite ON Personnage.id_entite = Entite.id_entite "\
+                    "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND (username <> %(id_joueur)s)"\
+                    , {"id_campagne" : id_campagne
+                    , "username" : Session.utilisateur.identifiant})
+                res = cursor.fetchall()        
+        liste_perso = [dict(row) for row in res]
+        return liste_perso    
+    
+    @staticmethod
+    def dict_pnj(id_campagne):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_entite, nom_entite "\
+                    "FROM Personnage JOIN Entite ON Personnage.id_entite = Entite.id_entite "\
+                    "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND (username = %(id_joueur)s)"\
+                    , {"id_campagne" : id_campagne
+                    , "username" : Session.utilisateur.identifiant})
+                res = cursor.fetchall()        
+        liste_pnj = [dict(row) for row in res]
+        return liste_pnj
