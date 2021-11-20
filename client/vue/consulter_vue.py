@@ -41,9 +41,21 @@ class MenuConsultation(AbstractVue):
             return MenuMJ()
         
         if reponse['choix'] == 'La fiche d\'un monstre' :
+            dict_monstres = MaitreDuJeuService.dict_monstres(Session.id_campagne)
+            print("Voici la liste des différents monstres:")
+            print(dict_monstres)
+            identifiant_monstre = input("Saisissez l'identifiant du monstre à consulter. \n")
+            monstre = UtilisateurService.trouver_monstre_par_id(Session.id_campagne,identifiant_monstre)
+            print(monstre)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
         if reponse['choix'] == 'La fiche d\'personnage non joueur (PNJ)' :
+            dict_pnj = MaitreDuJeuService.dict_pnj(Session.id_campagne)
+            print("Voici la liste des différents PNJ:")
+            print(dict_pnj)
+            identifiant_pnj = input("Saisissez l'identifiant du personnage à consulter. \n")
+            pnj = UtilisateurService.trouver_perso_par_id(Session.id_campagne,identifiant_pnj)
+            print(pnj)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()

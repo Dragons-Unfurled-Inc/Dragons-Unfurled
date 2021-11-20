@@ -1,12 +1,13 @@
 from client.vue.abstract_vue import AbstractVue
 from PyInquirer import prompt
 from objets_metier.maitre_du_jeu import MaitreDuJeu
+from client.vue.session import Session
 
 
 
 class SupprEntiVue(AbstractVue):
 
-    def __init__(self,joueur:MaitreDuJeu):
+    def __init__(self):
         self.questions = [
             {
                 'type': 'list',
@@ -20,7 +21,7 @@ class SupprEntiVue(AbstractVue):
                 ]
             }
         ]
-        self.joueur = joueur 
+        self.joueur = Session.utilisateur
         
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:

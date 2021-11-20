@@ -27,7 +27,7 @@ class MenuMJ(AbstractVue):
                     'Créer un donjon',
                     'Réaliser une action sur un donjon',
                     'Regarder le contenu de tous ses donjons',
-                    'Créer une entité',
+                    Separator(),
                     'Ajouter une entité',
                     'Supprimer une entité',
                     'Consulter la fiche d\'une entité',

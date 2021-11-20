@@ -345,13 +345,13 @@ class MaitreDuJeuDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT id_entite, nom_entite "\
+                    "SELECT Personnage.id_entite, nom_entite "\
                     "FROM Personnage JOIN Entite ON Personnage.id_entite = Entite.id_entite "\
                     "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
                     "WHERE (id_campagne = %(id_campagne)s) "\
                     "AND (username <> %(id_joueur)s)"\
                     , {"id_campagne" : id_campagne
-                    , "username" : Session.utilisateur.identifiant})
+                    , "id_joueur" : Session.utilisateur.identifiant})
                 res = cursor.fetchall()        
         liste_perso = [dict(row) for row in res]
         return liste_perso    
@@ -361,13 +361,13 @@ class MaitreDuJeuDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT id_entite, nom_entite "\
+                    "SELECT Personnage.id_entite, nom_entite "\
                     "FROM Personnage JOIN Entite ON Personnage.id_entite = Entite.id_entite "\
                     "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
                     "WHERE (id_campagne = %(id_campagne)s) "\
                     "AND (username = %(id_joueur)s)"\
                     , {"id_campagne" : id_campagne
-                    , "username" : Session.utilisateur.identifiant})
+                    , "id_joueur" : Session.utilisateur.identifiant})
                 res = cursor.fetchall()        
         liste_pnj = [dict(row) for row in res]
         return liste_pnj
