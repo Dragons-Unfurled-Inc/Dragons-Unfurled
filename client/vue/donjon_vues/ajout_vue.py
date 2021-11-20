@@ -26,8 +26,8 @@ class MenuAjout(AbstractVue):
                 'message': f' {utilisateur.identifiant} que souhaitez-vous faire ?',
                 'choices': [
                     'Ajouter un objet de Donjon et Dragons 5e édition prédéfinit',
-                    'Ajouter une entité de la campagne au donjon',
                     'Créer et ajouter un objet',
+                    'Ajouter une entité de la campagne au donjon',
                     'Placer et/ou déplacer tous les joueurs dans une salle',
                     Separator(),
                     'Annuler',
@@ -56,15 +56,15 @@ class MenuAjout(AbstractVue):
             dict_entites = MaitreDuJeuService.dict_entites()
             print("Voici la liste des différentes entités :")
             for entite in dict_entites:
-                print(entite)
+                print(entite["nom_entite"], " : ", entite["id_entite"])
             identifiant_entite = input("Saisissez l'identifiant de l'entité à ajouter. \n")
-            dict_salles = MaitreDuJeuService.dict_salles()
+            dict_salles = MaitreDuJeuService.dict_salles() 
             print("Voici la liste des salles de votre donjon :")
             for salle in dict_salles:
-                print(salle)
+                print(salle["nom_salle"], " : ", salle["id_salle"])
             identifiant_salle = input("Saisissez l'identifiant de la salle dans laquelle ajouter l\'entité. \n")
             if DonjonService.existe_entite_campagne(identifiant_entite) and DonjonService.existe_salle_donjon(identifiant_salle):
-                DonjonService.ajouter_entite_salle(identifiant_entite, identifiant_salle) 
+                DonjonService.ajouter_entite_salle(identifiant_entite, identifiant_salle)  
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 

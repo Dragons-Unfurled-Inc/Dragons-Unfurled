@@ -10,6 +10,7 @@ from web.dao.administrateur_dao import AdministrateurDAO
 from web.dao.donjon_dao import DonjonDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.feed_back_dao import FeedBackDAO
+from web.dao.salle_dao import SalleDAO
 from web.dao.utilisateur_dao import UtilisateurDAO
 
 
@@ -21,7 +22,7 @@ class DonjonService(metaclass = Singleton):
 
     @staticmethod
     def editer_donjon(self, donjon : Donjon): 
-       None        
+       None      
 
     @staticmethod
     def dict_donjons():
@@ -38,3 +39,11 @@ class DonjonService(metaclass = Singleton):
     @staticmethod
     def existe_salle_donjon(id_salle: int):
         return DonjonDAO.existe_salle_donjon(id_salle)
+
+    @staticmethod
+    def espace_libre_salle(x: int, y: int): 
+       return DonjonDAO.espace_libre_salle(x,y) 
+
+    @staticmethod
+    def ajouter_entite_salle(identifiant_entite: int, identifiant_salle: int): 
+        return SalleDAO.ajouter_entite_salle(identifiant_entite, identifiant_salle) 

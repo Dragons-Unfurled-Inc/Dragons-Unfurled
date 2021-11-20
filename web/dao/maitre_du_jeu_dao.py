@@ -313,7 +313,8 @@ class MaitreDuJeuDAO:
         return liste_donjon
 
     @staticmethod
-    def dict_entites(id_campagne):
+    def dict_entites():
+        id_campagne = Session.id_campagne
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -325,6 +326,21 @@ class MaitreDuJeuDAO:
                 res = cursor.fetchall()        
         liste_entite = [dict(row) for row in res]
         return liste_entite
+
+    @staticmethod
+    def dict_salles():
+        id_donjon = Session.id_donjon
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_salle, nom_salle "\
+                    "FROM Salle "\
+                    "WHERE id_donjon=%(nom)s"\
+                    ,{"nom" : id_donjon}
+                )
+                res = cursor.fetchall()        
+        liste_salles = [dict(row) for row in res]
+        return liste_salles
 
     @staticmethod
     def dict_monstres(id_campagne):

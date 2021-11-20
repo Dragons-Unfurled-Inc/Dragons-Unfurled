@@ -35,7 +35,13 @@ class MenuDonjon(AbstractVue):
                     'Quitter le donjon',
                     
                 ]
-            }    
+            }, 
+            {
+                'type': 'confirm',
+                'name': 'construction',
+                'message': 'Voulez-vous construire la forme de votre salle en entrant les coordonnées des cellules une à une ?',
+                'default': False
+            }
         ]
     
     def display_info(self):
@@ -43,7 +49,7 @@ class MenuDonjon(AbstractVue):
             print(affichage1.read(),affichage2.read())
 
     def make_choice(self):
-        reponse = prompt(self.__questions)
+        reponse = prompt(self.__questions[0])
         if reponse['choix'] == 'Afficher le donjon':
             Donjon.afficher_donjon()
             from client.vue.donjon_vue import MenuDonjon
@@ -66,11 +72,28 @@ class MenuDonjon(AbstractVue):
             return MenuDonjon()
 
         if reponse['choix'] == 'Ajouter une salle':
+            construction = prompt(self.__questions[1])["construction"]
             nom_salle =  input("Saisissez le nom de la salle à créer. \n")  
-            salle = Salle(nom_salle = nom_salle)
-            Donjon.ajouter_salle(self.donjon, salle)
+            x = int(input("Saisissez l'abscice x de la salle pour la positionner dans votre donjon. \nPar exemple, la salle principale a pour coordonnées x = 0, y = 0.\n"))
+            y = int(input("Saisissez l'ordonnée y de la salle pour la positionner dans votre donjon. \nPar exemple, la salle principale a pour coordonnées x = 0, y = 0.\n"))
+            if DonjonService.espace_libre_salle(x,y): 
+                if construction:
+                    nb_cell = input("Saisissez le nombre de cellules que vous comptez placer.\n")
+                    coord_cellules = []
+                    for i in range(int(nb_cell)):
+                        cell_x = input("Saissisez la coordonnée x de votre cellule n°" + str(i) + "\n")
+                        cell_y = input("Saissisez la coordonnée y de votre cellule n°" + str(i) + "\n")
+                        coord_cellules.append([cell_x, cell_y])
+                    Donjon.ajouter_salle_construite(x, y , nom_salle, coord_cellules)
+                else:
+                    largeur = int(input("Saisissez la largeur de la salle. \n"))
+                    profondeur = int(input("Saisissez la profondeur de la salle. \n"))
+                    Donjon.ajouter_salle_rectangulaire(largeur, profondeur, nom_salle, x, y)
+                print("La salle a bien été ajoutée.")
+            else:
+                print("La place était déjà prise.")
             from client.vue.donjon_vue import MenuDonjon
-            return MenuDonjon(self.joueur,self.campagne,self.donjon)
+            return MenuDonjon()
 
         if reponse['choix'] == 'Modifier une salle':
             id_salle = input("Saisissez l'identifiant de la salle à consulter. \n")

@@ -6,9 +6,9 @@ from client.vue.session import Session
 from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
 from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
+from objets_metier.personnage import Personnage
 from pydantic import main
 from PyInquirer import Separator, prompt
-from objets_metier.personnage import Personnage
 from web.dao.jet_dao import JetDAO
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 from web.service.utilisateur_service import UtilisateurService
@@ -94,7 +94,7 @@ class MenuMJ(AbstractVue):
             print("Voici les donjons disponibles:")
             for donjon in dict_donjons:
                 print(donjon["nom_donjon"],' : ',donjon["id_donjon"])
-            id_donjon = input("Saisissez l'identifiant du donjon souhaité.")
+            id_donjon = input("Saisissez l'identifiant du donjon souhaité.\n")
             existe_donjon = DonjonService.existe_donjon_campagne(id_donjon)
             if existe_donjon:
                 Session.id_donjon = id_donjon       

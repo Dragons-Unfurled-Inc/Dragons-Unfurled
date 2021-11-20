@@ -34,8 +34,8 @@ class Salle(BaseModel):
         """
         Gère les données d'affichages des salles 
         """
-        aff_obj ='        Vide'
-        if self.objets != None:
+        aff_obj ='        Vide\n'
+        if self.objets != []:
             aff_obj = ''
             curs = len(self.objets)
             for obj in self.objets: 
