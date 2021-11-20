@@ -193,7 +193,7 @@ class EntiteDAO:
         return liste_entites
 
     @staticmethod
-    def modifier_carac(id_entite,carac,valeur):
+    def modifier_carac(id_entite, carac : str ,valeur):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(

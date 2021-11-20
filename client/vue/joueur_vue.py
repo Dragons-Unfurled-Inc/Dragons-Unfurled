@@ -43,9 +43,11 @@ class MenuJoueur(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Modifier la fiche de votre personnage':
-            Joueur.modifier_personnage(self.joueur,self.id_campagne)
-            from client.vue.joueur_vue import MenuJoueur
-            return MenuJoueur()
+#            Joueur.modifier_personnage(self.joueur,self.id_campagne)
+#            from client.vue.joueur_vue import MenuJoueur
+#            return MenuJoueur()
+            from client.vue.modif_perso_vue import ModifCaracVue
+            return ModifCaracVue()
             
         if reponse['choix'] == 'Consulter la fiche de votre personnage':
             Joueur.consulter_personnage(self.id_campagne, self.joueur.identifiant)
