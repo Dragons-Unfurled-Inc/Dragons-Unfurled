@@ -39,4 +39,4 @@ class Utilisateur(BaseModel):
         feed_backs = FeedBackClient.consulter_feed_back()
         for ligne in feed_backs:
             info = dict(ligne)
-            print(info["username"],"\n", FeedBack(id_feedback = info["id_feedback"], message = info["message"], date_ecriture = info["date_ecriture"]), "\n\n")
+            print(info["username"],"\n",FeedBack(id_feedback = info["id_feedback"], message = info["message"], date_ecriture = info["date_ecriture"]), "\n\n")

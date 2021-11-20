@@ -45,7 +45,7 @@ class MenuJoueur(AbstractVue):
         if reponse['choix'] == 'Modifier la fiche de votre personnage':
             Joueur.modifier_personnage(self.joueur,self.id_campagne)
             from client.vue.joueur_vue import MenuJoueur
-            return MenuJoueur(self.joueur,self.id_campagne)
+            return MenuJoueur()
             
         if reponse['choix'] == 'Consulter la fiche de votre personnage':
             Joueur.consulter_personnage(self.id_campagne, self.joueur.identifiant)
@@ -63,9 +63,10 @@ class MenuJoueur(AbstractVue):
 
 
         if reponse['choix'] == 'Donner un feedback':
-            message = input("Quel est le feedback que vous souhaitez poster ?")
-            Utilisateur.ecrire_un_feed_back(self.joueur,message)
-            return MenuJoueur(self.joueur,self.id_campagne)
+            message = input("Quel est le feedback que vous souhaitez poster ? \n")
+            Utilisateur.ecrire_un_feed_back(message)
+            from client.vue.joueur_vue import MenuJoueur
+            return MenuJoueur()
 
         if reponse['choix'] == 'Quitter la campagne':
             from client.vue.accueil_jeu_vue import AccueilJeuVue

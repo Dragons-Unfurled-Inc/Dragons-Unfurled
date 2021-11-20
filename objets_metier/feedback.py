@@ -19,7 +19,7 @@ class FeedBack(BaseModel):
         """
         Affichage des feedbacks
         """
-        modele = '\n'.join(['Identifiant : {} \nLe message est : {} \nDate du message : {}'])
+        modele ='\n'.join(['Identifiant : {} \nLe message est : {} \nDate du message : {}'])
         return modele.format(self.id_feedback,
                              self.message,
                              self.date_ecriture)
