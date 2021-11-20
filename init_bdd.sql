@@ -81,7 +81,9 @@ CREATE TABLE Monstre(
 CREATE TABLE Objet(
     id_objet serial PRIMARY KEY NOT NULL, 
     nom_objet text NOT NULL, 
-    description_obj text NOT NULL
+    description_obj text NOT NULL,
+    id_cellule int, 
+    FOREIGN KEY (id_cellule) REFERENCES Cellule(id_cellule)
 );
 
 CREATE TABLE Combat(
@@ -131,13 +133,13 @@ CREATE TABLE Utilisateur_Campagne(
 	FOREIGN KEY (id_campagne) REFERENCES Campagne(id_campagne)
 );
 
-CREATE TABLE Salle_Objet(
-    id_salle int NOT NULL,
-    id_objet int NOT NULL,
-	PRIMARY KEY (id_objet),
-	FOREIGN KEY (id_salle) REFERENCES Salle(id_salle),
-	FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
-);
+-- CREATE TABLE Salle_Objet(
+--     id_salle int NOT NULL,
+--     id_objet int NOT NULL,
+-- 	PRIMARY KEY (id_objet),
+-- 	FOREIGN KEY (id_salle) REFERENCES Salle(id_salle),
+-- 	FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
+-- );
 
 CREATE TABLE Entite_Objet(
     id_entite int NOT NULL,

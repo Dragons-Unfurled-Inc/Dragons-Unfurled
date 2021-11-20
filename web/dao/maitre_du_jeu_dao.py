@@ -278,36 +278,27 @@ class MaitreDuJeuDAO:
                 with DBConnection().connection as connection:
                     with connection.cursor() as cursor:
                         cursor.execute(
-                            "SELECT * "\
-                            "FROM Salle_Objet "\
-                            "WHERE (id_salle = %(id_salle)s) "\
-                            , {"id_salle" : id_salle})
-                        salle_objet = cursor.fetchall()
-                        if salle_objet != None:
-                            salle_objet = [salle_objet[i]["id_objet"] for i in range(0, len(salle_objet))]
-                        else :
-                            salle_objet = []
-                with DBConnection().connection as connection:
-                    with connection.cursor() as cursor:
-                        cursor.execute(
                             "SELECT id_cellule "\
                             "FROM Cellule "\
                             "WHERE (id_salle = %(id_salle)s) "\
                             , {"id_salle" : id_salle})
-                        cellule = cursor.fetchone()
-                        cellule = cellule["id_cellule"]
+                        res = cursor.fetchall()
+                        id_cellules = [dict(row)["id_cellule"] for row in res] 
                 liste_objet = []
-                for id_objet in salle_objet: 
+                for id_cellule in id_cellules: 
                     with DBConnection().connection as connection:
                         with connection.cursor() as cursor:
                             cursor.execute(
                                 "SELECT * "\
                                 "FROM Objet "\
-                                "WHERE (id_objet = %(id_objet)s) "\
-                                , {"id_objet" : id_objet})
+                                "WHERE (id_cellule = %(id_cellule)s) "\
+                                , {"id_cellule" : id_cellule})
                             objet = cursor.fetchone()
-                            objet = [objet["id_objet"], objet["nom_objet"], objet["description_obj"]]
-                    liste_objet.append(Objet(id_objet = objet[0], nom_objet = objet[1], description = objet[2]))
+                    if objet == None:
+                        continue
+                    else:
+                        objet = [objet["id_objet"], objet["nom_objet"], objet["description_obj"]]
+                        liste_objet.append(Objet(id_objet = objet[0], nom_objet = objet[1], description = objet[2]))
                 liste_salle.append(Salle(id_salle = id_salle, nom_salle = salle[1][k], coordonnees_salle_donjon = [salle[2][k], salle[3][k]], objets = liste_objet))
             liste_donjon.append(Donjon(id_donjon = donjon["id_donjon"], nom_donjon = donjon["nom_donjon"], pieces = liste_salle))
         return liste_donjon
