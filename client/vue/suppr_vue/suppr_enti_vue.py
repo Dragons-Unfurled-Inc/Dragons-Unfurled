@@ -31,10 +31,10 @@ class SupprEntiVue(AbstractVue):
         reponse = prompt(self.questions)
         if reponse['choix'] == 'Le personnage d\'un joueur':
             from client.vue.suppr_vue.suppr_pers_vue import SupprPersVue
-            return SupprPersVue(self.joueur)
+            return SupprPersVue()
         if reponse['choix'] == 'Un monstre' :
             from client.vue.suppr_vue.suppr_mons_vue import SupprMonsVue
-            return SupprMonsVue(self.joueur)
+            return SupprMonsVue()
         if reponse['choix'] == 'Un personnage non joueur (PNJ)' :
             from client.vue.suppr_vue.suppr_pnj_vue import SupprPNJVue
-            return SupprPNJVue(self.joueur)
+            return SupprPNJVue()

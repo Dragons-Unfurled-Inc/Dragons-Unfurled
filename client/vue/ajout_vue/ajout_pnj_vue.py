@@ -6,6 +6,7 @@ from PyInquirer import Validator, ValidationError
 from client.vue.session import Session
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.campagne_service import CampagneService
+from web.dao.jet_dao import JetDAO
 
 class NumberValidator(Validator):
     def validate(self, document):
@@ -31,7 +32,7 @@ class AjoutPNJVue(AbstractVue):
             },
             {
                 'type': 'input',
-                'name': 'Pseudo',
+                'name': 'Nom_entite',
                 'message': 'Quel est son nom ?',
             }
             ]
@@ -39,9 +40,16 @@ class AjoutPNJVue(AbstractVue):
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
             print(asset.read())
-  
+
     def make_choice(self):
         reponse = prompt(self.questions)
-        MaitreDuJeuService.ajouter_entite_campagne(reponse['ID'])  
+        id_entite = reponse['ID']
+        nom_entite = reponse['Nom_entite']
+        id_joueur = Session.utilisateur.identifiant
+        if MaitreDuJeuService.existe_entite_nom_id_joueur(nom_entite, id_entite, id_joueur): 
+            MaitreDuJeuService.ajouter_entite_campagne(id_entite)  
+            print("Le personnage a bien été ajouté !")
+        else:
+            print("Le personnage n'a pas été ajouté. \nLes informations saisies étaient incorrectes.")
         from client.vue.maitre_du_jeu_vue import MenuMJ
-        return MenuMJ()
+        return MenuMJ()    

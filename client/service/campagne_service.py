@@ -43,5 +43,9 @@ class CampagneService(metaclass = Singleton):
     def mettre_joueur_dans_campagne(username):
         return CampagneDAO.mettre_joueur_dans_campagne(username)    
 
+    def retirer_joueur_de_campagne(username):
+        return CampagneDAO.retirer_joueur_de_campagne(username)   
+ 
+
          
 

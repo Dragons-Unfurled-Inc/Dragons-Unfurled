@@ -122,6 +122,18 @@ class CampagneDAO:
                     , "est_joueur" : True
                     }
                     )
+    
+    @staticmethod  
+    def retirer_joueur_de_campagne(username):
+        id_camp = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "DELETE FROM Utilisateur_campagne "\
+                    "WHERE username = %(nom)s"\
+                    "AND id_campagne = %(id_campagne)s;"
+                    , {"id_campagne" : id_camp
+                    , "nom": username})
 
 
 

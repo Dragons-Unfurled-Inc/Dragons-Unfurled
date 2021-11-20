@@ -247,6 +247,16 @@ class EntiteDAO:
                     , "id_entite": id_entite})
 
     @staticmethod
+    def retirer_entite_campagne(id_entite):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Entite "\
+                    "SET id_campagne = NULL "\
+                    "WHERE id_entite = %(id_entite)s;"\
+                    , { "id_entite": id_entite})                
+
+    @staticmethod
     def existe_entite_campagne(id_entite): 
         from client.vue.session import Session
         id_campagne = Session.id_campagne

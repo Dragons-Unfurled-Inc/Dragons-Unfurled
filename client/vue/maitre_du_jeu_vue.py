@@ -29,7 +29,7 @@ class MenuMJ(AbstractVue):
                     'Regarder le contenu de tous ses donjons',
                     Separator(),
                     'Ajouter une entité',
-                    'Supprimer une entité',
+                    'Retirer une entité',
                     'Consulter la fiche d\'une entité',
                     'Modifier la fiche d\'une entité',
                     'Créer un monstre',
@@ -59,9 +59,9 @@ class MenuMJ(AbstractVue):
             return AjoutEntiVue()  
             
 
-        if reponse['choix'] == 'Supprimer une entité':
+        if reponse['choix'] == 'Retirer une entité':
             from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
-            return SupprEntiVue(self.joueur)
+            return SupprEntiVue()
         
         if reponse['choix'] == 'Créer un donjon':
             nom_donjon = input("Saisissez le nom du donjon à créer. \n")
