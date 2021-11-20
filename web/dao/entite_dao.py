@@ -174,6 +174,24 @@ class EntiteDAO:
                         res.append(dic)
                 return res
         
+    @staticmethod    
+    def obtenir_entites_noms_id_joueur():
+        username = Session.utilisateur.identifiant
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
+                cursor.execute(
+                    "SELECT nom_entite, Entite.id_entite "\
+                    "FROM Entite JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE username = %(username)s;"\
+                ,{"username": username}
+                )
+                res = cursor.fetchall()
+        if res != None:
+            liste_entites = [dict(row) for row in res] 
+        else:
+            liste_entites = []
+        return liste_entites
+
     @staticmethod
     def modifier_carac(id_entite,carac,valeur):
         with DBConnection().connection as connection:

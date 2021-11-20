@@ -75,7 +75,8 @@ class UtilisateurService:
         Session.utilisateur = Utilisateur(identifiant = nom_utilisateur)  
         utilisateur = Session.utilisateur           
         mot_de_passe = mdp.hexdigest()
-        UtilisateurClient.creation_utilisateur(utilisateur.identifiant, mot_de_passe, est_admin) 
+        creation = UtilisateurClient.creation_utilisateur(utilisateur.identifiant, mot_de_passe, est_admin) # creation stocke seulement le message renvoyé. Il s'agit bien d'une requête "post".
+        print(creation)
         # return nouvel_utilisateur
         # else:
         #     print("Votre compte n'a pas pu être créé !")

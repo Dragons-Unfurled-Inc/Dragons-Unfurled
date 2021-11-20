@@ -1,17 +1,15 @@
-from PyInquirer import Separator, prompt
-
+from client.service.dommage import Dommage
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-from client.service.dommage import Dommage
-
-from objets_metier.joueur import Joueur
-from objets_metier.jet import Jet
 from objets_metier.des import Des
+from objets_metier.jet import Jet
+from objets_metier.joueur import Joueur
+from PyInquirer import Separator, prompt
 from web.dao.utilisateur_dao import UtilisateurDAO
-
+from web.service.entite_service import EntiteService
 from web.service.jet_service import JetService
 from web.service.mj_service import MjService
-from web.service.entite_service import EntiteService
+
 
 class MenuDes(AbstractVue):
 
@@ -25,6 +23,7 @@ class MenuDes(AbstractVue):
                 'message': f' {self.joueur.identifiant} que souhaitez-vous faire ?',
                 'choices': [
                     'Attaquer une entité',
+                    'Lancer le mode d\'attaque du boss en x tours',
                     Separator(),
                     'Lancer librement des dés',
                     Separator(),
@@ -41,19 +40,26 @@ class MenuDes(AbstractVue):
 
     
     def display_info(self):
-        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
-            print(asset.read())
+        with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/texte/ecran_lancer_des.txt', 'r', encoding="utf-8") as affichage2:
+            print(affichage1.read(), affichage2.read())
 
     def make_choice(self):
         reponse = prompt(self.__questions[0])
 
         if reponse['choix'] == 'Attaquer une entité':
             perso = UtilisateurDAO.trouver_perso(self.id_campagne,self.joueur.identifiant)
-            id_entite = int(input("Saisissez l'identifiant de l'entité à attaquer."))
+            id_entite = int(input("Saisissez l'identifiant de l'entité à attaquer.\n"))
             entite = EntiteService.entite_par_id(id_entite)
             Dommage.frappe(None,perso,entite)
             from client.vue.des_vue import MenuDes
             return MenuDes()
+
+        if reponse['choix'] == 'Lancer le mode d\'attaque du boss en x tours':
+            tours = input("Saisissez le nombre de tours que vous aurrez dans cette ultime bataille.\n")
+            from client.service.entete_boss_service import Entete
+            from client.vue.boss_vue import MenuBoss
+            Entete.lance_la_page()
+            return MenuBoss(int(tours))
 
         if reponse['choix'] == 'Lancer librement des dés':
             nb_des = int(input("Saisissez le nombre de dés que vous souhaitez. \n"))

@@ -9,7 +9,8 @@ class UtilisateurClient:
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
         api_dest = str.format("http://{}/utilisateur/{}/mot_de_passe/{}/est_administrateur/{}", api_url, utilisateur_nom, mot_de_passe, est_administrateur)
-        requests.post(api_dest)
+        est_un_utilisateur = requests.post(api_dest)
+        return est_un_utilisateur.json()
         
     @staticmethod
     def est_utilisateur(nom: str):

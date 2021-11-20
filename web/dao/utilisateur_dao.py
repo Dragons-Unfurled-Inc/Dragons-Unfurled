@@ -1,13 +1,15 @@
 
 from typing import Any
-from objets_metier.utilisateur import Utilisateur
+
+from client.exceptions.utilisateur_introuvable_exception import \
+    UtilisateurIntrouvableException
 from objets_metier.caracteristique import Caracteristique
-from objets_metier.personnage import Personnage
 from objets_metier.objet import Objet
-from web.dao.db_connection import DBConnection
-from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
-from psycopg2.extensions import register_adapter, AsIs
+from objets_metier.personnage import Personnage
+from objets_metier.utilisateur import Utilisateur
+from psycopg2.extensions import AsIs, register_adapter
 from pydantic import SecretBytes
+from web.dao.db_connection import DBConnection
 
 # def adapt_pydantic_byte(Byte):
 #         return AsIs(repr(Byte))
@@ -77,7 +79,7 @@ class UtilisateurDAO:
     @staticmethod
     def createUtilisateur(identifiant,mot_de_passe,est_admin) -> Utilisateur:
         if UtilisateurDAO.getUtilisateur(identifiant) :
-            print('Cet utilisateur existe déjà')
+            return "Cet utilisateur existe déjà."
         else :
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
@@ -92,7 +94,7 @@ class UtilisateurDAO:
                             , "password": mot_de_passe}
                         )
             
-            print("Votre compte a été créé avec succès !")
+            return "Votre compte a été créé avec succès !"
             
     @staticmethod
     def updateUtilisateur(utilisateur_nom: str, utilisateur: Utilisateur) -> Utilisateur:

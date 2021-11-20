@@ -27,8 +27,23 @@ class MaitreDuJeuDAO:
         return id_joueur == username
 
     @staticmethod
-    def trouver_personnage(id_campagne, id_mj):
-        None
+    def existe_entite_nom_id_joueur(nom_entite, id_entite, id_joueur):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Entite JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE (Entite.id_entite = %(id_entite)s) "\
+                    "AND (nom_entite = %(nom_entite)s) "\
+                    "AND (username = %(username)s);"\
+                    , {"id_entite" : id_entite
+                    , "nom_entite" : nom_entite
+                    , "username" : id_joueur })
+                res = cursor.fetchone()
+        if res != None:
+            return True
+        else : 
+            return False
 
     @staticmethod
     def personnages_joueurs(id_campagne): 

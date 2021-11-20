@@ -23,4 +23,4 @@ def existe_utilisateur(utilisateur_nom, mot_de_passe):
 
 @router.post("/utilisateur/{utilisateur_nom}/mot_de_passe/{mot_de_passe}/est_administrateur/{est_administrateur}", tags=["utilisateur"])
 def creation_utilisateur(utilisateur_nom, mot_de_passe, est_administrateur):
-    UtilisateurService.creation_compte(utilisateur_nom, mot_de_passe, est_administrateur)
+    return UtilisateurService.creation_compte(utilisateur_nom, mot_de_passe, est_administrateur)

@@ -22,8 +22,8 @@ class MaitreDuJeuService(metaclass = Singleton):
         EntiteDAO.ajouter_entite_campagne(identifiant_entite)
 
     @staticmethod    
-    def supprimer_entite(identifiant_entite): 
-        pass
+    def existe_entite_nom_id_joueur(nom_entite, id_entite, id_joueur): 
+        return MaitreDuJeuDAO.existe_entite_nom_id_joueur(nom_entite, id_entite, id_joueur)
 
     @staticmethod    
     def trouve_entite(identifiant_entite) -> Personnage: 
