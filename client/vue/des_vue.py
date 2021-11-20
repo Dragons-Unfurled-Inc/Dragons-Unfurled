@@ -65,9 +65,9 @@ class MenuDes(AbstractVue):
             nb_des = int(input("Saisissez le nombre de dés que vous souhaitez. \n"))
             liste_des = []
             for i in range(1, nb_des + 1):
-                nb_face = input("Saissisez le nombre de face du dés n°" + str(i) + "\n")
-                valeur_des = input("Saissisez la valeur du dés n°" +  str(i) + "\n")
-                liste_des.append(Des(nb_face = nb_face, valeur_des = valeur_des))
+                nb_faces = input("Saissisez le nombre de face du dés n°" + str(i) + "\n")
+                # valeur_des = input("Saissisez la valeur du dés n°" +  str(i) + "\n")
+                liste_des.append(Des(nb_face = nb_faces)) #, valeur_des = valeur_de
             jet = Jet(liste_des = liste_des)
             Jet.lancer_des(jet)
             print(jet)
