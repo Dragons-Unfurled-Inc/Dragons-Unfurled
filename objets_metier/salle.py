@@ -1,7 +1,10 @@
 from typing import List, Optional
+
 from pydantic import BaseModel
-from objets_metier.objet import Objet
+
 from objets_metier.entite import Entite
+from objets_metier.objet import Objet
+
 
 class Salle(BaseModel):
     id_salle: str
@@ -51,7 +54,7 @@ class Salle(BaseModel):
                 else : 
                     aff_ent += Entite.__str__(enti) + '\n \n'
                     curs -= 1
-        modele = '\n'.join(['    Identifiant : {} \n    Nom : {} \n    Coordonnées donjon : {} \n    Coordonnées cellule : {}\n    Objets : \n{} \n    Entités :\n{}'])
+        modele = '\n'.join(['    Identifiant : {} \n    Nom : {} \n    Coordonnées de la salle dans le donjon : {} \n    Coordonnées cellule : {}\n    Objets : \n{}    Entités :\n{}'])
         return modele.format(self.id_salle,
                              self.nom_salle,
                              self.coordonnees_salle_donjon,

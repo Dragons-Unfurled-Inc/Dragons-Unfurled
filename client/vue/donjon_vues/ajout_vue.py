@@ -9,6 +9,7 @@ from objets_metier.salle import Salle
 from PyInquirer import Separator, prompt
 from web.service.salle_service import SalleService
 
+
 class MenuAjout(AbstractVue):
     
     def __init__(self):
@@ -25,7 +26,7 @@ class MenuAjout(AbstractVue):
                 'message': f' {utilisateur.identifiant} que souhaitez-vous faire ?',
                 'choices': [
                     'Ajouter un objet de Donjon et Dragons 5e édition prédéfinit',
-                    'Ajouter une entité de votre campagne au donjon',
+                    'Ajouter une entité de la campagne au donjon',
                     'Créer et ajouter un objet',
                     'Placer et/ou déplacer tous les joueurs dans une salle',
                     Separator(),
@@ -51,7 +52,7 @@ class MenuAjout(AbstractVue):
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 
-        if reponse['choix'] == 'Ajouter une entité de votre campagne au donjon':
+        if reponse['choix'] == 'Ajouter une entité de la campagne au donjon':
             dict_entites = MaitreDuJeuService.dict_entites()
             print("Voici la liste des différentes entités :")
             for entite in dict_entites:
