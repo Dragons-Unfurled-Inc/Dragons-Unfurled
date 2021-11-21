@@ -11,7 +11,7 @@ from web.service.salle_service import SalleService
 
 
 class MenuAjout(AbstractVue):
-    
+     
     def __init__(self):
 
         utilisateur = Session.utilisateur
@@ -28,7 +28,7 @@ class MenuAjout(AbstractVue):
                     'Ajouter un objet de Donjon et Dragons 5e édition prédéfinit',
                     'Créer et ajouter un objet',
                     'Ajouter une entité de la campagne au donjon',
-                    'Placer et/ou déplacer tous les joueurs dans une salle',
+                    'Placer et/ou déplacer toutes les entites dans une salle',
                     Separator(),
                     'Annuler',
                     
@@ -68,7 +68,14 @@ class MenuAjout(AbstractVue):
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 
-        if reponse['choix'] == 'Placer et/ou déplacer tous les joueurs dans une salle':
+        if reponse['choix'] == 'Placer et/ou déplacer toutes les entites dans une salle':
+            dict_salles = MaitreDuJeuService.dict_salles() 
+            print("Voici la liste des salles de votre donjon :")
+            for salle in dict_salles:
+                print(salle["nom_salle"], " : ", salle["id_salle"])
+            identifiant_salle = input("Saisissez l'identifiant de la salle dans laquelle placer toutes les entites. \n")
+            if DonjonService.existe_salle_donjon(identifiant_salle):
+                DonjonService.ajouter_entites_salle(identifiant_salle)    
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 

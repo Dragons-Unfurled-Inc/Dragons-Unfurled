@@ -10,6 +10,7 @@ from web.dao.administrateur_dao import AdministrateurDAO
 from web.dao.donjon_dao import DonjonDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.feed_back_dao import FeedBackDAO
+from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 from web.dao.salle_dao import SalleDAO
 from web.dao.utilisateur_dao import UtilisateurDAO
 
@@ -47,3 +48,9 @@ class DonjonService(metaclass = Singleton):
     @staticmethod
     def ajouter_entite_salle(identifiant_entite: int, identifiant_salle: int): 
         return SalleDAO.ajouter_entite_salle(identifiant_entite, identifiant_salle) 
+
+    @staticmethod
+    def ajouter_entites_salle(identifiant_salle: int): 
+        dictionnaire = MaitreDuJeuDAO.dict_entites()
+        for entite in dictionnaire:
+            SalleDAO.ajouter_entite_salle(entite["id_entite"], identifiant_salle)

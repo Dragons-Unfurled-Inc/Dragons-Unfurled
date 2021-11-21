@@ -1,8 +1,10 @@
-from random import randint, choice
-import subprocess, time, platform
+import platform
+import subprocess
+import time
+from random import choice, randint
 
 
-class Grille:
+class DeplacementSalleService:
     def __init__(self, largeur, hauteur):
         self.largeur = largeur
         self.hauteur = hauteur
@@ -42,7 +44,7 @@ def dessiner_grille(g, largeur=2):
             print("%%-%ds" % largeur % symbol, end="")
         print()
 
-def place_mures(g: Grille, pct=.25) -> list:
+def place_mures(g: DeplacementSalleService, pct=.25) -> list:
         sortie = []
         for i in range(int(g.hauteur*g.largeur*pct)//2):
 
@@ -59,7 +61,7 @@ def place_mures(g: Grille, pct=.25) -> list:
 
 
 def main():
-    g = Grille(20, 10)
+    g = DeplacementSalleService(20, 10)
     g.mures = place_mures(g)
     deplacement = "t"
     print("Entrez d pour aller à droite, g pour aller à gauche, h pour aller en haut, ou b pour décendre. \nq vous permet de vous arreter à votre position.")
