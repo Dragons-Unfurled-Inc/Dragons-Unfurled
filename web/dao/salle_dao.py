@@ -117,3 +117,20 @@ class SalleDAO(metaclass=Singleton):
                     "WHERE id_entite = %(id_entite)s;"\
                     , { "id_cellule": id_cellule
                     , "id_entite": id_entite})
+
+    @staticmethod
+    def id_salle_contenant_entite(id_entite):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Salle FULL OUTER JOIN Cellule ON Salle.id_salle = Cellule.id_salle "\
+                    "JOIN Entite ON Cellule.id_cellule = Entite.id_cellule "\
+                    "WHERE (Entite.id_entite = %(id_entite)s) ;"\
+                    , {"id_entite": id_entite})
+                res = cursor.fetchone()
+        if res == None:
+            id_salle = None
+        else:
+            id_salle = dict(res)["id_salle"]
+        return id_salle

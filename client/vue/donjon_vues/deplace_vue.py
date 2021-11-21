@@ -8,6 +8,7 @@ from objets_metier.donjon import Donjon
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from objets_metier.salle import Salle
 from PyInquirer import Separator, prompt
+from web.service.cellule_service import CelluleService
 from web.service.salle_service import SalleService
 
 
@@ -102,18 +103,21 @@ class MenuDeplace(AbstractVue):
             for entite in dict_entites:
                 print(entite["nom_entite"], " : ", entite["id_entite"])
             identifiant_entite = input("Saisissez l'identifiant de l'entité à déplacer. \n")
-            identifiant_salle = MaitreDuJeuService.id_salle_contenant_entite() 
-            if identifiant_salle != None:
-                coordonnees_entite_salle = DonjonService.coordonnees_entite_salle(identifiant_entite, identifiant_salle)
-                coordonnees_cellules_salle = DonjonService.coordonnees_cellules_salle(identifiant_salle)
-                coordonnees_entites_salle = DonjonService.coordonnees_entites_salle(identifiant_salle)
-                coordonnees_objets_salle = DonjonService.coordonnees_objets_salle(identifiant_salle)
-                dimensions = DonjonService.dimensions_salle(coordonnees_cellules_salle) # Cette fonction renvoie une liste contenant la largueur et la profondeur de la salle.
+            identifiant_salle = MaitreDuJeuService.id_salle_contenant_entite(identifiant_entite)   
+            if identifiant_salle == None:
+                print("L'entité entrée n'est dans aucune salle.")
+            else:
+                coordonnees_entite_salle = SalleService.coordonnees_entite_salle(identifiant_entite) 
+                coordonnees_cellules_salle = CelluleService.coordonnees_cellules_salle(identifiant_salle)
+                coordonnees_entites_salle = SalleService.coordonnees_entites_salle(identifiant_salle) 
+                coordonnees_objets_salle = SalleService.coordonnees_objets_salle(identifiant_salle) 
+                dimensions = SalleService.dimensions_salle(coordonnees_cellules_salle) # Cette fonction renvoie une liste contenant la largeur et la profondeur de la salle. 
                 nouvelles_coordonnees_entite = DeplacementSalleService.deplacer_entite_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_entite_salle, coordonnees_entites_salle, coordonnees_objets_salle)
-                if DonjonService.existe_cellules_salle(nouvelles_coordonnees_entite, identifiant_salle):
+                if DonjonService.existe_cellules_salle(nouvelles_coordonnees_entite, identifiant_salle):  
                     DonjonService.deplacer_entite_dans_salle(identifiant_entite, identifiant_salle, nouvelles_coordonnees_entite) 
                     print("Le personnage se déplace.")
-                print("Le personnage n'a pas pu se déplacer. \nLa case était inaccessible.")
+                else:
+                    print("Le personnage n'a pas pu se déplacer. \nLa case était inaccessible.")
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 

@@ -66,10 +66,13 @@ EntiteDAO.ajoute_entite(personnage2_arthur)
 # Une campagne de Arthur dont Thomas est joueur :
 Session.utilisateur.identifiant = "Arthur"
 MaitreDuJeuService.creer_campagne("Orbe mystérieuse !")
-# Arthur ajoute le personnage de Thomas dans sa campagne : 
+# Arthur ajoute le personnage de Thomas dans sa campagne, ainsi que ses personnages, les PNJ qu'il a créés : 
 Session.id_campagne = 1
 MaitreDuJeuService.ajouter_entite_campagne(1) # Thomas a dû transmettre à Arthur le nom et l'id de son personnage à ajouter.
 CampagneService.mettre_joueur_dans_campagne("Thomas")
+
+MaitreDuJeuService.ajouter_entite_campagne(2)
+MaitreDuJeuService.ajouter_entite_campagne(3)
 
 # La campagne de Isabelle :
 Session.utilisateur.identifiant = "Isabelle"

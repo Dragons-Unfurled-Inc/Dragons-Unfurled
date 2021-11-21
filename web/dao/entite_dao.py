@@ -274,6 +274,60 @@ class EntiteDAO:
         else : 
             return False
 
+    @staticmethod
+    def coordonnees_entite(id_entite):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Cellule JOIN Entite ON Cellule.id_cellule = Entite.id_cellule "\
+                    "WHERE (id_entite = %(id_entite)s) "\
+                    , {"id_entite": id_entite})
+                res = cursor.fetchone()
+        if res == None:
+            coordonnees_entite = None
+        else:
+            coordonnees_entite = [dict(res)["coordonnee_cellule_x"], dict(res)["coordonnee_cellule_y"]]
+        return coordonnees_entite
+
+    @staticmethod
+    def coordonnees_entites(id_salle):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Salle FULL OUTER JOIN Cellule ON Salle.id_salle = Cellule.id_salle "\
+                    "JOIN Entite ON Cellule.id_cellule = Entite.id_cellule "\
+                    "WHERE (Salle.id_salle = %(id_salle)s) ;"\
+                    , {"id_salle": id_salle})
+                res = cursor.fetchall()
+        if res == None:
+            coordonnees_entites = []
+        else:
+            coordonnees_entites = []
+            for ligne in res:
+                coordonnees_entites.append([dict(ligne)["coordonnee_cellule_x"], dict(ligne)["coordonnee_cellule_y"]])
+        return coordonnees_entites
+
+    @staticmethod
+    def coordonnees_objets_salle(id_salle):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Salle FULL OUTER JOIN Cellule ON Salle.id_salle = Cellule.id_salle "\
+                    "JOIN Objet ON Cellule.id_cellule = Objet.id_cellule "\
+                    "WHERE (Salle.id_salle = %(id_salle)s) ;"\
+                    , {"id_salle": id_salle})
+                res = cursor.fetchall()
+        if res == None:
+            coordonnees_objets = []
+        else:
+            coordonnees_objets = []
+            for ligne in res:
+                coordonnees_objets.append([dict(ligne)["coordonnee_cellule_x"], dict(ligne)["coordonnee_cellule_y"]])
+        return coordonnees_objets
+
     def entite_par_id(id_entite):
         from client.vue.session import Session
         id_campagne = Session.id_campagne

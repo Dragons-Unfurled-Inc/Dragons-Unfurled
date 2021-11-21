@@ -12,6 +12,7 @@ from web.dao.donjon_dao import DonjonDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.feed_back_dao import FeedBackDAO
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
+from web.dao.salle_dao import SalleDAO
 from web.dao.utilisateur_dao import UtilisateurDAO
 
 
@@ -63,3 +64,7 @@ class MaitreDuJeuService(metaclass = Singleton):
     @staticmethod
     def dict_pnj(id_campagne):
         return MaitreDuJeuDAO.dict_pnj(id_campagne)       
+
+    @staticmethod
+    def id_salle_contenant_entite(identifiant_entite):
+        return SalleDAO.id_salle_contenant_entite(identifiant_entite) 

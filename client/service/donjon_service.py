@@ -7,6 +7,7 @@ from objets_metier.feedback import FeedBack
 from objets_metier.utilisateur import Utilisateur
 from utils.singleton import Singleton
 from web.dao.administrateur_dao import AdministrateurDAO
+from web.dao.cellule_dao import CelluleDAO
 from web.dao.donjon_dao import DonjonDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.feed_back_dao import FeedBackDAO
@@ -54,3 +55,15 @@ class DonjonService(metaclass = Singleton):
         dictionnaire = MaitreDuJeuDAO.dict_entites()
         for entite in dictionnaire:
             SalleDAO.ajouter_entite_salle(entite["id_entite"], identifiant_salle)
+
+    @staticmethod
+    def deplacer_entite_dans_salle(identifiant_entite: int, identifiant_salle: int, nouvelles_coordonnees_entite: List[int]):
+        id_cellule = CelluleDAO.trouve_id_cellule(identifiant_salle, nouvelles_coordonnees_entite[0], nouvelles_coordonnees_entite[1]) 
+        SalleDAO.ajouter_entite_cellule(identifiant_entite, id_cellule)
+
+    @staticmethod
+    def existe_cellules_salle(nouvelles_coordonnees_entite, identifiant_salle):
+        id_cellule = CelluleDAO.trouve_id_cellule(identifiant_salle, nouvelles_coordonnees_entite[0], nouvelles_coordonnees_entite[1]) 
+        if id_cellule == None:
+            return False
+        return True
