@@ -15,6 +15,6 @@ DROP table Campagne
     ,FeedBack
     ,Utilisateur_Entite
     ,Utilisateur_Campagne
-    ,Salle_Objet
+--     ,Salle_Objet
     ,Entite_Objet
     Cascade;
