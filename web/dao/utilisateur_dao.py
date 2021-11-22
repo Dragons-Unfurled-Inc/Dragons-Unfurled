@@ -1,15 +1,11 @@
 
 from typing import Any
 
-from client.exceptions.utilisateur_introuvable_exception import \
-    UtilisateurIntrouvableException
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 from objets_metier.personnage import Personnage
 from objets_metier.monstre import Monstre
 from objets_metier.utilisateur import Utilisateur
-from psycopg2.extensions import AsIs, register_adapter
-from pydantic import SecretBytes
 from web.dao.db_connection import DBConnection
 
 # def adapt_pydantic_byte(Byte):

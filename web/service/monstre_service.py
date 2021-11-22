@@ -1,7 +1,6 @@
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.entite import Entite
 from objets_metier.monstre import Monstre
-from objets_metier.objet import Objet
 from web.dao.entite_dao import EntiteDAO
 from web.dao.monstre_dao import MonstreDAO
 from web.dao.attaque_dao import AttaqueDAO

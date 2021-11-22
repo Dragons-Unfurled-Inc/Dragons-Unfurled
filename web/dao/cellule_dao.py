@@ -1,4 +1,3 @@
-from pydantic.main import ModelMetaclass
 from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
 

@@ -1,10 +1,6 @@
-from os import access
-from PyInquirer import Separator, prompt
+from PyInquirer import prompt
 from client.vue.abstract_vue import AbstractVue
-from client.vue.accueil_jeu_vue import AccueilJeuVue
-from client.vue.session import Session
 from objets_metier.joueur import Joueur
-from web.dao.utilisateur_dao import UtilisateurDAO
 from client.vue.creation_compte_vue import CreaCompteVue
 
 
@@ -48,7 +44,6 @@ class StartVue(AbstractVue):
             sys.exit()
             
         if reponse['choix'] == 'La réponse D':
-            from objets_metier.utilisateur import Utilisateur
             from client.vue.session import Session
             Session.utilisateur=Joueur(identifiant = "id",id_campagne="61")
             from client.vue.accueil_jeu_vue import AccueilJeuVue

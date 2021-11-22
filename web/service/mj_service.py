@@ -1,4 +1,3 @@
-from os import stat
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 
 class MjService : 

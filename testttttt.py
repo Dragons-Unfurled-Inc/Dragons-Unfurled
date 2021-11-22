@@ -1,7 +1,6 @@
 #Test2
-import psycopg2
 import uvicorn
-from flask import Flask , render_template, jsonify
+from flask import Flask, jsonify
 from flask_restful import Resource, Api
 
 

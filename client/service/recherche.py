@@ -1,4 +1,3 @@
-from typing import List
 
 from utils.singleton import Singleton
 from objets_metier.entite import Entite

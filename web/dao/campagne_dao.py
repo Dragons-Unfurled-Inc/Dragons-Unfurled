@@ -1,7 +1,4 @@
-from objets_metier.maitre_du_jeu import MaitreDuJeu
-from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
-from web.dao.utilisateur_dao import UtilisateurDAO
 from client.vue.session import Session
 
 

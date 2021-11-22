@@ -1,13 +1,9 @@
 from client.vue.abstract_vue import AbstractVue
 from client.vue.joueur_vue import MenuJoueur
-from objets_metier.caracteristique import Caracteristique
 from PyInquirer import prompt
 from web.dao.entite_dao import EntiteDAO
-from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
-from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
 from web.service.utilisateur_service import UtilisateurService
 
-from client.vue.accueil_jeu_vue import AccueilJeuVue
 from client.vue.session import Session
 
 

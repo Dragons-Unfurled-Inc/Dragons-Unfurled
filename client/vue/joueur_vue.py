@@ -1,10 +1,8 @@
 from PyInquirer import Separator, prompt
-from client.vue import accueil_jeu_vue
 
 
 from client.vue.abstract_vue import AbstractVue
 from objets_metier.utilisateur import Utilisateur
-from web.dao.jet_dao import JetDAO
 from client.vue.session import Session
 from objets_metier.joueur import Joueur
 from web.service.jet_service import JetService

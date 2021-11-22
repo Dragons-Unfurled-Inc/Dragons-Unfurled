@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from objets_metier.utilisateur import Utilisateur
 from web.service.utilisateur_service import UtilisateurService
 
 router = APIRouter()

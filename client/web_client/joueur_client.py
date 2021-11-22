@@ -1,5 +1,4 @@
 import requests
-from client.vue.session import Session
 from client.web_client.web_configuration import WebConfiguration
 
 

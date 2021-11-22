@@ -1,5 +1,4 @@
 from client.vue.session import Session
-from objets_metier.donjon import Donjon
 from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
 from web.dao.salle_dao import SalleDAO

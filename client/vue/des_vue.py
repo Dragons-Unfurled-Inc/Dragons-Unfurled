@@ -3,7 +3,6 @@ from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from objets_metier.des import Des
 from objets_metier.jet import Jet
-from objets_metier.joueur import Joueur
 from PyInquirer import Separator, prompt
 from web.dao.utilisateur_dao import UtilisateurDAO
 from web.service.entite_service import EntiteService

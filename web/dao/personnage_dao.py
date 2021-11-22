@@ -1,5 +1,3 @@
-from objets_metier.caracteristique import Caracteristique
-from objets_metier.objet import Objet
 from objets_metier.personnage import Personnage
 from web.dao.db_connection import DBConnection
 from utils.singleton import Singleton

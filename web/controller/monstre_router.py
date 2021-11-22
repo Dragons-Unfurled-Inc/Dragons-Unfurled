@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from objets_metier.monstre import Monstre
 from web.service.monstre_service import MonstreService
 
 routerm = APIRouter()

@@ -2,8 +2,6 @@ from client.service.donjon_service import DonjonService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from objets_metier.donjon import Donjon
-from objets_metier.maitre_du_jeu import MaitreDuJeu
-from objets_metier.salle import Salle
 from PyInquirer import Separator, prompt
 from web.service.salle_service import SalleService
 

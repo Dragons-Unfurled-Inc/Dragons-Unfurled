@@ -3,7 +3,6 @@ from typing import List, Optional
 from client.vue.session import Session
 from pydantic import BaseModel
 
-from objets_metier.objet import Objet
 from objets_metier.salle import Salle
 
 

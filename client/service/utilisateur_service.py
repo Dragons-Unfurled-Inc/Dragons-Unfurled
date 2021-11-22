@@ -1,5 +1,4 @@
 import hashlib
-from getpass import getpass
 
 from client.web_client.utilisateur_client import UtilisateurClient
 from objets_metier.joueur import Joueur

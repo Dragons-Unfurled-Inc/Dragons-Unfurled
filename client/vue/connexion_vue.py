@@ -1,11 +1,8 @@
 from client.service.utilisateur_service import UtilisateurService
 from client.vue.abstract_vue import AbstractVue
-from PyInquirer import Separator, prompt
-from PyInquirer import Validator, ValidationError
-from client.vue.session import Session
+from PyInquirer import prompt
 from client.vue.accueil_jeu_vue import AccueilJeuVue
 from client.vue.passage_admin_vue import PassageAdminVue
-from objets_metier.utilisateur import Utilisateur
 
 class ConnCompteVue(AbstractVue):
     

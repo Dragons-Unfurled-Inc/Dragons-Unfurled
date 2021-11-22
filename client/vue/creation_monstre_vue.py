@@ -1,15 +1,11 @@
 from __future__ import print_function, unicode_literals
-from PyInquirer import Separator, prompt
+from PyInquirer import prompt
 from PyInquirer import Validator, ValidationError
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-import regex
-from pprint import pprint
-from objets_metier.entite import Entite
 import requests as req
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 
-from objets_metier.utilisateur import Utilisateur
 
 class NumberValidator(Validator):
     def validate(self, document):

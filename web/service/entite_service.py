@@ -1,4 +1,3 @@
-from os import stat
 from web.dao.entite_dao import EntiteDAO
 
 class EntiteService : 

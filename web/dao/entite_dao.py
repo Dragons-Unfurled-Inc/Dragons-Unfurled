@@ -1,11 +1,8 @@
-from abc import abstractstaticmethod
 
-import requests as req
 from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.entite import Entite
 from objets_metier.objet import Objet
-from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
 from web.dao.monstre_dao import MonstreDAO
 from web.dao.personnage_dao import PersonnageDAO

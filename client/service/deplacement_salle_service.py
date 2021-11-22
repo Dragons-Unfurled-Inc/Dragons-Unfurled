@@ -1,4 +1,3 @@
-from random import choice, randint
 
 from objets_metier.grille import Grille
 

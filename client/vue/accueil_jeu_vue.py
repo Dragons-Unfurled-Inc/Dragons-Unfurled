@@ -2,16 +2,9 @@ from client.service.campagne_service import CampagneService
 from client.service.joueur_service import JoueurService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
-from client.vue.joueur_vue import MenuJoueur
-from client.vue.maitre_du_jeu_vue import MenuMJ
 from client.vue.session import Session
-from objets_metier.joueur import Joueur
-from objets_metier.maitre_du_jeu import MaitreDuJeu
 from objets_metier.utilisateur import Utilisateur
 from PyInquirer import Separator, prompt
-from web.dao.campagne_dao import CampagneDAO
-from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
-from web.service.mj_service import MjService
 
 
 class AccueilJeuVue(AbstractVue):

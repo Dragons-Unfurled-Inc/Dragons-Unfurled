@@ -3,15 +3,9 @@ from client.service.donjon_service import DonjonService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
-from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
-from objets_metier.personnage import Personnage
-from pydantic import main
 from PyInquirer import Separator, prompt
 from web.dao.jet_dao import JetDAO
-from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
-from web.service.utilisateur_service import UtilisateurService
 
 
 class MenuMJ(AbstractVue):

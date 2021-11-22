@@ -1,6 +1,5 @@
 import os
 
-import psycopg2.extras
 from utils.singleton import Singleton
 
 

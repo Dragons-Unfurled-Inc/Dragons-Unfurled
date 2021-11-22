@@ -1,7 +1,5 @@
-from psycopg2.extensions import ISOLATION_LEVEL_READ_COMMITTED
 from web.dao.db_connection import DBConnection
 from objets_metier.jet import Jet
-from objets_metier.utilisateur import Utilisateur
 
 class JetDAO:
 

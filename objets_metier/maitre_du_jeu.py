@@ -1,14 +1,11 @@
-from typing import List
 
 from client.service.monstre_service import MonstreService
 from pydantic import BaseModel
 
 from objets_metier.donjon import Donjon
-from objets_metier.feedback import FeedBack
 from objets_metier.joueur import Joueur
 from objets_metier.monstre import Monstre
 from objets_metier.personnage import Personnage
-from objets_metier.utilisateur import Utilisateur
 
 
 class MaitreDuJeu(Joueur,BaseModel):

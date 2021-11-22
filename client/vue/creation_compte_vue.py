@@ -1,7 +1,6 @@
 from client.service.utilisateur_service import UtilisateurService
 from client.vue.abstract_vue import AbstractVue
-from PyInquirer import Separator, prompt
-from PyInquirer import Validator, ValidationError
+from PyInquirer import prompt
 from client.vue.accueil_jeu_vue import AccueilJeuVue
 
 class CreaCompteVue(AbstractVue):

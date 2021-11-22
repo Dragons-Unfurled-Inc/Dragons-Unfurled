@@ -5,10 +5,9 @@ from client.vue.maitre_du_jeu_vue import MenuMJ
 from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from vue.session import Session
-from PyInquirer import Separator,prompt
+from PyInquirer import prompt
 from vue.abstract_vue import AbstractVue
 from web.dao.campagne_dao import CampagneDAO
-from web.dao.db_connection import DBConnection
 
 class RejCampVue(AbstractVue):
     

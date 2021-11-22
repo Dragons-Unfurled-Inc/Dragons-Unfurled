@@ -1,19 +1,12 @@
 from __future__ import print_function, unicode_literals
 
-from pprint import pprint
 
-import regex
-import requests as req
 from client.service.personnage_service import PersonnageService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
-from objets_metier.entite import Entite
-from objets_metier.joueur import Joueur
 from objets_metier.personnage import Personnage
-from objets_metier.utilisateur import Utilisateur
-from PyInquirer import (Separator, Token, ValidationError, Validator, prompt,
-                        style_from_dict)
+from PyInquirer import (Token, ValidationError, Validator, prompt, style_from_dict)
 from web.dao.entite_dao import EntiteDAO
 
 style = style_from_dict({

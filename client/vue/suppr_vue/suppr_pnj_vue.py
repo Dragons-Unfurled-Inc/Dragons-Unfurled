@@ -1,9 +1,6 @@
-from client.service.campagne_service import CampagneService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
-from client.service.monstre_service import MonstreService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-from objets_metier.maitre_du_jeu import MaitreDuJeu
 from PyInquirer import ValidationError, Validator, prompt
 
 

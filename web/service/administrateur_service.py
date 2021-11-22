@@ -1,6 +1,4 @@
-from datetime import date
 
-from objets_metier.feedback import FeedBack
 from web.dao.administrateur_dao import AdministrateurDAO
 
 

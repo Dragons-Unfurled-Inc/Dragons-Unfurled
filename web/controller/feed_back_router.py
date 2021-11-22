@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from objets_metier.utilisateur import Utilisateur
 from web.service.feed_back_service import FeedBackService
 
 routerf = APIRouter()

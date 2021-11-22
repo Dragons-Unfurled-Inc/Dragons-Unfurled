@@ -1,4 +1,3 @@
-from typing import List
 
 from objets_metier.salle import Salle
 from web.dao.cellule_dao import CelluleDAO

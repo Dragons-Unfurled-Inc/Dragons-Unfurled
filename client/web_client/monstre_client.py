@@ -2,7 +2,6 @@ import requests as requ
 from client.web_client.web_configuration import WebConfiguration
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.monstre import Monstre
-from web.dao.monstre_dao import MonstreDAO
 
 
 class MonstreClient():
