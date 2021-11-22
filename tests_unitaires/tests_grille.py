@@ -10,6 +10,7 @@ from objets_metier.grille import Grille
 class TestGrille(TestCase):
     """
     Cette classe de tests s'applique à l'objet métier "Grille". Une grille qui correspond à un espace à deux dimension dans une salle du donjon.
+    Dans ces tests, l'élément que nous déplacerons sera un personnage d'un joueur.
 
     Args:
         TestCase (class): Une classe dont les instances sont des cas de tests unitaires.
@@ -30,12 +31,12 @@ class TestGrille(TestCase):
         grille = Grille(dimensions[0], dimensions[1], coordonnees_cellules, coordonnees_entite, coordonnees_entites, coordonnees_objets) # Nous construisons la grille.
 
         # SI
-        grille.deplace_joueur("b") # Le joueur se déplace vers le bas. 
+        grille.deplace_element("b") # Le joueur se déplace vers le bas. 
 
         # ALORS
-        self.assertEqual(grille.joueur,[2,1]) # Le joueur est descendu d'une case.
+        self.assertEqual(grille.element,[2,1]) # Le joueur est descendu d'une case.
         self.assertEqual(grille.coordonnees_objets,[[3, 2]]) # L'objet est resté à sa place.
-        self.assertEqual(grille.coordonnees_entites_non_joueur,[[1, 2]]) # L'entité qui ne correspondait pas au personnage à déplacer est restée à sa place.
+        self.assertEqual(grille.coordonnees_entites_non_element,[[1, 2]]) # L'entité qui ne correspondait pas au personnage à déplacer est restée à sa place.
   
 
     def test_place_murs(self):
@@ -83,7 +84,7 @@ class TestGrille(TestCase):
         # ALORS
         sys.stdout = sys.__stdout__ # Nous réinitialisons le fonctionnement de print.
         self.assertEqual(capture_du_print.getvalue(), "# # # # # \n"\
-                                                      "# E J O # \n"\
+                                                      "# E X O # \n"\
                                                       "# # . # # \n"\
                                                       "# # # # # \n") # L'affichage correspond à la grille que nous venons de concevoir.
 
