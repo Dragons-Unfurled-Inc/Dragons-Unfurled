@@ -309,7 +309,7 @@ class MaitreDuJeuDAO:
                             if id_enti == None :
                                 id_entite = []
                             else:
-                                id_entite = [id_enti[i]["id_objet"] for i in range(0, len(id_enti))]
+                                id_entite = [id_enti[i]["id_entite"] for i in range(0, len(id_enti))]
                     for id_ent in id_entite : 
                         with DBConnection().connection as connection:
                             with connection.cursor() as cursor:
@@ -320,20 +320,18 @@ class MaitreDuJeuDAO:
                                     , {"id_entite" : id_ent})
                                 perso = cursor.fetchone()
                                 if perso != None :
-                                    with DBConnection().connection as connection:
-                                        with connection.cursor() as cursor:
                                             cursor.execute(
                                                 "SELECT * "\
                                                 "FROM Entite "\
-                                                "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite"\
-                                                "WHERE (id_entite = %(id_entite)s) "\
+                                                "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                                                "WHERE (Entite.id_entite = %(id_entite)s) "\
                                                 , {"id_entite" : id_ent})
                                             enti_perso = cursor.fetchone()
                                             cursor.execute(
                                                 "SELECT * "\
                                                 "FROM Capacite "\
                                                 "WHERE id_entite = %(id_entite)s "\
-                                                , {"id_entite" : id_entite})
+                                                , {"id_entite" : id_ent})
                                             capacite = cursor.fetchall()
                                             if capacite == None : 
                                                 capacite = []
@@ -343,7 +341,7 @@ class MaitreDuJeuDAO:
                                                 "SELECT * "\
                                                 "FROM Langage "\
                                                 "WHERE id_entite = %(id_entite)s"\
-                                                , {"id_entite" : id_entite})
+                                                , {"id_entite" : id_ent})
                                             langage = cursor.fetchall()
                                             if langage == None:
                                                 langage =[]
@@ -353,18 +351,16 @@ class MaitreDuJeuDAO:
                                                 "SELECT * "\
                                                 "FROM  Attaque "\
                                                 "WHERE id_entite = %(id_entite)s"\
-                                                , {"id_entite" : id_entite})
+                                                , {"id_entite" : id_ent})
                                             attaque = cursor.fetchall()
                                             if attaque == None :
                                                 attaque = []
                                             else : 
                                                 attaque = [attaque[i]["nom_attaque"] for i in range(0, len(attaque))]
-                                    with DBConnection().connection as connection:
-                                        with connection.cursor() as cursor:
                                             cursor.execute(
                                                 "SELECT * "\
                                                 "FROM Entite_Objet "\
-                                                "JOIN Objet ON Entite_Objet.id_objet = Objet.id_objet"\
+                                                "JOIN Objet ON Objet.id_objet = Entite_Objet.id_objet "\
                                                 "WHERE (id_entite = %(id_entite)s) "\
                                                 , {"id_entite" : id_ent})
                                             objet_perso = cursor.fetchall()
@@ -372,12 +368,12 @@ class MaitreDuJeuDAO:
                                                 id_objet_perso = []
                                             else:
                                                 id_objet_perso = [objet_perso[i]["id_objet"] for i in range(0, len(objet_perso))]
-                                    liste_objet_perso = [] 
-                                    for i in range(len(id_objet_perso)):
-                                        liste_objet_perso.append(Objet(id_objet = objet_perso[i]["id_objet"], nom_objet = objet_perso[i]["nom_objet"], description_obj = objet_perso[i]["description_obj"]))
-                                    caract = Caracteristique(nom_entite = enti_perso["nom_entite"], force = enti_perso["force"], experience = enti_perso["experience"], intelligence = enti_perso["intelligence"], charisme = enti_perso["charisme"], dexterite = enti_perso["dexterite"], constitution = enti_perso["constitution"], vie = enti_perso["vie"], sagesse =  enti_perso["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = enti_perso["description"], classe_armure = enti_perso["classe_armure"])
-                                    perso = Personnage(classe = perso["classe"], race = perso["race"], lore = perso["lore"], id_joueur = enti_perso["username"], id_entite = enti_perso["id_entite"], nom_entite = enti_perso["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet_perso)
-                                    liste_enti.append(perso)
+                                            liste_objet_perso = [] 
+                                            for i in range(len(id_objet_perso)):
+                                                liste_objet_perso.append(Objet(id_objet = objet_perso[i]["id_objet"], nom_objet = objet_perso[i]["nom_objet"], description_obj = objet_perso[i]["description_obj"]))
+                                            caract = Caracteristique(nom_entite = enti_perso["nom_entite"], force = enti_perso["force"], experience = enti_perso["experience"], intelligence = enti_perso["intelligence"], charisme = enti_perso["charisme"], dexterite = enti_perso["dexterite"], constitution = enti_perso["constitution"], vie = enti_perso["vie"], sagesse =  enti_perso["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = enti_perso["description"], classe_armure = enti_perso["classe_armure"])
+                                            perso = Personnage(classe = perso["classe"], race = perso["race"], lore = perso["lore"], id_joueur = enti_perso["username"], id_entite = enti_perso["id_entite"], nom_entite = enti_perso["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet_perso)
+                                            liste_enti.append(perso)
 
                                 else : 
                                     with DBConnection().connection as connection:
