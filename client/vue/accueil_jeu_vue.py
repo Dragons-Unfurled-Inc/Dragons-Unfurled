@@ -40,27 +40,17 @@ class AccueilJeuVue(AbstractVue):
         if reponse['choix'] == 'Créer un personnage':
             from client.vue.creation_personnage_vue import MenuPersonnage
             return MenuPersonnage()
-            #faut ajouter la classe joueur pour le stocker je mets une val au pif pour l'instant
         
-        if reponse['choix'] == 'Rejoindre une campagne': #Il faudrait charger une sauvegarde ici
+        if reponse['choix'] == 'Rejoindre une campagne': 
             identifiant_campagne = int(input('Quel est l\'identifiant de votre campagne ?\n'))
             if identifiant_campagne in CampagneService.liste_id():
-                #campagne = CampagneService.get_campagne(identifiant_campagne) # liste avec l'id et le nom
-                id_mj = CampagneService.trouve_mj(identifiant_campagne) # Ici, il faut utiliser la table Utilisateur_campagne
+                id_mj = CampagneService.trouve_mj(identifiant_campagne) 
                 liste_id_joueurs = CampagneService.trouve_joueurs(identifiant_campagne)
                 if self.utilisateur.identifiant == id_mj:
-                    #personnage_joueur = MjService.trouver_personnage(campagne[0], id_mj)
-                    #joueur = Joueur(identifiant = self.utilisateur.identifiant, id_campagne = identifiant_campagne) 
                     from client.vue.maitre_du_jeu_vue import MenuMJ
                     Session.id_campagne = identifiant_campagne
                     return MenuMJ()
                 elif self.utilisateur.identifiant in liste_id_joueurs:
-                    #personnage_joueur = MjService.trouver_personnage(campagne[0], id_mj) 
-                    #personnages_joueurs = MjService.personnage_joueurs(campagne[0])
-                    #personnages_non_joueurs = MjService.personnage_non_joueur(campagne[0])
-                    #monstres = MjService.monstres(campagne[0])
-                    #donjons = MjService.donjons(campagne[0])
-                    #maitre_du_jeu = MaitreDuJeu(campagne[0],campagne[1],personnage_joueur, self.utilisateur.connecte, self.utilisateur.mot_de_passe, self.utilisateur.identifiant, self.utilisateur.est_administrateur, self.utilisateur.feed_backs,personnages_joueurs,personnages_non_joueurs,monstres,donjons)
                     from client.vue.joueur_vue import MenuJoueur
                     Session.id_campagne = identifiant_campagne
                     return MenuJoueur()

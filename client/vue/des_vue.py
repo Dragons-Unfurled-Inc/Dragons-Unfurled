@@ -1,4 +1,8 @@
+from client.service.campagne_service import CampagneService
 from client.service.dommage import Dommage
+from client.service.donjon_service import DonjonService
+from client.service.joueur_service import JoueurService
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from objets_metier.des import Des
@@ -46,10 +50,25 @@ class MenuDes(AbstractVue):
         reponse = prompt(self.__questions[0])
 
         if reponse['choix'] == 'Attaquer une entité':
-            perso = UtilisateurDAO.trouver_perso(self.id_campagne,self.joueur.identifiant)
-            id_entite = int(input("Saisissez l'identifiant de l'entité à attaquer.\n"))
-            entite = EntiteService.entite_par_id(id_entite)
-            Dommage.frappe(None,perso,entite)
+            #perso = UtilisateurDAO.trouver_perso(self.id_campagne, self.joueur.identifiant)
+            dict_entites = MaitreDuJeuService.dict_entites()
+            print("Voici la liste des différentes entités :\n")
+            for entite in dict_entites:
+                print(entite["nom_entite"], " : ", entite["id_entite"])
+            identifiant_entite_cible = int(input("Saisissez l'identifiant de l'entité à attaquer.\n"))
+            id_mj = CampagneService.trouve_mj(self.id_campagne)
+            if self.joueur.identifiant == id_mj:
+                id_entite_donne_attaque = int(input("En tant que maître du jeu, vous pouvez maintenant entrer l'identifiant de l'entité attaquante.\n"))
+            else:
+                id_entite_donne_attaque = JoueurService.trouve_entite_campagne()
+            if DonjonService.existe_entite_campagne(identifiant_entite_cible):
+                type_attaque = input("Quel est le type de votre attaque. Entrez c pour charisme, d pour dextérité, i pour intelligence ou f pour force.")
+                bonus = int(input("Entrez la valeur du bonus d'attaque que vous voulez accorder."))
+                entite_recoie = EntiteService.entite_par_id(identifiant_entite_cible)
+                entite_donne = EntiteService.entite_par_id(id_entite_donne_attaque)
+                Dommage.frappe(entite_donne, entite_recoie, bonus, type_attaque)
+            else:
+                print("L'identifiant entré ne faisait pas parti des possibilités.")
             from client.vue.des_vue import MenuDes
             return MenuDes()
 

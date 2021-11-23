@@ -10,17 +10,12 @@ from client.exceptions.entite_introuvable_exception import EntiteIntrouvableExce
 
 
 class Recherche(metaclass = Singleton):
-    """
-    Cette classe de recherche fait appel à nos DAO. 
-    Elle permet de simplifier les requêtes en faisant appel aux bonnes DAO.
-    """
+
+
     @staticmethod    
-    def modifie_pv(self, entite: Entite, dommage: int):
-        entite_nom = entite.caracteristiques_entite.nom_entite
-        if entite_nom in EntiteDAO.liste_noms(): # Nous vérifions si cette entite existe dans notre base de données.
-            if entite.caracteristiques_entite.vie > dommage:
-                EntiteDAO.diminution_pv(entite_nom, dommage)
-            else:
-                EntiteDAO.tuer(entite_nom)
+    def modifie_pv(entite: Entite, dommage: int):
+        id_entite = entite.id_entite
+        if entite.caracteristiques_entite.vie > dommage:
+            EntiteDAO.diminution_pv(id_entite, dommage)
         else:
-            raise EntiteIntrouvableException(entite_nom)
+            EntiteDAO.tuer(id_entite)

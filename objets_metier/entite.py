@@ -30,9 +30,8 @@ class Entite(ABC, BaseModel):
                 else :
                     aff_obj += Objet.__str__(obj) + '\n\n'
                     curs -= 1
-        modele = '\n'.join(['        Identifiant Joueur : {} \n        Identifiant entité : {} \n        Caractéristiques : \n{} \n        Objets : \n{}'])
-        return modele.format(self.id_joueur,
-                             self.id_entite,
+        modele = '\n'.join(['        Identifiant entité : {} \n        Caractéristiques : \n{} \n        Objets : \n{}'])
+        return modele.format(self.id_entite,
                              Caracteristique.str(self.caracteristiques_entite),
                              aff_obj)
 

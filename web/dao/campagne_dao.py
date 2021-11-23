@@ -1,5 +1,5 @@
-from web.dao.db_connection import DBConnection
 from client.vue.session import Session
+from web.dao.db_connection import DBConnection
 
 
 class CampagneDAO:
@@ -131,6 +131,21 @@ class CampagneDAO:
                     "AND id_campagne = %(id_campagne)s;"
                     , {"id_campagne" : id_camp
                     , "nom": username})
+
+    @staticmethod
+    def trouve_entite_campagne_joueur():
+        id_campagne = Session.id_campagne
+        id_joueur = Session.utilisateur.identifiant
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
+                cursor.execute(
+                    "SELECT Entite.id_entite "\
+                    "FROM Entite JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE username = %(username)s AND Entite.id_campagne = %(id_campagne)s;"\
+                ,{"username": id_joueur, "id_campagne": id_campagne}
+                )
+                res = cursor.fetchone()
+        return dict(res)["id_entite"]
 
 
 

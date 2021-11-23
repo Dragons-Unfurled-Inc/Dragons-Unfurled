@@ -1,5 +1,7 @@
-from typing import List, Optional,Any 
+from typing import Any, List, Optional
+
 from pydantic import BaseModel
+
 
 class Caracteristique(BaseModel) : 
     """
@@ -19,7 +21,7 @@ class Caracteristique(BaseModel) :
     constitution: int = 5
     sagesse: int = 20 
     vie: int = 10
-    classe_armure: int = 10
+    classe_armure: int = 5
     
     def __init__(self,nom_entite: str, 
         attaques: List[str] = [],

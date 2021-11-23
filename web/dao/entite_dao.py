@@ -334,34 +334,34 @@ class EntiteDAO:
                         , "id_entite": id_entite})
 
     @staticmethod
-    def diminution_pv(nom_entite: str, nombre_pv): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
+    def diminution_pv(id_entite: str, nombre_pv): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT vie FROM Entite "\
-                    "WHERE nom_entite = %(nom_entite)s;"\
-                    , {"nom_entite": nom_entite}) 
+                    "WHERE id_entite = %(id_entite)s;"\
+                    , {"id_entite": id_entite}) 
                 vie = cursor.fetchone()  
-                vie = vie['vie']  
+                vie = dict(vie)['vie']  
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "UPDATE Entite "\
                     "SET vie = %(vie)s"\
-                    "WHERE nom_entite = %(nom_entite)s;"\
+                    "WHERE id_entite = %(id_entite)s;"\
                     , {"vie" : vie - nombre_pv
-                    , "nom_entite": nom_entite}) 
+                    , "id_entite": id_entite}) 
 
     @staticmethod
-    def tuer(nom_entite: str): # Cette fonction réduit les points de vies des entités à 0.
+    def tuer(id_entite: str): # Cette fonction réduit les points de vies des entités à 0.
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "UPDATE Entite "\
                     "SET vie = %(vie)s"\
-                    "WHERE nom_entite = %(nom_entite)s;"\
+                    "WHERE id_entite = %(id_entite)s;"\
                     , {"vie" : 0
-                    , "nom_entite": nom_entite}) 
+                    , "id_entite": id_entite}) 
     
     @staticmethod
     def ajouter_entite_campagne(id_entite):
