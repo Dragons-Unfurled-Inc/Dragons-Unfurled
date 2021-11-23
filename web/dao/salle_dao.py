@@ -163,3 +163,20 @@ class SalleDAO(metaclass=Singleton):
         else:
             id_salle = dict(res)["id_salle"]
         return id_salle
+
+    @staticmethod
+    def id_salle_contenant_objet(id_objet):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Salle FULL OUTER JOIN Cellule ON Salle.id_salle = Cellule.id_salle "\
+                    "JOIN Objet ON Cellule.id_cellule = Objet.id_cellule "\
+                    "WHERE (Objet.id_objet = %(id_objet)s) ;"\
+                    , {"id_objet": id_objet})
+                res = cursor.fetchone()
+        if res == None:
+            id_salle = None
+        else:
+            id_salle = dict(res)["id_salle"]
+        return id_salle

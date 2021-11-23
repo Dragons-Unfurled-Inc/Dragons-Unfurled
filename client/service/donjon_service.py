@@ -42,6 +42,10 @@ class DonjonService(metaclass = Singleton):
         return EntiteDAO.existe_entite_campagne(id_entite)
 
     @staticmethod
+    def existe_objet_campagne(identifiant_objet):
+        return EntiteDAO.existe_objet_campagne(identifiant_objet) 
+
+    @staticmethod
     def existe_salle_donjon(id_salle: int):
         return DonjonDAO.existe_salle_donjon(id_salle)
 
@@ -82,10 +86,10 @@ class DonjonService(metaclass = Singleton):
 
     @staticmethod
     def ajouter_objet_donjon(nom_objet, description_objet):
-        objet = Objet(-1, nom_objet, description_objet)
+        objet = Objet(id_objet = -1, nom_objet = nom_objet, description_obj = description_objet)
         ObjetDAO.ajouter_objet(objet)
 
     @staticmethod
     def ajouter_objet_et_recuperation_donjon(nom_objet, description_objet):
-        objet = Objet(-1, nom_objet, description_objet)
+        objet = Objet(id_objet = -1, nom_objet = nom_objet, description_obj = description_objet)
         return ObjetDAO.ajouter_objet_et_recuperation(objet)

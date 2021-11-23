@@ -316,6 +316,21 @@ class MaitreDuJeuDAO:
         return liste_entite
 
     @staticmethod
+    def dict_objets():
+        id_donjon = Session.id_donjon
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_objet, nom_objet "\
+                    "FROM Objet JOIN Cellule ON Objet.id_cellule = Cellule.id_cellule JOIN Salle ON Cellule.id_salle = Salle.id_salle "\
+                    "WHERE id_donjon=%(nom)s"\
+                    ,{"nom" : id_donjon}
+                )
+                res = cursor.fetchall()        
+        liste_objet = [dict(row) for row in res]
+        return liste_objet
+
+    @staticmethod
     def dict_salles():
         id_donjon = Session.id_donjon
         with DBConnection().connection as connection:
