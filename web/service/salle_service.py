@@ -1,4 +1,5 @@
 
+from os import curdir
 from objets_metier.salle import Salle
 from web.dao.cellule_dao import CelluleDAO
 from web.dao.entite_dao import EntiteDAO
@@ -7,6 +8,11 @@ from web.dao.salle_objet_dao import ObjetSalleDAO
 
 
 class SalleService():
+
+    @staticmethod
+    def trouve_salle(id_salle):
+        return SalleDAO.trouve_salle(id_salle)
+
 
     @staticmethod
     def ajoute_salle(id_donjon : int,  salle : Salle): 

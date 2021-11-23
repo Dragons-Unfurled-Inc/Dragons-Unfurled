@@ -55,15 +55,14 @@ class DonjonDAO(metaclass=Singleton):
     @staticmethod
     def dict_salles():# Cette fonction renvoie un dictionnaire des donjons.
         from client.vue.session import Session
-        id_campagne = Session.id_campagne
+        id_donjon = Session.id_donjon
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT id_salle, nom_salle "\
                     "FROM Salle "\
-                    "JOIN Donjon ON Donjon.id_donjon = Salle.id_donjon "
-                    "WHERE (id_campagne = %(id_campagne)s) "\
-                    , {"id_campagne" : id_campagne})
+                    "WHERE (id_donjon = %(id_donjon)s) "\
+                    , {"id_donjon" : id_donjon})
                 res = cursor.fetchall()
                 if res != None:
                     liste_dict_salle = [dict(row) for row in res] 
