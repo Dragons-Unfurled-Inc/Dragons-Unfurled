@@ -50,7 +50,7 @@ class MenuDonjon(AbstractVue):
         reponse = prompt(self.__questions[0])
         if reponse['choix'] == 'Afficher le donjon':
             donjon = DonjonService.trouver_donjon(self.id_donjon)
-            Donjon.afficher_donjon(donjon)
+            print(donjon)
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 

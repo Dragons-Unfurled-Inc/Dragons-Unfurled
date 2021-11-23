@@ -1,3 +1,4 @@
+from psycopg2.extras import RealDictRow
 from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.monstre import Monstre
@@ -135,7 +136,7 @@ class DonjonDAO(metaclass=Singleton):
                     "FROM Donjon "\
                     "WHERE (id_donjon = %(id_donjon)s)"
                     , {"id_donjon" : id_donjon})
-                id_donjon = cursor.fetchone()
+                donjon = cursor.fetchone()
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -143,20 +144,22 @@ class DonjonDAO(metaclass=Singleton):
                     "FROM Salle "\
                     "WHERE (id_donjon = %(id_donjon)s) "\
                     , {"id_donjon" : id_donjon})
-                salle = cursor.fecthall()
+                salle = cursor.fetchall()
                 if salle == None :
-                    id_salle = []
+                    salle = [[]]
+                elif type(salle[0]) == RealDictRow:
+                    salle = [[salle[i]["id_salle"] for i in range(len(salle))], [salle[i]["nom_salle"] for i in range(len(salle))], [salle[i]["coordonnee_salle_x"] for i in range(len(salle))], [salle[i]["coordonnee_salle_y"] for i in range(len(salle))]]
                 else:
-                    id_salle = [salle[i]["id_salle"] for i in range(0, len(salle))]
+                    salle = [[salle[0]], [salle[1]], [salle[2]], [salle[3]]]
         liste_salle = []
-        for id_sal in id_salle: 
+        for i in range(len(salle[0])): 
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
                         "SELECT * "\
                         "FROM Cellule "\
                         "WHERE (id_salle = %(id_salle)s) "\
-                        , {"id_salle" : id_sal})
+                        , {"id_salle" : salle[0][i]})
                     cellule = cursor.fetchall()
                     if cellule == None:
                         id_cellule = []
@@ -182,7 +185,7 @@ class DonjonDAO(metaclass=Singleton):
                 with DBConnection().connection as connection:
                     with connection.cursor() as cursor:
                         cursor.execute(
-                            "SELECT id_entite"\
+                            "SELECT id_entite "\
                             "FROM Entite "\
                             "WHERE (id_cellule = %(id_cellule)s) "\
                             , {"id_cellule" : id_cell})
@@ -205,10 +208,10 @@ class DonjonDAO(metaclass=Singleton):
                                     with connection.cursor() as cursor:
                                         cursor.execute(
                                             "SELECT * "\
-                                                "FROM Entite "\
-                                                "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite"\
-                                                "WHERE (id_entite = %(id_entite)s) "\
-                                                , {"id_entite" : id_ent})
+                                            "FROM Entite "\
+                                            "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite"\
+                                            "WHERE (id_entite = %(id_entite)s) "\
+                                            , {"id_entite" : id_ent})
                                         enti_perso = cursor.fetchone()
                                         cursor.execute(
                                             "SELECT * "\
@@ -327,7 +330,7 @@ class DonjonDAO(metaclass=Singleton):
                                 caract = Caracteristique(nom_entite = enti_monstre["nom_entite"], force = enti_monstre["force"], experience = enti_monstre["experience"], intelligence = enti_monstre["intelligence"], charisme = enti_monstre["charisme"], dexterite = enti_monstre["dexterite"], constitution = enti_monstre["constitution"], vie = enti_monstre["vie"], sagesse =  enti_monstre["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = enti_monstre["description"], classe_armure = enti_monstre["classe_armure"])
                                 monstre = Monstre(type = monstre["type"], id_joueur = enti_monstre["username"], id_entite = enti_monstre["id_entite"], nom_entite = enti_monstre["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet_monstre)
                                 liste_enti.append(monstre)
-            liste_salle.append(Salle(id_salle = salle["id_salle"], nom_salle = salle["nom_salle"], coordonnees_salle_donjon = [0,0], coordonnees_salle_cellule = [[0,0], [1,1]], objets = liste_obj, entites = liste_enti ))
-        donjon = Donjon(id_donjon = id_donjon["id_donjon"], nom_donjon = id_donjon["nom_donjon"], pieces = liste_salle)
+            liste_salle.append(Salle(id_salle = salle[0][i], nom_salle = salle[1][i], coordonnees_salle_donjon = [salle[2][i], salle[3][i]], coordonnees_salle_cellule = [[0,0], [1,1]], objets = liste_obj, entites = liste_enti ))
+        donjon = Donjon(id_donjon = donjon["id_donjon"], nom_donjon = donjon["nom_donjon"], pieces = liste_salle)
         return donjon
                             
