@@ -30,7 +30,7 @@ class ObjetDAO(metaclass = Singleton):
                         "(%(nom_objet)s, %(description_obj)s)"\
    
                     , {"nom_objet" : objet.nom_objet
-                    , "description" : objet.description_obj
+                    , "description_obj" : objet.description_obj
                     })
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
@@ -38,4 +38,4 @@ class ObjetDAO(metaclass = Singleton):
                         "SELECT MAX(id_objet) as max FROM Objet")
                     id_obj = cursor.fetchone()
                     id_obj = id_obj['max']
-        return Objet(id_obj,objet.nom_objet, objet.description_obj)
+        return Objet(id_objet = id_obj,nom_objet = objet.nom_objet, description_obj = objet.description_obj)

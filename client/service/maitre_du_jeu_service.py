@@ -41,6 +41,10 @@ class MaitreDuJeuService(metaclass = Singleton):
         return MaitreDuJeuDAO.dict_entites()
 
     @staticmethod
+    def dict_objets():
+        return MaitreDuJeuDAO.dict_objets()
+
+    @staticmethod
     def dict_salles():
         return MaitreDuJeuDAO.dict_salles()
 
@@ -59,3 +63,7 @@ class MaitreDuJeuService(metaclass = Singleton):
     @staticmethod
     def id_salle_contenant_entite(identifiant_entite):
         return SalleDAO.id_salle_contenant_entite(identifiant_entite) 
+
+    @staticmethod
+    def id_salle_contenant_objet(identifiant_objet):
+        return SalleDAO.id_salle_contenant_objet(identifiant_objet) 

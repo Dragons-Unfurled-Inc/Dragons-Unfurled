@@ -22,6 +22,10 @@ class SalleService():
         return EntiteDAO.coordonnees_entite(identifiant_entite) 
 
     @staticmethod
+    def coordonnees_objet_salle(identifiant_objet):
+        return EntiteDAO.coordonnees_objet(identifiant_objet) 
+
+    @staticmethod
     def coordonnees_entites_salle(identifiant_salle):
         return EntiteDAO.coordonnees_entites(identifiant_salle) 
 

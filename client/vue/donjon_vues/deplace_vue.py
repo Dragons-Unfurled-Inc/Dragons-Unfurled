@@ -44,33 +44,32 @@ class MenuDeplace(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Déplacer un objet d\'une salle à une autre':
-            print("Voici les salles du donjon")
-            DonjonService.afficher_nom_id_salles(self.donjon)
-            id_salle = input("Rentrez l'identifiant de la salle contenant l'objet")
-            salle = SalleService.trouve_salle(id_salle)
-            id_salle2 = input("Rentrez l'identifiant de la salle dans laquelle vous voulez placer l'objet.")
-            salle2 = SalleService.trouve_salle(id_salle2)
-            print("Voici le contenu de la salle contenant l'objet:")
-            print(salle)
-            identifiant_objet = input("Saisissez l'identifiant de l'objet")
-            print("Voici le contenu de la salle où vous voulez placer l'objet:")
-            print(salle2)
-            nouvelles_coordonnees = input("Saisissez sous format liste les nouvelles coordonnées de l'objet")  
-            DonjonService.deplacer_objet_salle(self.donjon,identifiant_objet,salle2,nouvelles_coordonnees) #Il faudra enlever l'objet de la première salle
+            dict_objets = MaitreDuJeuService.dict_objets()
+            print("Voici la liste des différents objets :")
+            for objet in dict_objets:
+                print(objet["nom_objet"], " : ", objet["id_objet"])
+            identifiant_objet = input("Saisissez l'identifiant de l'objet à déplacer. \n")
+            dict_salles = MaitreDuJeuService.dict_salles() 
+            print("Voici la liste des salles de votre donjon :")
+            for salle in dict_salles:
+                print(salle["nom_salle"], " : ", salle["id_salle"])
+            identifiant_salle = input("Saisissez l'identifiant de la salle dans laquelle placer l\'objet. \n")
+            if DonjonService.existe_objet_campagne(identifiant_objet) and DonjonService.existe_salle_donjon(identifiant_salle): 
+                DonjonService.ajouter_objet_salle(identifiant_objet, identifiant_salle)  
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 
         if reponse['choix'] == 'Déplacer un objet dans sa salle':
-            dict_objets = MaitreDuJeuService.dict_objets()
+            dict_objets = MaitreDuJeuService.dict_objets()  
             print("Voici la liste des différents objets :")
             for objet in dict_objets:
                 print(objet["nom_objet"], " : ", objet["id_objet"])
             identifiant_objet = input("Saisissez l'identifiant de l'objet à déplacer. \n")
             identifiant_salle = MaitreDuJeuService.id_salle_contenant_objet(identifiant_objet)   
             if identifiant_salle == None:
-                print("L'entité entrée n'est dans aucune salle.")
+                print("L'objet entré n'est dans aucune salle.")
             else:
-                coordonnees_objet_salle = SalleService.coordonnees_objet_salle(identifiant_objet) 
+                coordonnees_objet_salle = SalleService.coordonnees_objet_salle(identifiant_objet)   
                 coordonnees_cellules_salle = CelluleService.coordonnees_cellules_salle(identifiant_salle)
                 coordonnees_entites_salle = SalleService.coordonnees_entites_salle(identifiant_salle) 
                 coordonnees_objets_salle = SalleService.coordonnees_objets_salle(identifiant_salle) 
@@ -78,9 +77,9 @@ class MenuDeplace(AbstractVue):
                 nouvelles_coordonnees_objet = DeplacementSalleService.deplacer_element_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_objet_salle, coordonnees_entites_salle, coordonnees_objets_salle)
                 if DonjonService.existe_cellules_salle(nouvelles_coordonnees_objet, identifiant_salle):  
                     DonjonService.deplacer_objet_dans_salle(identifiant_objet, identifiant_salle, nouvelles_coordonnees_objet)  
-                    print("Le personnage se déplace.")
+                    print("L'objet est déplacé.")
                 else:
-                    print("Le personnage n'a pas pu se déplacer. \nLa case était inaccessible.")
+                    print("L'objet n'a pas pu être déplacé. \nLa case était inaccessible.")
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 

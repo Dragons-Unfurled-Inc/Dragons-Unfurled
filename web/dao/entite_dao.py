@@ -404,6 +404,24 @@ class EntiteDAO:
             return False
 
     @staticmethod
+    def existe_objet_campagne(id_objet):
+        from client.vue.session import Session
+        id_campagne = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_objet "\
+                    "FROM Objet JOIN Cellule ON Objet.id_cellule = Cellule.id_cellule JOIN Salle ON Cellule.id_salle = Salle.id_salle JOIN Donjon ON Donjon.id_donjon = Salle.id_donjon "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND (id_objet = %(id_objet)s)"\
+                    , {"id_campagne" : id_campagne, "id_objet" : id_objet})
+                res = cursor.fetchone()
+        if res != None:
+            return True
+        else : 
+            return False
+
+    @staticmethod
     def coordonnees_entite(id_entite):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
@@ -418,6 +436,22 @@ class EntiteDAO:
         else:
             coordonnees_entite = [dict(res)["coordonnee_cellule_x"], dict(res)["coordonnee_cellule_y"]]
         return coordonnees_entite
+
+    @staticmethod
+    def coordonnees_objet(id_objet):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Cellule JOIN Objet ON Cellule.id_cellule = Objet.id_cellule "\
+                    "WHERE (id_objet = %(id_objet)s) "\
+                    , {"id_objet": id_objet})
+                res = cursor.fetchone()
+        if res == None:
+            coordonnees_objet = None
+        else:
+            coordonnees_objet = [dict(res)["coordonnee_cellule_x"], dict(res)["coordonnee_cellule_y"]]
+        return coordonnees_objet
 
     @staticmethod
     def coordonnees_entites(id_salle):
