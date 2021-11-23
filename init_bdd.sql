@@ -102,10 +102,12 @@ CREATE TABLE Utilisateur(
 
 CREATE TABLE Jet(
     id_jet serial PRIMARY KEY NOT NULL, 
+    id_campagne int NOT NULL,
     resultat int NOT NULL, 
     revelation boolean NOT NULL, 
 	username text NOT NULL, 
-	FOREIGN KEY (username) REFERENCES Utilisateur(username)
+	FOREIGN KEY (username) REFERENCES Utilisateur(username),
+    FOREIGN KEY (id_campagne) REFERENCES Campagne(id_campagne)
 );
 
 CREATE TABLE FeedBack(

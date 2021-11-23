@@ -1,3 +1,4 @@
+from client.vue.session import Session
 from web.dao.db_connection import DBConnection
 from objets_metier.jet import Jet
 
@@ -5,18 +6,18 @@ class JetDAO:
 
     @staticmethod
     def add_jet(jet : Jet, username : str, choix_revel : bool) :
+        id_camp = Session.id_campagne
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "INSERT INTO Jet (resultat, "\
-                                         "revelation, "\
-                                         "username)"\
+                        "INSERT INTO Jet (resultat, revelation, username, id_campagne)" \
                         "VALUES "\
-                        "(%(resultat)s,%(revelation)s,%(username)s)"\
+                        "(%(resultat)s,%(revelation)s,%(username)s,%(id_campagne)s)"\
    
                     , {"resultat" : jet.valeur_jet
                     , "revelation" : choix_revel
                     , "username" : username
+                    , "id_campagne": id_camp
                     })
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
