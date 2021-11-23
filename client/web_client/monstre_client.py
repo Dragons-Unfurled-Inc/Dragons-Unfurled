@@ -15,6 +15,7 @@ class MonstreClient():
             util = Session.utilisateur
             configuration = TradWebconfig()
             d = configuration.getTrad('monstre/' + nom)
+            MonstreClient.FormatMonstre(d)
             carac = DicToObjet.dictocarac(d)
             return Monstre(util.identifiant,-1,d['type'],carac)
             
@@ -27,3 +28,22 @@ class MonstreClient():
         def ImportListeTypes():
             pass
             
+        @staticmethod
+        def FormatMonstre(dic):
+            #On part du principe que le dictionnaire contient des attaques et des capacites, et le but ici est de les formater pour les afficher
+            #C'est sur place par simplicité, et on y ajoute les actions légendaires
+            listattaques = []
+            listcapacites = []
+            list = dic['attaques']
+            list2 = dic['capacites']
+            list3 = dic['attaques_legendaires']
+            for dico in list :
+                listattaques.append(dico['name']) 
+            for dico2 in list2 : 
+                listcapacites.append(dico2['name'])
+            for dico3 in list3 : 
+                listattaques.append(dico3['name']+'(legendaire)')
+            dic.update({'attaques' : listattaques})
+            dic.update({'capacites' : listcapacites})
+            
+        

@@ -6,8 +6,8 @@ class Caracteristique(BaseModel) :
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
     nom_entite: str 
-    attaques: List[dict] = []
-    capacites: List[dict] = []
+    attaques: List[str] = []
+    capacites: List[str] = []
     languages: Any = []
     description: Optional[str] = ''
     niveau: int = 1

@@ -1,10 +1,7 @@
 import hashlib
-<<<<<<< HEAD
 from os import umask
 from pprint import pp, pprint
 from googletrans import Translator
-=======
->>>>>>> 62a8cd33567c177a260d59e97a4450ba7b689b70
 
 import requests as req
 from dotenv import load_dotenv

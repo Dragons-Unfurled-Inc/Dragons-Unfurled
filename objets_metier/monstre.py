@@ -57,7 +57,7 @@ class Monstre(Entite,BaseModel):
                              Caracteristique.__str__(self.caracteristiques_entite),
                              aff_obj)
 
-
+    
 
 
 

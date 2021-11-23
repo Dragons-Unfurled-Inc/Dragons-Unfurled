@@ -56,7 +56,8 @@ class TradWebconfig(WebConfiguration):
                 , 'level' : 'niveau'
                 , 'special_abilities' : 'capacites'
                 , 'challenge_rating' : 'niveau'
-                , 'actions' : 'attaques'}
+                , 'actions' : 'attaques'
+                , 'legendary_actions' : 'attaques_legendaires'}
         if (mot in dic.keys()) : 
             return (dic[mot])
         return mot
