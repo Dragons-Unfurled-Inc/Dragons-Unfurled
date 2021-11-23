@@ -7,11 +7,14 @@ from objets_metier.entite import Entite
 class Monstre(Entite,BaseModel):
     
     id_joueur: str
-    id_entite: str                 
+    id_entite: str     
+    type: str            
     caracteristiques_entite: Caracteristique
-    type: str
     objets: Optional[List[Objet]] = None
-        
+    
+    def __init__(self,id_joueur : str,id_entite : str,type : str,caracteristiques_entite : Caracteristique):
+        super().__init__(id_joueur = id_joueur,id_entite = id_entite,type = type,caracteristiques_entite = caracteristiques_entite)
+    
     class Config:
         underscore_attrs_are_private = True
         schema_extra = {
@@ -19,8 +22,7 @@ class Monstre(Entite,BaseModel):
                 "type": "Gobelin",
                 "id_joueur": 5,
                 "id_entite":4,
-                "caracteristiques_entite": {
-                        "nom_entite":"Nom", 
+                "caracteristiques_entite": { 
                         "attaques":["Attaques"], 
                         "capacites":["Capacité"], 
                         "languages":["langages"],
