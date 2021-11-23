@@ -113,15 +113,5 @@ class MenuMJ(AbstractVue):
             return MenuConsultation()
 
         if reponse['choix'] == 'Modifier la fiche d\'une entité':
-            message = input("Voulez-vous modifier la fiche d'un personnage ? Saisissez Oui ou Non")
-            if message == "Non":
-                id_monstre = input("Saisissez l'identifiant du monstre à consulter")
-                monstre = MaitreDuJeuService.trouve_entite(id_monstre)
-                MaitreDuJeu.modifier_monstre(monstre)
-                
-            if message == "Oui":    
-                id_personnage = input("Saisissez l'identifiant du personnage à consulter")
-                perso = MaitreDuJeuService.trouve_entite(id_personnage)
-                MaitreDuJeu.modifier_personnage(perso)  
-            from client.vue.maitre_du_jeu_vue import MenuMJ
-            return MenuMJ()
+            from client.vue.passage_modif_perso_mj_vue import MenuModifMJ
+            return MenuModifMJ()
