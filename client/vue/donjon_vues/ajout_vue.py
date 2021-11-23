@@ -39,8 +39,8 @@ class MenuAjout(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Créer et ajouter un objet':
-            nom_objet = input("Entrez le nom du nouvel objet.")
-            description_objet = input("Entrez la description du nouvel objet.")
+            nom_objet = input("Entrez le nom du nouvel objet.\n")
+            description_objet = input("Entrez la description du nouvel objet.\n")
             objet = DonjonService.ajouter_objet_et_recuperation_donjon(nom_objet, description_objet) 
             dict_salles = MaitreDuJeuService.dict_salles() 
             print("Voici la liste des salles de votre donjon :")
@@ -48,7 +48,7 @@ class MenuAjout(AbstractVue):
                 print(salle["nom_salle"], " : ", salle["id_salle"])
             identifiant_salle = input("Saisissez l'identifiant de la salle dans laquelle placer l'objet. \n")
             if DonjonService.existe_salle_donjon(identifiant_salle):
-                DonjonService.ajouter_objet_salle(identifiant_salle, objet["id_objet"])  
+                DonjonService.ajouter_objet_salle(identifiant_salle, objet.id_objet)  
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 
