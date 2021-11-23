@@ -1,5 +1,4 @@
 from client.vue.session import Session
-from objets_metier.donjon import Donjon
 from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
 from web.dao.salle_dao import SalleDAO
@@ -8,7 +7,7 @@ from web.dao.salle_dao import SalleDAO
 class DonjonDAO(metaclass=Singleton):
     
     @staticmethod    
-    def ajoute_donjon(nom_donjon: str, coordonnees_salle_donjon_x, coordonnees_salle_donjon_y):
+    def ajoute_donjon(nom_donjon: str, taille_salle_donjon_x, taille_salle_donjon_y):
         id_campagne = Session.id_campagne
         with DBConnection().connection as connection:
             with connection.cursor() as cursor :
@@ -27,7 +26,7 @@ class DonjonDAO(metaclass=Singleton):
                         "SELECT MAX(id_donjon) as max FROM Donjon")
                     res = cursor.fetchone()
                     id_donjon = res['max']
-        SalleDAO.ajoute_salle_rectangulaire(id_donjon, coordonnees_salle_donjon_x, coordonnees_salle_donjon_y, "Salle principale")
+        SalleDAO.ajoute_salle_rectangulaire(id_donjon, taille_salle_donjon_x, taille_salle_donjon_y, "Salle principale", 0, 0)
             
     @staticmethod
     def dict_donjons():# Cette fonction renvoie un dictionnaire des donjons.
@@ -46,6 +45,26 @@ class DonjonDAO(metaclass=Singleton):
                 else:
                     liste_dict_donjons = []
         return liste_dict_donjons
+
+    @staticmethod
+    def dict_salles():# Cette fonction renvoie un dictionnaire des donjons.
+        from client.vue.session import Session
+        id_campagne = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_salle, nom_salle "\
+                    "FROM Salle "\
+                    "JOIN Donjon ON Donjon.id_donjon = Salle.id_donjon "
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    , {"id_campagne" : id_campagne})
+                res = cursor.fetchall()
+                if res != None:
+                    liste_dict_salle = [dict(row) for row in res] 
+                else:
+                    liste_dict_salle = []
+        return liste_dict_salle
+
 
     @staticmethod
     def existe_donjon_campagne(id_donjon):
@@ -82,3 +101,45 @@ class DonjonDAO(metaclass=Singleton):
             return True
         else : 
             return False
+
+    @staticmethod
+    def espace_libre_salle(x, y):
+        from client.vue.session import Session
+        id_donjon = Session.id_donjon
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Salle "\
+                    "WHERE (id_donjon = %(id_donjon)s) "\
+                    "AND (coordonnee_salle_x = %(coordonnee_salle_x)s) "\
+                    "AND (coordonnee_salle_y = %(coordonnee_salle_y)s)"\
+                    , {"id_donjon" : id_donjon, "coordonnee_salle_x" : x, "coordonnee_salle_y" : y})
+                res = cursor.fetchone()
+        if res != None:
+            return False
+        else : 
+            return True
+    
+    @staticmethod
+    def trouver_donjon(id_donjon):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Donjon "\
+                    "WHERE (id_donjon = %(id_donjon)s)"
+                    , {"id_donjon" : id_donjon})
+                id_donjon = cursor.fetchone()
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Salle "\
+                    "WHERE (id_donjon = %(id_donjon)s) "\
+                    , {"id_donjon" : id_donjon})
+                salle = cursor.fecthall()
+                id_salle = [salle[i]["id_salle"] for i in range(0, len(salle))]
+        
+
+        

@@ -3,13 +3,9 @@ from client.service.donjon_service import DonjonService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
-from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
-from pydantic import main
 from PyInquirer import Separator, prompt
 from web.dao.jet_dao import JetDAO
-from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 
 
 class MenuMJ(AbstractVue):
@@ -25,9 +21,9 @@ class MenuMJ(AbstractVue):
                     'Créer un donjon',
                     'Réaliser une action sur un donjon',
                     'Regarder le contenu de tous ses donjons',
-                    'Créer une entité',
+                    Separator(),
                     'Ajouter une entité',
-                    'Supprimer une entité',
+                    'Retirer une entité',
                     'Consulter la fiche d\'une entité',
                     'Modifier la fiche d\'une entité',
                     'Créer un monstre',
@@ -57,9 +53,9 @@ class MenuMJ(AbstractVue):
             return AjoutEntiVue()  
             
 
-        if reponse['choix'] == 'Supprimer une entité':
+        if reponse['choix'] == 'Retirer une entité':
             from client.vue.suppr_vue.suppr_enti_vue import SupprEntiVue
-            return SupprEntiVue(self.joueur)
+            return SupprEntiVue()
         
         if reponse['choix'] == 'Créer un donjon':
             nom_donjon = input("Saisissez le nom du donjon à créer. \n")
@@ -76,7 +72,7 @@ class MenuMJ(AbstractVue):
         
         if reponse['choix'] == 'Lancer des dés':
             from client.vue.des_vue import MenuDes
-            return MenuDes(self.joueur, self.campagne)    
+            return MenuDes()    
         
         if reponse['choix'] == 'Consulter les résultats des jets':
             JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
@@ -92,7 +88,7 @@ class MenuMJ(AbstractVue):
             print("Voici les donjons disponibles:")
             for donjon in dict_donjons:
                 print(donjon["nom_donjon"],' : ',donjon["id_donjon"])
-            id_donjon = input("Saisissez l'identifiant du donjon souhaité.")
+            id_donjon = input("Saisissez l'identifiant du donjon souhaité.\n")
             existe_donjon = DonjonService.existe_donjon_campagne(id_donjon)
             if existe_donjon:
                 Session.id_donjon = id_donjon       
@@ -113,20 +109,8 @@ class MenuMJ(AbstractVue):
             return MenuMJ()
         
         if reponse['choix'] == 'Consulter la fiche d\'une entité':
-            message = input("Voulez-vous consulter la fiche d'un personnage ? Saisissez Oui ou Non")
-            if message == "Non":
-                id_monstre = input("Saisissez l'identifiant du monstre à consulter")
-                monstre = MaitreDuJeuService.trouve_entite(id_monstre)
-                MaitreDuJeu.consulter_monstre(monstre)
-                from client.vue.maitre_du_jeu_vue import MenuMJ
-                return MenuMJ()
-            
-            if message == "Oui":    
-                id_personnage = input("Saisissez l'identifiant du personnage à consulter")
-                perso = MaitreDuJeuService.trouve_entite(id_personnage)
-                MaitreDuJeu.consulter_personnage(perso, self.id_campagne)
-                from client.vue.maitre_du_jeu_vue import MenuMJ
-                return MenuMJ()
+            from client.vue.consulter_vue import MenuConsultation
+            return MenuConsultation()
 
         if reponse['choix'] == 'Modifier la fiche d\'une entité':
             message = input("Voulez-vous modifier la fiche d'un personnage ? Saisissez Oui ou Non")

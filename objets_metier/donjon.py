@@ -1,8 +1,8 @@
 from typing import List, Optional
 
+from client.vue.session import Session
 from pydantic import BaseModel
 
-from objets_metier.objet import Objet
 from objets_metier.salle import Salle
 
 
@@ -48,21 +48,30 @@ class Donjon(BaseModel):
                              mod_salle)
 
     @staticmethod
-    def afficher_donjon():
-        pass
+    def afficher_donjon(id_donjon):
+        Donjon.__str__(id_donjon)
+        
 
     def deplacer_element_salles(self, element:type):
         """
         """
         None  
 
-    def ajouter_salle(self, salle : Salle):
-        """Cette fonction ajoute une salle au donjon
+    @staticmethod
+    def ajouter_salle_rectangulaire(largeur, profondeur, nom_salle, x, y):
+        """Cette fonction ajoute une salle au donjon.
         """
-        if self.__pieces == None : 
-            self.__pieces = [salle]
-        else :
-            self.__pieces.append(salle)
+        id_donjon = Session.id_donjon
+        from web.dao.salle_dao import SalleDAO
+        SalleDAO.ajoute_salle_rectangulaire(id_donjon, largeur, profondeur, nom_salle, x, y)
+
+    @staticmethod
+    def ajouter_salle_construite(x, y, nom_salle, coord_cellules):
+        """Cette fonction ajoute une salle au donjon.
+        """
+        id_donjon = Session.id_donjon
+        from web.dao.salle_dao import SalleDAO
+        SalleDAO.ajouter_salle_construite(id_donjon, x, y , nom_salle, coord_cellules)
 
     def editer_salle(self, salle : Salle):
         """

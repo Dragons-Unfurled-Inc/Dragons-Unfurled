@@ -1,11 +1,9 @@
-from PyInquirer import prompt
-from client.service.monstre_service import MonstreService
-from objets_metier.maitre_du_jeu import MaitreDuJeu
-from client.vue.abstract_vue import AbstractVue
-from PyInquirer import Validator, ValidationError
-from client.vue.session import Session
-from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.campagne_service import CampagneService
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
+from client.vue.abstract_vue import AbstractVue
+from client.vue.session import Session
+from PyInquirer import ValidationError, Validator, prompt
+
 
 class NumberValidator(Validator):
     def validate(self, document):
@@ -31,7 +29,7 @@ class AjoutPersVue(AbstractVue):
             },
             {
                 'type': 'input',
-                'name': 'Pseudo',
+                'name': 'Nom_entite',
                 'message': 'Quel est son nom ?',
                 'default': 'Ragnar'
             }
@@ -39,7 +37,7 @@ class AjoutPersVue(AbstractVue):
             {
                 'type': 'input',
                 'name': 'Joueur',
-                'message': 'Quel est son joueur ?'
+                'message': 'Quel est le nom de son joueur ?'
             }
             ]
         
@@ -49,8 +47,15 @@ class AjoutPersVue(AbstractVue):
   
     def make_choice(self):
         reponse = prompt(self.questions)
-        MaitreDuJeuService.ajouter_entite_campagne(reponse['ID'])  
-        CampagneService.mettre_joueur_dans_campagne(reponse['Joueur'])
+        id_entite = reponse['ID']
+        nom_entite = reponse['Nom_entite']
+        id_joueur = reponse['Joueur']
+        if MaitreDuJeuService.existe_entite_nom_id_joueur(nom_entite, id_entite, id_joueur): 
+            MaitreDuJeuService.ajouter_entite_campagne(id_entite)  
+            CampagneService.mettre_joueur_dans_campagne(id_joueur)
+            print("Le personnage a bien été ajouté !")
+        else:
+            print("Le personnage n'a pas été ajouté. \nLes informations saisies étaient incorrectes.")
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()
 

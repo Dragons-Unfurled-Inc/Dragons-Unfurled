@@ -1,7 +1,4 @@
-from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
-from client.exceptions.utilisateur_introuvable_exception import UtilisateurIntrouvableException
-from psycopg2.extensions import register_adapter, AsIs
 
 class JoueurDAO:
 

@@ -66,7 +66,7 @@ class Personnage(Entite):
                              self.id_joueur,
                              self.id_entite,
                              self.nom_entite,
-                             Caracteristique.__str__(self.caracteristiques_entite),
+                             Caracteristique.str(self.caracteristiques_entite),
                              aff_obj) 
 
 '''c=classe race niveau traits capac equipment lore 

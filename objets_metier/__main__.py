@@ -1,4 +1,3 @@
-from datetime import datetime
 
 from objets_metier.donjon import Donjon
 from objets_metier.entite import Entite
@@ -6,7 +5,6 @@ from objets_metier.monstre import Monstre
 from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
-from objets_metier.des import Des
 from objets_metier.salle import Salle
 
 caract = Caracteristique(nom_entite="Nom", attaques=["Attaques"], capacites=["Capacité"], languages=["langages"],description="des")

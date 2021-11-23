@@ -1,7 +1,10 @@
 import hashlib
+<<<<<<< HEAD
 from os import umask
 from pprint import pp, pprint
 from googletrans import Translator
+=======
+>>>>>>> 62a8cd33567c177a260d59e97a4450ba7b689b70
 
 import requests as req
 from dotenv import load_dotenv
@@ -10,15 +13,9 @@ from client.vue.session import Session
 from client.web_client.dictoobjet import DicToObjet
 from client.web_client.monstre_client import MonstreClient
 load_dotenv()
-from client.service.monstre_service import MonstreService
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.joueur import Joueur
-from objets_metier.monstre import Monstre
 from objets_metier.personnage import Personnage
-from objets_metier.utilisateur import Utilisateur
-from web.dao.campagne_dao import CampagneDAO
-from web.dao.entite_dao import EntiteDAO
-from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
 
 #print(essai.__dict__())
 

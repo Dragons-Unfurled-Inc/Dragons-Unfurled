@@ -1,24 +1,24 @@
-asgiref            
-certifi            
-charset-normalizer 
-click              
-dataclasses        
-fastapi            
-h11                
-idna               
-pip                
-prompt-toolkit     
-psycopg2-binary    
-pydantic           
-Pygments           
-PyInquirer         
-python-dotenv      
-regex              
-requests           
-setuptools        
-six                
-starlette          
-typing-extensions  
-urllib3           
-uvicorn            
-wcwidth            
+# asgiref            
+# certifi            
+# charset-normalizer 
+# click              
+# dataclasses        
+# fastapi            
+# h11                
+# idna               
+# pip                
+# prompt-toolkit     
+# psycopg2-binary    
+# pydantic           
+# Pygments           
+# PyInquirer         
+# python-dotenv      
+# regex              
+# requests           
+# setuptools        
+# six                
+# starlette          
+# typing-extensions  
+# urllib3           
+# uvicorn            
+# wcwidth            

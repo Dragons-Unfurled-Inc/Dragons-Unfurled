@@ -1,2 +1,0 @@
-Dans ce doss on a les exceptions si il y a un pb lorsque l'utilisateur rentre une valeur qu'il n'est pas sensé rentrer,
-par exemple si l'user n'existe pas lors de la connexion (si l'utilisateur fait un typo par ex)

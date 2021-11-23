@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-from client.vue.session import Session
 
 
 class AbstractVue(ABC):

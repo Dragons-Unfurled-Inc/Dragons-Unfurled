@@ -1,20 +1,47 @@
-from client.exceptions.utilisateur_introuvable_exception import \
-    UtilisateurIntrouvableException
+from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.donjon import Donjon
 from objets_metier.monstre import Monstre
 from objets_metier.objet import Objet
 from objets_metier.personnage import Personnage
 from objets_metier.salle import Salle
-from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
 
 
 class MaitreDuJeuDAO:
     
     @staticmethod
-    def trouver_personnage(id_campagne, id_mj):
-        None
+    def est_mj_campagne(id_campagne, id_joueur):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_campagne, username "\
+                    "FROM Utilisateur_Campagne "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND est_joueur = false"\
+                    , {"id_campagne" : id_campagne})
+                username = cursor.fetchone()
+                username = username["username"]
+        return id_joueur == username
+
+    @staticmethod
+    def existe_entite_nom_id_joueur(nom_entite, id_entite, id_joueur):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Entite JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE (Entite.id_entite = %(id_entite)s) "\
+                    "AND (nom_entite = %(nom_entite)s) "\
+                    "AND (username = %(username)s);"\
+                    , {"id_entite" : id_entite
+                    , "nom_entite" : nom_entite
+                    , "username" : id_joueur })
+                res = cursor.fetchone()
+        if res != None:
+            return True
+        else : 
+            return False
 
     @staticmethod
     def personnages_joueurs(id_campagne): 
@@ -148,7 +175,7 @@ class MaitreDuJeuDAO:
         return liste_perso_non_joueur
 
     @staticmethod
-    def monstres(id_campagne):# Cette fonction renvoie l'ensemble des pmonstres 
+    def monstres(id_campagne):# Cette fonction renvoie l'ensemble des monstres 
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -234,7 +261,6 @@ class MaitreDuJeuDAO:
                         "WHERE (id_donjon = %(id_donjon)s) "\
                         , {"id_donjon" : id_donjon})
                     donjon = cursor.fetchone()
-                    donjon = [donjon["id_donjon"], donjon["nom_donjon"]]
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
@@ -244,19 +270,8 @@ class MaitreDuJeuDAO:
                         , {"id_donjon" : id_donjon})
                     salle = cursor.fetchall()
                     salle = [[salle[i]["id_salle"] for i in range(0, len(salle))], [salle[i]["nom_salle"] for i in range(0, len(salle))], [salle[i]["coordonnee_salle_x"] for i in range(0, len(salle))] , [salle[i]["coordonnee_salle_y"] for i in range(0, len(salle))]]
-            for id_salle in salle[0]: 
-                with DBConnection().connection as connection:
-                    with connection.cursor() as cursor:
-                        cursor.execute(
-                            "SELECT * "\
-                            "FROM Salle_Objet "\
-                            "WHERE (id_salle = %(id_salle)s) "\
-                            , {"id_salle" : id_salle})
-                        salle_objet = cursor.fetchall()
-                        if salle_objet != None:
-                            salle_objet = [salle_objet[i]["id_objet"] for i in range(0, len(salle_objet))]
-                        else :
-                            salle_objet = []
+            for k in range(len(salle[0])):
+                id_salle = salle[0][k]
                 with DBConnection().connection as connection:
                     with connection.cursor() as cursor:
                         cursor.execute(
@@ -264,23 +279,99 @@ class MaitreDuJeuDAO:
                             "FROM Cellule "\
                             "WHERE (id_salle = %(id_salle)s) "\
                             , {"id_salle" : id_salle})
-                        cellule = cursor.fetchone()
-                        cellule = cellule["id_cellule"]
+                        res = cursor.fetchall()
+                        id_cellules = [dict(row)["id_cellule"] for row in res] 
                 liste_objet = []
-                for id_objet in salle_objet: 
+                for id_cellule in id_cellules: 
                     with DBConnection().connection as connection:
                         with connection.cursor() as cursor:
                             cursor.execute(
                                 "SELECT * "\
                                 "FROM Objet "\
-                                "WHERE (id_objet = %(id_objet)s) "\
-                                , {"id_objet" : id_objet})
+                                "WHERE (id_cellule = %(id_cellule)s) "\
+                                , {"id_cellule" : id_cellule})
                             objet = cursor.fetchone()
-                            objet = [objet["id_objet"], objet["nom_objet"], objet["description_obj"]]
-                    liste_objet.append(Objet(id_objet = objet[0], nom_objet = objet[1], description = objet[2]))
-                liste_salle.append(Salle(id_salle = id_salle, nom_salle = salle[1][0], objets = liste_objet))
-            liste_donjon.append(Donjon(id_donjon = id_donjon, nom_donjon = donjon[1][id_donjon], pieces = liste_salle))
+                    if objet == None:
+                        continue
+                    else:
+                        objet = [objet["id_objet"], objet["nom_objet"], objet["description_obj"]]
+                        liste_objet.append(Objet(id_objet = objet[0], nom_objet = objet[1], description = objet[2]))
+                liste_salle.append(Salle(id_salle = id_salle, nom_salle = salle[1][k], coordonnees_salle_donjon = [salle[2][k], salle[3][k]], objets = liste_objet))
+            liste_donjon.append(Donjon(id_donjon = donjon["id_donjon"], nom_donjon = donjon["nom_donjon"], pieces = liste_salle))
         return liste_donjon
 
-                
+    @staticmethod
+    def dict_entites():
+        id_campagne = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_entite, nom_entite "\
+                    "FROM Entite "\
+                    "WHERE id_campagne=%(nom)s"\
+                    ,{"nom" : id_campagne}
+                )
+                res = cursor.fetchall()        
+        liste_entite = [dict(row) for row in res]
+        return liste_entite
 
+    @staticmethod
+    def dict_salles():
+        id_donjon = Session.id_donjon
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_salle, nom_salle "\
+                    "FROM Salle "\
+                    "WHERE id_donjon=%(nom)s"\
+                    ,{"nom" : id_donjon}
+                )
+                res = cursor.fetchall()        
+        liste_salles = [dict(row) for row in res]
+        return liste_salles
+
+    @staticmethod
+    def dict_monstres(id_campagne):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_entite, nom_entite "\
+                    "FROM Monstre JOIN Entite ON Monstre.id_entite = Entite.id_entite "\
+                    "WHERE id_campagne=%(nom)s"\
+                    ,{"nom" : id_campagne}
+                )
+                res = cursor.fetchall()        
+        liste_monstres = [dict(row) for row in res]
+        return liste_monstres    
+
+    @staticmethod
+    def dict_personnages(id_campagne):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT Personnage.id_entite, nom_entite "\
+                    "FROM Personnage JOIN Entite ON Personnage.id_entite = Entite.id_entite "\
+                    "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND (username <> %(id_joueur)s)"\
+                    , {"id_campagne" : id_campagne
+                    , "id_joueur" : Session.utilisateur.identifiant})
+                res = cursor.fetchall()        
+        liste_perso = [dict(row) for row in res]
+        return liste_perso    
+    
+    @staticmethod
+    def dict_pnj(id_campagne):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT Personnage.id_entite, nom_entite "\
+                    "FROM Personnage JOIN Entite ON Personnage.id_entite = Entite.id_entite "\
+                    "JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND (username = %(id_joueur)s)"\
+                    , {"id_campagne" : id_campagne
+                    , "id_joueur" : Session.utilisateur.identifiant})
+                res = cursor.fetchall()        
+        liste_pnj = [dict(row) for row in res]
+        return liste_pnj

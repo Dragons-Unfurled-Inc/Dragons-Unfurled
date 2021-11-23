@@ -3,6 +3,10 @@ from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 class MjService : 
     
     @staticmethod
+    def est_mj_campagne(id_campagne, id_joueur):
+        return MaitreDuJeuDAO.est_mj_campagne(id_campagne, id_joueur)
+    
+    @staticmethod
     def trouver_personnage(id_campagne, id_mj):
         return MaitreDuJeuDAO.trouver_personnage(id_campagne, id_mj)
    

@@ -1,5 +1,4 @@
 import hashlib
-from getpass import getpass
 
 from client.web_client.utilisateur_client import UtilisateurClient
 from objets_metier.joueur import Joueur
@@ -74,21 +73,23 @@ class UtilisateurService:
         from client.vue.session import Session
         Session.utilisateur = Utilisateur(identifiant = nom_utilisateur)  
         utilisateur = Session.utilisateur           
-        UtilisateurDAO.createUtilisateur(utilisateur.identifiant,mdp.digest(),est_admin) 
+        mot_de_passe = mdp.hexdigest()
+        creation = UtilisateurClient.creation_utilisateur(utilisateur.identifiant, mot_de_passe, est_admin) # creation stocke seulement le message renvoyé. Il s'agit bien d'une requête "post".
+        print(creation)
         # return nouvel_utilisateur
         # else:
         #     print("Votre compte n'a pas pu être créé !")
 
     @staticmethod
-    def connexion(nom_utilisateur: str,mot_de_passe_utilisateur: str):
-        if not UtilisateurClient.est_utilisateur(nom_utilisateur): 
-        #if not UtilisateurDAO.getUtilisateur(nom_utilisateur): 
+    def connexion(nom_utilisateur: str, mot_de_passe_utilisateur: str):
+        existe = UtilisateurClient.est_utilisateur(nom_utilisateur)
+        if not existe == True: 
             print('Cet utilisateur n\'existe pas')
             return False
         pass_hash = mot_de_passe_utilisateur.encode()
         mdp = hashlib.sha256()
         mdp.update(pass_hash)
-        if UtilisateurClient.bon_mot_de_passe(nom_utilisateur, mdp.digest()):
+        if UtilisateurClient.bon_mot_de_passe(nom_utilisateur, mdp.hexdigest()) == True:
             from client.vue.session import Session
             Session.utilisateur = Joueur(identifiant = nom_utilisateur)
             return True
@@ -97,7 +98,7 @@ class UtilisateurService:
     @staticmethod
     def est_admin(nom_utilisateur: str):
         est_administrateur = UtilisateurClient.est_administrateur(nom_utilisateur)
-        if est_administrateur:
+        if est_administrateur == True:
             return True
         return False
     

@@ -1,5 +1,4 @@
 from fastapi import APIRouter
-from objets_metier.monstre import Monstre
 from web.service.monstre_service import MonstreService
 
 routerm = APIRouter()
@@ -13,6 +12,6 @@ def get_NetMonstre(nom_monstre: str):
 def get_NetMonstre(type_monstre: str):
     return MonstreService.getNetMonstreDeType(type_monstre)
 
-@routerm.get("/monstres/{nom_monstre}")
+@routerm.post("/monstres/{nom_monstre}", tags=["monstre"])
 def Creer_monstre(nom_monstre: str):
     return MonstreService.ImportMonstreWeb(nom_monstre)

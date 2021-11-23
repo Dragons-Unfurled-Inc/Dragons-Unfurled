@@ -1,10 +1,7 @@
 from client.vue.abstract_vue import AbstractVue
-from PyInquirer import Separator, prompt
-from PyInquirer import Validator, ValidationError
-from client.vue.session import Session
+from PyInquirer import prompt
 from client.vue.accueil_jeu_vue import AccueilJeuVue
 from client.vue.accueil_administrateur_vue import AccueilAdministrateurVue
-from objets_metier.utilisateur import Utilisateur
 
 class PassageAdminVue(AbstractVue):
 

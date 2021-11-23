@@ -1,11 +1,8 @@
-from abc import abstractstaticmethod
 
-import requests as req
 from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.entite import Entite
 from objets_metier.objet import Objet
-from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
 from web.dao.monstre_dao import MonstreDAO
 from web.dao.personnage_dao import PersonnageDAO
@@ -174,8 +171,26 @@ class EntiteDAO:
                         res.append(dic)
                 return res
         
+    @staticmethod    
+    def obtenir_entites_noms_id_joueur():
+        username = Session.utilisateur.identifiant
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor :
+                cursor.execute(
+                    "SELECT nom_entite, Entite.id_entite "\
+                    "FROM Entite JOIN Utilisateur_Entite ON Entite.id_entite = Utilisateur_Entite.id_entite "\
+                    "WHERE username = %(username)s;"\
+                ,{"username": username}
+                )
+                res = cursor.fetchall()
+        if res != None:
+            liste_entites = [dict(row) for row in res] 
+        else:
+            liste_entites = []
+        return liste_entites
+
     @staticmethod
-    def modifier_carac(id_entite,carac,valeur):
+    def modifier_carac(id_entite, carac : str ,valeur):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -229,6 +244,16 @@ class EntiteDAO:
                     , "id_entite": id_entite})
 
     @staticmethod
+    def retirer_entite_campagne(id_entite):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Entite "\
+                    "SET id_campagne = NULL "\
+                    "WHERE id_entite = %(id_entite)s;"\
+                    , { "id_entite": id_entite})                
+
+    @staticmethod
     def existe_entite_campagne(id_entite): 
         from client.vue.session import Session
         id_campagne = Session.id_campagne
@@ -245,3 +270,132 @@ class EntiteDAO:
             return True
         else : 
             return False
+
+    @staticmethod
+    def coordonnees_entite(id_entite):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Cellule JOIN Entite ON Cellule.id_cellule = Entite.id_cellule "\
+                    "WHERE (id_entite = %(id_entite)s) "\
+                    , {"id_entite": id_entite})
+                res = cursor.fetchone()
+        if res == None:
+            coordonnees_entite = None
+        else:
+            coordonnees_entite = [dict(res)["coordonnee_cellule_x"], dict(res)["coordonnee_cellule_y"]]
+        return coordonnees_entite
+
+    @staticmethod
+    def coordonnees_entites(id_salle):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Salle FULL OUTER JOIN Cellule ON Salle.id_salle = Cellule.id_salle "\
+                    "JOIN Entite ON Cellule.id_cellule = Entite.id_cellule "\
+                    "WHERE (Salle.id_salle = %(id_salle)s) ;"\
+                    , {"id_salle": id_salle})
+                res = cursor.fetchall()
+        if res == None:
+            coordonnees_entites = []
+        else:
+            coordonnees_entites = []
+            for ligne in res:
+                coordonnees_entites.append([dict(ligne)["coordonnee_cellule_x"], dict(ligne)["coordonnee_cellule_y"]])
+        return coordonnees_entites
+
+    @staticmethod
+    def coordonnees_objets_salle(id_salle):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Salle FULL OUTER JOIN Cellule ON Salle.id_salle = Cellule.id_salle "\
+                    "JOIN Objet ON Cellule.id_cellule = Objet.id_cellule "\
+                    "WHERE (Salle.id_salle = %(id_salle)s) ;"\
+                    , {"id_salle": id_salle})
+                res = cursor.fetchall()
+        if res == None:
+            coordonnees_objets = []
+        else:
+            coordonnees_objets = []
+            for ligne in res:
+                coordonnees_objets.append([dict(ligne)["coordonnee_cellule_x"], dict(ligne)["coordonnee_cellule_y"]])
+        return coordonnees_objets
+
+    def entite_par_id(id_entite):
+        from client.vue.session import Session
+        id_campagne = Session.id_campagne
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(    
+                    "SELECT * "\
+                    "FROM Entite "\
+                    "WHERE (id_campagne = %(id_campagne)s) "\
+                    "AND (Entite.id_entite = %(id_entite)s)"\
+                    , {"id_campagne" : id_campagne, "id_entite" : id_entite})
+                entite = cursor.fetchone()
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Langage "\
+                    "WHERE id_entite = %(id_entite)s"\
+                    , {"id_entite" : id_entite})
+                langage = cursor.fetchall()
+                if langage == None :
+                    langage = []
+                else :
+                    langage = [langage[i]["nom_langage"] for i in range(len(langage))]
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Capacite "\
+                    "WHERE id_entite = %(id_entite)s"\
+                    , {"id_entite" : id_entite})
+                capacite = cursor.fetchall()
+                if capacite == None :
+                    capacite = []
+                else :
+                    capacite = [capacite[i]["nom_capactite"] for i in range(len(capacite))]
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Attaque "\
+                    "WHERE id_entite = %(id_entite)s"\
+                    , {"id_entite" : id_entite})
+                attaque = cursor.fetchall()
+                if attaque == None:
+                    attaque = []
+                else :
+                    attaque = [attaque[i]["nom_attaque"] for i in range(len(attaque))]
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT id_objet "\
+                    "FROM Entite_Objet "\
+                    "WHERE id_entite = %(id_entite)s"\
+                    , {"id_entite" : id_entite})
+                objet = cursor.fetchall()
+                if objet == None :
+                    objet = []
+                else : 
+                    objet = [objet[i]["id_objet"] for i in range(len(langage))]
+        liste_objet = []
+        for id_objet in objet: 
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "SELECT * "\
+                        "FROM Objet "\
+                        "WHERE id_objet = %(id_objet)s"\
+                        , {"id_objet" : id_objet})
+                    obj = cursor.fetchone()
+            liste_objet.append(Objet(id_objet = id_objet, nom_objet = obj["nom_objet"], description = obj["description"]))
+        caract = Caracteristique(nom_entite = entite["nom_entite"], attaques = attaque, capacites = capacite, languages = langage, description = entite["description"], niveau = entite["niveau"], experience = entite["experience"], force = entite["force"], intelligence = entite["intelligence"], charisme = entite["charisme"], dexterite = entite["dexterite"], constitution = entite["constitution"], sagesse = entite["sagesse"], vie = entite["vie"], classe_armure = entite["classe_armure"])
+        entite_id = Entite(id_joueur = -1, id_entite = id_entite, caracteristiques_entite = caract, objets = liste_objet)
+        return entite_id

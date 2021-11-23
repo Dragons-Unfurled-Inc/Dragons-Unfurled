@@ -1,16 +1,10 @@
 from client.service.campagne_service import CampagneService
+from client.service.joueur_service import JoueurService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
-from client.vue.joueur_vue import MenuJoueur
-from client.vue.maitre_du_jeu_vue import MenuMJ
 from client.vue.session import Session
-from objets_metier.joueur import Joueur
-from objets_metier.maitre_du_jeu import MaitreDuJeu
 from objets_metier.utilisateur import Utilisateur
 from PyInquirer import Separator, prompt
-from web.dao.campagne_dao import CampagneDAO
-from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
-from web.service.mj_service import MjService
 
 
 class AccueilJeuVue(AbstractVue):
@@ -24,9 +18,10 @@ class AccueilJeuVue(AbstractVue):
                 'message': f'Bonjour {self.utilisateur.identifiant}, que souhaitez-vous faire ? ',
                 'choices': [
                     'Rejoindre une campagne',
-                    Separator(),
-                    'Créer un personnage',
                     'Créer une campagne',
+                    Separator(),
+                    'Consulter les identifiants de ses entités',
+                    'Créer un personnage',
                     Separator(),
                     'Ecrire un feed-back',
                     'Consulter ses feed-back',
@@ -79,6 +74,12 @@ class AccueilJeuVue(AbstractVue):
         if reponse['choix'] == 'Créer une campagne':
             nom_campagne = input("Ecrivez un nom pour votre campagne.\n")
             identifiant_campagne = MaitreDuJeuService.creer_campagne(nom_campagne) # Creer_campagne affiche l'identifiant de la campagne
+            return AccueilJeuVue()
+
+        if reponse['choix'] == 'Consulter les identifiants de ses entités':
+            liste_dict_perso = JoueurService.consulter_entites()
+            for ligne in liste_dict_perso:
+                print(ligne["nom_entite"], " : ", ligne["id_entite"])
             return AccueilJeuVue()
         
         if reponse['choix'] == 'Ecrire un feed-back':

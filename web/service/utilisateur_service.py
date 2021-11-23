@@ -1,8 +1,3 @@
-import hashlib
-from getpass import getpass
-
-from objets_metier.joueur import Joueur
-from objets_metier.utilisateur import Utilisateur
 from web.dao.utilisateur_dao import UtilisateurDAO
 
 
@@ -31,3 +26,12 @@ class UtilisateurService:
     @staticmethod
     def est_utilisateur(nom: str):
         return UtilisateurDAO.getUtilisateur(nom)
+
+    def trouver_perso(id_campagne : int, id_joueur : int):
+        return UtilisateurDAO.trouver_perso(id_campagne, id_joueur)
+
+    def trouver_perso_par_id(id_campagne : int, id_entite : int):
+        return UtilisateurDAO.trouver_perso_par_id(id_campagne,id_entite)
+    
+    def trouver_monstre_par_id(id_campagne : int, id_entite : int):
+        return UtilisateurDAO.trouver_monstre_par_id(id_campagne,id_entite)

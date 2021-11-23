@@ -3,7 +3,6 @@ from PyInquirer import Separator, prompt
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from client.vue.start_vue import StartVue
-from objets_metier.utilisateur import Utilisateur
 from client.service.administrateur_service import AdministrateurService
 
 class AccueilAdministrateurVue(AbstractVue):

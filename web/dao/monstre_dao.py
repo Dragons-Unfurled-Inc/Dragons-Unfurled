@@ -1,7 +1,4 @@
-import requests as requ
-from objets_metier.caracteristique import Caracteristique
 from objets_metier.monstre import Monstre
-from objets_metier.objet import Objet
 from utils.singleton import Singleton
 from web.dao.db_connection import DBConnection
 

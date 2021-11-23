@@ -1,6 +1,5 @@
 from client.vue.abstract_vue import AbstractVue
 from PyInquirer import prompt
-from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.vue.session import Session
 
 

@@ -1,7 +1,5 @@
-from objets_metier.jet import Jet
 from web.dao.db_connection import DBConnection
 
-from objets_metier.jet import Jet
 
 class CombatDAO : 
 
