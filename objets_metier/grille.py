@@ -85,10 +85,13 @@ class Grille:
         self.murs = [] # Cette liste va contenir la lite des coordonnées des murs, une fois placés avec place_murs().
         self.quitter = False # Lorsque quitter passera à True, deplacement_salle_service cessera ses appels à la déssiner_grille et déplace_element.
         self.coordonnees_cellules = coordonnees_cellules
-        self.coordonnees_objets = coordonnees_objets
+        self.coordonnees_objets_non_element = coordonnees_objets
         self.element = coordonnees_element 
-        self.coordonnees_entites_non_element = coordonnees_entites # Nous ne voulons afficher avec un E toutes les entités, sauf l'élement à déplacer. 
-        self.coordonnees_entites_non_element.remove(coordonnees_element) 
+        self.coordonnees_entites_non_element = coordonnees_entites  
+        if coordonnees_element in self.coordonnees_entites_non_element: # Nous voulons afficher avec un E toutes les entités, sauf l'élement à déplacer. 
+            self.coordonnees_entites_non_element.remove(coordonnees_element) 
+        if coordonnees_element in self.coordonnees_objets_non_element: # Nous voulons afficher avec un O tous les objets, sauf l'élement à déplacer. 
+            self.coordonnees_objets_non_element.remove(coordonnees_element) 
 
     def deplace_element(self, deplacement):
         """ 
@@ -125,7 +128,7 @@ class Grille:
             pos = [x, y]
             self.element = pos # Si le message entré ne convient pas, la position ne change pas.
 
-        if pos not in self.murs and pos not in self.coordonnees_objets and pos not in self.coordonnees_entites_non_element: # Nous ne pouvons pas rentrer dans un mur, dans un objet ou un autre entité.
+        if pos not in self.murs and pos not in self.coordonnees_objets_non_element and pos not in self.coordonnees_entites_non_element: # Nous ne pouvons pas rentrer dans un mur, dans un objet ou un autre entité.
             self.element = pos # La nouvelle position n'est enregistré, que si la nouvelle position demandée est possible.
 
     def place_murs_aleatoire(self, pct=.25) -> list: 
@@ -205,7 +208,7 @@ class Grille:
                     symbol = 'X'
                 elif [x, y] in self.coordonnees_entites_non_element:
                     symbol = 'E'
-                elif [x, y] in self.coordonnees_objets:
+                elif [x, y] in self.coordonnees_objets_non_element:
                     symbol = 'O'
                 else:
                     symbol = '.'
