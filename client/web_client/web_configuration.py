@@ -1,12 +1,5 @@
 import os
-<<<<<<< HEAD
 import requests
-=======
-
-import psycopg2.extras
-import requests
-from requests.api import request
->>>>>>> 2dfa5638b141c39a21e31f58517e5e0a6079073a
 from utils.singleton import Singleton
 
 
