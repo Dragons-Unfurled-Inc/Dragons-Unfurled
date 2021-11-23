@@ -58,4 +58,19 @@ class MonstreService():
     def ImportListeTypes():
         return (MonstreService.getNetMonstreParType.keys())
     
-    
+    @staticmethod
+    def getNetAttaquesMonstre(monstre,attaque):
+        query = """query{
+monsters(limit:-1){name,actions{name,desc,damage{damage_dice,damage_type{name}},attack_bonus}, legendary_actions{name,desc,attack_bonus}}
+}
+        """
+        endpoint="https://www.dnd5eapi.co/graphql"
+        r = requ.post(endpoint,json={"query":query})
+        noms_attaques = r.json()
+        dic = noms_attaques['data']['monsters']
+        for mon in dic : 
+            if mon['name'] == monstre :
+                for attack in mon['actions'] : 
+                    if attack['name'] == attaque : 
+                        return(attack)
+        

@@ -1,4 +1,6 @@
 import os
+
+import psycopg2.extras
 import requests
 from utils.singleton import Singleton
 

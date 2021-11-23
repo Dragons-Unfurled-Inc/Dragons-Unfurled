@@ -9,6 +9,7 @@ from client.vue.session import Session
 
 from client.web_client.dictoobjet import DicToObjet
 from client.web_client.monstre_client import MonstreClient
+from web.service.monstre_service import MonstreService
 load_dotenv()
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.joueur import Joueur
@@ -106,5 +107,7 @@ def encode(mdp):
 # m=Monstre("type",'id_joueur','id_entite',carac)
 # print(m) 
 
-Session.utilisateur = Joueur(identifiant = 'jules')
-print(MonstreClient.ImportMonstreWeb('aboleth'))
+# Session.utilisateur = Joueur(identifiant = 'jules')
+# print(MonstreClient.ImportMonstreWeb('aboleth'))
+
+print(MonstreService.getNetAttaquesMonstre('Adult Blue Dragon','Bite'))
