@@ -23,11 +23,11 @@ class DonjonService(metaclass = Singleton):
 
     @staticmethod
     def dict_salles():
-        return DonjonDAO.dict_salle()
+        return DonjonDAO.dict_salles()
 
     @staticmethod
     def trouver_donjon(id_donjon):
-        return DonjonDAO.trouver_donjon()
+        return DonjonDAO.trouver_donjon(id_donjon)
 
     @staticmethod
     def dict_donjons():

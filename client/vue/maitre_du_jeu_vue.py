@@ -31,7 +31,7 @@ class MenuMJ(AbstractVue):
                     #'Consulter la liste des personnages',
                     Separator(),
                     'Lancer des dés',
-                    'Consulter les jets',
+                    'Consulter les résultats des jets',
                     Separator(),
                     'Sauvegarder l\'état de la campagne',
                     'Quitter la campagne',
@@ -76,9 +76,7 @@ class MenuMJ(AbstractVue):
             return MenuDes()    
         
         if reponse['choix'] == 'Consulter les résultats des jets':
-            liste_jet = JetService.consulter_tous_les_jets(self.id_campagne)
-            for jet in liste_jet:
-                print(jet)
+            JetService.consulter_tous_les_jets(self.id_campagne)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
