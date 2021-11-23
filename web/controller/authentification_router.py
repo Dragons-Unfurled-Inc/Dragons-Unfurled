@@ -4,7 +4,7 @@ from web.service.utilisateur_service import UtilisateurService
 router = APIRouter()
 
 
-@router.get("/utilisateurs/", tags=["utilisateur"])
+@router.get("/utilisateurs/", tags=["utilisateur"]) 
 def obtenir_noms_utilisateurs():
     return UtilisateurService.noms_utilisateurs()
 

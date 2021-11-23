@@ -9,6 +9,7 @@ class AdministrateurClient:
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
         api_dest = str.format("http://{}/administrateur/termine/{}", api_url, nom_administrateur_donneur)
+        # api_dest = str.format("http://{}/administrateur/termine/", api_url, json = {'nom': nom_administrateur_donneur})
         requests.patch(api_dest)
 
     @staticmethod
