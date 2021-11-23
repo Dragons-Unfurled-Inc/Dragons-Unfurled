@@ -2,7 +2,6 @@ import os
 
 import psycopg2.extras
 import requests
-from requests.api import request
 from utils.singleton import Singleton
 
 
