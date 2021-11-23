@@ -1,6 +1,8 @@
 import os
 
 import psycopg2.extras
+import requests
+from requests.api import request
 from utils.singleton import Singleton
 
 
@@ -26,3 +28,8 @@ class WebConfiguration(metaclass=Singleton):
     
     def getOutputDir(self):
         return self.output_dir
+
+    def get(self,req:str):
+        url = str.format("{0}/{1}",self.api_url,req)
+        return requests.get(url).json()
+        

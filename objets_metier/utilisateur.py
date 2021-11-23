@@ -35,3 +35,12 @@ class Utilisateur(BaseModel):
     
     def consulter_ses_feed_back(): 
         FeedBackDAO.consulter_feed_back()
+
+    def str(self):
+        """
+        permet un affichage des caractéristiques
+        """
+        modele = '\n'.join(
+                       'Identifiant : {}')
+        return modele.format(
+            self.identifiant)

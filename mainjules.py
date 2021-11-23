@@ -1,9 +1,14 @@
 import hashlib
 from os import umask
 from pprint import pp, pprint
+from googletrans import Translator
 
 import requests as req
 from dotenv import load_dotenv
+from client.vue.session import Session
+
+from client.web_client.dictoobjet import DicToObjet
+from client.web_client.monstre_client import MonstreClient
 load_dotenv()
 from client.service.monstre_service import MonstreService
 from objets_metier.caracteristique import Caracteristique
@@ -75,7 +80,7 @@ def encode(mdp):
     print(mdp.digest())
 
 #print(MonstreService.getNetMonstreDeType('humanoid'))
-print(MonstreService.ImportMonstreWeb('rat'))
+#print(MonstreService.ImportMonstreWeb('rat'))
 
 # import os 
 # print(os.environ['API_URL'])
@@ -86,3 +91,26 @@ print(MonstreService.ImportMonstreWeb('rat'))
 # translator= Translator(to_lang="fr")
 # translation = translator.translate("Strength")
 # print(translation)
+# translator = Translator()
+# translator.detect('이 문장은 한글로 쓰여졌습니다.')
+# translator.translate('yes', dest='fr')
+
+# from deep_translator import GoogleTranslator
+# translated = GoogleTranslator(source='auto', target='de').translate("keep it up, you are awesome")  # output -> Weiter so, du bist großartig
+# print(translated)
+
+# monstres = req.get('https://www.dnd5eapi.co/api/monsters/aboleth')
+# monstres = monstres.json()
+# print(monstres.keys())
+
+# dic = DicToObjet.dictoobjet({'index': 'aboleth', 'name': 'Aboleth', 'size': 'Large', 'type': 'aberration', 'subtype': None, 'alignment': 'lawful evil', 'armor_class': 17, 'hit_points': 135, 'hit_dice': '18d10', 'speed': {'walk': '10 ft.', 'swim': '40 ft.'}, 'strength': 21, 'dexterity': 9, 'constitution': 15, 'intelligence': 18, 'wisdom': 15, 'charisma': 18, 'proficiencies': [{'proficiency': {'index': 'saving-throw-con', 'name': 'Saving Throw: CON', 'url': '/api/proficiencies/saving-throw-con'}, 'value': 6}, {'proficiency': {'index': 'saving-throw-int', 'name': 'Saving Throw: INT', 'url': '/api/proficiencies/saving-throw-int'}, 'value': 8}, {'proficiency': {'index': 'saving-throw-wis', 'name': 'Saving Throw: WIS', 'url': '/api/proficiencies/saving-throw-wis'}, 'value': 6}, {'proficiency': {'index': 'skill-history', 'name': 'Skill: History', 'url': '/api/proficiencies/skill-history'}, 'value': 12}, {'proficiency': {'index': 'skill-perception', 'name': 'Skill: Perception', 'url': '/api/proficiencies/skill-perception'}, 'value': 10}], 'damage_vulnerabilities': [], 'damage_resistances': [], 'damage_immunities': [], 'condition_immunities': [], 'senses': {'darkvision': '120 ft.', 'passive_perception': 20}, 'languages': 'Deep Speech, telepathy 120 ft.', 'challenge_rating': 10, 'xp': 5900},Caracteristique(nom_entite= 'test'))
+# print(dic)
+# carac = Caracteristique(nom_entite = 't')
+# print(getattr(carac,'force'))
+#print(Caracteristique().parse_obj(dic))
+# carac = Caracteristique('nom')
+# m=Monstre("type",'id_joueur','id_entite',carac)
+# print(m) 
+
+Session.utilisateur = Joueur(identifiant = 'jules')
+print(MonstreClient.ImportMonstreWeb('aboleth'))
