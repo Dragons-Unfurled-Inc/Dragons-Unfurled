@@ -28,6 +28,26 @@ class ModifCaracVue(AbstractVue):
                     'message': 'Quelle est la nouvelle valeur ?'
                 }
             ]
+        self.questions_spec = [
+                {
+                    'type': 'input',
+                    'name': 'Att',
+                    'message': 'Quel est le nom de l\'attaque que vous souhaitez modifier ?',
+                    'when' :  self.questions[0] == "attaques"
+                }, 
+                {
+                    'type': 'input',
+                    'name': 'Cap',
+                    'message': 'Quel est le nom de la capacité que vous souhaitez modifier ?',
+                    'when' :  self.questions[0] == "capacites"
+                }, 
+                {
+                    'type': 'input',
+                    'name': 'Lang',
+                    'message': 'Quel est le nom du langage que vous souhaitez modifier ?',
+                    'when' :  self.questions[0] == "languages"
+                }, 
+        ]
         
     def display_info(self):
         with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
@@ -36,5 +56,13 @@ class ModifCaracVue(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.questions)
         nom = reponse['Nom']
-        EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'])
+        if nom == "attaques": 
+            nom_spec = prompt(self.questions_spec)
+            EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Att'])
+        if nom == "capacites": 
+            EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Cap'])
+        if nom == "languages": 
+            EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Lang'])
+        else : 
+            EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'])
         return MenuJoueur()
