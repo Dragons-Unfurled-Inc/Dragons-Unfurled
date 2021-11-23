@@ -6,6 +6,7 @@ from client.vue.session import Session
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from PyInquirer import Separator, prompt
 from web.dao.jet_dao import JetDAO
+from web.service.jet_service import JetService
 
 
 class MenuMJ(AbstractVue):
@@ -75,7 +76,9 @@ class MenuMJ(AbstractVue):
             return MenuDes()    
         
         if reponse['choix'] == 'Consulter les résultats des jets':
-            JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
+            liste_jet = JetService.consulter_tous_les_jets(self.id_campagne)
+            for jet in liste_jet:
+                print(jet)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
@@ -113,15 +116,5 @@ class MenuMJ(AbstractVue):
             return MenuConsultation()
 
         if reponse['choix'] == 'Modifier la fiche d\'une entité':
-            message = input("Voulez-vous modifier la fiche d'un personnage ? Saisissez Oui ou Non")
-            if message == "Non":
-                id_monstre = input("Saisissez l'identifiant du monstre à consulter")
-                monstre = MaitreDuJeuService.trouve_entite(id_monstre)
-                MaitreDuJeu.modifier_monstre(monstre)
-                
-            if message == "Oui":    
-                id_personnage = input("Saisissez l'identifiant du personnage à consulter")
-                perso = MaitreDuJeuService.trouve_entite(id_personnage)
-                MaitreDuJeu.modifier_personnage(perso)  
-            from client.vue.maitre_du_jeu_vue import MenuMJ
-            return MenuMJ()
+            from client.vue.passage_modif_perso_mj_vue import MenuModifMJ
+            return MenuModifMJ()

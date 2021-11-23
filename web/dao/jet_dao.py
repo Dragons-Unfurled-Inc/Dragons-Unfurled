@@ -33,8 +33,8 @@ class JetDAO:
             with connection.cursor() as cursor:
                 cursor.execute(
                     "SELECT * FROM Jet "\
-                    "WHERE revelation = true "
-                    )
+                    "WHERE revelation = TRUE AND id_campagne = %(id_campagne)s;"\
+                        , { "id_campagne": id_campagne})
                 jet = cursor.fetchall()
         liste_print_jet = []
         for i in range(0, len(jet)):
