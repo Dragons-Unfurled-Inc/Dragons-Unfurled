@@ -36,8 +36,6 @@ class Utilisateur(BaseModel):
         for ligne in feed_backs:
             info = dict(ligne)
             print(info["username"],"\n",FeedBack(id_feedback = info["id_feedback"], message = info["message"], date_ecriture = info["date_ecriture"]), "\n\n")
-<<<<<<< HEAD
-=======
 
     def str(self):
         """
@@ -48,4 +46,3 @@ class Utilisateur(BaseModel):
         return modele.format(
             self.identifiant)
         
->>>>>>> 2dfa5638b141c39a21e31f58517e5e0a6079073a
