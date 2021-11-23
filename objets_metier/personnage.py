@@ -8,8 +8,6 @@ from objets_metier.objet import Objet
 
 
 class Personnage(Entite):
-
-    niveau : Optional[int] = 1
     classe: str
     race: str
     lore: str
@@ -19,8 +17,8 @@ class Personnage(Entite):
     caracteristiques_entite: Caracteristique        
     objets: Optional [List[Objet]] = []
     
-    def __init__(self, niveau : int, classe : str, race : str, lore : str,id_joueur : str,id_entite : str,nom_entite : str, caracteristiques_entite: Caracteristique, objets: Optional [List[Objet]] = []) :  
-        super().__init__(niveau = niveau, classe = classe, race = race,lore = lore, id_joueur= id_joueur,id_entite = id_entite,nom_entite = nom_entite,caracteristiques_entite = caracteristiques_entite,objets = objets)
+    def __init__(self, classe : str, race : str, lore : str,id_joueur : str,id_entite : str,nom_entite : str, caracteristiques_entite: Caracteristique, objets: Optional [List[Objet]] = []) :  
+        super().__init__( classe = classe, race = race,lore = lore, id_joueur= id_joueur,id_entite = id_entite,nom_entite = nom_entite,caracteristiques_entite = caracteristiques_entite,objets = objets)
         
     class Config:
         schema_extra = {
