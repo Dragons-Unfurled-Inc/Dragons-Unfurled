@@ -46,4 +46,3 @@ class Utilisateur(BaseModel):
         return modele.format(
             self.identifiant)
         
-

@@ -1,5 +1,6 @@
+from client.web_client.web_configuration import WebConfiguration
 from googletrans import Translator
-from client.web_client.web_configuration import WebConfiguration  
+
 
 class TradWebconfig(WebConfiguration):
     

@@ -37,3 +37,4 @@ wcwidth
 prompt_toolkit
 pydantic
 rich
+googletrans
