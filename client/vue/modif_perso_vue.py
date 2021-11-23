@@ -35,5 +35,6 @@ class ModifCaracVue(AbstractVue):
             
     def make_choice(self):
         reponse = prompt(self.questions)
-        EntiteDAO.modifier_carac(self.enti_perso.id_entite, reponse['Nom'],reponse['Val'])
+        nom = reponse['Nom']
+        EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'])
         return MenuJoueur()

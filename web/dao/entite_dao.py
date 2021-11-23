@@ -191,16 +191,142 @@ class EntiteDAO:
 
     @staticmethod
     def modifier_carac(id_entite, carac : str ,valeur):
-        with DBConnection().connection as connection:
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    "UPDATE Entite "\
-                    "SET %(carac)s = %(valeur)s "\
-                    "WHERE id_entite = %(id_entite)s;"\
-                    , {"carac" : carac
-                    , "valeur": valeur
-                    , "id_entite": id_entite})
-                
+        if carac == "nom_entite":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET nom_entite = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "attaques":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET nom_entite = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "capacites":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET capacites = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "languages":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET languages = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "description":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET description = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})    
+        elif carac == "niveau":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET niveau = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "experience":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET experience = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "force":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET force = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "intelligence":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET intelligence = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "charisme":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET charisme = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "dexterite":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET dexterite = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "consitution":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET constitution = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "sagesse":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET sagesse = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "vie":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET vie = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+        elif carac == "classe_armure":
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor:
+                    cursor.execute(
+                        "UPDATE Entite "\
+                        "SET classe_armure = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s;"\
+                        , { "valeur": valeur
+                        , "id_entite": id_entite})
+
     @staticmethod
     def diminution_pv(nom_entite: str, nombre_pv): # Cette fonction n'est appelée que si l'entité a suffisamment de points de vies.
         with DBConnection().connection as connection:
