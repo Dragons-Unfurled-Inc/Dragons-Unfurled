@@ -54,7 +54,7 @@ class MenuDes(AbstractVue):
             return MenuDes()
 
         if reponse['choix'] == 'Lancer le mode d\'attaque du boss en x tours':
-            tours = input("Saisissez le nombre de tours que vous aurrez dans cette ultime bataille.\n")
+            tours = input("Saisissez le nombre de tours que vous aurez dans cette ultime bataille.\n")
             from client.service.entete_boss_service import Entete
             from client.vue.boss_vue import MenuBoss
             Entete.lance_la_page()
@@ -69,7 +69,6 @@ class MenuDes(AbstractVue):
                 liste_des.append(Des(nb_face = nb_faces)) #, valeur_des = valeur_de
             jet = Jet(liste_des = liste_des)
             Jet.lancer_des(jet) 
-            print(jet)
             print("La valeur de votre jet est : ", jet.valeur_jet)
             revelation = prompt(self.__questions[1])["choix_revel"]
             JetService.add_jet(jet, self.joueur.identifiant, revelation)

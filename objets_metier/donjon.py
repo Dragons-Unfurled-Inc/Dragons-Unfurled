@@ -48,8 +48,9 @@ class Donjon(BaseModel):
                              mod_salle)
 
     @staticmethod
-    def afficher_donjon():
-        pass
+    def afficher_donjon(id_donjon):
+        Donjon.__str__(id_donjon)
+        
 
     def deplacer_element_salles(self, element:type):
         """

@@ -20,6 +20,14 @@ class DonjonService(metaclass = Singleton):
        None      
 
     @staticmethod
+    def dict_salles():
+        return DonjonDAO.dict_salle()
+
+    @staticmethod
+    def trouver_donjon(id_donjon):
+        return DonjonDAO.trouver_donjon()
+
+    @staticmethod
     def dict_donjons():
         return DonjonDAO.dict_donjons()
 

@@ -11,8 +11,8 @@ class MenuDonjon(AbstractVue):
     def __init__(self):
 
         utilisateur = Session.utilisateur
-        id_campagne = Session.id_campagne
-        id_donjon = Session.id_donjon
+        self.id_campagne = Session.id_campagne
+        self.id_donjon = Session.id_donjon
 
 
         self.__questions = [
@@ -49,7 +49,8 @@ class MenuDonjon(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.__questions[0])
         if reponse['choix'] == 'Afficher le donjon':
-            Donjon.afficher_donjon()
+            donjon = DonjonService.trouver_donjon(self.id_donjon)
+            Donjon.afficher_donjon(donjon)
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 
