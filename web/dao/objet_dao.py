@@ -16,7 +16,7 @@ class ObjetDAO(metaclass = Singleton):
                         "(%(nom_objet)s, %(description_obj)s)"\
    
                     , {"nom_objet" : objet.nom_objet
-                    , "description" : objet.description_obj
+                    , "description_obj" : objet.description_obj
                     })
 
     @staticmethod
