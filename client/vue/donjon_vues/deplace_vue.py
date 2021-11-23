@@ -61,15 +61,26 @@ class MenuDeplace(AbstractVue):
             return MenuDonjon()
 
         if reponse['choix'] == 'Déplacer un objet dans sa salle':
-            print("Voici les salles du donjon")
-            DonjonService.afficher_nom_id_salles(self.donjon)
-            id_salle = input("Rentrez l'identifiant de la salle contenant l'objet")
-            salle = SalleService.trouve_salle(id_salle)
-            print("Voici le contenu de la salle:")
-            print(salle)
-            identifiant_objet = input("Saisissez l'identifiant de l'objet")
-            nouvelles_coordonnees = input("Saisissez sous format liste les nouvelles coordonnées de l'objet")  
-            DonjonService.deplacer_objet_dans_salle(self.donjon,identifiant_objet,nouvelles_coordonnees)
+            dict_objets = MaitreDuJeuService.dict_objets()
+            print("Voici la liste des différents objets :")
+            for objet in dict_objets:
+                print(objet["nom_objet"], " : ", objet["id_objet"])
+            identifiant_objet = input("Saisissez l'identifiant de l'objet à déplacer. \n")
+            identifiant_salle = MaitreDuJeuService.id_salle_contenant_objet(identifiant_objet)   
+            if identifiant_salle == None:
+                print("L'entité entrée n'est dans aucune salle.")
+            else:
+                coordonnees_objet_salle = SalleService.coordonnees_objet_salle(identifiant_objet) 
+                coordonnees_cellules_salle = CelluleService.coordonnees_cellules_salle(identifiant_salle)
+                coordonnees_entites_salle = SalleService.coordonnees_entites_salle(identifiant_salle) 
+                coordonnees_objets_salle = SalleService.coordonnees_objets_salle(identifiant_salle) 
+                dimensions = SalleService.dimensions_salle(coordonnees_cellules_salle) # Cette fonction renvoie une liste contenant la largeur et la profondeur de la salle. 
+                nouvelles_coordonnees_objet = DeplacementSalleService.deplacer_objet_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_objet_salle, coordonnees_entites_salle, coordonnees_objets_salle)
+                if DonjonService.existe_cellules_salle(nouvelles_coordonnees_objet, identifiant_salle):  
+                    DonjonService.deplacer_objet_dans_salle(identifiant_objet, identifiant_salle, nouvelles_coordonnees_objet) 
+                    print("Le personnage se déplace.")
+                else:
+                    print("Le personnage n'a pas pu se déplacer. \nLa case était inaccessible.")
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 

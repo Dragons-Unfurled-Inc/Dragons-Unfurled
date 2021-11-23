@@ -1,11 +1,13 @@
 from typing import List
 
 from objets_metier.donjon import Donjon
+from objets_metier.objet import Objet
 from utils.singleton import Singleton
 from web.dao.cellule_dao import CelluleDAO
 from web.dao.donjon_dao import DonjonDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
+from web.dao.objet_dao import ObjetDAO
 from web.dao.salle_dao import SalleDAO
 
 
@@ -56,6 +58,10 @@ class DonjonService(metaclass = Singleton):
         dictionnaire = MaitreDuJeuDAO.dict_entites()
         for entite in dictionnaire:
             SalleDAO.ajouter_entite_salle(entite["id_entite"], identifiant_salle)
+    
+    @staticmethod
+    def ajouter_objet_salle(identifiant_salle, id_objet):
+        SalleDAO.ajouter_objet_salle(identifiant_salle, id_objet) 
 
     @staticmethod
     def deplacer_entite_dans_salle(identifiant_entite: int, identifiant_salle: int, nouvelles_coordonnees_entite: List[int]):
@@ -68,3 +74,13 @@ class DonjonService(metaclass = Singleton):
         if id_cellule == None:
             return False
         return True
+
+    @staticmethod
+    def ajouter_objet_donjon(nom_objet, description_objet):
+        objet = Objet(-1, nom_objet, description_objet)
+        ObjetDAO.ajouter_objet(objet)
+
+    @staticmethod
+    def ajouter_objet_et_recuperation_donjon(nom_objet, description_objet):
+        objet = Objet(-1, nom_objet, description_objet)
+        return ObjetDAO.ajouter_objet_et_recuperation(objet)

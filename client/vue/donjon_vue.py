@@ -99,7 +99,7 @@ class MenuDonjon(AbstractVue):
             salle = SalleService.trouve_salle(id_salle)
             Donjon.editer_salle(self.donjon, salle)
             from client.vue.donjon_vue import MenuDonjon
-            return MenuDonjon(self.joueur,self.campagne,self.donjon)
+            return MenuDonjon(self.joueur, self.campagne, self.donjon)
 
         if reponse['choix'] == 'Ajouter un élément dans une salle du donjon':
             from client.vue.donjon_vues.ajout_vue import MenuAjout

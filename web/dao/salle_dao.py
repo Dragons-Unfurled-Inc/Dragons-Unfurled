@@ -108,6 +108,24 @@ class SalleDAO(metaclass=Singleton):
             SalleDAO.ajouter_entite_cellule(identifiant_entite, liste_id_cellules[position_aleatoire])
 
     @staticmethod
+    def ajouter_objet_salle(identifiant_salle, id_objet):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Cellule "\
+                    "WHERE id_salle=%(id_salle)s"\
+                    ,{"id_salle" : identifiant_salle})
+                res = cursor.fetchall()
+        liste_id_cellules = [dict(row)["id_cellule"] for row in res]
+        nb_cellules = len(liste_id_cellules)
+        if nb_cellules == 0:
+            print("Il n'y a pas de cellules dans cette salle.")
+        else:
+            position_aleatoire = random.randint(0, nb_cellules-1)
+            SalleDAO.ajouter_objet_cellule(id_objet, liste_id_cellules[position_aleatoire])
+
+    @staticmethod
     def ajouter_entite_cellule(id_entite, id_cellule):
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
@@ -117,6 +135,17 @@ class SalleDAO(metaclass=Singleton):
                     "WHERE id_entite = %(id_entite)s;"\
                     , { "id_cellule": id_cellule
                     , "id_entite": id_entite})
+
+    @staticmethod
+    def ajouter_objet_cellule(id_objet, id_cellule):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Objet "\
+                    "SET id_cellule = %(id_cellule)s "\
+                    "WHERE id_objet = %(id_objet)s;"\
+                    , { "id_cellule": id_cellule
+                    , "id_objet": id_objet})
 
     @staticmethod
     def id_salle_contenant_entite(id_entite):
