@@ -41,5 +41,19 @@ class JetDAO:
         for i in range(0, len(jet)):
             liste_print_jet.append(jet[i]["username"] + " a fait un jet d'une valeur de " + str(jet[i]["resultat"]))
         return liste_print_jet
+
+    @staticmethod
+    def consulter_tous_les_jets_mj(id_campagne):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * FROM Jet "\
+                    "WHERE id_campagne = %(id_campagne)s;"\
+                        , { "id_campagne": id_campagne})
+                jet = cursor.fetchall()
+        liste_print_jet = []
+        for i in range(0, len(jet)):
+            liste_print_jet.append(jet[i]["username"] + " a fait un jet d'une valeur de " + str(jet[i]["resultat"]))
+        return liste_print_jet    
         
 

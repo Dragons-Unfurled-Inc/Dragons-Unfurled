@@ -12,6 +12,7 @@ from web.dao.utilisateur_dao import UtilisateurDAO
 from web.service.entite_service import EntiteService
 from web.service.jet_service import JetService
 from web.service.mj_service import MjService
+from web.service.utilisateur_service import UtilisateurService
 
 
 class MenuDes(AbstractVue):

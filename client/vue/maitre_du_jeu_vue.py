@@ -76,7 +76,7 @@ class MenuMJ(AbstractVue):
             return MenuDes()    
         
         if reponse['choix'] == 'Consulter les résultats des jets':
-            JetService.consulter_tous_les_jets(self.id_campagne)
+            JetService.consulter_tous_les_jets_MJ(self.id_campagne)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
