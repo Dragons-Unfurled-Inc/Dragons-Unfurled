@@ -6,6 +6,7 @@ from client.vue.session import Session
 from objets_metier.maitre_du_jeu import MaitreDuJeu
 from PyInquirer import Separator, prompt
 from web.dao.jet_dao import JetDAO
+from web.service.jet_service import JetService
 
 
 class MenuMJ(AbstractVue):
@@ -75,7 +76,9 @@ class MenuMJ(AbstractVue):
             return MenuDes()    
         
         if reponse['choix'] == 'Consulter les résultats des jets':
-            JetDAO.consulter_tous_les_jets(self.campagne,self.joueur)
+            liste_jet = JetService.consulter_tous_les_jets(self.id_campagne)
+            for jet in liste_jet:
+                print(jet)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
