@@ -9,9 +9,8 @@ class AdministrateurClient:
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
         api_dest = str.format("http://{}/administrateur/termine/{}", api_url, nom_administrateur_donneur)
-        # api_dest = str.format("http://{}/administrateur/termine/", api_url, json = {'nom': nom_administrateur_donneur})
         requests.patch(api_dest)
-
+     
     @staticmethod
     def ajouter_droits_administrateur(nom_administrateur):
         configuration = WebConfiguration()
@@ -25,3 +24,18 @@ class AdministrateurClient:
         api_url = configuration.getApiUrl()
         api_dest = str.format("http://{}/bannir/{}", api_url, nom_utilisateur)
         requests.delete(api_dest)
+
+
+    # @staticmethod
+    # def supprimer_droits_administrateur(nom_administrateur_donneur: str):
+    #     configuration = WebConfiguration()
+    #     api_url = configuration.getApiUrl()
+    #     api_dest = str.format("http://{}/administrateur/termine", api_url, json = {'nom': nom_administrateur_donneur})
+    #     requests.patch(api_dest)
+     
+    # @staticmethod
+    # def ajouter_droits_administrateur(nom_administrateur):
+    #     configuration = WebConfiguration()
+    #     api_url = configuration.getApiUrl()
+    #     api_dest = str.format("http://{}/administrateur/termine", api_url, json = {'nom': nom_administrateur})
+    #     requests.patch(api_dest)
