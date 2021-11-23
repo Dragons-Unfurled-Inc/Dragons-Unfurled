@@ -8,6 +8,7 @@ from web.dao.utilisateur_dao import UtilisateurDAO
 from web.service.entite_service import EntiteService
 from web.service.jet_service import JetService
 from web.service.mj_service import MjService
+from web.service.utilisateur_service import UtilisateurService 
 
 
 class MenuDes(AbstractVue):
@@ -46,12 +47,21 @@ class MenuDes(AbstractVue):
         reponse = prompt(self.__questions[0])
 
         if reponse['choix'] == 'Attaquer une entité':
-            perso = UtilisateurDAO.trouver_perso(self.id_campagne,self.joueur.identifiant)
-            id_entite = int(input("Saisissez l'identifiant de l'entité à attaquer.\n"))
-            entite = EntiteService.entite_par_id(id_entite)
-            Dommage.frappe(None,perso,entite)
-            from client.vue.des_vue import MenuDes
-            return MenuDes()
+            if MjService.est_mj_campagne(self.id_campagne, self.joueur.identifiant):
+                identifiant_entite = input("Saisissez l'identifiant de l'entité qui va attaquer. \n")
+                attaquant = UtilisateurService.trouver_perso_par_id(Session.id_campagne,identifiant_entite)
+                id_entite = int(input("Saisissez l'identifiant de l'entité à attaquer.\n"))
+                entite = EntiteService.entite_par_id(id_entite)
+                Dommage.frappe(None,attaquant,entite)
+                from client.vue.des_vue import MenuDes
+                return MenuDes()
+            else:
+                perso = UtilisateurDAO.trouver_perso(self.id_campagne,self.joueur.identifiant)
+                id_entite = int(input("Saisissez l'identifiant de l'entité à attaquer.\n"))
+                entite = EntiteService.entite_par_id(id_entite)
+                Dommage.frappe(None,perso,entite)
+                from client.vue.des_vue import MenuDes
+                return MenuDes()
 
         if reponse['choix'] == 'Lancer le mode d\'attaque du boss en x tours':
             tours = input("Saisissez le nombre de tours que vous aurez dans cette ultime bataille.\n")
