@@ -5,6 +5,7 @@ routera = APIRouter()
  
 
 @routera.patch("/administrateur/termine/{nom_administrateur_donneur}", tags=["administrateur"])
+# @routera.patch("/administrateur/termine", response_model = Item, tags=["administrateur"])
 def supprimer_droits_administrateur(nom_administrateur_donneur):
     return AdministrateurService.supprimer_droits_administrateur(nom_administrateur_donneur)  
 
