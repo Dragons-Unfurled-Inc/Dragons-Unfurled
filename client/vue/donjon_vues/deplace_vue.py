@@ -75,9 +75,9 @@ class MenuDeplace(AbstractVue):
                 coordonnees_entites_salle = SalleService.coordonnees_entites_salle(identifiant_salle) 
                 coordonnees_objets_salle = SalleService.coordonnees_objets_salle(identifiant_salle) 
                 dimensions = SalleService.dimensions_salle(coordonnees_cellules_salle) # Cette fonction renvoie une liste contenant la largeur et la profondeur de la salle. 
-                nouvelles_coordonnees_objet = DeplacementSalleService.deplacer_objet_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_objet_salle, coordonnees_entites_salle, coordonnees_objets_salle)
+                nouvelles_coordonnees_objet = DeplacementSalleService.deplacer_element_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_objet_salle, coordonnees_entites_salle, coordonnees_objets_salle)
                 if DonjonService.existe_cellules_salle(nouvelles_coordonnees_objet, identifiant_salle):  
-                    DonjonService.deplacer_objet_dans_salle(identifiant_objet, identifiant_salle, nouvelles_coordonnees_objet) 
+                    DonjonService.deplacer_objet_dans_salle(identifiant_objet, identifiant_salle, nouvelles_coordonnees_objet)  
                     print("Le personnage se déplace.")
                 else:
                     print("Le personnage n'a pas pu se déplacer. \nLa case était inaccessible.")
@@ -119,7 +119,7 @@ class MenuDeplace(AbstractVue):
                 coordonnees_entites_salle = SalleService.coordonnees_entites_salle(identifiant_salle) 
                 coordonnees_objets_salle = SalleService.coordonnees_objets_salle(identifiant_salle) 
                 dimensions = SalleService.dimensions_salle(coordonnees_cellules_salle) # Cette fonction renvoie une liste contenant la largeur et la profondeur de la salle. 
-                nouvelles_coordonnees_entite = DeplacementSalleService.deplacer_entite_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_entite_salle, coordonnees_entites_salle, coordonnees_objets_salle)
+                nouvelles_coordonnees_entite = DeplacementSalleService.deplacer_element_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_entite_salle, coordonnees_entites_salle, coordonnees_objets_salle)
                 if DonjonService.existe_cellules_salle(nouvelles_coordonnees_entite, identifiant_salle):  
                     DonjonService.deplacer_entite_dans_salle(identifiant_entite, identifiant_salle, nouvelles_coordonnees_entite) 
                     print("Le personnage se déplace.")

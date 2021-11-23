@@ -5,9 +5,9 @@ from client.service.utilisateur_service import UtilisateurService
 from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.donjon import Donjon
+from objets_metier.objet import Objet
 from objets_metier.personnage import Personnage
 from web.dao.entite_dao import EntiteDAO
-from objets_metier.objet import Objet
 from web.dao.objet_dao import ObjetDAO
 
 """
@@ -180,20 +180,22 @@ DonjonService.deplacer_entite_dans_salle(30, 2, [25, 11])
 
 # Un objet répliqué 11 fois qu'Arthur va placer dans cette salle :
 
-objet_arthur = Objet(-1, "sac d'or", "Une quantitée aléatoire de pièces d'ors. Cela peut monter jusau'à 8 000 pièces !")
+objet_arthur = Objet(id_objet = -1,nom_objet = "sac d'or", description_obj = "Une quantitée aléatoire de pièces d'ors. Cela peut monter jusau'à 8 000 pièces !")
 
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
+# ObjetDAO.ajouter_objet(objet_arthur)
 
+
+# DonjonService.deplacer_objet_dans_salle(1, 1, [15,3])
 # coordonnees_objets = [[15,3], [19,9], [29,2], [2, 14], [3, 14], [4, 14], [15, 14], [16, 14], [27, 14], [28, 14], [29, 14]])
 
 # if __name__ == '__main__':
