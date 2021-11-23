@@ -190,7 +190,7 @@ class EntiteDAO:
         return liste_entites
 
     @staticmethod
-    def modifier_carac(id_entite, carac : str ,valeur):
+    def modifier_carac(id_entite, carac : str ,valeur, nom_spec = None):
         if carac == "nom_entite":
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
@@ -204,29 +204,35 @@ class EntiteDAO:
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
-                        "UPDATE Entite "\
-                        "SET nom_entite = %(valeur)s "\
-                        "WHERE id_entite = %(id_entite)s;"\
+                        "UPDATE Attaque "\
+                        "SET nom_attaque = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s"\
+                        "AND nom_attaque = %(nom)s;"\
                         , { "valeur": valeur
-                        , "id_entite": id_entite})
+                        , "id_entite": id_entite
+                        , "nom": nom_spec})
         elif carac == "capacites":
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
-                        "UPDATE Entite "\
-                        "SET capacites = %(valeur)s "\
-                        "WHERE id_entite = %(id_entite)s;"\
+                        "UPDATE Capacite "\
+                        "SET nom_capacite = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s"\
+                        "AND nom_capacite = %(nom)s;"\
                         , { "valeur": valeur
-                        , "id_entite": id_entite})
+                        , "id_entite": id_entite
+                        , "nom" : nom_spec})
         elif carac == "languages":
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
                     cursor.execute(
-                        "UPDATE Entite "\
-                        "SET languages = %(valeur)s "\
-                        "WHERE id_entite = %(id_entite)s;"\
+                        "UPDATE Langage "\
+                        "SET nom_langage = %(valeur)s "\
+                        "WHERE id_entite = %(id_entite)s"\
+                        "WHERE nom_langage = %(nom)s;"\
                         , { "valeur": valeur
-                        , "id_entite": id_entite})
+                        , "id_entite": id_entite
+                        , "nom" : nom_spec})
         elif carac == "description":
             with DBConnection().connection as connection:
                 with connection.cursor() as cursor:
