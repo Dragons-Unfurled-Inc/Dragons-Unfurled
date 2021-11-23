@@ -38,7 +38,7 @@ class MenuBoss(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.__questions[0])
 
-        if reponse['choix'] == 'Attaquer une entité de la salle de bosse':
+        if reponse['choix'] == 'Attaquer une entité de la salle de boss':
             perso = UtilisateurDAO.trouver_perso(self.id_campagne,self.joueur.identifiant)
             id_entite = int(input("Saisissez l'identifiant de l'entité à attaquer."))
             entite = EntiteService.entite_par_id(id_entite)
