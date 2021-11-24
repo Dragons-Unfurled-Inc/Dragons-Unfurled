@@ -42,15 +42,8 @@ personnage_thomas = Personnage(classe = "Wizard",
 EntiteDAO.ajoute_entite(personnage_thomas)   
 
 #Une reproduction de ce personnage pour que Thomas ai une dizaine de personnages identiques :
-EntiteDAO.ajoute_entite(personnage_thomas)   
-EntiteDAO.ajoute_entite(personnage_thomas)   
-EntiteDAO.ajoute_entite(personnage_thomas)   
-EntiteDAO.ajoute_entite(personnage_thomas)   
-EntiteDAO.ajoute_entite(personnage_thomas)   
-EntiteDAO.ajoute_entite(personnage_thomas)   
-EntiteDAO.ajoute_entite(personnage_thomas)   
-EntiteDAO.ajoute_entite(personnage_thomas)   
-EntiteDAO.ajoute_entite(personnage_thomas)   
+for _ in range(9):
+    EntiteDAO.ajoute_entite(personnage_thomas)    
 
 # Un personnage appartenant à Arthur :
 Session.utilisateur.identifiant = "Arthur"
@@ -65,25 +58,8 @@ personnage_arthur = Personnage(classe = "Druid",
 EntiteDAO.ajoute_entite(personnage_arthur)  
 
 #Une reproduction de ce personnage pour que Arthur ai une vintaine de personnages identiques :
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
-EntiteDAO.ajoute_entite(personnage_arthur)
+for _ in range(19):
+    EntiteDAO.ajoute_entite(personnage_arthur)
 
 # Un personnage appartenant à Isabelle répliqué 10 fois:
 Session.utilisateur.identifiant = "Isabelle"
@@ -95,16 +71,8 @@ personnage_isabelle = Personnage(classe = "Paladin",
                                 id_entite = -1, 
                                 nom_entite = "Hemmet", 
                                 caracteristiques_entite = carac) 
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
-EntiteDAO.ajoute_entite(personnage_isabelle)  
+for _ in range(10):
+    EntiteDAO.ajoute_entite(personnage_isabelle)   
 
 
 # Deux campagnes :
@@ -113,31 +81,13 @@ EntiteDAO.ajoute_entite(personnage_isabelle)
 Session.utilisateur.identifiant = "Arthur"
 MaitreDuJeuService.creer_campagne("Orbe mystérieuse !")
 MaitreDuJeuService.creer_campagne("Orbe mystérieuse le retour !")
+
 # Arthur ajoute le personnage de Thomas dans sa campagne, ainsi que ses personnages, les PNJ qu'il a créés : 
 Session.id_campagne = 1
 MaitreDuJeuService.ajouter_entite_campagne(1) # Thomas a dû transmettre à Arthur le nom et l'id de son personnage à ajouter.
 CampagneService.mettre_joueur_dans_campagne("Thomas")
-
-MaitreDuJeuService.ajouter_entite_campagne(11)
-MaitreDuJeuService.ajouter_entite_campagne(12)
-MaitreDuJeuService.ajouter_entite_campagne(13)
-MaitreDuJeuService.ajouter_entite_campagne(14)
-MaitreDuJeuService.ajouter_entite_campagne(15)
-MaitreDuJeuService.ajouter_entite_campagne(16)
-MaitreDuJeuService.ajouter_entite_campagne(17)
-MaitreDuJeuService.ajouter_entite_campagne(18)
-MaitreDuJeuService.ajouter_entite_campagne(19)
-MaitreDuJeuService.ajouter_entite_campagne(20)
-MaitreDuJeuService.ajouter_entite_campagne(21)
-MaitreDuJeuService.ajouter_entite_campagne(22)
-MaitreDuJeuService.ajouter_entite_campagne(23)
-MaitreDuJeuService.ajouter_entite_campagne(24)
-MaitreDuJeuService.ajouter_entite_campagne(25)
-MaitreDuJeuService.ajouter_entite_campagne(26)
-MaitreDuJeuService.ajouter_entite_campagne(27)
-MaitreDuJeuService.ajouter_entite_campagne(28)
-MaitreDuJeuService.ajouter_entite_campagne(29)
-MaitreDuJeuService.ajouter_entite_campagne(30)
+for k in range(11,31):
+    MaitreDuJeuService.ajouter_entite_campagne(k)
 
 # Une campagne d'Isabelle :
 Session.utilisateur.identifiant = "Isabelle"
@@ -179,18 +129,8 @@ DonjonService.deplacer_entite_dans_salle(30, 2, [25, 11])
 
 objet_arthur = Objet(id_objet = -1,nom_objet = "sac d'or", description_obj = "Une quantitée aléatoire de pièces d'ors. Cela peut monter jusau'à 8 000 pièces !")
 
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-ObjetDAO.ajouter_objet(objet_arthur)
-
+for _ in range(11):
+    ObjetDAO.ajouter_objet(objet_arthur)
 
 DonjonService.deplacer_objet_dans_salle(1, 2, [15,3])
 DonjonService.deplacer_objet_dans_salle(2, 2, [19,9])

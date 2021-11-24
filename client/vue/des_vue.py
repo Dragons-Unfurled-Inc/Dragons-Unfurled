@@ -63,8 +63,8 @@ class MenuDes(AbstractVue):
             else:
                 id_entite_donne_attaque = JoueurService.trouve_entite_campagne()
             if DonjonService.existe_entite_campagne(identifiant_entite_cible):
-                type_attaque = input("Quel est le type de votre attaque. Entrez c pour charisme, d pour dextérité, i pour intelligence ou f pour force.")
-                bonus = int(input("Entrez la valeur du bonus d'attaque que vous voulez accorder."))
+                type_attaque = input("Quel est le type de votre attaque. Entrez c pour charisme, d pour dextérité, i pour intelligence ou f pour force.\n")
+                bonus = int(input("Entrez la valeur du bonus d'attaque que vous voulez accorder.\n"))
                 entite_recoie = EntiteService.entite_par_id(identifiant_entite_cible)
                 entite_donne = EntiteService.entite_par_id(id_entite_donne_attaque)
                 Dommage.frappe(entite_donne, entite_recoie, bonus, type_attaque)
