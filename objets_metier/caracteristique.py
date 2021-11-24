@@ -9,7 +9,7 @@ class Caracteristique(BaseModel) :
     """
     nom_entite: str 
     attaques: List[str] = ["Intimidation", "Coup de poing"]
-    capacites: List[str] = ["Voir dans le noir", "double saut"]
+    capacites: List[str] = ["Voir dans le noir", "Double saut"]
     languages: Any = ["Elvish", "Draconic", "Celestial"]
     description: Optional[str] = ''
     niveau: int = 1
@@ -25,7 +25,7 @@ class Caracteristique(BaseModel) :
     
     def __init__(self,nom_entite: str, 
         attaques: List[str] = ["Intimidation", "Coup de poing"],
-        capacites: List[str] = ["Voir dans le noir", "double saut"],
+        capacites: List[str] = ["Voir dans le noir", "Double saut"],
         languages: Any = ["Elvish", "Draconic", "Celestial"],
         description: Optional[str] = '',
         niveau: int = 1,

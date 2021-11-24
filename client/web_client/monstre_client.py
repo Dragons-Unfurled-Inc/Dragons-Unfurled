@@ -36,13 +36,10 @@ class MonstreClient():
             listcapacites = []
             list = dic['attaques']
             list2 = dic['capacites']
-            list3 = dic['attaques_legendaires']
             for dico in list :
                 listattaques.append(dico['name']) 
             for dico2 in list2 : 
                 listcapacites.append(dico2['name'])
-            for dico3 in list3 : 
-                listattaques.append(dico3['name']+'(legendaire)')
             dic.update({'attaques' : listattaques})
             dic.update({'capacites' : listcapacites})
             
