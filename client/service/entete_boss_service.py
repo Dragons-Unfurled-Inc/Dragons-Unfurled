@@ -18,7 +18,8 @@ from rich.text import Text
 class Entete:
 
     """
-    Plateau de boss final.
+    Plateau de boss final. 
+    C'est une classe qui permet d'ajouter une animation avant d'entrer dans la salle de boss.
     """
 
     def make_layout() -> Layout:

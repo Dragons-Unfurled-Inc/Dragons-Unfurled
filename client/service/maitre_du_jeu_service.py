@@ -21,10 +21,6 @@ class MaitreDuJeuService(metaclass = Singleton):
     def existe_entite_nom_id_joueur(nom_entite, id_entite, id_joueur): 
         return MaitreDuJeuDAO.existe_entite_nom_id_joueur(nom_entite, id_entite, id_joueur)
 
-    @staticmethod    
-    def trouve_entite(identifiant_entite) -> Personnage: 
-        pass
-
     @staticmethod
     def creer_campagne(nom_campagne: str): 
         CampagneDAO.creer_campagne(nom_campagne) 

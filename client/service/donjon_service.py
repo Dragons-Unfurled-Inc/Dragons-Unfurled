@@ -15,11 +15,7 @@ class DonjonService(metaclass = Singleton):
 
     @staticmethod
     def construire_donjon(nom_donjon: str, coordonnees_salle_donjon_x: int, coordonnees_salle_donjon_y: int):
-       DonjonDAO.ajoute_donjon(nom_donjon, coordonnees_salle_donjon_x, coordonnees_salle_donjon_y)
-
-    @staticmethod
-    def editer_donjon(self, donjon : Donjon): 
-       None      
+       DonjonDAO.ajoute_donjon(nom_donjon, coordonnees_salle_donjon_x, coordonnees_salle_donjon_y)   
 
     @staticmethod
     def dict_salles():
