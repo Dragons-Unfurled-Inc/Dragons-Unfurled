@@ -4,7 +4,7 @@ from typing import List
 
 class Grille:
     """
-    Cet objet métier est une grille qui correspond à un espace à deux dimension dans une salle du donjon.
+    Cet objet métier est une grille qui correspond à un espace à deux dimensions dans une salle du donjon.
 
 
     ...
@@ -13,7 +13,7 @@ class Grille:
     ----------
 
         largeur : int
-                Cette largeur correspond à la distance en abscice entre la cellule la plus à gauche et celle la plus à droite. 
+                Cette largeur correspond à la distance en abscisse entre la cellule la plus à gauche et celle la plus à droite. 
                 Pour une pièce rectangulaire, cette largeur correspond simplement à la largeur de la pièce, murs exclus.
 
         longueur : int
@@ -24,7 +24,7 @@ class Grille:
                 C'est la liste des coordonnées des cellules.
 
         coordonnees_element : List[int]
-                Ce sont les coordonnées de l'element à déplacer. 
+                Ce sont les coordonnées de l'élément à déplacer. 
 
         coordonnees_entites : List[List[int]]
                 C'est la liste des coordonnées des entités dans la pièce.
@@ -46,10 +46,10 @@ class Grille:
             Cette fonction permet de placer les murs dans la pièce.
 
         dessiner_grille(self, largeur_case = 2) 
-            Cette fonction permet de déssiner la grille à parir de ses attributs et de la longueur de case choisie.
+            Cette fonction permet de dessiner la grille à parir de ses attributs et de la longueur de case choisie.
 
         dessiner_grille(self, largeur_case = 2) 
-            Cette fonction permet de déssiner la grille à parir de ses attributs et de la longueur de case choisie.
+            Cette fonction permet de dessiner la grille à parir de ses attributs et de la longueur de case choisie.
     """
 
     def __init__(self, largeur: int, longueur: int, coordonnees_cellules: list, coordonnees_element: List[int], coordonnees_entites: list, coordonnees_objets: list):
@@ -61,7 +61,7 @@ class Grille:
         ----------
 
             largeur : int
-                    Cette largeur correspond à la distance en abscice entre la cellule la plus à gauche et celle la plus à droite. 
+                    Cette largeur correspond à la distance en abscisse entre la cellule la plus à gauche et celle la plus à droite. 
                     Pour une pièce rectangulaire, cette largeur correspond simplement à la largeur de la pièce, murs exclus.
 
             longueur : int
@@ -72,7 +72,7 @@ class Grille:
                     C'est la liste des coordonnées des cellules.
 
             coordonnees_element : List[int]
-                    Ce sont les coordonnées de l'element à déplacer. 
+                    Ce sont les coordonnées de l'élément à déplacer. 
 
             coordonnees_entites : List[List[int]]
                     C'est la liste des coordonnées des entités dans la pièce.
@@ -83,7 +83,7 @@ class Grille:
         self.largeur = largeur 
         self.longueur = longueur
         self.murs = [] # Cette liste va contenir la lite des coordonnées des murs, une fois placés avec place_murs().
-        self.quitter = False # Lorsque quitter passera à True, deplacement_salle_service cessera ses appels à la déssiner_grille et déplace_element.
+        self.quitter = False # Lorsque quitter passera à True, deplacement_salle_service cessera ses appels à dessiner_grille et deplace_element.
         self.coordonnees_cellules = coordonnees_cellules
         self.coordonnees_objets_non_element = coordonnees_objets
         self.element = coordonnees_element 
@@ -129,21 +129,21 @@ class Grille:
             self.element = pos # Si le message entré ne convient pas, la position ne change pas.
 
         if pos not in self.murs and pos not in self.coordonnees_objets_non_element and pos not in self.coordonnees_entites_non_element: # Nous ne pouvons pas rentrer dans un mur, dans un objet ou un autre entité.
-            self.element = pos # La nouvelle position n'est enregistré, que si la nouvelle position demandée est possible.
+            self.element = pos # La nouvelle position n'est enregistrée, que si la nouvelle position demandée est possible.
 
     def place_murs_aleatoire(self, pct=.25) -> list: 
         """ 
         Cette fonction permet de remplir aléatoirement la pièce avec un certain pourcentage de murs.
         N.B : Cette fonction n'est pas employée dans la vue de déplacement en donjon. 
-        Elle nous a cependant servit à penser nos fonctions et à nous projeter durant l'implémentation du code. 
-        Elle donne des résultats satisfaisant, qui pourraient être exploités à postériori.
+        Elle nous a cependant servi à penser nos fonctions et à nous projeter durant l'implémentation du code. 
+        Elle donne des résultats satisfaisants, qui pourraient être exploités à postériori.
 
 
         Parameters
         ----------
             pct : float
-                Cette valeur correspond à la proportion de murs qui vont être généré aléatoirement dans la pièce.
-                Rien n'empèche que les murs géné se superpose. 
+                Cette valeur correspond à la proportion de murs qui vont être générés aléatoirement dans la pièce.
+                Rien n'empèche que les murs génés se superposent. 
                 Ceci n'est pas un problème, mais est bon à savoir. 
                 Il y aura donc un peu moins de pct*100% de murs dans la pièce.
 
@@ -160,9 +160,9 @@ class Grille:
             y = randint(1, self.longueur+1)
 
             murs.append([x, y]) # Nous ajoutons le mur.
-            murs.append([x + choice([-1, 0, 1]), y + choice([-1, 0, 1])]) # La fonction choice choisie au hasard un entier de la liste. 
+            murs.append([x + choice([-1, 0, 1]), y + choice([-1, 0, 1])]) # La fonction choice choisit au hasard un entier de la liste. 
                                                                           # L'idée est ici de regrouper quelques murs pour un aspect plus réel.
-                                                                          # Nous ajoutons donc un mur aléatoirement à une distance en abscisse et ordonnée inférieur ou égale à un du mur précédent.
+                                                                          # Nous ajoutons donc un mur aléatoirement à une distance en abscisse et ordonnée inférieure ou égale à un du mur précédent.
         self.murs = murs
 
     def place_murs(self) -> list:
@@ -187,7 +187,7 @@ class Grille:
 
     def dessiner_grille(self, largeur_case = 2): 
         """ 
-        Cette fonction permet de déssiner la grille à parir de ses attributs et de la longueur de case choisie.
+        Cette fonction permet de dessiner la grille à parir de ses attributs et de la longueur de case choisie.
 
 
         Parameters
@@ -199,8 +199,8 @@ class Grille:
         -------
             None    
         """
-        for y in range(self.longueur + 1, -1, -1): # Nous prenons en compte toutes les cases dans le carré formé par les dimensions de la salle, ainsi que celle sur le contour extérieur.
-                                                   # De plus, nous parcourons les rangés de cellules de haut en bas pour que les prints donne un rendu satisfaisant, avec l'axe des ordonnées orienté vers le haut. 
+        for y in range(self.longueur + 1, -1, -1): # Nous prenons en compte toutes les cases dans le carré formé par les dimensions de la salle, ainsi que celles sur le contour extérieur.
+                                                   # De plus, nous parcourons les rangés de cellules de haut en bas pour que les prints donnent un rendu satisfaisant, avec l'axe des ordonnées orienté vers le haut. 
             for x in range(self.largeur + 2):
                 if [x, y] in self.murs:
                     symbol = '#'
@@ -215,6 +215,6 @@ class Grille:
                 print("%%-%ds" % largeur_case % symbol, end="") # end="" permet de mettre les caractères les uns à la suite des autres, jusqu'à arriver au print en dessous. 
                                                                 # De cette manière, nous affichons une ligne de caractères correspondant à une ligne de la grille.
                                                                 # Le %d permet d'entrer largeur_case dans l'expréssion (decimal integer) 
-                                                                # Le s qui le suit et le 1er % permet de dire que nous somme en train de spécifier la largeur du print.
-                                                                # Le deuxième % sert à insérer le symbol souhaité.
+                                                                # Le s qui le suit et le 1er % permet de dire que nous sommes en train de spécifier la largeur du print.
+                                                                # Le deuxième % sert à insérer le symbole souhaité.
             print()

@@ -9,7 +9,7 @@ from objets_metier.grille import Grille
 
 class TestGrille(TestCase):
     """
-    Cette classe de tests s'applique à l'objet métier "Grille". Une grille qui correspond à un espace à deux dimension dans une salle du donjon.
+    Cette classe de tests s'applique à l'objet métier "Grille". Une grille qui correspond à un espace à deux dimensions dans une salle du donjon.
     Dans ces tests, l'élément que nous déplacerons sera un personnage d'un joueur.
 
     Args:
@@ -64,7 +64,7 @@ class TestGrille(TestCase):
 
     def test_dessiner_grille(self): 
         """
-        Cette fonction test le dessin de la grille.
+        Cette fonction teste le dessin de la grille.
         """
 
         # ETANT DONNÉ
@@ -91,15 +91,15 @@ class TestGrille(TestCase):
             
     def test_place_murs_aleatoire(self):
         """
-        Cette fonciton test la construction aléatoire de murs. 
+        Cette fonciton teste la construction aléatoire de murs. 
         N.B : Cette fonction n'est pas employée dans la vue de déplacement en donjon. 
         Elle nous a cependant servit à penser nos fonctions et à nous projeter durant l'implémentation du code. 
-        Elle donne des résultats satisfaisant, qui pourraient être exploités à postériori.
+        Elle donne des résultats satisfaisants, qui pourraient être exploités à postériori.
         """
 
         # ETANT DONNÉ
         random.seed(1) # Cette graine permet de réobtenir toujours le même résultat. Nous allons donc réaliser un seul exemple de test unitaire possible sur la fonction place_murs_aleatoire.
-        dimensions = [2,2] # Nous construison cette fois une salle vide sans entité ni objet.
+        dimensions = [2,2] # Nous construisons cette fois une salle vide sans entité ni objet.
         coordonnees_cellules = [[1,2],[1,2],[2,1],[2,2]]
         coordonnees_entite = [] 
         coordonnees_entites = [[]] # La liste vide est necessaire dans le cas où il n'y a pas de personnage joueur. 
