@@ -42,7 +42,7 @@ class ObjetService():
         desc = 'Pas de description'  
         if 'desc' in dicobjet.keys():
             desc = dicobjet['desc']
-        return (Objet(-1,'index',desc))    
+        return index,desc    
         
         
 
