@@ -95,7 +95,6 @@ class MenuDeplace(AbstractVue):
             else:
                 MaitreDuJeuService.retirer_objet_salle(identifiant_objet)
                 print("L'objet a été retiré de sa salle.")
-
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 

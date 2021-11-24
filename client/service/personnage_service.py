@@ -1,8 +1,10 @@
-from objets_metier.personnage import Personnage 
-from utils.singleton import Singleton
 import requests as req
+from objets_metier.personnage import Personnage
+from utils.singleton import Singleton
+
+points = [0,300,900,2.700,6.500,14.000,23.000,34.000,48.000	,64.000	,85.000	,100.000,120.000,140.000,165.000,195.000,225.000, 265.000,305.000, 355.000]	
 '''
-Experience Points	Level	Proficiency Bonus
+XP	Level	Bonus
 0       1	+2
 300  	2	+2
 900	    3	+2
@@ -23,9 +25,6 @@ Experience Points	Level	Proficiency Bonus
 265.000	18	+6
 305.000	19	+6
 355.000	20	+6 '''
-points = [0,300,900,2.700,6.500,14.000,23.000,34.000,48.000	,64.000	,85.000	,100.000,120.000,140.000,165.000,195.000,225.000, 265.000,305.000, 355.000]	
-#Ceci est à stocker dans notre API ! 
-
 class PersonnageService(metaclass=Singleton): 
     
     @staticmethod #après avoir posté ces données sur l'API on peut vérifier si avec un tel pt d'expérience un perso peut monter de niveau (ici version test)

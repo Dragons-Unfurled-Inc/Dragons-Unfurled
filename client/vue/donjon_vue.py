@@ -1,4 +1,6 @@
 from client.service.donjon_service import DonjonService
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
+from client.service.objet_service import ObjetService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from objets_metier.donjon import Donjon
@@ -27,7 +29,7 @@ class MenuDonjon(AbstractVue):
                     'Modifier une salle',
                     Separator(),
                     'Ajouter un élément dans une salle du donjon',
-                    'Modifier un élément dans le donjon',
+                    'Ramasser un objet avec un personnage',
                     'Déplacer ou retirer un élément',
                     Separator(),
                     'Quitter le donjon',
@@ -91,7 +93,7 @@ class MenuDonjon(AbstractVue):
                 print("La salle a bien été ajoutée.")
             else:
                 print("La place était déjà prise.")
-            from client.vue.donjon_vue import MenuDonjon
+            from client.vue.donjon_vue import MenuDonjon 
             return MenuDonjon()
 
         if reponse['choix'] == 'Modifier une salle':
@@ -109,8 +111,32 @@ class MenuDonjon(AbstractVue):
             from client.vue.donjon_vues.ajout_vue import MenuAjout
             return MenuAjout()
 
-        if reponse['choix'] == 'Modifier un élément dans le donjon':
-            pass
+        if reponse['choix'] == 'Ramasser un objet avec un personnage':
+            dict_objets = MaitreDuJeuService.dict_objets()  
+            print("Voici la liste des différents objets :")
+            for objet in dict_objets:
+                print(objet["nom_objet"], " : ", objet["id_objet"])
+            identifiant_objet = input("Saisissez l'identifiant de l'objet à ramasser. \n")
+            identifiant_salle = MaitreDuJeuService.id_salle_contenant_objet(identifiant_objet)   
+            if identifiant_salle == None:
+                print("L'objet entré n'est dans aucune salle.")
+            else:
+                dict_entites = MaitreDuJeuService.dict_entites()
+                print("Voici la liste des différentes entités :")
+                for entite in dict_entites:
+                    print(entite["nom_entite"], " : ", entite["id_entite"])
+                identifiant_entite = input("Saisissez l'identifiant de l'entité qui récupère l'objet. \n")
+                dict_salles = MaitreDuJeuService.dict_salles() 
+                print("Voici la liste des salles de votre donjon :")
+                for salle in dict_salles:
+                    print(salle["nom_salle"], " : ", salle["id_salle"])
+                if DonjonService.existe_entite_campagne(identifiant_entite):
+                    ObjetService.ramasse_objet(identifiant_entite, identifiant_objet)  
+                    print("L'objet a été ramassé.")
+                else:
+                    print("L'identifiant entré ne correspond pas à une entité de la campagne.")
+            from client.vue.donjon_vue import MenuDonjon 
+            return MenuDonjon()
 
         if reponse['choix'] == 'Déplacer ou retirer un élément':
             from client.vue.donjon_vues.deplace_vue import MenuDeplace

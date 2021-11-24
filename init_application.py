@@ -1,6 +1,7 @@
 from client.service.campagne_service import CampagneService
 from client.service.donjon_service import DonjonService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
+from client.service.objet_service import ObjetService
 from client.service.utilisateur_service import UtilisateurService
 from client.vue.session import Session
 from objets_metier.caracteristique import Caracteristique
@@ -125,11 +126,11 @@ DonjonService.deplacer_entite_dans_salle(28, 2, [25, 11])
 DonjonService.deplacer_entite_dans_salle(29, 2, [25, 11]) 
 DonjonService.deplacer_entite_dans_salle(30, 2, [25, 11])
 
-# Un objet répliqué 11 fois qu'Arthur va placer dans cette salle :
+# Un objet répliqué 15 fois qu'Arthur va placer dans cette salle :
 
 objet_arthur = Objet(id_objet = -1,nom_objet = "sac d'or", description_obj = "Une quantitée aléatoire de pièces d'ors. Cela peut monter jusau'à 8 000 pièces !")
 
-for _ in range(11):
+for _ in range(15):
     ObjetDAO.ajouter_objet(objet_arthur)
 
 DonjonService.deplacer_objet_dans_salle(1, 2, [15,3])
@@ -143,3 +144,12 @@ DonjonService.deplacer_objet_dans_salle(8, 2, [16, 14])
 DonjonService.deplacer_objet_dans_salle(9, 2, [27, 14])
 DonjonService.deplacer_objet_dans_salle(10, 2, [28, 14])
 DonjonService.deplacer_objet_dans_salle(11, 2, [29, 14])
+
+DonjonService.deplacer_objet_dans_salle(12, 2, [5, 14])
+DonjonService.deplacer_objet_dans_salle(13, 2, [6, 14])
+DonjonService.deplacer_objet_dans_salle(14, 2, [7, 14])
+
+# Gilthar, le personnage de thomas, va ramasser trois objets dans la salle du donjon d'Arthur :
+ObjetService.ramasse_objet(1, 12) 
+ObjetService.ramasse_objet(1, 13)
+ObjetService.ramasse_objet(1, 14) 
