@@ -76,7 +76,7 @@ class Donjon(BaseModel):
     def editer_salle(self, salle : Salle):
         """
         """
-        None    
+        None
 
     def inventaire_donjon(self):
         """

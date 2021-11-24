@@ -10,6 +10,7 @@ from objets_metier.objet import Objet
 from objets_metier.salle import Salle
 from objets_metier.donjon import Donjon
 from objets_metier.personnage import Personnage
+
 class DonjonDAO(metaclass=Singleton):
     
     @staticmethod    

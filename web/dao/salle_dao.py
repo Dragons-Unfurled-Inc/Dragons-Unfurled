@@ -1,6 +1,8 @@
 import random
 from typing import List
 
+from PyInquirer.prompt import prompt
+
 from objets_metier.objet import Objet
 from objets_metier.salle import Salle
 from objets_metier.personnage import Personnage
@@ -370,3 +372,37 @@ class SalleDAO(metaclass=Singleton):
                             liste_enti.append(monstre)
         salle_retournee = Salle(id_salle = id_salle, nom_salle = salle[1][0], coordonnees_salle_donjon = [salle[2][0], salle[3][0]], coordonnees_salle_cellule = [[0,0], [1,1]], objets = liste_obj, entites = liste_enti )
         return salle_retournee
+    
+    @staticmethod
+    def modifier_salle(id_salle : int, nom_chang : str, val):
+        if nom_chang == "id_salle" : 
+            print("Vous ne pouvez pas modifier l\'id d\'une entité.")
+        elif nom_chang == "objets" or nom_chang == "entites" : 
+            print("Pour modifier les élements d'une salle, rendez-vous dans le menu 'Modifier un élément dans le donjon'")
+        elif nom_chang == "nom_salle":
+            with DBConnection().connection as connection:
+                                with connection.cursor() as cursor:
+                                    cursor.execute(
+                                        "UPDATE Salle "\
+                                        "SET nom_salle = %(nom_salle)s "\
+                                        "WHERE (id_salle = %(id_salle)s) "\
+                                        , {"nom_salle" : val
+                                        , "id_salle" : id_salle})
+        elif nom_chang == "coordonnes_salle_donjon":
+            with DBConnection().connection as connection:
+                                with connection.cursor() as cursor:
+                                    cursor.execute(
+                                        "UPDATE Salle "\
+                                        "SET coordonnee_salle_x = %(coord_x)s "\
+                                        "WHERE (id_salle = %(id_salle)s) "\
+                                        , {"coord_x" : val[0]
+                                        , "id_salle" : id_salle})
+                                    cursor.execute(
+                                        "UPDATE Salle "\
+                                        "SET coordonnee_salle_y = %(coord_y)s "\
+                                        "WHERE (id_salle = %(id_salle)s) "\
+                                        , {"coord_y" : val[1]
+                                        , "id_salle" : id_salle})
+        elif nom_chang == "coordonnes_salle_cellule":
+            print("Vous ne pouvez pas modifier les coordonnées des cellules.")
+        
