@@ -20,7 +20,7 @@ class Caracteristique(BaseModel) :
     dexterite: int = 20 
     constitution: int = 5
     sagesse: int = 20 
-    vie: int = 10
+    vie: int = 50
     classe_armure: int = 5
     
     def __init__(self,nom_entite: str, 
@@ -36,8 +36,8 @@ class Caracteristique(BaseModel) :
         dexterite: int = 20,
         constitution: int = 5,
         sagesse: int = 20,
-        vie: int = 10,
-        classe_armure: int = 10):
+        vie: int = 50,
+        classe_armure: int = 5):
         super().__init__(nom_entite = nom_entite,
             classe_armure = classe_armure,
             force = force,

@@ -50,7 +50,7 @@ Session.utilisateur.identifiant = "Arthur"
 carac = Caracteristique(nom_entite = "Reciä Lanīakwæ")
 personnage_arthur = Personnage(classe = "Druid",
                                 race = "Half-Elf",
-                                lore = "Reciä est une espèce de créateur, d'artiste même, qui serait capable d'insuffler la vie à des engrenages inertes... \n Il s'est promis de vaincre coûte que coûte.", 
+                                lore = "Reciä est une espèce de créateur, d'artiste même, qui serait capable d'insuffler la vie à des engrenages inertes...", 
                                 id_joueur = "Arthur", 
                                 id_entite = -1, 
                                 nom_entite = "Reciä Lanīakwæ", 

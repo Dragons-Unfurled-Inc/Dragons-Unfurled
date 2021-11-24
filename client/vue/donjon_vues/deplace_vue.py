@@ -84,6 +84,18 @@ class MenuDeplace(AbstractVue):
             return MenuDonjon()
 
         if reponse['choix'] == 'Retirer un objet de sa salle':
+            dict_objets = MaitreDuJeuService.dict_objets()  
+            print("Voici la liste des différents objets :")
+            for objet in dict_objets:
+                print(objet["nom_objet"], " : ", objet["id_objet"])
+            identifiant_objet = input("Saisissez l'identifiant de l'objet à retirer de sa salle. \n")
+            identifiant_salle = MaitreDuJeuService.id_salle_contenant_objet(identifiant_objet)   
+            if identifiant_salle == None:
+                print("L'objet entré n'est dans aucune salle.")
+            else:
+                MaitreDuJeuService.retirer_objet_salle(identifiant_objet)
+                print("L'objet a été retiré de sa salle.")
+
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
 
@@ -117,7 +129,7 @@ class MenuDeplace(AbstractVue):
                 coordonnees_cellules_salle = CelluleService.coordonnees_cellules_salle(identifiant_salle)
                 coordonnees_entites_salle = SalleService.coordonnees_entites_salle(identifiant_salle) 
                 coordonnees_objets_salle = SalleService.coordonnees_objets_salle(identifiant_salle) 
-                dimensions = SalleService.dimensions_salle(coordonnees_cellules_salle) # Cette fonction renvoie une liste contenant la largeur et la profondeur de la salle. 
+                dimensions = SalleService.dimensions_salle(coordonnees_cellules_salle) 
                 nouvelles_coordonnees_entite = DeplacementSalleService.deplacer_element_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_entite_salle, coordonnees_entites_salle, coordonnees_objets_salle)
                 if DonjonService.existe_cellules_salle(nouvelles_coordonnees_entite, identifiant_salle):  
                     DonjonService.deplacer_entite_dans_salle(identifiant_entite, identifiant_salle, nouvelles_coordonnees_entite) 
@@ -128,6 +140,17 @@ class MenuDeplace(AbstractVue):
             return MenuDonjon()
 
         if reponse['choix'] == 'Retirer une entité de sa salle':
+            dict_entites = MaitreDuJeuService.dict_entites()
+            print("Voici la liste des différentes entités :")
+            for entite in dict_entites:
+                print(entite["nom_entite"], " : ", entite["id_entite"])
+            identifiant_entite = input("Saisissez l'identifiant de l'entité à retirer de sa salle. \n")
+            identifiant_salle = MaitreDuJeuService.id_salle_contenant_entite(identifiant_entite)   
+            if identifiant_salle == None:
+                print("L'entité entrée n'est dans aucune salle.")
+            else:
+                MaitreDuJeuService.retirer_entite_salle(identifiant_entite)
+                print("L'entité a été retirée de sa salle.")
             from client.vue.donjon_vue import MenuDonjon
             return MenuDonjon()
             

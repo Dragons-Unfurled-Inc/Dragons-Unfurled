@@ -18,8 +18,8 @@ class FeedBackClient:
     def donne_feedback(identifiant_joueur: int, message: str) :
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
-        api_dest = str.format("http://{}/identifiant_joueur/{}/message/{}", api_url, identifiant_joueur, message)
-        requests.post(api_dest)
+        api_dest = str.format("http://{}/donne_feed_back", api_url)
+        requests.post(api_dest, json = {'message': message, 'identifiant_joueur': identifiant_joueur})
 
     @staticmethod
     def consulter_feed_back():

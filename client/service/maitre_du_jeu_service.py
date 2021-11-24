@@ -67,3 +67,11 @@ class MaitreDuJeuService(metaclass = Singleton):
     @staticmethod
     def id_salle_contenant_objet(identifiant_objet):
         return SalleDAO.id_salle_contenant_objet(identifiant_objet) 
+
+    @staticmethod
+    def retirer_objet_salle(id_objet: int):
+        return MaitreDuJeuDAO.retirer_objet_salle(id_objet)
+
+    @staticmethod
+    def retirer_entite_salle(id_entite: int):
+        return MaitreDuJeuDAO.retirer_entite_salle(id_entite)

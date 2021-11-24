@@ -8,8 +8,8 @@ class UtilisateurClient:
     def creation_utilisateur(utilisateur_nom, mot_de_passe, est_administrateur):
         configuration = WebConfiguration()
         api_url = configuration.getApiUrl()
-        api_dest = str.format("http://{}/utilisateur/{}/mot_de_passe/{}/est_administrateur/{}", api_url, utilisateur_nom, mot_de_passe, est_administrateur)
-        est_un_utilisateur = requests.post(api_dest)
+        api_dest = str.format("http://{}/creation_utilisateur", api_url)
+        est_un_utilisateur = requests.post(api_dest, json = {'utilisateur_nom': utilisateur_nom, 'mot_de_passe' : mot_de_passe, 'est_administrateur' : est_administrateur})
         return est_un_utilisateur.json()
         
     @staticmethod

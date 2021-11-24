@@ -559,7 +559,7 @@ class EntiteDAO:
                 if capacite == None :
                     capacite = []
                 else :
-                    capacite = [capacite[i]["nom_capactite"] for i in range(len(capacite))]
+                    capacite = [capacite[i]["nom_capacite"] for i in range(len(capacite))]
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
@@ -583,7 +583,7 @@ class EntiteDAO:
                 if objet == None :
                     objet = []
                 else : 
-                    objet = [objet[i]["id_objet"] for i in range(len(langage))]
+                    objet = [objet[i]["id_objet"] for i in range(len(objet))]
         liste_objet = []
         for id_objet in objet: 
             with DBConnection().connection as connection:

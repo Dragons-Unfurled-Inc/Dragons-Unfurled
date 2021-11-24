@@ -371,7 +371,7 @@ class MaitreDuJeuDAO:
                                             liste_objet_perso = [] 
                                             for i in range(len(id_objet_perso)):
                                                 liste_objet_perso.append(Objet(id_objet = objet_perso[i]["id_objet"], nom_objet = objet_perso[i]["nom_objet"], description_obj = objet_perso[i]["description_obj"]))
-                                            caract = Caracteristique(nom_entite = enti_perso["nom_entite"], force = enti_perso["force"], experience = enti_perso["experience"], intelligence = enti_perso["intelligence"], charisme = enti_perso["charisme"], dexterite = enti_perso["dexterite"], constitution = enti_perso["constitution"], vie = enti_perso["vie"], sagesse =  enti_perso["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = "Nous n\'affichons pas la description ici pour ne pas surcharger.", classe_armure = enti_perso["classe_armure"])
+                                            caract = Caracteristique(nom_entite = enti_perso["nom_entite"], force = enti_perso["force"], experience = enti_perso["experience"], intelligence = enti_perso["intelligence"], charisme = enti_perso["charisme"], dexterite = enti_perso["dexterite"], constitution = enti_perso["constitution"], vie = enti_perso["vie"], sagesse =  enti_perso["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = enti_perso["description"], classe_armure = enti_perso["classe_armure"])
                                             perso = Personnage(classe = perso["classe"], race = perso["race"], lore = perso["lore"], id_joueur = enti_perso["username"], id_entite = enti_perso["id_entite"], nom_entite = enti_perso["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet_perso)
                                             liste_enti.append(perso)
 
@@ -536,3 +536,23 @@ class MaitreDuJeuDAO:
                 res = cursor.fetchall()        
         liste_pnj = [dict(row) for row in res]
         return liste_pnj
+
+    @staticmethod
+    def retirer_objet_salle(id_objet: int):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Objet "\
+                    "SET id_cellule = NULL "\
+                    "WHERE id_objet = %(id_objet)s;"\
+                    , {"id_objet" : id_objet})
+    
+    @staticmethod
+    def retirer_entite_salle(id_entite: int):
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "UPDATE Entite "\
+                    "SET id_cellule = NULL "\
+                    "WHERE id_entite = %(id_entite)s;"\
+                    , {"id_entite" : id_entite})
