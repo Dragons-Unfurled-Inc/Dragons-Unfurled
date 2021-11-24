@@ -112,6 +112,39 @@ class EntiteDAO:
             else:
                 MonstreDAO.add_monstre(entite)
             UtilisateurEntiteDao.ajoute_utilisateur_entite(entite)
+            for nom_capacite in entite.caracteristiques_entite.capacites:
+                with DBConnection().connection as connection:
+                    with connection.cursor() as cursor :
+                        cursor.execute(
+                            "INSERT INTO Capacite (nom_capacite, "\
+                                                "id_entite) "\
+                            "VALUES "\
+                            "(%(nom_capacite)s,%(id_entite)s)"
+    
+                        , {"nom_capacite" : nom_capacite
+                        , "id_entite": entite.id_entite}) 
+            for nom_langage in entite.caracteristiques_entite.languages:
+                with DBConnection().connection as connection:
+                    with connection.cursor() as cursor :
+                        cursor.execute(
+                            "INSERT INTO Langage (nom_langage, "\
+                                                "id_entite) "\
+                            "VALUES "\
+                            "(%(nom_langage)s,%(id_entite)s)"
+    
+                        , {"nom_langage" : nom_langage
+                        , "id_entite": entite.id_entite}) 
+            for nom_attaque in entite.caracteristiques_entite.attaques:
+                with DBConnection().connection as connection:
+                    with connection.cursor() as cursor :
+                        cursor.execute(
+                            "INSERT INTO Attaque (nom_attaque, "\
+                                                "id_entite) "\
+                            "VALUES "\
+                            "(%(nom_attaque)s,%(id_entite)s)"
+    
+                        , {"nom_attaque" : nom_attaque
+                        , "id_entite": entite.id_entite}) 
 
     @staticmethod    
     def ajouter_objets(entite: Entite): 

@@ -8,9 +8,9 @@ class Caracteristique(BaseModel) :
     Cette classe fait l'inventaire des caractéristiques des entités.
     """
     nom_entite: str 
-    attaques: List[str] = []
-    capacites: List[str] = []
-    languages: Any = []
+    attaques: List[str] = ["Intimidation", "Coup de poing"]
+    capacites: List[str] = ["Voir dans le noir", "double saut"]
+    languages: Any = ["Elvish", "Draconic", "Celestial"]
     description: Optional[str] = ''
     niveau: int = 1
     experience: int = 20
@@ -24,9 +24,9 @@ class Caracteristique(BaseModel) :
     classe_armure: int = 5
     
     def __init__(self,nom_entite: str, 
-        attaques: List[str] = [],
-        capacites: List[str] = [],
-        languages: List[str] = [],
+        attaques: List[str] = ["Intimidation", "Coup de poing"],
+        capacites: List[str] = ["Voir dans le noir", "double saut"],
+        languages: Any = ["Elvish", "Draconic", "Celestial"],
         description: Optional[str] = '',
         niveau: int = 1,
         experience: int = 20,
