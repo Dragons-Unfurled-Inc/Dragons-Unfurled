@@ -15,6 +15,7 @@ class StartVue(AbstractVue):
                 'choices': [
                     'S\'authentifier' ,
                     'Créer un compte' , 
+                    'Importer une sauvegarde',
                     'Quitter l\'application'
 
                 ]
@@ -32,10 +33,11 @@ class StartVue(AbstractVue):
             return ConnCompteVue()
 
         if reponse['choix'] == 'Créer un compte':
-            # from client.service.utilisateur_service import UtilisateurService
-            # utilisateur = UtilisateurService.creation_compte("joueur")
-            # from client.vue.accueil_jeu_vue import AccueilJeuVue
             return CreaCompteVue()  
+
+        if reponse['choix'] == 'Importer une sauvegarde':
+            print("La sauvegarde a été restaurée.")
+            return StartVue() 
         
         if reponse['choix'] == 'Quitter l\'application':
             with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/dragons/dragon3.txt', 'r', encoding="utf-8") as affichage2, open('client/dessins_ascii/texte/au_revoir.txt', 'r', encoding="utf-8") as affichage3:
