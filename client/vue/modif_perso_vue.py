@@ -1,7 +1,7 @@
 from client.vue.abstract_vue import AbstractVue
 from client.vue.joueur_vue import MenuJoueur
 from PyInquirer import prompt
-from web.dao.entite_dao import EntiteDAO
+from web.service.entite_service import EntiteService
 from web.service.utilisateur_service import UtilisateurService
 
 from client.vue.session import Session
@@ -58,11 +58,11 @@ class ModifCaracVue(AbstractVue):
         nom = reponse['Nom']
         if nom == "attaques": 
             nom_spec = prompt(self.questions_spec)
-            EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Att'])
+            EntiteService.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Att'])
         if nom == "capacites": 
-            EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Cap'])
+            EntiteService.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Cap'])
         if nom == "languages": 
-            EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Lang'])
+            EntiteService.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'], nom_spec = nom_spec['Lang'])
         else : 
-            EntiteDAO.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'])
+            EntiteService.modifier_carac(self.enti_perso.id_entite, nom,reponse['Val'])
         return MenuJoueur()

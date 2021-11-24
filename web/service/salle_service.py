@@ -13,7 +13,6 @@ class SalleService():
     def trouve_salle(id_salle):
         return SalleDAO.trouve_salle(id_salle)
 
-
     @staticmethod
     def ajoute_salle(id_donjon : int,  salle : Salle): 
         salle_persistee = SalleDAO.add_salle(id_donjon, salle)
@@ -49,4 +48,8 @@ class SalleService():
             if coordonnee[1] > profondeur:
                 profondeur = coordonnee[1]
         return [largeur, profondeur]
+    
+    @staticmethod
+    def modifier_salle(id_salle : int, nom_chang : str, valeur):
+        return SalleDAO.modifier_salle(id_salle, nom_chang, valeur)
             
