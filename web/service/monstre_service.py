@@ -8,6 +8,7 @@ from web.dao.capacite_dao import CapaciteDAO
 from web.dao.langage_dao import LangageDAO
 from web.dao.entite_objet_dao import ObjetEntiteDAO
 import requests as requ
+from web.web_config import WebConfig
 
 class MonstreService():
     @staticmethod
@@ -24,8 +25,8 @@ class MonstreService():
     
     @staticmethod  
     def getNetMonstre(nom):
-        req = requ.get('https://www.dnd5eapi.co/api/monsters/' + nom)
-        return req.json()
+        return WebConfig.getdnd(nom)
+        
     
     @staticmethod
     def getNetMonstreEtType():
@@ -33,8 +34,7 @@ class MonstreService():
         monsters(limit : 500){name,type}
         }
         """
-        endpoint="https://www.dnd5eapi.co/graphql"
-        r = requ.post(endpoint,json={"query":query})
+        r = WebConfig.post(query)
         noms_types = r.json()
         return(noms_types['data']['monsters'])
     
@@ -64,8 +64,7 @@ class MonstreService():
 monsters(limit:-1){name,actions{name,desc,damage{damage_dice,damage_type{name}},attack_bonus}, legendary_actions{name,desc,attack_bonus}}
 }
         """
-        endpoint="https://www.dnd5eapi.co/graphql"
-        r = requ.post(endpoint,json={"query":query})
+        r = WebConfig.post(query)
         noms_attaques = r.json()
         dic = noms_attaques['data']['monsters']
         for mon in dic : 

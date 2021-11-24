@@ -5,31 +5,7 @@ from googletrans import Translator
 class TradWebconfig(WebConfiguration):
     
     @staticmethod
-    def trad2(dic,language = "fr"):
-        translator = Translator(service_urls='translate.google.com')
-        dictraduit = {}
-        for key in dic :
-            keytrad = translator.translate(key, dest=language)
-            dictrad = {}
-            if isinstance(dic[key], dict):
-                dictrad = TradWebconfig.trad(dic[key])
-            if (dic[key] == None):
-                dictrad= "absent"
-            if isinstance(dic[key], int):
-                dictrad = dic[key]
-            if isinstance(dic[key],list):
-                listetrad = []
-                for elem in dic[key] :
-                    listetrad.append(TradWebconfig.trad(elem))
-                dictrad = listetrad
-            if isinstance(dic[key],str):
-                dictrad = translator.translate(dic[key], dest=language)
-            dictraduit.update({keytrad : dictrad})
-        print(dictraduit)
-        return dictraduit
-    
-    @staticmethod
-    def trad(dic,language = "fr"):
+    def trad(dic):
         dictraduit = {}
         for key in dic :
             keytrad = TradWebconfig.libtrad(key)
