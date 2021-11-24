@@ -42,7 +42,11 @@ class AccueilJeuVue(AbstractVue):
             return MenuPersonnage()
         
         if reponse['choix'] == 'Rejoindre une campagne': 
-            identifiant_campagne = int(input('Quel est l\'identifiant de votre campagne ?\n'))
+            dict_campagnes = CampagneService.dict_campagnes()  
+            print("Voici la liste des campagnes auxquelles vous avez accès :")
+            for campagne in dict_campagnes:
+                print(campagne["nom_campagne"], " : ", campagne["id_campagne"])
+            identifiant_campagne = int(input('Quel est l\'identifiant de la campagne à laquelle vous voulez accéder ?\n'))
             if identifiant_campagne in CampagneService.liste_id():
                 id_mj = CampagneService.trouve_mj(identifiant_campagne) 
                 liste_id_joueurs = CampagneService.trouve_joueurs(identifiant_campagne)

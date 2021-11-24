@@ -38,6 +38,9 @@ class CampagneService(metaclass = Singleton):
     def retirer_joueur_de_campagne(username):
         return CampagneDAO.retirer_joueur_de_campagne(username)   
  
+    @staticmethod
+    def dict_campagnes():
+        return CampagneDAO.dict_campagnes()  
 
          
 

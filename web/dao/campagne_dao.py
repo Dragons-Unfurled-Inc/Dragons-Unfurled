@@ -59,9 +59,10 @@ class CampagneDAO:
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
-                        "SELECT id_campagne as id, username as nom , est_joueur as bool "\
+                        "SELECT username as nom "\
                         "FROM Utilisateur_Campagne "\
-                        "WHERE est_joueur = true;"
+                        "WHERE est_joueur = true "\
+                        "AND id_campagne = %(id_campagne)s;"
                     ,{"id_campagne" : id_campagne})
                     campagne = cursor.fetchall()
                     res = []
@@ -147,5 +148,18 @@ class CampagneDAO:
                 res = cursor.fetchone()
         return dict(res)["id_entite"]
 
-
+    @staticmethod
+    def dict_campagnes():
+        username = Session.utilisateur.identifiant
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT Campagne.id_campagne, nom_campagne "\
+                    "FROM Campagne JOIN Utilisateur_campagne ON Campagne.id_campagne = Utilisateur_campagne.id_campagne "\
+                    "WHERE username=%(username)s"\
+                    ,{"username" : username}
+                )
+                res = cursor.fetchall()        
+        liste_campagnes = [dict(row) for row in res]
+        return liste_campagnes
 
