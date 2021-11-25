@@ -162,70 +162,29 @@ Nous avons commenté de façons plus détaillé la classe du fichier [Personnage
 
 Voici des exemple d'utilisations possibles de notre application :
 
-### Comptes de base de l'application :
-
-- Le premier utilisateur déjà implémenté dans la base de données 
-est un client qui a pour nom : client1, pour mot de passe : mdpclient1 
-
-- Le second utilisateur est un administrateur qui a pour nom : admin1,
-
-- Le troisième utilisateur est un client qui a pour nom : test,
-pour mot de passe : mdptest 
-(Cet utilisateur sert à lancer les tests unitaires)
-
-Vous pouvez retrouver toutes ces informations dans votre base SQL
-si vous avez bien suivies les démarches précédentes.
-
-### Repertoire des différents menus :
-
-Vous pouvez utiliser l’application sans disposer de compte, pour consulter le prix des différentes crypto par exemple.
-Toutefois, pour plus de fonctionnalités, les utilisateurs sont invités à s’identifier s’ils disposent déjà d’un compte ou d'en créer un dans le cas contraire.
-
-
-Ainsi, une fois connecté, voici les menus auxquels vous pouvez accéder depuis l’application :
-- Me connecter : l'utilisateur renseigne son pseudonyme et son mot de passe
-- Me créer un compte : Si c'est un nouvel utilisateur  
-- Consulter les cryptomonnaies,
-- Se déconnecter.
-
 ### Authentification et Création de compte:
 
 Si vous souhaitez accéder à l’ensemble des fonctionnalités offertes par l’application, il vous faut vous identifier.
 Pour cela, rien de plus simple, vous êtes invités à vous connecter ou à vous créer un compte.
 
-### Se connecter :
+#### Se connecter :
 
 Pour vous connecter, sélectionnez la commande "Me connecter" puis renseignez votre email et votre mot
 de passe. En cas d’erreur, l'application renvoie un message "email incorrect" ou "mot de passe incorrect". 
 Vous pouvez saisir vos informations de nouveau.
 Le mot de passe est crypté donc ne vous inquiétez pas si vous ne le voyez pas lors de votre saisie.
 
-### Créer un compte :
+#### Créer un compte :
 
 Pour créer un compte, sélectionnez la commande me créer un compte du menu principal
 - Etape 1 : Renseigner un identifiant
 - Etape 2 : Renseigner un mot de passe valide
-NB: le mot de passe doit avoir au moins 6 caractères, contenir au moins une Majuscule, une minuscule et pas de caractères spéciaux.
+NB: le mot de passe doit avoir au moins 5 caractères, contenir au moins une Majuscule, une minuscule et pas de caractères spéciaux.
 - Etape 3 : Confirmer votre mot de passe
 
 Des erreurs peuvent survenir lors de la saisie des informations (deux mots de passe renseignés non identiques,
 information ne respectant pas le format requis...). Dans ce cas, il vous sera demandé de saisir l’information de nouveau.
-Mais vous n'avez que 3 tentatives, et en cas d'échec, nous serons contraint de vous faire quitter l'application.
-
-Une fois connecté, l'utilisateur peut effectuer plusieurs opérations que sont :
-
-- Se déconnecter.
-
-S'il décide d'accéder au compte par exemple, il peut décider de gérer son portefeuille, de revenir au menu principal ou tout simplement de connaitre son solde
-
- 
-### Consulter l’historique :
-
-On distingue l'historique des prix de crypto et l'historique des transactions.
-
-Pour ce qui est de l’historique des prix des crytomonnaies. Pour y accéder, il faut :
-- Etape 1: Consulter le
-- Etape 4: Choisir la manière dont vous souhaitez afficher vos données.
+Mais vous n'avez que 2 tentatives, et en cas d'échec, nous serons contraint de vous faire quitter l'application.
 
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>

@@ -42,28 +42,25 @@ As well as adding to the application's base, any user can contribute by sending 
   <summary>Sommaire</summary>
   <ol>
     <li>
-      <a href="#Structure-du-projet">Structure du projet</a>
-      <ul>
-        <li><a href="#utilisé-lors-de-l'implémentation-du-code">Utilisé lors de l'implémentation du code</a></li>
-      </ul>
+      <a href="#Project-structure">Project structure</a>
     </li>
     <li>
-      <a href="#mise-en-place">Mise en place</a>
+      <a href="#Setting-up">Setting-up</a>
       <ul>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#utilisation">Utilisation</a></li>
-    <li><a href="#plan-de-réalisation">Plan de réalisation</a></li>
+    <li><a href="#Accessing-the-application">Accessing the application</a></li>
+    <li><a href="#Implementation-plan">Implementation plan</a></li>
     <li><a href="#contribution">Contribution</a></li>
     <li><a href="#licence">Licence</a></li>
     <li><a href="#contacts">Contacts</a></li>
-    <li><a href="#ressources">Ressources</a></li>
+    <li><a href="#resources">Resources</a></li>
   </ol>
 </details>
 
 <!-- A PROPOS DU PROJET -->
-## Structure du projet
+## Project structure
 
 We will create one python file per class in the corresponding packages. This architecture allows a weak coupling between classes and a strong internal consistency. This will make the code more solid. Also, this structure will limit Git conflicts and offer a better readability of the code.
 
@@ -76,14 +73,6 @@ We will create one python file per class in the corresponding packages. This arc
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
-### Used when implementing the code
-
-This section will present our development tools.
-
-* [Visual Studio Code](https://code.visualstudio.com/)
-
-<p align="right">(<a href="#top">Back to top</a>)</p>
-
 
 <!-- MISE EN PLACE -->
 ## Setting up
@@ -93,7 +82,8 @@ To run a local copy, follow these steps.
 
 ### Installation
 
-1. Get a key for the API [https://www.dnd5eapi.co/](https://www.dnd5eapi.co/)
+1. Install PgAdmin 4 and follow the steps to install our database
+PostgreSQL locally.
 2. Clone the repository
    ```sh
    git clone https://github.com/Julien-Sklarik/Dragons-Unfurled.git 
@@ -102,22 +92,15 @@ To run a local copy, follow these steps.
    ```sh
    pip install -r requirements.txt
    ```
-   or
-   ```
-   pip install requests
-   pip install psycopg2-binary
-   pip install PyInquirer
-   ```
-4. Enter in the API `config.js`
-   ```js
-   const API_KEY = 'D&D 5e API';
-   ```
+4. Run in PgAdmin the content of the file `init_bdd.sql`
+   
+5. Split your terminal and
 
 ### Accessing the application :
 
 For a first use of our application, the following steps have to be done:
 - 1: Open the VS Code terminal
-- 2: Execute the SQL script [init_base.sql] to create the database tables (db),
+- 2: Execute the SQL script [init_base.sql] to create the database tables (db) in PgAdmin 4,
 
 NB: You can also use another database provided that you update the database properties.
 To do this, go to [properties] in the [configuration] folder to modify the database properties.
@@ -146,44 +129,10 @@ We have commented in more detail the class in the file []. This allows you to gr
 
 <div id="utilis"></div>
 
-
-### Comptes de base de l'application :
-
-- Le premier utilisateur déjà implémenté dans la base de données 
-est un client qui a pour nom : client1, pour mot de passe : mdpclient1 
-
-- Le second utilisateur est un administrateur qui a pour nom : admin1,
-
-- Le troisième utilisateur est un client qui a pour nom : test,
-pour mot de passe : mdptest 
-(Cet utilisateur sert à lancer les tests unitaires)
-
-Vous pouvez retrouver toutes ces informations dans votre base SQL
-si vous avez bien suivies les démarches précédentes.
-
-### Repertoire des différents menus :
-
-Vous pouvez utiliser l’application sans disposer de compte, pour consulter le prix des différentes crypto par exemple.
-Toutefois, pour plus de fonctionnalités, les utilisateurs sont invités à s’identifier s’ils disposent déjà d’un compte ou d'en créer un dans le cas contraire.
-
-
-Ainsi, une fois connecté, voici les menus auxquels vous pouvez accéder depuis l’application :
-- Me connecter : l'utilisateur renseigne son pseudonyme et son mot de passe
-- Me créer un compte : Si c'est un nouvel utilisateur  
-- Consulter les cryptomonnaies,
-- Se déconnecter.
-
 ### Authentification et Création de compte:
 
 Si vous souhaitez accéder à l’ensemble des fonctionnalités offertes par l’application, il vous faut vous identifier.
 Pour cela, rien de plus simple, vous êtes invités à vous connecter ou à vous créer un compte.
-
-### Se connecter :
-
-Pour vous connecter, sélectionnez la commande "Me connecter" puis renseignez votre email et votre mot
-de passe. En cas d’erreur, l'application renvoie un message "email incorrect" ou "mot de passe incorrect". 
-Vous pouvez saisir vos informations de nouveau.
-Le mot de passe est crypté donc ne vous inquiétez pas si vous ne le voyez pas lors de votre saisie.
 
 ### Créer un compte :
 
@@ -195,37 +144,22 @@ NB: le mot de passe doit avoir au moins 6 caractères, contenir au moins une Maj
 
 Des erreurs peuvent survenir lors de la saisie des informations (deux mots de passe renseignés non identiques,
 information ne respectant pas le format requis...). Dans ce cas, il vous sera demandé de saisir l’information de nouveau.
-Mais vous n'avez que 3 tentatives, et en cas d'échec, nous serons contraint de vous faire quitter l'application.
-
-Une fois connecté, l'utilisateur peut effectuer plusieurs opérations que sont :
-
-- Se déconnecter.
-
-S'il décide d'accéder au compte par exemple, il peut décider de gérer son portefeuille, de revenir au menu principal ou tout simplement de connaitre son solde
-
- 
-### Consulter l’historique :
-
-On distingue l'historique des prix de crypto et l'historique des transactions.
-
-Pour ce qui est de l’historique des prix des crytomonnaies. Pour y accéder, il faut :
-- Etape 1: Consulter le
-- Etape 4: Choisir la manière dont vous souhaitez afficher vos données.
-
+Mais vous n'avez que 2 tentatives, et en cas d'échec, nous serons contraint de vous faire quitter l'application.
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
 
 
 <!-- PLAN DE REALISATION -->
-## Plan de réalisation
+## Implementation plan
 
 - [x] Implémenter les fonctionnalités de base du cahier des charges 
 - [x] Implémenter les fonctionnalités avancées du cahier des charges 
-- [] Compléter les possibilités des administrateurs
-    - [] Banissement
-    - [] transfert des droits
-- [] Ajouter un système de gestion d'argent
+- [x] Compléter les possibilités des administrateurs
+    - [x] Banissement
+    - [x] transfert des droits
+- [x] Ajouter un système de déplacement automatique avancée 
+- [x] Ajouter une animation de type chargement
 
 <p align="right">(<a href="#top">Retourner en haut de page</a>)</p>
 
