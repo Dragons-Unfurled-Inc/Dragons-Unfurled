@@ -1,12 +1,14 @@
 from PyInquirer import prompt
 from client.service.monstre_service import MonstreService
 from client.vue.abstract_vue import AbstractVue
+from objets_metier.entite import Entite
+from web.dao.entite_dao import EntiteDAO
 
 class AjoutMonsVue(AbstractVue):
     
     @staticmethod
     def choix(reponse): 
-        return((MonstreService.ImportMonstreParType(True))[reponse['type']])
+        return MonstreService.ImportMonstreParType(reponse['type'])
     
     def __init__(self):
         #self.joueur = joueur 
@@ -20,8 +22,8 @@ class AjoutMonsVue(AbstractVue):
             },
             {
                 'type': 'list',
-                'name': 'type',
-                'message': f'Choisissez le type de monstre que vous voulez importer :',
+                'name': 'monstre',
+                'message': f'Choisissez le monstre que vous voulez importer :',
                 'choices': AjoutMonsVue.choix,
             }
         ]
@@ -32,5 +34,7 @@ class AjoutMonsVue(AbstractVue):
 
     def make_choice(self):
         reponse = prompt(self.questions)
+        monstre = MonstreService.ImportMonstreWeb(reponse['monstre'])
+        EntiteDAO.ajoute_entite(monstre)
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()

@@ -35,6 +35,6 @@ class WebConfiguration(metaclass=Singleton):
         return self.output_dir
 
     def get(self,req:str):
-        url = str.format("{0}/{1}",self.api_url,req)
+        url = str.format("http://{0}/{1}",self.api_url,req)
         return requests.get(url).json()
         
