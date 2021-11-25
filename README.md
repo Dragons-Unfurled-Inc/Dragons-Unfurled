@@ -69,7 +69,7 @@ For instance :
 * The `web` package contains at least one search module to access our backend server.  
 * The `vue` package imports services to call business functionality. We will have one module per vue. In particular, the abstract_vue module containing the AbstractVue class will provide a template for the vue classes that inherit from it. It will contain abstract methods for handling console display, menus and options.  
 * The `test` package will contain a test module for the class "Grille". 
-* These are just a few explanations to get you started. All the packages, including routers, exceptions and images for example, are detailed in our report. :smile:
+These are just a few explanations to get you started. All the packages, including routers, exceptions and images for example, are detailed in our report. :smile:
 
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
@@ -103,7 +103,7 @@ PostgreSQL locally.
 
 7. If you wish, we encourage you to launch the `init_application.py` file in the second terminal, to add content for illustrative purposes in your database.
 
-N.B: In particular, this file builds two initial administrator accounts. Indeed, we chose to create a file to create basic accounts rather than doing it directly on SQL 
+In particular, this file builds two initial administrator accounts. Indeed, we chose to create a file to create basic accounts rather than doing it directly on SQL 
 to be able to hash the password with a hash function. 
 
 8. Run the file `main.py` (interactively or by writing ``` python main.py ```) and enjoy Dragons Unfurled !
