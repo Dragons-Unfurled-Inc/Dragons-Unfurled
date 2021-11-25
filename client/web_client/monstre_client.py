@@ -22,11 +22,11 @@ class MonstreClient():
         @staticmethod
         def ImportMonstreParType(type):
             url = str.format("{0}/{1}",'monstres/types',type)
-            return TradWebconfig.get(url)
+            return TradWebconfig().get(url)
         
         @staticmethod
         def ImportListeTypes():
-            return TradWebconfig.get('monstres/types')
+            return TradWebconfig().get('monstres/types')
             
         @staticmethod
         def FormatMonstre(dic):
