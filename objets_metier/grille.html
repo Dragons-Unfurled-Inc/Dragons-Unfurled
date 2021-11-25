@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module grille</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>grille</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/juliensklarik/Projet-informatique/objets_metier/grille.py">/Users/juliensklarik/Projet-informatique/objets_metier/grille.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="grille.html#Grille">Grille</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Grille">class <strong>Grille</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Grille">Grille</a>(largeur:&nbsp;int,&nbsp;longueur:&nbsp;int,&nbsp;coordonnees_cellules:&nbsp;list,&nbsp;coordonnees_element:&nbsp;List[int],&nbsp;coordonnees_entites:&nbsp;list,&nbsp;coordonnees_objets:&nbsp;list)<br>
+&nbsp;<br>
+Cet&nbsp;objet&nbsp;métier&nbsp;est&nbsp;une&nbsp;grille&nbsp;qui&nbsp;correspond&nbsp;à&nbsp;un&nbsp;espace&nbsp;à&nbsp;deux&nbsp;dimensions&nbsp;dans&nbsp;une&nbsp;salle&nbsp;du&nbsp;donjon.<br>
+&nbsp;<br>
+&nbsp;<br>
+...<br>
+&nbsp;<br>
+Attributes<br>
+----------<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;largeur&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;largeur&nbsp;correspond&nbsp;à&nbsp;la&nbsp;distance&nbsp;en&nbsp;abscisse&nbsp;entre&nbsp;la&nbsp;cellule&nbsp;la&nbsp;plus&nbsp;à&nbsp;gauche&nbsp;et&nbsp;celle&nbsp;la&nbsp;plus&nbsp;à&nbsp;droite.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour&nbsp;une&nbsp;pièce&nbsp;rectangulaire,&nbsp;cette&nbsp;largeur&nbsp;correspond&nbsp;simplement&nbsp;à&nbsp;la&nbsp;largeur&nbsp;de&nbsp;la&nbsp;pièce,&nbsp;murs&nbsp;exclus.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;longueur&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;De&nbsp;la&nbsp;même&nbsp;manière&nbsp;que&nbsp;pour&nbsp;largeur,&nbsp;longueur&nbsp;correspond&nbsp;à&nbsp;la&nbsp;distance&nbsp;en&nbsp;ordonnée&nbsp;entre&nbsp;la&nbsp;cellule&nbsp;la&nbsp;plus&nbsp;basse&nbsp;et&nbsp;celle&nbsp;la&nbsp;plus&nbsp;haute.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour&nbsp;une&nbsp;pièce&nbsp;rectangulaire,&nbsp;cette&nbsp;longeur&nbsp;correspond&nbsp;simplement&nbsp;à&nbsp;la&nbsp;longeur&nbsp;de&nbsp;la&nbsp;pièce,&nbsp;murs&nbsp;exclus.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coordonnees_cellules&nbsp;:&nbsp;List[List[int]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C'est&nbsp;la&nbsp;liste&nbsp;des&nbsp;coordonnées&nbsp;des&nbsp;cellules.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coordonnees_element&nbsp;:&nbsp;List[int]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ce&nbsp;sont&nbsp;les&nbsp;coordonnées&nbsp;de&nbsp;l'élément&nbsp;à&nbsp;déplacer.&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coordonnees_entites&nbsp;:&nbsp;List[List[int]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C'est&nbsp;la&nbsp;liste&nbsp;des&nbsp;coordonnées&nbsp;des&nbsp;entités&nbsp;dans&nbsp;la&nbsp;pièce.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coordonnees_objets&nbsp;:&nbsp;List[List[int]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C'est&nbsp;la&nbsp;liste&nbsp;des&nbsp;coordonnées&nbsp;des&nbsp;objets&nbsp;dans&nbsp;la&nbsp;pièce.<br>
+&nbsp;<br>
+&nbsp;<br>
+Methods<br>
+-------<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Grille-deplace_element">deplace_element</a>(self,&nbsp;deplacement)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;déplacer&nbsp;l'élément&nbsp;ou&nbsp;de&nbsp;terminer&nbsp;son&nbsp;déplacement.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Grille-place_murs_aleatoire">place_murs_aleatoire</a>(self,&nbsp;pct=.25)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;remplir&nbsp;aléatoirement&nbsp;la&nbsp;pièce&nbsp;avec&nbsp;un&nbsp;certain&nbsp;pourcentage&nbsp;de&nbsp;murs.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Grille-place_murs">place_murs</a>(self)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;placer&nbsp;les&nbsp;murs&nbsp;dans&nbsp;la&nbsp;pièce.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Grille-dessiner_grille">dessiner_grille</a>(self,&nbsp;largeur_case&nbsp;=&nbsp;2)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;dessiner&nbsp;la&nbsp;grille&nbsp;à&nbsp;parir&nbsp;de&nbsp;ses&nbsp;attributs&nbsp;et&nbsp;de&nbsp;la&nbsp;longueur&nbsp;de&nbsp;case&nbsp;choisie.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#Grille-dessiner_grille">dessiner_grille</a>(self,&nbsp;largeur_case&nbsp;=&nbsp;2)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;dessiner&nbsp;la&nbsp;grille&nbsp;à&nbsp;parir&nbsp;de&nbsp;ses&nbsp;attributs&nbsp;et&nbsp;de&nbsp;la&nbsp;longueur&nbsp;de&nbsp;case&nbsp;choisie.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Grille-__init__"><strong>__init__</strong></a>(self, largeur: int, longueur: int, coordonnees_cellules: list, coordonnees_element: List[int], coordonnees_entites: list, coordonnees_objets: list)</dt><dd><tt>Une&nbsp;grille&nbsp;s'initialise&nbsp;avec&nbsp;les&nbsp;6&nbsp;arguments&nbsp;présentés&nbsp;ci-dessous.<br>
+&nbsp;<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;largeur&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;largeur&nbsp;correspond&nbsp;à&nbsp;la&nbsp;distance&nbsp;en&nbsp;abscisse&nbsp;entre&nbsp;la&nbsp;cellule&nbsp;la&nbsp;plus&nbsp;à&nbsp;gauche&nbsp;et&nbsp;celle&nbsp;la&nbsp;plus&nbsp;à&nbsp;droite.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour&nbsp;une&nbsp;pièce&nbsp;rectangulaire,&nbsp;cette&nbsp;largeur&nbsp;correspond&nbsp;simplement&nbsp;à&nbsp;la&nbsp;largeur&nbsp;de&nbsp;la&nbsp;pièce,&nbsp;murs&nbsp;exclus.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;longueur&nbsp;:&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;De&nbsp;la&nbsp;même&nbsp;manière&nbsp;que&nbsp;pour&nbsp;largeur,&nbsp;longueur&nbsp;correspond&nbsp;à&nbsp;la&nbsp;distance&nbsp;en&nbsp;ordonnée&nbsp;entre&nbsp;la&nbsp;cellule&nbsp;la&nbsp;plus&nbsp;basse&nbsp;et&nbsp;celle&nbsp;la&nbsp;plus&nbsp;haute.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour&nbsp;une&nbsp;pièce&nbsp;rectangulaire,&nbsp;cette&nbsp;longeur&nbsp;correspond&nbsp;simplement&nbsp;à&nbsp;la&nbsp;longeur&nbsp;de&nbsp;la&nbsp;pièce,&nbsp;murs&nbsp;exclus.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coordonnees_cellules&nbsp;:&nbsp;List[List[int]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C'est&nbsp;la&nbsp;liste&nbsp;des&nbsp;coordonnées&nbsp;des&nbsp;cellules.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coordonnees_element&nbsp;:&nbsp;List[int]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ce&nbsp;sont&nbsp;les&nbsp;coordonnées&nbsp;de&nbsp;l'élément&nbsp;à&nbsp;déplacer.&nbsp;<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coordonnees_entites&nbsp;:&nbsp;List[List[int]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C'est&nbsp;la&nbsp;liste&nbsp;des&nbsp;coordonnées&nbsp;des&nbsp;entités&nbsp;dans&nbsp;la&nbsp;pièce.<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;coordonnees_objets&nbsp;:&nbsp;List[List[int]]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C'est&nbsp;la&nbsp;liste&nbsp;des&nbsp;coordonnées&nbsp;des&nbsp;objets&nbsp;dans&nbsp;la&nbsp;pièce.</tt></dd></dl>
+
+<dl><dt><a name="Grille-deplace_element"><strong>deplace_element</strong></a>(self, deplacement)</dt><dd><tt>Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;déplacer&nbsp;l'élément&nbsp;ou&nbsp;de&nbsp;terminer&nbsp;son&nbsp;déplacement.<br>
+&nbsp;<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;deplacement&nbsp;:&nbsp;str<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Déplacement&nbsp;correspond&nbsp;à&nbsp;une&nbsp;lettre&nbsp;permettant&nbsp;de&nbsp;déplacer&nbsp;l'élément&nbsp;dans&nbsp;la&nbsp;bonne&nbsp;direction,&nbsp;ou&nbsp;à&nbsp;"q"&nbsp;pour&nbsp;terminer&nbsp;le&nbsp;déplacement.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"d"&nbsp;permet&nbsp;d'aller&nbsp;à&nbsp;droite.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"g"&nbsp;permet&nbsp;d'aller&nbsp;à&nbsp;gauche.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"h"&nbsp;permet&nbsp;d'aller&nbsp;vers&nbsp;le&nbsp;haut.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"b"&nbsp;permet&nbsp;d'aller&nbsp;vers&nbsp;le&nbsp;bas.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"q"&nbsp;permet&nbsp;de&nbsp;terminer&nbsp;le&nbsp;déplacement.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Grille-dessiner_grille"><strong>dessiner_grille</strong></a>(self, largeur_case=2)</dt><dd><tt>Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;dessiner&nbsp;la&nbsp;grille&nbsp;à&nbsp;parir&nbsp;de&nbsp;ses&nbsp;attributs&nbsp;et&nbsp;de&nbsp;la&nbsp;longueur&nbsp;de&nbsp;case&nbsp;choisie.<br>
+&nbsp;<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;longueur_case:&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;valeur&nbsp;<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Grille-place_murs"><strong>place_murs</strong></a>(self) -&gt; list</dt><dd><tt>Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;placer&nbsp;les&nbsp;murs&nbsp;dans&nbsp;la&nbsp;pièce.<br>
+&nbsp;<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</tt></dd></dl>
+
+<dl><dt><a name="Grille-place_murs_aleatoire"><strong>place_murs_aleatoire</strong></a>(self, pct=0.25) -&gt; list</dt><dd><tt>Cette&nbsp;fonction&nbsp;permet&nbsp;de&nbsp;remplir&nbsp;aléatoirement&nbsp;la&nbsp;pièce&nbsp;avec&nbsp;un&nbsp;certain&nbsp;pourcentage&nbsp;de&nbsp;murs.<br>
+N.B&nbsp;:&nbsp;Cette&nbsp;fonction&nbsp;n'est&nbsp;pas&nbsp;employée&nbsp;dans&nbsp;la&nbsp;vue&nbsp;de&nbsp;déplacement&nbsp;en&nbsp;donjon.&nbsp;<br>
+Elle&nbsp;nous&nbsp;a&nbsp;cependant&nbsp;servi&nbsp;à&nbsp;penser&nbsp;nos&nbsp;fonctions&nbsp;et&nbsp;à&nbsp;nous&nbsp;projeter&nbsp;durant&nbsp;l'implémentation&nbsp;du&nbsp;code.&nbsp;<br>
+Elle&nbsp;donne&nbsp;des&nbsp;résultats&nbsp;satisfaisants,&nbsp;qui&nbsp;pourraient&nbsp;être&nbsp;exploités&nbsp;à&nbsp;postériori.<br>
+&nbsp;<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pct&nbsp;:&nbsp;float<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette&nbsp;valeur&nbsp;correspond&nbsp;à&nbsp;la&nbsp;proportion&nbsp;de&nbsp;murs&nbsp;qui&nbsp;vont&nbsp;être&nbsp;générés&nbsp;aléatoirement&nbsp;dans&nbsp;la&nbsp;pièce.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rien&nbsp;n'empèche&nbsp;que&nbsp;les&nbsp;murs&nbsp;génés&nbsp;se&nbsp;superposent.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ceci&nbsp;n'est&nbsp;pas&nbsp;un&nbsp;problème,&nbsp;mais&nbsp;est&nbsp;bon&nbsp;à&nbsp;savoir.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Il&nbsp;y&nbsp;aura&nbsp;donc&nbsp;un&nbsp;peu&nbsp;moins&nbsp;de&nbsp;pct*100%&nbsp;de&nbsp;murs&nbsp;dans&nbsp;la&nbsp;pièce.<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>List</strong> = typing.List</td></tr></table>
+</body></html>
