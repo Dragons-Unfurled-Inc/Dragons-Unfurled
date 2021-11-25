@@ -203,7 +203,7 @@ Jules D'Haussy - jules.dhaussy@eleve.ensai.fr
 
 Here are some resources we used to build this readme.
 
-* [Choisir une licence Open Source](https://choosealicense.com)
+* [Choose an open source license](https://choosealicense.com)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [Images Shields](https://shields.io)
 * [Pages GitHub](https://pages.github.com)
