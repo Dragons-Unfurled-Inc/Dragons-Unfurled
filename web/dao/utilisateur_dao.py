@@ -2,9 +2,9 @@
 from typing import Any
 
 from objets_metier.caracteristique import Caracteristique
+from objets_metier.monstre import Monstre
 from objets_metier.objet import Objet
 from objets_metier.personnage import Personnage
-from objets_metier.monstre import Monstre
 from objets_metier.utilisateur import Utilisateur
 from web.dao.db_connection import DBConnection
 
@@ -239,8 +239,8 @@ class UtilisateurDAO:
                         objet = []
                     liste_objet.append(Objet(id_objet = i, nom_objet = objet[enti_obj["nom_objet"]], description_obj=objet[enti_obj["description_obj"]]))
             caract = Caracteristique(nom_entite = entite["nom_entite"], force = entite["force"], experience = entite["experience"], intelligence = entite["intelligence"], charisme = entite["charisme"], dexterite = entite["dexterite"], constitution = entite["constitution"], vie = entite["vie"], sagesse =  entite["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = entite["description"], classe_armure = entite["classe_armure"])
-            perso = Personnage(classe = personnage["classe"], race = personnage["race"], lore = personnage["lore"], id_joueur = -1, id_entite = entite["id_entite"], nom_entite = entite["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet)
-        return perso    
+            personnages = Personnage(classe = personnage["classe"], race = personnage["race"], lore = personnage["lore"], id_joueur = -1, id_entite = entite["id_entite"], nom_entite = entite["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet)
+        return personnages    
 
 
     @staticmethod

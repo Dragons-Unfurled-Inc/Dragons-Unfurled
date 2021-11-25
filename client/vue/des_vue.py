@@ -85,13 +85,12 @@ class MenuDes(AbstractVue):
             liste_des = []
             for i in range(1, nb_des + 1):
                 nb_faces = input("Saissisez le nombre de face du dés n°" + str(i) + "\n")
-                # valeur_des = input("Saissisez la valeur du dés n°" +  str(i) + "\n")
-                liste_des.append(Des(nb_face = nb_faces)) #, valeur_des = valeur_de
+                liste_des.append(Des(nb_face = nb_faces)) 
             jet = Jet(liste_des = liste_des)
             Jet.lancer_des(jet) 
             print("La valeur de votre jet est : ", jet.valeur_jet)
             revelation = prompt(self.__questions[1])["choix_revel"]
-            JetService.add_jet(jet, self.joueur.identifiant, revelation)
+            JetService.ajout_jet(jet, self.joueur.identifiant, revelation)
             from client.vue.des_vue import MenuDes
             return MenuDes()
 
