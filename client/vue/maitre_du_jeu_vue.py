@@ -27,8 +27,6 @@ class MenuMJ(AbstractVue):
                     'Retirer une entité',
                     'Consulter la fiche d\'une entité',
                     'Modifier la fiche d\'une entité',
-                    'Créer un monstre',
-                    #'Consulter la liste des personnages',
                     Separator(),
                     'Lancer des dés',
                     'Consulter les résultats des jets',
@@ -99,10 +97,6 @@ class MenuMJ(AbstractVue):
                 print("L'identifiant du donjon saisi est introuvable.")
                 from client.vue.maitre_du_jeu_vue import MenuMJ
                 return MenuMJ()
-        
-        if reponse['choix'] == 'Créer un monstre':
-                from client.vue.creation_monstre_vue import MenuMonstre
-                return MenuMonstre()
             
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
             CampagneService.sauvegarder() 
