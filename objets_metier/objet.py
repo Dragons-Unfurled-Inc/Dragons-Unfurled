@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
+
 class Objet(BaseModel) : 
     """
     Cette classe fait l'inventaire des caractéristiques des entités.

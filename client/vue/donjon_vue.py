@@ -127,9 +127,6 @@ class MenuDonjon(AbstractVue):
                     print(entite["nom_entite"], " : ", entite["id_entite"])
                 identifiant_entite = input("Saisissez l'identifiant de l'entité qui récupère l'objet. \n")
                 dict_salles = MaitreDuJeuService.dict_salles() 
-                print("Voici la liste des salles de votre donjon :")
-                for salle in dict_salles:
-                    print(salle["nom_salle"], " : ", salle["id_salle"])
                 if DonjonService.existe_entite_campagne(identifiant_entite):
                     ObjetService.ramasse_objet(identifiant_entite, identifiant_objet)  
                     print("L'objet a été ramassé.")

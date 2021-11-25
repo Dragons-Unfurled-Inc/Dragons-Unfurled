@@ -1,10 +1,9 @@
 from client.vue.abstract_vue import AbstractVue
 from client.vue.donjon_vue import MenuDonjon
+from client.vue.session import Session
 from PyInquirer import prompt
 from web.dao.entite_dao import EntiteDAO
 from web.service.salle_service import SalleService
-
-from client.vue.session import Session
 
 
 class ModifSalleVue(AbstractVue):
@@ -14,7 +13,6 @@ class ModifSalleVue(AbstractVue):
         id_campagne = Session.id_campagne
         self.id_salle = id_salle
         self.salle = SalleService.trouve_salle(id_salle)
-        #matcher l'id entre entis et entis_camp et hop on a l'entite du joueur, ensuite faire modif enti.caracs en choixx
         self.list_choix = self.salle.__dict__.keys() 
         self.questions = [
                 {

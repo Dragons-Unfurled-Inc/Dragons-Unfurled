@@ -50,12 +50,6 @@ class Donjon(BaseModel):
     @staticmethod
     def afficher_donjon(id_donjon):
         Donjon.__str__(id_donjon)
-        
-
-    def deplacer_element_salles(self, element:type):
-        """
-        """
-        None  
 
     @staticmethod
     def ajouter_salle_rectangulaire(largeur, profondeur, nom_salle, x, y):
@@ -72,11 +66,6 @@ class Donjon(BaseModel):
         id_donjon = Session.id_donjon
         from web.dao.salle_dao import SalleDAO
         SalleDAO.ajouter_salle_construite(id_donjon, x, y , nom_salle, coord_cellules)
-
-    def editer_salle(self, salle : Salle):
-        """
-        """
-        None
 
     def inventaire_donjon(self):
         """

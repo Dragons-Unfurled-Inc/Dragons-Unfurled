@@ -15,10 +15,6 @@ class MaitreDuJeu(Joueur,BaseModel):
     @staticmethod
     def creer_monstre(self, nom):
         self.__monstres.append(MonstreService.ImportMonstreWeb(nom))
-        
-    @staticmethod
-    def consulter_monstre(self, monstre : Monstre):
-        None
 
     @staticmethod
     def liste_joueurs(self):
@@ -36,14 +32,6 @@ class MaitreDuJeu(Joueur,BaseModel):
             if personnage in self.personnages_joueurs:
                 personnage_joueur = personnage
         return personnage_joueur
-
-    @staticmethod
-    def modifier_monstre(self, monstre : Monstre):
-        None
-
-    @staticmethod
-    def modifier_personnage(self, personnage : Personnage):
-        None    
 
     @staticmethod
     def ajouter_monstre(self, monstre : Monstre, donjon : Donjon = None): 

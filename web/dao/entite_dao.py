@@ -589,7 +589,7 @@ class EntiteDAO:
                         "WHERE id_objet = %(id_objet)s"\
                         , {"id_objet" : id_objet})
                     obj = cursor.fetchone()
-            liste_objet.append(Objet(id_objet = id_objet, nom_objet = obj["nom_objet"], description = obj["description"]))
+            liste_objet.append(Objet(id_objet = id_objet, nom_objet = obj["nom_objet"], description_obj = obj["description_obj"]))
         caract = Caracteristique(nom_entite = entite["nom_entite"], attaques = attaque, capacites = capacite, languages = langage, description = entite["description"], niveau = entite["niveau"], experience = entite["experience"], force = entite["force"], intelligence = entite["intelligence"], charisme = entite["charisme"], dexterite = entite["dexterite"], constitution = entite["constitution"], sagesse = entite["sagesse"], vie = entite["vie"], classe_armure = entite["classe_armure"])
         entite_id = Entite(id_joueur = -1, id_entite = id_entite, caracteristiques_entite = caract, objets = liste_objet)
         return entite_id

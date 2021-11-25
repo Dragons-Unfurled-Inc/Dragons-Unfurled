@@ -14,15 +14,6 @@ class Utilisateur(BaseModel):
                 "identifiant": "essai_manon"
             }
         }
-        
-    def se_connecter(self, id : str, mdp : str):
-        None
-    
-    def creer_compte(self, id : str, mdp : str):
-        None
-    
-    def se_deconnecter(self):
-        None 
 
     @staticmethod
     def ecrire_un_feed_back(message: str): 
