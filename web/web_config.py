@@ -12,7 +12,7 @@ class WebConfig(metaclass=Singleton):
         graph_port=os.environ['GRAPH_URL']
         self.dnd_port=dnd_url
         self.graph_port=graph_port
-        self.api_port=api_url
+        self.api_url=api_url
         self.output_dir=output_dir
         
         
