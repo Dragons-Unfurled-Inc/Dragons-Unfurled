@@ -14,7 +14,7 @@ class MenuConsultation(AbstractVue):
                 'name': 'choix',
                 'message': 'Voulez vous consulter :',
                 'choices': [
-                    'La fiche d\'un joueur' ,
+                    'La fiche d\'un personnage joueur' ,
                     'La fiche d\'un monstre' , 
                     'La fiche d\'personnage non joueur (PNJ)'
                 ]
@@ -29,7 +29,7 @@ class MenuConsultation(AbstractVue):
             
     def make_choice(self):
         reponse = prompt(self.__questions)
-        if reponse['choix'] == 'La fiche d\'un joueur':
+        if reponse['choix'] == 'La fiche d\'un personnage joueur':
             dict_perso = MaitreDuJeuService.dict_personnages(Session.id_campagne)
             print("Voici la liste des différents personnages:")
             print(dict_perso)
