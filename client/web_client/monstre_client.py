@@ -14,19 +14,19 @@ class MonstreClient():
             Session.utilisateur = Joueur(identifiant = 'jules')
             util = Session.utilisateur
             configuration = TradWebconfig()
-            d = configuration.getTrad('monstre/' + nom)
+            d = configuration.getTrad('monstres/' + nom)
             MonstreClient.FormatMonstre(d)
             carac = DicToObjet.dictocarac(d)
             return Monstre(util.identifiant,-1,d['type'],carac)
             
-    
         @staticmethod
-        def ImportMonstreParType(triche = bool):
-            pass
+        def ImportMonstreParType(type):
+            url = str.format("{0}/{1}",'monstres/types',type)
+            return TradWebconfig.get(url)
         
         @staticmethod
         def ImportListeTypes():
-            pass
+            return TradWebconfig.get('monstres/types')
             
         @staticmethod
         def FormatMonstre(dic):

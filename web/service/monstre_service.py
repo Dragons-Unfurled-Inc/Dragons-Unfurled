@@ -56,7 +56,7 @@ class MonstreService():
     
     @staticmethod
     def ImportListeTypes():
-        return (MonstreService.getNetMonstreParType.keys())
+        return (MonstreService.getNetMonstreParType().keys())
     
     @staticmethod
     def getNetAttaquesMonstre(monstre,attaque):

@@ -4,14 +4,14 @@ from web.service.monstre_service import MonstreService
 routerm = APIRouter()
 
 
-@routerm.get("/monstre/{nom_monstre}", tags=["monstre"])
-def get_NetMonstre(nom_monstre: str):
-    return MonstreService.getNetMonstre(nom_monstre)
+@routerm.get("monstres/types/{nom_type}", tags=["monstre"])
+def get_NetMonstre(nom_type: str):
+    return MonstreService.getNetMonstreDeType(nom_type)
 
-@routerm.get("/monstre/{type}", tags=["monstre"])
-def get_NetMonstre(type_monstre: str):
-    return MonstreService.getNetMonstreDeType(type_monstre)
+@routerm.get("monstres/types", tags=["monstre"])
+def get_NetMonstre():
+    return MonstreService.ImportListeTypes()
 
 @routerm.post("/monstres/{nom_monstre}", tags=["monstre"])
 def Creer_monstre(nom_monstre: str):
-    return MonstreService.ImportMonstreWeb(nom_monstre)
+    return MonstreService.getNetMonstre(nom_monstre)

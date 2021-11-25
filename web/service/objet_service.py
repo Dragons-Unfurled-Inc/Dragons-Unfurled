@@ -5,16 +5,6 @@ from web.web_config import WebConfig
 
 class ObjetService():
     
-    @staticmethod
-    def getNetObjet():
-        query = """query{
-        monsters(limit : 500){name,type}
-        }
-        """
-        r = WebConfig.post(query)
-        noms_types = r.json()
-        return(noms_types['data']['monsters'])
-    
     def getListTypes():
         liste = WebConfig.getdnd('equipment-categories')
         listeTypes = []
