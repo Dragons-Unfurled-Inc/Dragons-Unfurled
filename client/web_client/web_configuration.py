@@ -14,9 +14,15 @@ class WebConfiguration(metaclass=Singleton):
         from dotenv import load_dotenv
         load_dotenv()
         # Open the connection.
-        self.api_url = os.environ['API_URL']
-        self.output_dir = os.environ['FILE_OUTPUT_DIR']
-
+        api_url=os.environ['API_URL']
+        output_dir=os.environ['FILE_OUTPUT_DIR']
+        dnd_url=os.environ['DND_URL']
+        graph_port=os.environ['GRAPH_URL']
+        self.dnd_port=dnd_url
+        self.graph_port=graph_port
+        self.api_url=api_url
+        self.output_dir=output_dir
+        
     # @property
     # def connection(self):
     #     return the opened connection.
