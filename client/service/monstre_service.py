@@ -8,9 +8,9 @@ class MonstreService():
         return MonstreClient.ImportMonstreWeb(nom)
         
     @staticmethod
-    def ImportMonstreParType(triche = bool):
-        pass
+    def ImportMonstreParType(type):
+        return MonstreClient.ImportMonstreParType(type)
     
     @staticmethod
     def ImportListeTypes():
-        pass
+        return MonstreClient.ImportListeTypes()
