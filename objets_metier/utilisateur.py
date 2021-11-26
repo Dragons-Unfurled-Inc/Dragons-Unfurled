@@ -11,7 +11,7 @@ class Utilisateur(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "identifiant": "essai_manon"
+                "identifiant": "Manon"
             }
         }
 
