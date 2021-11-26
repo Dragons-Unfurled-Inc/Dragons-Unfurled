@@ -8,7 +8,6 @@ class UtilisateurEntiteDao:
 
     @staticmethod
     def ajoute_utilisateur_entite(entite : Entite):
-        utilisateur = Session().utilisateur
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
@@ -17,7 +16,7 @@ class UtilisateurEntiteDao:
                         "VALUES "\
                         "(%(username)s,%(id_entite)s)"\
    
-                    , {"username" : utilisateur.identifiant
+                    , {"username" : Session.utilisateur.identifiant
                     , "id_entite" : entite.id_entite
                     })
                     
