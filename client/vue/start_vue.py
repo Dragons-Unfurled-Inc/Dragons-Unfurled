@@ -1,7 +1,7 @@
-from PyInquirer import prompt
 from client.vue.abstract_vue import AbstractVue
-from objets_metier.joueur import Joueur
 from client.vue.creation_compte_vue import CreaCompteVue
+from objets_metier.joueur import Joueur
+from PyInquirer import prompt
 
 
 class StartVue(AbstractVue):
@@ -15,7 +15,6 @@ class StartVue(AbstractVue):
                 'choices': [
                     'S\'authentifier' ,
                     'Créer un compte' , 
-                    'Importer une sauvegarde',
                     'Quitter l\'application'
 
                 ]
@@ -34,10 +33,6 @@ class StartVue(AbstractVue):
 
         if reponse['choix'] == 'Créer un compte':
             return CreaCompteVue()  
-
-        if reponse['choix'] == 'Importer une sauvegarde':
-            print("La sauvegarde a été restaurée.")
-            return StartVue() 
         
         if reponse['choix'] == 'Quitter l\'application':
             with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/dragons/dragon3.txt', 'r', encoding="utf-8") as affichage2, open('client/dessins_ascii/texte/au_revoir.txt', 'r', encoding="utf-8") as affichage3:
