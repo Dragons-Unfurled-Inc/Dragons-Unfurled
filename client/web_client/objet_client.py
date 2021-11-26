@@ -12,15 +12,15 @@ class ObjetClient():
 
     @staticmethod
     def ImportObjetWeb(index = str):
-        url = str.format("{0}/{1}",'objet/',index)
-        index,desc = TradWebconfig.get(url)
-        return Objet(-1,index,desc)
+        url = str.format("{0}/{1}",'objet',index)
+        index,desc = TradWebconfig().get(url)
+        return index,desc
     
     def ListeTypesObjet():
-        return TradWebconfig.get('types/objets')
+        return TradWebconfig().get('types/objets')
     
     def ListeObjetsDeType(type):
-        url = str.format("{0}/{1}",'types/objets/',type)
-        return TradWebconfig.get(url)
+        url = str.format("{0}/{1}",'types/objets',type)
+        return TradWebconfig().get(url)
     
     

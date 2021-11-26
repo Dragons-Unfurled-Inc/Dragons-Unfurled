@@ -101,7 +101,8 @@ class EntiteDAO:
                     id_entite = cursor.fetchone()
                     id_ent = id_entite['max']
             entite.id_entite = id_ent
-            EntiteDAO.ajouter_objets(entite)
+            if entite.caracteristiques_entite.description != 'Monstre':
+                EntiteDAO.ajouter_objets(entite)
             if hasattr(entite, "lore"):
                 PersonnageDAO.add_personnage(entite)
             else:

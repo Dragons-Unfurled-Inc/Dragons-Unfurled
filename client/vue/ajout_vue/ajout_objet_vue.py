@@ -1,11 +1,13 @@
 from PyInquirer import prompt
+from client.service.donjon_service import DonjonService
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.monstre_service import MonstreService
 from client.service.objet_service import ObjetService
 from client.vue.abstract_vue import AbstractVue
 from objets_metier.entite import Entite
 from web.dao.entite_dao import EntiteDAO
 
-class AjoutMonsVue(AbstractVue):
+class AjoutObjVue(AbstractVue):
     
     @staticmethod
     def choix(reponse): 
@@ -23,9 +25,9 @@ class AjoutMonsVue(AbstractVue):
             },
             {
                 'type': 'list',
-                'name': 'monstre',
-                'message': f'Choisissez le monstre que vous voulez importer :',
-                'choices': AjoutMonsVue.choix,
+                'name': 'objet',
+                'message': f'Choisissez l\'objet que vous voulez importer :',
+                'choices': AjoutObjVue.choix,
             }
         ]
         
@@ -35,7 +37,16 @@ class AjoutMonsVue(AbstractVue):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        monstre = MonstreService.ImportMonstreWeb(reponse['monstre'])
-        EntiteDAO.ajoute_entite(monstre)
-        from client.vue.maitre_du_jeu_vue import MenuMJ
-        return MenuMJ()
+        index,desc = ObjetService.ImportObjetWeb(reponse['objet'])
+        objet = DonjonService.ajouter_objet_et_recuperation_donjon(index, desc)
+        dict_salles = MaitreDuJeuService.dict_salles() 
+        print("Voici la liste des salles de votre donjon :")
+        for salle in dict_salles:
+            print(salle["nom_salle"], " : ", salle["id_salle"])
+        identifiant_salle = input("Saisissez l'identifiant de la salle dans laquelle placer l'objet. \n")
+        if DonjonService.existe_salle_donjon(identifiant_salle):
+            DonjonService.ajouter_objet_salle(identifiant_salle, objet.id_objet)  
+        from client.vue.donjon_vue import MenuDonjon
+        return MenuDonjon()
+        
+    

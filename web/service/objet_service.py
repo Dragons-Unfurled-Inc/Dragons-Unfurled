@@ -6,20 +6,23 @@ from web.web_config import WebConfig
 class ObjetService():
     
     def getListTypes():
-        liste = WebConfig.getdnd('equipment-categories')
+        liste = WebConfig().getdnd('equipment-categories')
         listeTypes = []
-        for dic in liste : 
+        for dic in liste['results'] : 
             listeTypes.append(dic['index'])
+        return listeTypes
             
     def getObjetsDeType(type) :
         url = str.format("{0}/{1}",'equipment-categories',type)
-        objets = WebConfig.getdnd(url)  
+        objets = WebConfig().getdnd(url)  
         listeObjets = []
+        print(objets)
         for dic in objets['equipment']:
             listeObjets.append(dic['index'])
-    
+        return listeObjets
+        
     def getTypeObjet(index):
-        res = WebConfig.getdnd('magic-items')
+        res = WebConfig().getdnd('magic-items')
         for dic in res['results'] : 
             if index == dic['index'] :
                 return 'magic-items'
@@ -28,7 +31,7 @@ class ObjetService():
     def getObjet(index):
         type = ObjetService.getTypeObjet(index)
         url = str.format("{0}/{1}",type,index)
-        dicobjet = WebConfig.getdnd(url)
+        dicobjet = WebConfig().getdnd(url)
         desc = 'Pas de description'  
         if 'desc' in dicobjet.keys():
             desc = dicobjet['desc']

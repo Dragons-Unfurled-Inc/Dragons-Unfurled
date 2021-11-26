@@ -38,3 +38,6 @@ class AjoutMonsVue(AbstractVue):
         EntiteDAO.ajoute_entite(monstre)
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()
+    
+    
+    
