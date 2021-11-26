@@ -10,11 +10,10 @@ class WebConfig(metaclass=Singleton):
         output_dir=os.environ['FILE_OUTPUT_DIR']
         dnd_url=os.environ['DND_URL']
         graph_port=os.environ['GRAPH_URL']
-        self.dnd_port=dnd_url
+        self.dnd_url=dnd_url
         self.graph_port=graph_port
         self.api_url=api_url
         self.output_dir=output_dir
-        
         
     def getApiPort(self) -> str:
         return str(self.api_url)
@@ -26,9 +25,10 @@ class WebConfig(metaclass=Singleton):
         return str(self.graph_port)
     
     def getdnd(self,req:str):
-        url = str.format("{0}/{1}",self.dnd_port,req)
+        url = str.format("{0}/{1}",self.dnd_url,req)
         return requests.get(url).json()
     
     def post(self,query):
-        return requests.post(self.graph_port,json={"query":query})
-        
+        return requests.post(self.graph_port, json={"query":query})
+    
+    

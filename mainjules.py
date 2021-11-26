@@ -5,10 +5,12 @@ from googletrans import Translator
 
 import requests as req
 from dotenv import load_dotenv
+from requests.models import ReadTimeoutError
 from client.vue.session import Session
 
 from client.web_client.dictoobjet import DicToObjet
 from client.web_client.monstre_client import MonstreClient
+from web.dao.db_connection import DBConnection
 from web.service.monstre_service import MonstreService
 load_dotenv()
 from objets_metier.caracteristique import Caracteristique
@@ -110,4 +112,37 @@ def encode(mdp):
 # Session.utilisateur = Joueur(identifiant = 'jules')
 # print(MonstreClient.ImportMonstreWeb('aboleth'))
 
-print(MonstreService.getNetAttaquesMonstre('Adult Blue Dragon','Bite'))
+# print(MonstreClient.ImportMonstreWeb('aboleth'))
+ 
+# r = req.get('http://localhost:5000/monstres/types/')
+# print(r)
+# print(r.json())
+
+import json
+import psycopg2
+
+def sauvegarde_table(table, one=False):
+    # curtables = DBConnection().connection.cursor()
+    # curtables.execute("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'")
+    # for table in curtables.fetchall():
+    #     print(dict(table)['table_name'])
+        
+    query = str.format("select * from {}",table)
+    cur = DBConnection().connection.cursor()
+    cur.execute(query)
+    r = []
+    for row in cur.fetchall() :
+            d = dict(row)
+            if 'password' in d :
+                d.update({'password':str(d['password'],'utf8')})
+            r.append(d)
+    # cur.connection.close()
+    return json.dumps(r)
+
+def sauvegarde_db(listetable = []):
+    dicdb = {}
+    for nom in listetable :
+        dicdb.update({nom : sauvegarde_table(nom)})
+    return dicdb
+    
+print(sauvegarde_db(['entite','utilisateur']))

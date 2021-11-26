@@ -20,3 +20,7 @@ class ObjetService(metaclass = Singleton):
     @staticmethod
     def ImportListeTypes():
         return ObjetClient.ListeTypesObjet()
+    
+    # @staticmethod
+    # def ImportListeTypes():
+    #     return ObjetClient.ListeTypesObjet()

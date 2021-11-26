@@ -15,6 +15,7 @@ class DicToObjet():
         for key in keys : 
             if key not in dicobj : 
                 dicobj.update({key : None})
+        dicobj.update({'description': 'Monstre'})
         return(dicobj)
                 
                 

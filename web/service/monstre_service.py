@@ -25,16 +25,17 @@ class MonstreService():
     
     @staticmethod  
     def getNetMonstre(nom):
-        return WebConfig.getdnd(nom)
+        url = str.format("{0}/{1}",'monsters',nom)
+        return WebConfig().getdnd(url)
         
     
     @staticmethod
     def getNetMonstreEtType():
         query = """query{
-        monsters(limit : 500){name,type}
+        monsters(limit : 500){index,type}
         }
         """
-        r = WebConfig.post(query)
+        r = WebConfig().post(query)
         noms_types = r.json()
         return(noms_types['data']['monsters'])
     
@@ -44,9 +45,9 @@ class MonstreService():
         dic_types = {}
         for dic in dicnom_type : 
             if dic['type'] not in dic_types:
-                 dic_types[dic['type']] = [dic['name']]
+                 dic_types[dic['type']] = [dic['index']]
             else :
-                dic_types.update({dic['type'] : dic_types[dic['type']]+[dic['name']]})
+                dic_types.update({dic['type'] : dic_types[dic['type']]+[dic['index']]})
         return(dic_types)
     
     @staticmethod
@@ -56,19 +57,24 @@ class MonstreService():
     
     @staticmethod
     def ImportListeTypes():
-        return (MonstreService.getNetMonstreParType().keys())
+        r = MonstreService.getNetMonstreParType()
+        l = r.keys()
+        liste = []
+        for list in l :
+            liste.append(list)
+        return liste
     
     @staticmethod
     def getNetAttaquesMonstre(monstre,attaque):
         query = """query{
-monsters(limit:-1){name,actions{name,desc,damage{damage_dice,damage_type{name}},attack_bonus}, legendary_actions{name,desc,attack_bonus}}
+monsters(limit:-1){name,actions{index,desc,damage{damage_dice,damage_type{name}},attack_bonus}, legendary_actions{name,desc,attack_bonus}}
 }
         """
-        r = WebConfig.post(query)
+        r = WebConfig().post(query)
         noms_attaques = r.json()
         dic = noms_attaques['data']['monsters']
         for mon in dic : 
-            if mon['name'] == monstre :
+            if mon['index'] == monstre :
                 for attack in mon['actions'] : 
                     if attack['name'] == attaque : 
                         return(attack)
