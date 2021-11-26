@@ -141,6 +141,8 @@ class EntiteDAO:
     
                         , {"nom_attaque" : nom_attaque
                         , "id_entite": entite.id_entite}) 
+            if not hasattr(entite, "lore"):
+                return entite.id_entite
 
     @staticmethod    
     def ajouter_objets(entite: Entite): 
