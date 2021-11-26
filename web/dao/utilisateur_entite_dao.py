@@ -8,7 +8,7 @@ class UtilisateurEntiteDao:
 
     @staticmethod
     def ajoute_utilisateur_entite(entite : Entite):
-        utilisateur: Utilisateur = Session().utilisateur
+        utilisateur = Session().utilisateur
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
                     cursor.execute(
