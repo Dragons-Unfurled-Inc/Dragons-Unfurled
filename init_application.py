@@ -15,6 +15,11 @@ from web.dao.objet_dao import ObjetDAO
 Ce fichier sert à initialiser nos comptes administrateurs, ainsi que du contenu pratique pour découvrir notre application.
 """
 
+# Les lignes suivantes sont là pour vous éviter de charger ce contenu 2 fois.
+
+if MaitreDuJeuService.existe_entite_nom_id_joueur("Gilthar", 1, "Thomas"):
+    raise Exception("Vous avez déjà chargé le contenu fournit par ce sript :)")
+
 # Voici nos deux comptes administrateurs initaux :
 
 UtilisateurService.creation_compte('Arthur','Arthur', True)

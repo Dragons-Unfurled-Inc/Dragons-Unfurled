@@ -291,13 +291,12 @@ class MaitreDuJeuDAO:
                                 "FROM Objet "\
                                 "WHERE (id_cellule = %(id_cellule)s) "\
                                 , {"id_cellule" : id_cell})
-                            objet = cursor.fetchall()
+                            objet = cursor.fetchone()
                             if objet == None :
-                                id_objet = []
+                                id_objet = 0
                             else:
-                                id_objet = [objet[i]["id_objet"] for i in range(0, len(objet))]
-                    for i in range(0, len(id_objet)):
-                        liste_objet.append(Objet(id_objet = i, nom_objet = objet[i]["nom_objet"], description_obj = objet[i]["description_obj"]))
+                                id_objet = objet["id_objet"] 
+                                liste_objet.append(Objet(id_objet = id_objet, nom_objet = objet["nom_objet"], description_obj = objet["description_obj"]))
                     with DBConnection().connection as connection:
                         with connection.cursor() as cursor:
                             cursor.execute(
