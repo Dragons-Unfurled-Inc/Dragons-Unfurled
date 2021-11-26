@@ -38,6 +38,7 @@ class AjoutMonsVue(AbstractVue):
         reponse = prompt(self.questions)
         monstre = MonstreService.ImportMonstreWeb(reponse['monstre'])
         id_entite = EntiteDAO.ajoute_entite(monstre)
+        print(id_entite)
         MaitreDuJeuService.ajouter_entite_campagne(id_entite)  
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()
