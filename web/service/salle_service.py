@@ -1,6 +1,8 @@
 
 from os import curdir
+
 from objets_metier.salle import Salle
+
 from web.dao.cellule_dao import CelluleDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.salle_dao import SalleDAO

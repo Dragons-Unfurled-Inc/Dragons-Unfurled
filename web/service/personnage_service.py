@@ -2,6 +2,8 @@ from objets_metier.entite import Entite
 from objets_metier.personnage import Personnage
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
+
+from web.dao.personnage_dao import PersonnageDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.attaque_dao import AttaqueDAO
 from web.dao.capacite_dao import CapaciteDAO

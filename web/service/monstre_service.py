@@ -1,13 +1,16 @@
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.entite import Entite
 from objets_metier.monstre import Monstre
+
 from web.dao.entite_dao import EntiteDAO
 from web.dao.monstre_dao import MonstreDAO
 from web.dao.attaque_dao import AttaqueDAO
 from web.dao.capacite_dao import CapaciteDAO
 from web.dao.langage_dao import LangageDAO
 from web.dao.entite_objet_dao import ObjetEntiteDAO
+
 import requests as requ
+
 from web.web_config import WebConfig
 
 class MonstreService():
