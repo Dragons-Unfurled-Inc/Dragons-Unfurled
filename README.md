@@ -20,9 +20,9 @@
   <h3 align="center">Dragons Unfurled</h3>
 
   <p align="center">
-Dragons Unfurled is a role-playing game (RPG) application based on the Dungeons and Dragons (D&D) 5th Edition universe. With Dragons Unfurled, only monsters can still stand in the way of your adventuring party. Your roleplayer will be able to join the adventure at any time, whether you are together or at a distance. 
+Dragons Unfurled is a role-playing game (RPG) application based on the Dungeons and Dragons (D&D) 5th Edition universe. With Dragons Unfurled, only monsters can stand in the way of your adventuring party. Your roleplayers will be able to join the adventure at any time, whether you are together or at a distance. 
 
-The strength of this support is that it gives the game master the freedom to organise the campaign as they wish, with customisation ranging from simple character management to creating dungeons filled with monsters and treasure positioned to the exact square. Best of all, Dragons Unfurled allows you to save your games, as well as the characters and dungeons you create so that you can use them as you wish.
+The strength of the application is to give game masters the freedom to organise campaigns as they wish, with customisation ranging from simple character management to creating dungeons filled with monsters and treasure positioned to the exact square. Best of all, Dragons Unfurled allows you to save your games, as well as the characters and dungeons you create so that you can use them as wanted.
 
 As well as adding to the application's base, any user can contribute by sending feedback to the team of administrators who are there to ensure that your gaming experience is optimal. Using the data provided by the open D&D 5th Edition API, Dragons Unfurled brings the arsenal of D&D RPGs to your fingertips.
     <br />
@@ -61,13 +61,13 @@ As well as adding to the application's base, any user can contribute by sending 
 <!-- A PROPOS DU PROJET -->
 ## Project structure
 
-We will create one python file per class in the corresponding packages. This architecture allows a weak coupling between classes and a strong internal consistency. This will make the code more solid. Also, this structure will limit Git conflicts and offer better readability of the code.
+We will create a single python file per class in the corresponding packages. This architecture allows a thin coupling between classes and a strong internal consistency, and will make the code more resilient. Also, this structure will limit Git conflicts and offer better reading of the code.
 
 For instance :
 * The `business_object` package contains our 14 modules corresponding to the 14 business object classes. 
 * The modules of the `service` package import those of the DAO package to manage the persistence of user actions. Our service package classes also use those of the web package.  
 * The `web` package contains at least one search module to access our backend server.  
-* The `vue` package imports services to call business functionality. We will have one module per vue. In particular, the abstract_vue module containing the AbstractVue class will provide a template for the vue classes that inherit from it. It will contain abstract methods for handling console display, menus and options.  
+* The `vue` package imports services to call business functionality. We will have one module per vue, which are views for the client. In particular, the abstract_vue module containing the AbstractVue class will provide a template for the vue classes that inherit from it. It will contain abstract methods for handling console display, menus and options.  
 * The `test` package will contain a test module for the class "Grille". 
 These are just a few explanations to get you started. All the packages, including routers, exceptions and images for example, are detailed in our report. :smile:
 
@@ -101,10 +101,10 @@ PostgreSQL locally.
    
 6. Split your terminal and run `app.py` in one of them.
 
-7. If you wish, we encourage you to launch the `init_application.py` file in the second terminal, to add content for illustrative purposes in your database.
+7. If you wish, we encourage you to launch the `init_application.py` file in the second terminal, to add content for illustrative purpose in your database.
 
-In particular, this file builds two initial administrator accounts. Indeed, we chose to create a file to create basic accounts rather than doing it directly on SQL 
-to be able to hash the password with a hash function. 
+In particular, this file builds two initial administrator accounts. Indeed, we chose to write a file which creates basic accounts rather than doing it by hand on SQL.
+This makes us able to hash the password with a hash function. 
 
 8. Run the file `main.py` (interactively or by writing ``` python main.py ```) and enjoy Dragons Unfurled !
 
@@ -133,7 +133,7 @@ NB: The password must have at least 6 characters, contain at least one upper cas
 
 Errors may occur when entering information (two passwords entered that are not identical,
 information not respecting the required format ...). In this case, you will be asked to enter the information again.
-But you only have 2 attempts, and in case of failure, we will be obliged to make you quit the application.
+But you only have 2 attempts, and in case of failure, we will be obliged to have you quit the application.
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
@@ -145,8 +145,8 @@ But you only have 2 attempts, and in case of failure, we will be obliged to make
 - [x] Implement the basic functionalities of the specifications
 - [x] Implement the advanced features of the specifications
 - [x] Complete the possibilities of administrators
-     - [x] Banishment
-     - [x] transfer of rights
+     - [x] Banishments
+     - [x] Transfer of rights
 - [x] Add an advanced automatic displacement system
 - [x] Add a loading type animation
 
@@ -192,7 +192,7 @@ Manon Evain - evain.manon@eleve.ensai.fr
 
 Loïc Bomo - loic.bomo@eleve.ensai.fr
 
-Jules D'Haussy - jules.dhaussy@eleve.ensai.fr
+Jules D'Haussy - jules.d-haussy@eleve.ensai.fr
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
