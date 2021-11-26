@@ -12,7 +12,7 @@ class MonstreClient():
     
         @staticmethod
         def ImportMonstreWeb(nom = str):
-            util = Session().utilisateur
+            util = Session.utilisateur
             configuration = TradWebconfig()
             d = configuration.getTrad('monstres/' + nom)
             MonstreClient.FormatMonstre(d)

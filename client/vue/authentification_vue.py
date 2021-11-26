@@ -33,7 +33,7 @@
 # class Authentification(AbstractVue):
 
 #     def display_info(self):
-#         print(f"Hello {Session().identifiant}, remplissez ces informations")
+#         print(f"Hello {Session.identifiant}, remplissez ces informations")
 
     
 #     def make_choice(self):
