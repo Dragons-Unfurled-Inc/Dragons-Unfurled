@@ -145,4 +145,4 @@ def sauvegarde_db(listetable = []):
         dicdb.update({nom : sauvegarde_table(nom)})
     return dicdb
     
-print(sauvegarde_db(['entite','utilisateur']))
+#print(sauvegarde_db(['entite','utilisateur']))
