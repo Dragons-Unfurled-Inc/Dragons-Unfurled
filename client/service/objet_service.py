@@ -1,7 +1,7 @@
 from client.web_client.objet_client import ObjetClient
-from utils.singleton import Singleton
 from web.dao.objet_dao import ObjetDAO
 
+from utils.singleton import Singleton
 
 class ObjetService(metaclass = Singleton):
 

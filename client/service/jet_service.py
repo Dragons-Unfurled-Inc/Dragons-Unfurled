@@ -1,5 +1,3 @@
-
-
 class JetService:
     def __init__(self, lanceur, 
                        nombre,

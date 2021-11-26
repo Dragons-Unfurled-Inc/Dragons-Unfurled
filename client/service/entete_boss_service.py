@@ -1,5 +1,3 @@
-# pip install rich
-
 from datetime import datetime
 from time import sleep
 

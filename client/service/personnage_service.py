@@ -27,7 +27,7 @@ XP	Level	Bonus
 355.000	20	+6 '''
 class PersonnageService(metaclass=Singleton): 
     
-    @staticmethod #après avoir posté ces données sur l'API on peut vérifier si avec un tel pt d'expérience un perso peut monter de niveau (ici version test)
+    @staticmethod 
     def montee_niveau(personnage: Personnage) -> None:
         i = 0
         while personnage.__caracteristiques_entite.experience > points[i]: 

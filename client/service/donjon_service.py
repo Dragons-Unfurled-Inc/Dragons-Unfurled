@@ -1,14 +1,16 @@
-from typing import List
-
-from objets_metier.donjon import Donjon
-from objets_metier.objet import Objet
-from utils.singleton import Singleton
 from web.dao.cellule_dao import CelluleDAO
 from web.dao.donjon_dao import DonjonDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 from web.dao.objet_dao import ObjetDAO
 from web.dao.salle_dao import SalleDAO
+
+from objets_metier.donjon import Donjon
+from objets_metier.objet import Objet
+
+from typing import List
+from utils.singleton import Singleton
+
 
 
 class DonjonService(metaclass = Singleton):

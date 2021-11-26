@@ -1,4 +1,3 @@
-
 from objets_metier.grille import Grille
 
 

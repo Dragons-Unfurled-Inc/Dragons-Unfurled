@@ -1,10 +1,11 @@
-
 from client.exceptions.utilisateur_introuvable_exception import \
     UtilisateurIntrouvableException
 from client.web_client.administrateur_client import AdministrateurClient
 from client.web_client.feed_back_client import FeedBackClient
 from client.web_client.joueur_client import JoueurClient
+
 from objets_metier.feedback import FeedBack
+
 from utils.singleton import Singleton
 
 

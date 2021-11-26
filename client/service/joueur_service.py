@@ -1,8 +1,7 @@
-
-from utils.singleton import Singleton
 from web.dao.entite_dao import EntiteDAO
 from web.dao.campagne_dao import CampagneDAO
 
+from utils.singleton import Singleton
 
 class JoueurService(metaclass = Singleton):
   

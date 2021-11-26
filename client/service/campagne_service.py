@@ -1,8 +1,7 @@
-
-from utils.singleton import Singleton
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.utilisateur_campagne_dao import UtilisateurCampagneDao
 
+from utils.singleton import Singleton
 
 class CampagneService(metaclass = Singleton):
 

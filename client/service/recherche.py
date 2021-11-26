@@ -1,13 +1,9 @@
+from client.exceptions.entite_introuvable_exception import EntiteIntrouvableException
+from web.dao.entite_dao import EntiteDAO
+
+from objets_metier.entite import Entite
 
 from utils.singleton import Singleton
-from objets_metier.entite import Entite
-# from objets_metier.feedback import Feedback
-# from objets_metier.utilisateur import Utilisateur
-# from web.dao.utilisateur_dao import UtilisateurDAO
-# from web.dao.administrateur_dao import AdministrateurDAO
-from web.dao.entite_dao import EntiteDAO
-from client.exceptions.entite_introuvable_exception import EntiteIntrouvableException
-
 
 class Recherche(metaclass = Singleton):
 

@@ -1,9 +1,9 @@
-import random as rd
-
 from client.service.recherche import Recherche
-from objets_metier.entite import Entite
-from utils.singleton import Singleton
 
+from objets_metier.entite import Entite
+
+from utils.singleton import Singleton
+import random as rd
 
 class Dommage(metaclass=Singleton): 
     """

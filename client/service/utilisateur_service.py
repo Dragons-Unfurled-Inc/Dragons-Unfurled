@@ -1,13 +1,11 @@
-import hashlib
-
 from client.web_client.utilisateur_client import UtilisateurClient
-from objets_metier.joueur import Joueur
-from objets_metier.utilisateur import Utilisateur
-#from objets_metier import utilisateur
+
 from web.dao.utilisateur_dao import UtilisateurDAO
 
-#import os
-#from datetime import datetime
+from objets_metier.joueur import Joueur
+from objets_metier.utilisateur import Utilisateur
+
+import hashlib
 
 
 
@@ -53,20 +51,6 @@ class UtilisateurService:
 
     @staticmethod
     def creation_compte(nom_utilisateur: str, mot_de_passe_utilisateur: str, est_admin: bool = False):
-        # if compte != None:
-        #     if type_compte == "joueur":
-        #         nouvel_utilisateur = Utilisateur(connecte = True,
-        #                                         mot_de_passe = compte[1],
-        #                                         identifiant = compte[0],
-        #                                         est_administrateur = False,
-        #                                         feed_backs = True
-        #                                         )  
-        #     elif type_compte == "administrateur":
-        #         nouvel_utilisateur = Utilisateur(connecte = False,
-        #                                         mot_de_passe = compte[1],
-        #                                         identifiant = compte[0],
-        #                                         est_administrateur = True,
-        #                                         feed_backs = True)
         mdp_hash = mot_de_passe_utilisateur.encode() # Hachage du mot de passe
         mdp = hashlib.sha256()
         mdp.update(mdp_hash)
@@ -76,9 +60,6 @@ class UtilisateurService:
         mot_de_passe = mdp.hexdigest()
         creation = UtilisateurClient.creation_utilisateur(utilisateur.identifiant, mot_de_passe, est_admin) # creation stocke seulement le message renvoyé. Il s'agit bien d'une requête "post".
         print(creation)
-        # return nouvel_utilisateur
-        # else:
-        #     print("Votre compte n'a pas pu être créé !")
 
     @staticmethod
     def connexion(nom_utilisateur: str, mot_de_passe_utilisateur: str):

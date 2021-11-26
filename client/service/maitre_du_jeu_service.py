@@ -1,10 +1,11 @@
-
-from objets_metier.personnage import Personnage
-from utils.singleton import Singleton
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.entite_dao import EntiteDAO
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 from web.dao.salle_dao import SalleDAO
+
+from objets_metier.personnage import Personnage
+
+from utils.singleton import Singleton
 
 
 class MaitreDuJeuService(metaclass = Singleton):
