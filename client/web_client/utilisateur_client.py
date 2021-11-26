@@ -1,4 +1,5 @@
 import requests
+
 from client.web_client.web_configuration import WebConfiguration
 
 

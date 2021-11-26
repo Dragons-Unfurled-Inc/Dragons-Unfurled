@@ -22,11 +22,6 @@ class WebConfiguration(metaclass=Singleton):
         self.graph_port=graph_port
         self.api_url=api_url
         self.output_dir=output_dir
-        
-    # @property
-    # def connection(self):
-    #     return the opened connection.
-    #     return self.__connection
 
     def getApiUrl(self):
         return self.api_url

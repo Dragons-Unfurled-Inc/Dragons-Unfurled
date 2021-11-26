@@ -1,5 +1,5 @@
-
 from client.web_client.trad_web import TradWebconfig
+
 from objets_metier.caracteristique import Caracteristique
 
 class DicToObjet():

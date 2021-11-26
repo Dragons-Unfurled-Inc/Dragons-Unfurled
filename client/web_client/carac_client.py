@@ -1,4 +1,5 @@
 from client.web_client.dictoobjet import DicToObjet
+
 from objets_metier.caracteristique import Caracteristique
 
 
