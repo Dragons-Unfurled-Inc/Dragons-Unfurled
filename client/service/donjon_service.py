@@ -23,7 +23,10 @@ class DonjonService(metaclass = Singleton):
 
     @staticmethod
     def trouver_donjon(id_donjon):
-        return DonjonDAO.trouver_donjon(id_donjon)
+        donjons = MaitreDuJeuDAO.donjons()
+        for donjon in donjons:
+            if donjon.id_donjon == id_donjon:
+                print(donjon)
 
     @staticmethod
     def dict_donjons():
