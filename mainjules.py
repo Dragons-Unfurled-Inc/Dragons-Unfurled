@@ -10,7 +10,21 @@ from client.vue.session import Session
 
 from client.web_client.dictoobjet import DicToObjet
 from client.web_client.monstre_client import MonstreClient
+from objets_metier.utilisateur import Utilisateur
+from web.dao.attaque_dao import AttaqueDAO
+from web.dao.campagne_dao import CampagneDAO
+from web.dao.capacite_dao import CapaciteDAO
+from web.dao.cellule_dao import CelluleDAO
+from web.dao.combat_dao import CombatDAO
 from web.dao.db_connection import DBConnection
+from web.dao.donjon_dao import DonjonDAO
+from web.dao.entite_dao import EntiteDAO
+from web.dao.feed_back_dao import FeedBackDAO
+from web.dao.jet_dao import JetDAO
+from web.dao.langage_dao import LangageDAO
+from web.dao.objet_dao import ObjetDAO
+from web.dao.utilisateur_dao import UtilisateurDAO
+from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
 from web.service.monstre_service import MonstreService
 load_dotenv()
 from objets_metier.caracteristique import Caracteristique
@@ -42,7 +56,7 @@ def h():
     perso = Personnage("classe","race","lore","id_joueur", "id_entite", "nomentite", caract)
     j = Joueur(personnages = [],choix_revelation = True,connecte = True,mot_de_passe = "bla",identifiant = "id",est_administrateur = True,feed_backs = True)
     j.personnages.append(perso)
-    print(j.personnages)
+    
 '''connecte : bool,
                        mot_de_passe : str,
                        identifiant : str,
@@ -109,10 +123,9 @@ def encode(mdp):
 # m=Monstre("type",'id_joueur','id_entite',carac)
 # print(m) 
 
-# Session.utilisateur = Joueur(identifiant = 'jules')
+Session().utilisateur = Joueur(identifiant = 'Arthur')
 # print(MonstreClient.ImportMonstreWeb('aboleth'))
-
-# print(MonstreClient.ImportMonstreWeb('aboleth'))
+m = MonstreClient.ImportMonstreWeb('aboleth')
  
 # r = req.get('http://localhost:5000/monstres/types/')
 # print(r)
@@ -122,11 +135,8 @@ import json
 import psycopg2
 
 def sauvegarde_table(table, one=False):
-    # curtables = DBConnection().connection.cursor()
-    # curtables.execute("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'")
-    # for table in curtables.fetchall():
-    #     print(dict(table)['table_name'])
-        
+    
+    #fonction qui va dans une table et qui renvoie un json du contenu    
     query = str.format("select * from {}",table)
     cur = DBConnection().connection.cursor()
     cur.execute(query)
@@ -140,9 +150,48 @@ def sauvegarde_table(table, one=False):
     return json.dumps(r)
 
 def sauvegarde_db(listetable = []):
+    #fonction qui prend une liste de nom de tables et qui fait un dictionnaire avec les noms et les contenus
     dicdb = {}
     for nom in listetable :
         dicdb.update({nom : sauvegarde_table(nom)})
     return dicdb
-    
-#print(sauvegarde_db(['entite','utilisateur']))
+
+def liste_db():
+    #fonction qui renvoie une liste des noms de tables
+    cur2 = DBConnection().connection.cursor()
+    cur2.execute("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
+    listetable = []
+    for table in cur2.fetchall():
+        listetable.append(dict(table)['table_name'])
+    return(listetable)
+
+#EntiteDAO.ajoute_entite(monstre)
+
+
+def strversfonction(str):
+    #fonction qui prend les noms de tables et qui renvoie les DAO à utiliser pour importer
+    #Il faut faire en sorte que les DAO fonctionent
+    dic = {'personnages' : EntiteDAO.ajoute_entite
+           ,'campagne' : CampagneDAO.creer_campagne
+           ,'donjon' : DonjonDAO.ajoute_donjon
+           ,'cellule' : CelluleDAO.add_cellule
+           ,'entite' : EntiteDAO.ajoute_entite
+           ,'capacite' : CapaciteDAO.ajout_capacite
+           ,'langage' : LangageDAO.ajout_language
+           ,'attaque' : AttaqueDAO.ajout_attaque
+           ,'personnage' : EntiteDAO.ajoute_entite
+           ,'monstre' : EntiteDAO.ajoute_entite
+           ,'jet' : JetDAO.ajout_jet
+           ,'objet' : ObjetDAO.ajouter_objet
+           ,'combat' : CombatDAO.add_combat
+           ,'utilisateur' : UtilisateurDAO.createUtilisateur
+           ,'feedback' : FeedBackDAO.donner_feedback
+           ,'utilisateur_entite' : 
+           ,'utilisateur_campagne' :
+           ,'entite_objet': 
+           }
+    return dic[str]
+
+print(sauvegarde_db(liste_db())['campagne'])
+#print(strversfonction('personnages')(m))
+print(liste_db())

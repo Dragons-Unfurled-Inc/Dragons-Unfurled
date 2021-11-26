@@ -12,12 +12,11 @@ class MonstreClient():
     
         @staticmethod
         def ImportMonstreWeb(nom = str):
-            util = Session.utilisateur
+            util = Session().utilisateur
             configuration = TradWebconfig()
             d = configuration.getTrad('monstres/' + nom)
             MonstreClient.FormatMonstre(d)
             carac = DicToObjet.dictocarac(d)
-            print(Monstre(util.identifiant,-1,d['type'],carac))
             return Monstre(util.identifiant,-1,d['type'],carac)
             
         @staticmethod
@@ -33,7 +32,6 @@ class MonstreClient():
         def FormatMonstre(dic):
             #On part du principe que le dictionnaire contient des attaques et des capacites, et le but ici est de les formater pour les afficher
             #C'est sur place par simplicité
-            print(dic)
             listattaques = []
             listcapacites = []
             list = dic['attaques']

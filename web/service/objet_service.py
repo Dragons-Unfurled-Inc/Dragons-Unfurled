@@ -16,7 +16,6 @@ class ObjetService():
         url = str.format("{0}/{1}",'equipment-categories',type)
         objets = WebConfig().getdnd(url)  
         listeObjets = []
-        print(objets)
         for dic in objets['equipment']:
             listeObjets.append(dic['index'])
         return listeObjets
