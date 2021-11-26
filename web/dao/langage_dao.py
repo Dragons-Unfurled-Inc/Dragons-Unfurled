@@ -23,3 +23,18 @@ class LangageDAO(metaclass=Singleton):
                     , {"id_entite" : entite.id_entite
                     , "nom_langage" : entite.caracteristiques_entite.languages[i]
                     })
+                    
+    @staticmethod               
+    def ajout_language(id_entite,languages):
+        for i in range(0, len(languages)) :
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Langage (id_entite, "\
+                                              "nom_langage) "\
+                        "VALUES "\
+                        "(%(id_entite)s,%(nom_langage)s)"\
+   
+                    , {"id_entite" : id_entite
+                    , "nom_langage" : languages[i]
+                    })

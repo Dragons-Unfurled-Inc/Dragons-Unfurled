@@ -21,3 +21,16 @@ class ObjetEntiteDAO(metaclass = Singleton):
                         , { "id_entite" : enti.id_entite
                         , "id_objet" : objet.id_objet
                         })
+                        
+    def import_entite_objet(dic):
+        with DBConnection().connection as connection:
+                 with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Entite_objet (id_entite, "\
+                                                    "id_objet)"\
+                        "VALUES "\
+                        "(%(id_entite)s, %(id_objet)s)"\
+    
+                        , { "id_entite" : dic['id_entite']
+                        , "id_objet" : dic['id_objet']
+                        })

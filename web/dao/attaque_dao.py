@@ -23,3 +23,17 @@ class AttaqueDAO(metaclass=Singleton):
                     , { "id_entite" : entite.id_entite
                     , "nom_attaque" : entite.caracteristiques_entite.attaques[i]
                     })
+                    
+    def ajout_attaque(id_entite,attaques):
+        for i in range(0, len(attaques)) :
+            with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Attaque (id_entite, "\
+                                              "nom_attaque) "\
+                        "VALUES "\
+                        "(%(id_entite)s, %(nom_attaque)s)"\
+   
+                    , { "id_entite" : id_entite
+                    , "nom_attaque" : attaques[i]
+                    })

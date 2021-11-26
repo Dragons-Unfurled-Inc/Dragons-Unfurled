@@ -10,6 +10,7 @@ from client.vue.session import Session
 
 from client.web_client.dictoobjet import DicToObjet
 from client.web_client.monstre_client import MonstreClient
+from objets_metier.entite import Entite
 from objets_metier.utilisateur import Utilisateur
 from web.dao.attaque_dao import AttaqueDAO
 from web.dao.campagne_dao import CampagneDAO
@@ -19,10 +20,12 @@ from web.dao.combat_dao import CombatDAO
 from web.dao.db_connection import DBConnection
 from web.dao.donjon_dao import DonjonDAO
 from web.dao.entite_dao import EntiteDAO
+from web.dao.entite_objet_dao import ObjetEntiteDAO
 from web.dao.feed_back_dao import FeedBackDAO
 from web.dao.jet_dao import JetDAO
 from web.dao.langage_dao import LangageDAO
 from web.dao.objet_dao import ObjetDAO
+from web.dao.utilisateur_campagne_dao import UtilisateurCampagneDao
 from web.dao.utilisateur_dao import UtilisateurDAO
 from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
 from web.service.monstre_service import MonstreService
@@ -171,7 +174,7 @@ def liste_db():
 def strversfonction(str):
     #fonction qui prend les noms de tables et qui renvoie les DAO à utiliser pour importer
     #Il faut faire en sorte que les DAO fonctionent
-    dic = {'personnages' : EntiteDAO.ajoute_entite
+    dic = {'personnages' : [EntiteDAO.ajoute_entite, Entite]
            ,'campagne' : CampagneDAO.creer_campagne
            ,'donjon' : DonjonDAO.ajoute_donjon
            ,'cellule' : CelluleDAO.add_cellule
@@ -186,12 +189,12 @@ def strversfonction(str):
            ,'combat' : CombatDAO.add_combat
            ,'utilisateur' : UtilisateurDAO.createUtilisateur
            ,'feedback' : FeedBackDAO.donner_feedback
-           ,'utilisateur_entite' : 
-           ,'utilisateur_campagne' :
-           ,'entite_objet': 
+           ,'utilisateur_entite' : UtilisateurEntiteDao.importe_utilisateur_entite
+           ,'utilisateur_campagne' : UtilisateurCampagneDao.add_utilisateur_campagne
+           ,'entite_objet': ObjetEntiteDAO.import_entite_objet
            }
     return dic[str]
 
-print(sauvegarde_db(liste_db())['campagne'])
-#print(strversfonction('personnages')(m))
-print(liste_db())
+#print(sauvegarde_db(liste_db())['campagne'])
+print(strversfonction('personnages')[1].parse_obj({"id_entite": 45, "nom_entite": "Chuul", "niveau": 4, "experience": 1100, "force": 19, "intelligence": 5, "charisme": 5, "dexterite": 10, "constitution": 16, "sagesse": 11, "vie": 93, "description": "Monstre", "classe_armure": 16, "id_campagne": null, "id_cellule": null}))
+#print(liste_db())

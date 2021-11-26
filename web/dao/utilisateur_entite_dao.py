@@ -21,6 +21,20 @@ class UtilisateurEntiteDao:
                     , "id_entite" : entite.id_entite
                     })
                     
+    @staticmethod
+    def importe_utilisateur_entite(dic):
+        with DBConnection().connection as connection:
+                with connection.cursor() as cursor :
+                    cursor.execute(
+                        "INSERT INTO Utilisateur_entite (username, "\
+                                                        "id_entite) "\
+                        "VALUES "\
+                        "(%(username)s,%(id_entite)s)"\
+   
+                    , {"username" : dic['username']
+                    , "id_entite" : dic['id_entite']
+                    })
+                    
     def trouve_enti(username): 
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :
