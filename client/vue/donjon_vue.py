@@ -3,13 +3,9 @@ from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.objet_service import ObjetService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-
-from web.service.salle_service import SalleService
-
 from objets_metier.donjon import Donjon
-
 from PyInquirer import Separator, prompt
-
+from web.service.salle_service import SalleService
 
 
 class MenuDonjon(AbstractVue):
@@ -107,7 +103,6 @@ class MenuDonjon(AbstractVue):
                 print(salle["nom_salle"],' : ',salle["id_salle"])
             id_salle = input("Saisissez l'identifiant de la salle à consulter. \n")
             salle = SalleService.trouve_salle(id_salle)
-            Donjon.editer_salle(self.id_donjon, salle)
             from client.vue.modif_salle_vue import ModifSalleVue
             return ModifSalleVue(id_salle)
 
