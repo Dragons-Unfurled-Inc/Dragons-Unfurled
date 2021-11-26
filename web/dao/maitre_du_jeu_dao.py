@@ -495,7 +495,7 @@ class MaitreDuJeuDAO:
         with DBConnection().connection as connection:
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT id_entite, nom_entite "\
+                    "SELECT Monstre.id_entite, nom_entite "\
                     "FROM Monstre JOIN Entite ON Monstre.id_entite = Entite.id_entite "\
                     "WHERE id_campagne=%(nom)s"\
                     ,{"nom" : id_campagne}
