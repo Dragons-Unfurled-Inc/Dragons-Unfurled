@@ -1,12 +1,13 @@
 from client.vue.abstract_vue import AbstractVue
 from client.vue.joueur_vue import MenuJoueur
-from PyInquirer import prompt
 from client.vue.maitre_du_jeu_vue import MenuMJ
+
 from web.dao.entite_dao import EntiteDAO
 from web.service.utilisateur_service import UtilisateurService
 
 from client.vue.session import Session
 
+from PyInquirer import prompt
 
 class ModifCaracMJVue(AbstractVue):
 

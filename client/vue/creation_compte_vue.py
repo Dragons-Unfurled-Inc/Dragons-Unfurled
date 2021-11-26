@@ -1,7 +1,9 @@
 from client.service.utilisateur_service import UtilisateurService
 from client.vue.abstract_vue import AbstractVue
-from PyInquirer import prompt
 from client.vue.accueil_jeu_vue import AccueilJeuVue
+
+from PyInquirer import prompt
+
 
 class CreaCompteVue(AbstractVue):
     def __init__(self,precedent = ""):

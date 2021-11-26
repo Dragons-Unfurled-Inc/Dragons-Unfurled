@@ -1,11 +1,10 @@
-from PyInquirer import prompt
-
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
 from client.vue.accueil_jeu_vue import AccueilJeuVue
 from client.vue.passage_admin_vue import PassageAdminVue
 from client.service.utilisateur_service import UtilisateurService
 
+from PyInquirer import prompt
 
 class Deconnexion(AbstractVue):
 

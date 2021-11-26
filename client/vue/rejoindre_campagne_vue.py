@@ -2,12 +2,16 @@ from client.service.campagne_service import CampagneService
 from client.vue.accueil_jeu_vue import AccueilJeuVue
 from client.vue.joueur_vue import MenuJoueur
 from client.vue.maitre_du_jeu_vue import MenuMJ
+
+from web.dao.campagne_dao import CampagneDAO
+
 from objets_metier.joueur import Joueur
 from objets_metier.maitre_du_jeu import MaitreDuJeu
-from vue.session import Session
-from PyInquirer import prompt
+
 from vue.abstract_vue import AbstractVue
-from web.dao.campagne_dao import CampagneDAO
+from vue.session import Session
+
+from PyInquirer import prompt
 
 class RejCampVue(AbstractVue):
     

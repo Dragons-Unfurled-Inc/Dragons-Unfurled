@@ -3,9 +3,13 @@ from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.objet_service import ObjetService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-from objets_metier.donjon import Donjon
-from PyInquirer import Separator, prompt
+
 from web.service.salle_service import SalleService
+
+from objets_metier.donjon import Donjon
+
+from PyInquirer import Separator, prompt
+
 
 
 class MenuDonjon(AbstractVue):

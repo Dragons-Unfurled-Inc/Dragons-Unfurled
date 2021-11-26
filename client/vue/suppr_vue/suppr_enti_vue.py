@@ -1,8 +1,7 @@
 from client.vue.abstract_vue import AbstractVue
-from PyInquirer import prompt
 from client.vue.session import Session
 
-
+from PyInquirer import prompt
 
 class SupprEntiVue(AbstractVue):
 

@@ -4,11 +4,13 @@ from client.service.export_service import ExportService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-from objets_metier.maitre_du_jeu import MaitreDuJeu
-from PyInquirer import Separator, prompt
+
 from web.dao.jet_dao import JetDAO
 from web.service.jet_service import JetService
 
+from objets_metier.maitre_du_jeu import MaitreDuJeu
+
+from PyInquirer import Separator, prompt
 
 class MenuMJ(AbstractVue):
 

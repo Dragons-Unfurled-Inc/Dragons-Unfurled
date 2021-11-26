@@ -1,7 +1,9 @@
 from client.vue.abstract_vue import AbstractVue
-from PyInquirer import prompt
 from client.vue.accueil_jeu_vue import AccueilJeuVue
 from client.vue.accueil_administrateur_vue import AccueilAdministrateurVue
+
+from PyInquirer import prompt
+
 
 class PassageAdminVue(AbstractVue):
 

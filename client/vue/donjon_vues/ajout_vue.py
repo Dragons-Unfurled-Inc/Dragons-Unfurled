@@ -2,7 +2,9 @@ from client.service.donjon_service import DonjonService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
+
 from objets_metier.objet import Objet
+
 from PyInquirer import Separator, prompt
 
 

@@ -3,7 +3,9 @@ from client.service.joueur_service import JoueurService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
+
 from objets_metier.utilisateur import Utilisateur
+
 from PyInquirer import Separator, prompt
 
 

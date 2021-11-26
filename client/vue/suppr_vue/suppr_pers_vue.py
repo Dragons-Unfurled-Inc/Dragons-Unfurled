@@ -2,6 +2,7 @@ from client.service.campagne_service import CampagneService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
+
 from PyInquirer import ValidationError, Validator, prompt
 
 

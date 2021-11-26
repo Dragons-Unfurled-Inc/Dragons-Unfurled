@@ -1,6 +1,8 @@
-from PyInquirer import prompt
-from objets_metier.maitre_du_jeu import MaitreDuJeu
 from client.vue.abstract_vue import AbstractVue
+
+from objets_metier.maitre_du_jeu import MaitreDuJeu
+
+from PyInquirer import prompt
 
 class SupprMonsVue(AbstractVue):
     def __init__(self, joueur: MaitreDuJeu, campagne):

@@ -3,9 +3,13 @@ from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.monstre_service import MonstreService
 from client.service.objet_service import ObjetService
 from client.vue.abstract_vue import AbstractVue
-from objets_metier.entite import Entite
-from PyInquirer import prompt
+
 from web.dao.entite_dao import EntiteDAO
+
+from objets_metier.entite import Entite
+
+from PyInquirer import prompt
+
 
 
 class AjoutObjVue(AbstractVue):
@@ -15,7 +19,6 @@ class AjoutObjVue(AbstractVue):
         return ObjetService.ImportObjetDeType(reponse['type'])
     
     def __init__(self):
-        #self.joueur = joueur 
         self.liste_types = ObjetService.ImportListeTypes()
         self.questions = [
             {

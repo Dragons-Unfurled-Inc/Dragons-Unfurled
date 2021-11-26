@@ -3,9 +3,11 @@ from client.service.donjon_service import DonjonService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-from PyInquirer import Separator, prompt
+
 from web.service.cellule_service import CelluleService
 from web.service.salle_service import SalleService
+
+from PyInquirer import Separator, prompt
 
 
 class MenuDeplace(AbstractVue):

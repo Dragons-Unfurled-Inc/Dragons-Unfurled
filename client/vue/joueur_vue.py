@@ -1,11 +1,13 @@
+from client.vue.session import Session
+from client.vue.abstract_vue import AbstractVue
+
+from web.service.jet_service import JetService
+
+from objets_metier.utilisateur import Utilisateur
+from objets_metier.joueur import Joueur
+
 from PyInquirer import Separator, prompt
 
-
-from client.vue.abstract_vue import AbstractVue
-from objets_metier.utilisateur import Utilisateur
-from client.vue.session import Session
-from objets_metier.joueur import Joueur
-from web.service.jet_service import JetService
 
 
 class MenuJoueur(AbstractVue):
@@ -41,9 +43,6 @@ class MenuJoueur(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'Modifier la fiche de votre personnage':
-#            Joueur.modifier_personnage(self.joueur,self.id_campagne)
-#            from client.vue.joueur_vue import MenuJoueur
-#            return MenuJoueur()
             from client.vue.modif_perso_vue import ModifCaracVue
             return ModifCaracVue()
             

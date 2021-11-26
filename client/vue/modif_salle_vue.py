@@ -1,10 +1,11 @@
 from client.vue.abstract_vue import AbstractVue
 from client.vue.donjon_vue import MenuDonjon
 from client.vue.session import Session
-from PyInquirer import prompt
+
 from web.dao.entite_dao import EntiteDAO
 from web.service.salle_service import SalleService
 
+from PyInquirer import prompt
 
 class ModifSalleVue(AbstractVue):
 

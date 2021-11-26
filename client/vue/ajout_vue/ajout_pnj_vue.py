@@ -1,8 +1,10 @@
-from PyInquirer import prompt
-from client.vue.abstract_vue import AbstractVue
-from PyInquirer import Validator, ValidationError
 from client.vue.session import Session
+from client.vue.abstract_vue import AbstractVue
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
+
+from PyInquirer import prompt
+from PyInquirer import Validator, ValidationError
+
 
 class NumberValidator(Validator):
     def validate(self, document):

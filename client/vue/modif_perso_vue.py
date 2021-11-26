@@ -1,10 +1,11 @@
 from client.vue.abstract_vue import AbstractVue
 from client.vue.joueur_vue import MenuJoueur
-from PyInquirer import prompt
+from client.vue.session import Session
+
 from web.service.entite_service import EntiteService
 from web.service.utilisateur_service import UtilisateurService
 
-from client.vue.session import Session
+from PyInquirer import prompt
 
 
 class ModifCaracVue(AbstractVue):

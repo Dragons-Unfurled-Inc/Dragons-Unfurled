@@ -1,8 +1,12 @@
 from client.vue.abstract_vue import AbstractVue
-from PyInquirer import prompt
 from client.vue.session import Session
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
+
 from web.service.utilisateur_service import UtilisateurService 
+
+from PyInquirer import prompt
+
+
 
 
 class MenuModifMJ(AbstractVue):
