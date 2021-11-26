@@ -128,7 +128,7 @@ class Grille:
             pos = [x, y]
             self.element = pos # Si le message entré ne convient pas, la position ne change pas.
 
-        if pos not in self.murs and pos not in self.coordonnees_objets_non_element and pos not in self.coordonnees_entites_non_element: # Nous ne pouvons pas rentrer dans un mur, dans un objet ou un autre entité.
+        if pos not in self.murs and pos not in self.coordonnees_entites_non_element: # Nous ne pouvons pas rentrer dans un mur ou un autre entité, mais nous pouvons marcher sur un objet ou empiler des objets.
             self.element = pos # La nouvelle position n'est enregistrée, que si la nouvelle position demandée est possible.
 
     def place_murs_aleatoire(self, pct=.25) -> list: 

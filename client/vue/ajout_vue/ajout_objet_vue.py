@@ -1,11 +1,12 @@
-from PyInquirer import prompt
 from client.service.donjon_service import DonjonService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.monstre_service import MonstreService
 from client.service.objet_service import ObjetService
 from client.vue.abstract_vue import AbstractVue
 from objets_metier.entite import Entite
+from PyInquirer import prompt
 from web.dao.entite_dao import EntiteDAO
+
 
 class AjoutObjVue(AbstractVue):
     
@@ -37,8 +38,8 @@ class AjoutObjVue(AbstractVue):
 
     def make_choice(self):
         reponse = prompt(self.questions)
-        index,desc = ObjetService.ImportObjetWeb(reponse['objet'])
-        objet = DonjonService.ajouter_objet_et_recuperation_donjon(index, desc)
+        nom_objet, description_objet = ObjetService.ImportObjetWeb(reponse['objet'])
+        objet = DonjonService.ajouter_objet_et_recuperation_donjon(nom_objet, str(description_objet))
         dict_salles = MaitreDuJeuService.dict_salles() 
         print("Voici la liste des salles de votre donjon :")
         for salle in dict_salles:
@@ -49,4 +50,3 @@ class AjoutObjVue(AbstractVue):
         from client.vue.donjon_vue import MenuDonjon
         return MenuDonjon()
         
-    
