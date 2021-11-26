@@ -6,12 +6,8 @@ from objets_metier.monstre import Monstre
 from objets_metier.objet import Objet
 from objets_metier.personnage import Personnage
 from objets_metier.utilisateur import Utilisateur
+
 from web.dao.db_connection import DBConnection
-
-# def adapt_pydantic_byte(Byte):
-#         return AsIs(repr(Byte))
-
-# register_adapter(SecretBytes, adapt_pydantic_byte)
 
 class UtilisateurDAO:
 

@@ -1,4 +1,5 @@
 from web.dao.db_connection import DBConnection
+
 from utils.singleton import Singleton
 
 from objets_metier.entite import Entite  

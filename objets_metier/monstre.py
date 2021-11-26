@@ -1,5 +1,6 @@
 from typing import List, Optional
 from pydantic import BaseModel
+
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.objet import Objet
 from objets_metier.entite import Entite

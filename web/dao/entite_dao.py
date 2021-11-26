@@ -1,8 +1,10 @@
 
 from client.vue.session import Session
+
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.entite import Entite
 from objets_metier.objet import Objet
+
 from web.dao.db_connection import DBConnection
 from web.dao.monstre_dao import MonstreDAO
 from web.dao.personnage_dao import PersonnageDAO

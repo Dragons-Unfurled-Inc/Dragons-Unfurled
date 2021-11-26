@@ -1,9 +1,11 @@
 from web.dao.db_connection import DBConnection
+from web.dao.objet_dao import ObjetDAO
+
 from utils.singleton import Singleton
 
 from objets_metier.objet import Objet
 from objets_metier.salle import Salle
-from web.dao.objet_dao import ObjetDAO
+
 
 class ObjetSalleDAO(metaclass = Singleton):
 

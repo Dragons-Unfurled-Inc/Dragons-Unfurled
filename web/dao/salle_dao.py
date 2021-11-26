@@ -2,13 +2,14 @@ import random
 from typing import List
 
 from PyInquirer.prompt import prompt
+from utils.singleton import Singleton
 
 from objets_metier.objet import Objet
 from objets_metier.salle import Salle
 from objets_metier.personnage import Personnage
 from objets_metier.monstre import Monstre
 from objets_metier.caracteristique import Caracteristique
-from utils.singleton import Singleton
+
 from web.dao.cellule_dao import CelluleDAO
 from web.dao.db_connection import DBConnection
 

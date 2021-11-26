@@ -1,5 +1,7 @@
 from objets_metier.personnage import Personnage
+
 from web.dao.db_connection import DBConnection
+
 from utils.singleton import Singleton
 
 class PersonnageDAO(metaclass=Singleton):

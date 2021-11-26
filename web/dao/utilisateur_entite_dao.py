@@ -1,6 +1,8 @@
 from client.vue.session import Session
+
 from objets_metier.entite import Entite
 from objets_metier.utilisateur import Utilisateur
+
 from web.dao.db_connection import DBConnection
 
 

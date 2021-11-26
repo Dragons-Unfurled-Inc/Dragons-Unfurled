@@ -1,5 +1,7 @@
 from objets_metier.objet import Objet
+
 from utils.singleton import Singleton
+
 from web.dao.db_connection import DBConnection
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 

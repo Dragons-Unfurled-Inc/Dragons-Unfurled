@@ -1,4 +1,5 @@
 from objets_metier.entite import Entite
+
 from web.dao.attaque_dao import AttaqueDAO
 from web.dao.campagne_dao import CampagneDAO
 from web.dao.capacite_dao import CapaciteDAO
@@ -15,6 +16,7 @@ from web.dao.objet_dao import ObjetDAO
 from web.dao.utilisateur_campagne_dao import UtilisateurCampagneDao
 from web.dao.utilisateur_dao import UtilisateurDAO
 from web.dao.utilisateur_entite_dao import UtilisateurEntiteDao
+
 class ImportDAO():
     
     @staticmethod
