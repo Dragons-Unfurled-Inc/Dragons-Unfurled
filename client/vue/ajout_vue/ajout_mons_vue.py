@@ -1,8 +1,10 @@
-from PyInquirer import prompt
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.service.monstre_service import MonstreService
 from client.vue.abstract_vue import AbstractVue
 from objets_metier.entite import Entite
+from PyInquirer import prompt
 from web.dao.entite_dao import EntiteDAO
+
 
 class AjoutMonsVue(AbstractVue):
     
@@ -35,7 +37,9 @@ class AjoutMonsVue(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.questions)
         monstre = MonstreService.ImportMonstreWeb(reponse['monstre'])
-        EntiteDAO.ajoute_entite(monstre)
+        print(monstre)
+        id_entite = EntiteDAO.ajoute_entite(monstre)
+        MaitreDuJeuService.ajouter_entite_campagne(id_entite)  
         from client.vue.maitre_du_jeu_vue import MenuMJ
         return MenuMJ()
     

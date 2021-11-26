@@ -22,4 +22,4 @@ class MonstreDAO(metaclass = Singleton):
                     , { "id_entite" : monstre.id_entite
                     , "type" : monstre.type
                     })
-            
+            return monstre.id_entite

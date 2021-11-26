@@ -7,12 +7,11 @@ from objets_metier.caracteristique import Caracteristique
 from objets_metier.joueur import Joueur
 from objets_metier.monstre import Monstre
 
+
 class MonstreClient():
     
         @staticmethod
         def ImportMonstreWeb(nom = str):
-            Session()
-            Session.utilisateur = Joueur(id = -1, identifiant = 'str')
             util = Session.utilisateur
             configuration = TradWebconfig()
             d = configuration.getTrad('monstres/' + nom)
