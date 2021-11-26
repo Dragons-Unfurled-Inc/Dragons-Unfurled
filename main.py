@@ -20,3 +20,4 @@ if __name__ == '__main__':
 
     with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as asset:
         print(asset.read())
+        
