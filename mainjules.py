@@ -195,5 +195,14 @@ def strversfonction(str):
     return dic[str]
 
 #print(sauvegarde_db(liste_db())['campagne'])
-print(strversfonction('personnages'))
+# print(strversfonction('personnages'))
 #print(liste_db())
+# import os
+# print(os.getcwd())
+import json
+def enregistrejson(dic):
+        
+        with open('table.txt', 'w') as outfile:
+            json.dump(dic, outfile)
+            
+enregistrejson({"test":"yolo"})

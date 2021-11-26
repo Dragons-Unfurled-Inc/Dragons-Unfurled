@@ -100,10 +100,11 @@ class MenuMJ(AbstractVue):
                 return MenuMJ()
             
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
-            table = input("Saisissez le nom de la table que vous voulez exporter 'Tout' pour toutes")
-            if input == 'Tout':
-                ExportService.sauvegarder
-            ExportService.sauvegarder()
+            table = input("Saisissez le nom de la table que vous voulez exporter 'Tout' pour toutes \n")
+            if table == 'Tout':
+                ExportService.SauvegardeDB()
+            else :
+                ExportService.SauvegardeTable(table)
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         
