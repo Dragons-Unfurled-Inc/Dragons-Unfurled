@@ -1,5 +1,6 @@
 from client.service.campagne_service import CampagneService
 from client.service.donjon_service import DonjonService
+from client.service.export_service import ExportService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
@@ -99,7 +100,10 @@ class MenuMJ(AbstractVue):
                 return MenuMJ()
             
         if reponse['choix'] == 'Sauvegarder l\'état de la campagne':
-            CampagneService.sauvegarder() 
+            table = input("Saisissez le nom de la table que vous voulez exporter 'Tout' pour toutes")
+            if input == 'Tout':
+                ExportService.sauvegarder
+            ExportService.sauvegarder()
             from client.vue.maitre_du_jeu_vue import MenuMJ
             return MenuMJ()
         

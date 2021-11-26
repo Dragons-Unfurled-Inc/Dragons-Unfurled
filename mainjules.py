@@ -138,7 +138,6 @@ import json
 import psycopg2
 
 def sauvegarde_table(table, one=False):
-    
     #fonction qui va dans une table et qui renvoie un json du contenu    
     query = str.format("select * from {}",table)
     cur = DBConnection().connection.cursor()
@@ -196,5 +195,5 @@ def strversfonction(str):
     return dic[str]
 
 #print(sauvegarde_db(liste_db())['campagne'])
-print(strversfonction('personnages')[1].parse_obj({"id_entite": 45, "nom_entite": "Chuul", "niveau": 4, "experience": 1100, "force": 19, "intelligence": 5, "charisme": 5, "dexterite": 10, "constitution": 16, "sagesse": 11, "vie": 93, "description": "Monstre", "classe_armure": 16, "id_campagne": null, "id_cellule": null}))
+print(strversfonction('personnages'))
 #print(liste_db())
