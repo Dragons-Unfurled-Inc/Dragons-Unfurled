@@ -10,7 +10,9 @@ from client.vue.session import Session
 
 from client.web_client.dictoobjet import DicToObjet
 from client.web_client.monstre_client import MonstreClient
+from web.dao.campagne_dao import CampagneDAO
 from web.dao.db_connection import DBConnection
+from web.dao.entite_dao import EntiteDAO
 from web.service.monstre_service import MonstreService
 load_dotenv()
 from objets_metier.caracteristique import Caracteristique
@@ -42,7 +44,7 @@ def h():
     perso = Personnage("classe","race","lore","id_joueur", "id_entite", "nomentite", caract)
     j = Joueur(personnages = [],choix_revelation = True,connecte = True,mot_de_passe = "bla",identifiant = "id",est_administrateur = True,feed_backs = True)
     j.personnages.append(perso)
-    print(j.personnages)
+    
 '''connecte : bool,
                        mot_de_passe : str,
                        identifiant : str,
@@ -109,10 +111,9 @@ def encode(mdp):
 # m=Monstre("type",'id_joueur','id_entite',carac)
 # print(m) 
 
-# Session.utilisateur = Joueur(identifiant = 'jules')
+Session().utilisateur = Joueur(identifiant = 'Arthur')
 # print(MonstreClient.ImportMonstreWeb('aboleth'))
-
-# print(MonstreClient.ImportMonstreWeb('aboleth'))
+m = MonstreClient.ImportMonstreWeb('aboleth')
  
 # r = req.get('http://localhost:5000/monstres/types/')
 # print(r)
@@ -144,5 +145,24 @@ def sauvegarde_db(listetable = []):
     for nom in listetable :
         dicdb.update({nom : sauvegarde_table(nom)})
     return dicdb
-    
-#print(sauvegarde_db(['entite','utilisateur']))
+
+def liste_db():
+    cur2 = DBConnection().connection.cursor()
+    cur2.execute("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
+    listetable = []
+    for table in cur2.fetchall():
+        listetable.append(dict(table)['table_name'])
+    return(listetable)
+
+#EntiteDAO.ajoute_entite(monstre)
+
+
+def strversfonction(str):
+    dic = {'personnages' : EntiteDAO.ajoute_entite
+           ,'campagne' : CampagneDAO.creer_campagne
+           }
+    return dic[str]
+
+print(sauvegarde_db(liste_db())['campagne'])
+#print(strversfonction('personnages')(m))
+print(liste_db())
