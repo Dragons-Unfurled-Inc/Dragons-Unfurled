@@ -3,11 +3,9 @@ from client.service.donjon_service import DonjonService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-
+from PyInquirer import Separator, prompt
 from web.service.cellule_service import CelluleService
 from web.service.salle_service import SalleService
-
-from PyInquirer import Separator, prompt
 
 
 class MenuDeplace(AbstractVue):
@@ -131,7 +129,7 @@ class MenuDeplace(AbstractVue):
                 coordonnees_entites_salle = SalleService.coordonnees_entites_salle(identifiant_salle) 
                 coordonnees_objets_salle = SalleService.coordonnees_objets_salle(identifiant_salle) 
                 dimensions = SalleService.dimensions_salle(coordonnees_cellules_salle) 
-                nouvelles_coordonnees_entite = DeplacementSalleService.deplacer_element_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_entite_salle, coordonnees_entites_salle, coordonnees_objets_salle)
+                nouvelles_coordonnees_entite = DeplacementSalleService.deplacer_element_dans_salle(dimensions, coordonnees_cellules_salle, coordonnees_entite_salle, coordonnees_entites_salle, coordonnees_objets_salle, identifiant_entite, identifiant_salle)
                 if DonjonService.existe_cellules_salle(nouvelles_coordonnees_entite, identifiant_salle):  
                     DonjonService.deplacer_entite_dans_salle(identifiant_entite, identifiant_salle, nouvelles_coordonnees_entite) 
                     print("Le personnage se déplace.")

@@ -1,12 +1,28 @@
 from objets_metier.objet import Objet
-
 from utils.singleton import Singleton
-
+from web.dao.cellule_dao import CelluleDAO
 from web.dao.db_connection import DBConnection
 from web.dao.maitre_du_jeu_dao import MaitreDuJeuDAO
 
 
 class ObjetDAO(metaclass = Singleton): 
+
+    @staticmethod
+    def trouve_id_obj(x,y, id_salle) :
+        id_cellule = CelluleDAO.trouve_id_cellule(id_salle, x, y)
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Objet "\
+                    "WHERE (id_cellule = %(id_cellule)s) "\
+                    , {"id_cellule": id_cellule})
+                res = cursor.fetchone()
+        if res == None:
+            id_objet = None
+        else:
+            id_objet = dict(res)["id_objet"]
+        return id_objet
 
     @staticmethod
     def ajouter_objet(objet : Objet): 
@@ -54,7 +70,7 @@ class ObjetDAO(metaclass = Singleton):
                         "(%(id_entite)s, %(id_objet)s)"\
    
                     , {"id_entite" : id_entite
-                    , "id_objet" : id_objet
+                    , "id_objet" : int(id_objet)
                     })
         MaitreDuJeuDAO.retirer_objet_salle(id_objet)
         

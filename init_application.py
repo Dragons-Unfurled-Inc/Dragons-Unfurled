@@ -1,3 +1,5 @@
+import random
+
 from client.service.campagne_service import CampagneService
 from client.service.donjon_service import DonjonService
 from client.service.maitre_du_jeu_service import MaitreDuJeuService
@@ -135,9 +137,9 @@ DonjonService.deplacer_entite_dans_salle(1, 2, [25, 11])
 
 # Un objet répliqué 15 fois qu'Arthur va placer dans cette salle :
 
-objet_arthur = Objet(id_objet = -1,nom_objet = "sac d'or", description_obj = "Une quantitée aléatoire de pièces d'ors. Cela peut monter jusau'à 8 000 pièces !")
-
 for _ in range(15):
+    i = random.randint(100,8000)
+    objet_arthur = Objet(id_objet = -1,nom_objet = "sac d'or", description_obj = str(i)+" pièces d'or")
     ObjetDAO.ajouter_objet(objet_arthur)
 
 DonjonService.deplacer_objet_dans_salle(1, 2, [15,3])

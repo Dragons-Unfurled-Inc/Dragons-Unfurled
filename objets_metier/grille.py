@@ -1,6 +1,8 @@
 from random import choice, randint
 from typing import List
 
+from client.service.objet_service import ObjetService
+
 
 class Grille:
     """
@@ -52,7 +54,7 @@ class Grille:
             Cette fonction permet de dessiner la grille à parir de ses attributs et de la longueur de case choisie.
     """
 
-    def __init__(self, largeur: int, longueur: int, coordonnees_cellules: list, coordonnees_element: List[int], coordonnees_entites: list, coordonnees_objets: list):
+    def __init__(self, largeur: int, longueur: int, coordonnees_cellules: list, coordonnees_element: List[int], coordonnees_entites: list, coordonnees_objets: list, identifiant_entite, identifiant_salle):
         """
         Une grille s'initialise avec les 6 arguments présentés ci-dessous.
 
@@ -82,6 +84,8 @@ class Grille:
         """
         self.largeur = largeur 
         self.longueur = longueur
+        self.identifiant_salle = identifiant_salle
+        self.identifiant_entite = identifiant_entite
         self.murs = [] # Cette liste va contenir la lite des coordonnées des murs, une fois placés avec place_murs().
         self.quitter = False # Lorsque quitter passera à True, deplacement_salle_service cessera ses appels à dessiner_grille et deplace_element.
         self.coordonnees_cellules = coordonnees_cellules
@@ -124,6 +128,12 @@ class Grille:
             pos = [x, y + 1]
         elif deplacement == 'b':
             pos = [x, y - 1]
+        elif deplacement == 'r':
+            pos = [x, y]
+            identifiant_objet = ObjetService.trouve_id_obj(x,y, self.identifiant_salle) 
+            if identifiant_objet != None:
+                ObjetService.ramasse_objet(self.identifiant_entite, identifiant_objet) 
+                self.coordonnees_objets_non_element.remove([x, y]) 
         else:
             pos = [x, y]
             self.element = pos # Si le message entré ne convient pas, la position ne change pas.

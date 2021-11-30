@@ -1,7 +1,7 @@
 from client.web_client.objet_client import ObjetClient
+from utils.singleton import Singleton
 from web.dao.objet_dao import ObjetDAO
 
-from utils.singleton import Singleton
 
 class ObjetService(metaclass = Singleton):
 
@@ -20,6 +20,10 @@ class ObjetService(metaclass = Singleton):
     @staticmethod
     def ImportListeTypes():
         return ObjetClient.ListeTypesObjet()
+
+    @staticmethod
+    def trouve_id_obj(x,y, identifiant_salle):
+        return ObjetDAO.trouve_id_obj(x,y, identifiant_salle)  
     
     # @staticmethod
     # def ImportListeTypes():
