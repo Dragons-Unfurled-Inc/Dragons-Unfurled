@@ -6,8 +6,8 @@ from objets_metier.monstre import Monstre
 from objets_metier.objet import Objet
 from objets_metier.personnage import Personnage
 from objets_metier.utilisateur import Utilisateur
-
 from web.dao.db_connection import DBConnection
+
 
 class UtilisateurDAO:
 
@@ -233,9 +233,10 @@ class UtilisateurDAO:
                     objet = cursor.fetchall()
                     if objet == None: 
                         objet = []
-                    liste_objet.append(Objet(id_objet = i, nom_objet = objet[enti_obj["nom_objet"]], description_obj=objet[enti_obj["description_obj"]]))
+                    for objet in objet:
+                        liste_objet.append(Objet(id_objet = i, nom_objet = objet["nom_objet"], description_obj=objet["description_obj"]))
             caract = Caracteristique(nom_entite = entite["nom_entite"], force = entite["force"], experience = entite["experience"], intelligence = entite["intelligence"], charisme = entite["charisme"], dexterite = entite["dexterite"], constitution = entite["constitution"], vie = entite["vie"], sagesse =  entite["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = entite["description"], classe_armure = entite["classe_armure"])
-            personnages = Personnage(classe = personnage["classe"], race = personnage["race"], lore = personnage["lore"], id_joueur = -1, id_entite = entite["id_entite"], nom_entite = entite["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet)
+            personnages = Personnage(classe = personnage["classe"], race = personnage["race"], lore = personnage["lore"], id_joueur = 1, id_entite = entite["id_entite"], nom_entite = entite["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet)
         return personnages    
 
 
@@ -306,5 +307,5 @@ class UtilisateurDAO:
                         objet = []
                     liste_objet.append(Objet(id_objet = i, nom_objet = objet[enti_obj["nom_objet"]], description_obj=objet[enti_obj["description_obj"]]))
             caract = Caracteristique(nom_entite = entite["nom_entite"], force = entite["force"], experience = entite["experience"], intelligence = entite["intelligence"], charisme = entite["charisme"], dexterite = entite["dexterite"], constitution = entite["constitution"], vie = entite["vie"], sagesse =  entite["sagesse"], attaques= attaque, capacites = capacite, languages = langage, description = entite["description"], classe_armure = entite["classe_armure"])
-            mons = Monstre(type = monstre["type"] , id_joueur = -1, id_entite = entite["id_entite"], nom_entite = entite["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet)
+            mons = Monstre(type = monstre["type"] , id_joueur = 1, id_entite = entite["id_entite"], nom_entite = entite["nom_entite"], caracteristiques_entite =  caract, objets = liste_objet)
         return mons

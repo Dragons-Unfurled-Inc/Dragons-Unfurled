@@ -1,10 +1,8 @@
+from client.service.maitre_du_jeu_service import MaitreDuJeuService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-from client.service.maitre_du_jeu_service import MaitreDuJeuService
-
-from web.service.utilisateur_service import UtilisateurService 
-
 from PyInquirer import prompt
+from web.service.utilisateur_service import UtilisateurService
 
 
 class MenuConsultation(AbstractVue):
@@ -32,9 +30,10 @@ class MenuConsultation(AbstractVue):
     def make_choice(self):
         reponse = prompt(self.__questions)
         if reponse['choix'] == 'La fiche d\'un personnage joueur':
-            dict_perso = MaitreDuJeuService.dict_personnages(Session.id_campagne)
+            dict_entites = MaitreDuJeuService.dict_personnages(Session.id_campagne)
             print("Voici la liste des différents personnages:")
-            print(dict_perso)
+            for entite in dict_entites:
+                    print(entite["nom_entite"], " : ", entite["id_entite"])
             identifiant_perso = input("Saisissez l'identifiant du personnage à consulter. \n")
             perso = UtilisateurService.trouver_perso_par_id(Session.id_campagne,identifiant_perso)
             print(perso)
@@ -42,9 +41,10 @@ class MenuConsultation(AbstractVue):
             return MenuMJ()
         
         if reponse['choix'] == 'La fiche d\'un monstre' :
-            dict_monstres = MaitreDuJeuService.dict_monstres(Session.id_campagne)
+            dict_entites = MaitreDuJeuService.dict_monstres(Session.id_campagne)
             print("Voici la liste des différents monstres:")
-            print(dict_monstres)
+            for entite in dict_entites:
+                    print(entite["nom_entite"], " : ", entite["id_entite"])
             identifiant_monstre = input("Saisissez l'identifiant du monstre à consulter. \n")
             monstre = UtilisateurService.trouver_monstre_par_id(Session.id_campagne,identifiant_monstre)
             print(monstre)
@@ -52,9 +52,10 @@ class MenuConsultation(AbstractVue):
             return MenuMJ()
         
         if reponse['choix'] == 'La fiche d\'personnage non joueur (PNJ)' :
-            dict_pnj = MaitreDuJeuService.dict_pnj(Session.id_campagne)
+            dict_entites = MaitreDuJeuService.dict_pnj(Session.id_campagne)
             print("Voici la liste des différents PNJ:")
-            print(dict_pnj)
+            for entite in dict_entites:
+                    print(entite["nom_entite"], " : ", entite["id_entite"])
             identifiant_pnj = input("Saisissez l'identifiant du personnage à consulter. \n")
             pnj = UtilisateurService.trouver_perso_par_id(Session.id_campagne,identifiant_pnj)
             print(pnj)
