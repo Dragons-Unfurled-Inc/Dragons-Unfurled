@@ -11,9 +11,9 @@ class DeplacementSalleService:
         while deplacement != 'q':
             with open('client/dessins_ascii/border.txt', 'r', encoding="utf-8") as affichage1, open('client/dessins_ascii/donjons/donjon4.txt', 'r', encoding="utf-8") as affichage2:
                 print(affichage1.read(),affichage2.read())
-            print("\nEntrez d pour aller à droite, g pour aller à gauche, h pour aller en haut, ou b pour décendre. \nr permet de ramasser un objet et q sert à vous arreter à votre position.\n")
+            print("\nEntrez d pour aller à droite, g pour aller à gauche, h pour aller en haut, ou b pour décendre. \nr permet de ramasser un objet, a à attaquer le monstre de droite et q sert à vous arreter à votre position.\n")
             grille.dessiner_grille()
-            deplacement = input("Déplacez-vous ! (d, g, h, b, r, q)")
+            deplacement = input("Déplacez-vous ! (d, g, h, b, r, a, q)")
             grille.deplace_element(deplacement)
         message = "".join(["Vous voilà placé en position ", str(grille.element)])
         print(message)

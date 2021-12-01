@@ -25,6 +25,23 @@ class ObjetDAO(metaclass = Singleton):
         return id_objet
 
     @staticmethod
+    def trouve_id_ent(x,y, id_salle) :
+        id_cellule = CelluleDAO.trouve_id_cellule(id_salle, x, y)
+        with DBConnection().connection as connection:
+            with connection.cursor() as cursor:
+                cursor.execute(
+                    "SELECT * "\
+                    "FROM Entite "\
+                    "WHERE (id_cellule = %(id_cellule)s) "\
+                    , {"id_cellule": id_cellule})
+                res = cursor.fetchone()
+        if res == None:
+            id_objet = None
+        else:
+            id_objet = dict(res)["id_entite"]
+        return id_objet
+
+    @staticmethod
     def ajouter_objet(objet : Objet): 
         with DBConnection().connection as connection:
                 with connection.cursor() as cursor :

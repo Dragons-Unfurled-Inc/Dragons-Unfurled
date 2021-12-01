@@ -1,7 +1,12 @@
 from random import choice, randint
 from typing import List
 
+from client.service.campagne_service import CampagneService
+from client.service.dommage import Dommage
+from client.service.donjon_service import DonjonService
+from client.service.joueur_service import JoueurService
 from client.service.objet_service import ObjetService
+from web.service.entite_service import EntiteService
 
 
 class Grille:
@@ -128,6 +133,16 @@ class Grille:
             pos = [x, y + 1]
         elif deplacement == 'b':
             pos = [x, y - 1]
+        elif deplacement == 'a':
+            pos = [x, y]
+            identifiant_entite_cible = ObjetService.trouve_id_ent(x+1,y, self.identifiant_salle) 
+            id_entite_donne_attaque = self.identifiant_entite
+            if DonjonService.existe_entite_campagne(identifiant_entite_cible):
+                type_attaque = input("Quel est le type de votre attaque. Entrez c pour charisme, d pour dextérité, i pour intelligence ou f pour force.\n")
+                bonus = int(input("Entrez la valeur du bonus d'attaque que vous voulez accorder.\n"))
+                entite_recoie = EntiteService.entite_par_id(identifiant_entite_cible)
+                entite_donne = EntiteService.entite_par_id(id_entite_donne_attaque)
+                Dommage.frappe(entite_donne, entite_recoie, bonus, type_attaque)
         elif deplacement == 'r':
             pos = [x, y]
             identifiant_objet = ObjetService.trouve_id_obj(x,y, self.identifiant_salle) 

@@ -24,6 +24,10 @@ class ObjetService(metaclass = Singleton):
     @staticmethod
     def trouve_id_obj(x,y, identifiant_salle):
         return ObjetDAO.trouve_id_obj(x,y, identifiant_salle)  
+
+    @staticmethod
+    def trouve_id_ent(x,y, identifiant_salle):
+        return ObjetDAO.trouve_id_ent(x,y, identifiant_salle)  
     
     # @staticmethod
     # def ImportListeTypes():
