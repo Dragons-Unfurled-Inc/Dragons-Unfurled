@@ -1,14 +1,13 @@
+from __future__ import print_function, unicode_literals
+
 from client.service.personnage_service import PersonnageService
 from client.vue.abstract_vue import AbstractVue
 from client.vue.session import Session
-
-from web.dao.entite_dao import EntiteDAO
-
 from objets_metier.caracteristique import Caracteristique
 from objets_metier.personnage import Personnage
-
-from __future__ import print_function, unicode_literals
-from PyInquirer import (Token, ValidationError, Validator, prompt, style_from_dict)
+from PyInquirer import (Token, ValidationError, Validator, prompt,
+                        style_from_dict)
+from web.dao.entite_dao import EntiteDAO
 
 style = style_from_dict({
     Token.Separator: '#cc5454',
@@ -157,7 +156,7 @@ class MenuPersonnage(AbstractVue):
         print(f"Bonjour {Session.utilisateur.identifiant}, \n Bienvenue sur l\'écran de création de personnage")
 
     def make_choice(self):
-        reponse = prompt(self.questions) 
+        reponse = prompt(self.questions, style = style) 
         utilisateur = Session.utilisateur
         if reponse['ChoixCarac']:  
             carac = Caracteristique(nom_entite = reponse['Nom'], description = reponse['Description'], force = reponse['Force'], intelligence = reponse['Intelligence'], charisme = reponse['Charisme'], dexterite = reponse['Dexterite'], constitution = reponse['Constitution'], sagesse = reponse['Sagesse'], vie = reponse['Vie'], experience = reponse['Experience'], classe_armure = reponse['ClasseArmure'], niveau = reponse['Niveau'])
