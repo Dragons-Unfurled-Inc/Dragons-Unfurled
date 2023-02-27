@@ -140,5 +140,5 @@ CREATE TABLE Entite_Objet(
     id_objet int NOT NULL,
 	PRIMARY KEY (id_objet),
 	FOREIGN KEY (id_entite) REFERENCES Entite(id_entite),
-	FOREIGN KEY (id_objet) REFERENCES Objet(id_objet)
+	FOREIGN KEY (id_objet) REFERENCES Objet(id_objet) 
 );
