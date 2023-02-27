@@ -22,4 +22,4 @@ app.include_router(routere)
 
 if __name__ == "__main__" :
     port = WebConfig().getApiPort()
-    uvicorn.run(app, host="localhost", port = "5000", log_level="info")
+    uvicorn.run(app, host="localhost", port = "5000", log_level="info") 
